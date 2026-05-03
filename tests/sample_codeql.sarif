@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "CodeQL"
+        }
+      },
+      "results": [
+        {
+          "ruleId": "java/path-traversal",
+          "message": {
+            "text": "Potential path traversal."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/java/com/example/App.java"
+                },
+                "region": {
+                  "startLine": 50
+                }
+              }
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "src/main/java/com/example/App.java"
+                          },
+                          "region": {
+                            "startLine": 10
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "src/main/java/com/example/Utils.java"
+                          },
+                          "region": {
+                            "startLine": 25
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "src/main/java/com/example/App.java"
+                          },
+                          "region": {
+                            "startLine": 50
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

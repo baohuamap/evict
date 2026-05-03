@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0-rtm.5.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Mock Static Analysis Tool",
+          "rules": [
+            { "id": "java/sql-injection", "shortDescription": { "text": "CWE-89 SQL Injection" } },
+            { "id": "java/os-command-injection", "shortDescription": { "text": "CWE-78 OS Command Injection" } },
+            { "id": "java/path-traversal", "shortDescription": { "text": "CWE-22 Path Traversal" } }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CWE-89",
+          "message": { "text": "Unsanitized user input concatenated in SQL query." },
+          "locations": [{ "physicalLocation": { "artifactLocation": { "uri": "demo_data/JulietCWE89.java" }, "region": { "startLine": 11 } } }]
+        },
+        {
+          "ruleId": "CWE-89",
+          "message": { "text": "Potential SQL Injection in 'good' method (Mock FP)." },
+          "locations": [{ "physicalLocation": { "artifactLocation": { "uri": "demo_data/JulietCWE89.java" }, "region": { "startLine": 20 } } }]
+        },
+        {
+          "ruleId": "CWE-78",
+          "message": { "text": "Command injection vulnerability from untrusted input." },
+          "locations": [{ "physicalLocation": { "artifactLocation": { "uri": "demo_data/JulietCWE78.java" }, "region": { "startLine": 12 } } }]
+        },
+        {
+          "ruleId": "CWE-78",
+          "message": { "text": "Potential Command Injection in 'good' method (Mock FP)." },
+          "locations": [{ "physicalLocation": { "artifactLocation": { "uri": "demo_data/JulietCWE78.java" }, "region": { "startLine": 20 } } }]
+        },
+        {
+          "ruleId": "CWE-22",
+          "message": { "text": "Path traversal vulnerability from user-provided file name." },
+          "locations": [{ "physicalLocation": { "artifactLocation": { "uri": "demo_data/JulietCWE22.java" }, "region": { "startLine": 14 } } }]
+        },
+        {
+          "ruleId": "CWE-22",
+          "message": { "text": "Potential Path Traversal in 'good' method (Mock FP)." },
+          "locations": [{ "physicalLocation": { "artifactLocation": { "uri": "demo_data/JulietCWE22.java" }, "region": { "startLine": 23 } } }]
+        }
+      ]
+    }
+  ]
+}
