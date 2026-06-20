@@ -346,6 +346,82 @@ def _compute_metrics(results: List[Tuple[str, str, float]]) -> Dict[str, float]:
     }
 
 
+def _compute_live_decisions(
+    sampled: List[Tuple[Alert, str]],
+    verifier: Verifier,
+    cache_path: Path,
+    temperature: float,
+) -> List[Tuple[Decision, str, Alert]]:
+    """Computes pass@5 LLM decisions for all sampled alerts, with resumable cache.
+
+    Saves decisions to a JSON cache after each alert so interrupted runs can
+    resume without re-spending API budget. Each alert is queried k=5 times for
+    vote-share confidence.
+    """
+    import time
+
+    # Load cache if it exists (resumability).
+    cache: Dict[str, Dict[str, Any]] = {}
+    if cache_path.exists():
+        try:
+            cache = json.loads(cache_path.read_text())
+            print(f"Loaded cache: {len(cache)} decisions from {cache_path}")
+        except Exception:
+            pass
+
+    results: List[Tuple[Decision, str, Alert]] = []
+    total = len(sampled)
+    t0 = time.time()
+
+    for i, (alert, gt) in enumerate(sampled):
+        cache_key = f"{alert.alert_id}_{alert.file_path}_{alert.line_number}"
+        if cache_key in cache:
+            entry = cache[cache_key]
+            d = Decision(
+                alert_id=entry["alert_id"],
+                label=Label(entry["label"]),
+                confidence=entry["confidence"],
+                rationale=entry["rationale"],
+                stage=entry["stage"],
+            )
+            results.append((d, gt, alert))
+            continue
+
+        elapsed = time.time() - t0
+        rate = (i + 1) / elapsed if elapsed > 0 else 0
+        eta = (total - i - 1) / rate if rate > 0 else 0
+        print(
+            f"  [{i+1}/{total}] {alert.cwe_id} {alert.alert_id[:40]:<40} "
+            f"({elapsed:.0f}s, {rate:.1f}/s, ETA {eta:.0f}s)"
+        )
+
+        try:
+            d = verifier.get_decision(alert, num_samples=5)
+        except Exception as e:
+            print(f"    ERROR: {e}")
+            d = Decision(
+                alert_id=alert.alert_id,
+                label=Label.ABSTAIN,
+                confidence=0.0,
+                rationale=f"API error: {e}",
+                stage="LLM",
+            )
+
+        results.append((d, gt, alert))
+        cache[cache_key] = {
+            "alert_id": d.alert_id,
+            "label": d.label.value,
+            "confidence": d.confidence,
+            "rationale": d.rationale[:500],
+            "stage": d.stage,
+        }
+        # Save cache after each alert (resumability for low-budget runs).
+        cache_path.write_text(json.dumps(cache, indent=2))
+
+    print(f"Live decisions complete: {len(results)} alerts in {time.time()-t0:.0f}s")
+    return results
+
+
 def summarize(fold_results: List[Dict[str, Any]]) -> Dict[str, Dict[str, str]]:
     """Aggregates per-fold metrics into mean +/- std strings."""
     configs = [
@@ -382,6 +458,12 @@ def main():
         "--output", default="artifacts/exports/v2/juliet_conformal_poc.csv"
     )
     parser.add_argument("--model", default=None, help="LLM model name (live mode)")
+    parser.add_argument(
+        "--provider",
+        default=None,
+        choices=["openai", "gemini", "anthropic"],
+        help="LLM provider (auto-detected from model name if omitted)",
+    )
     parser.add_argument("--temperature", type=float, default=0.7)
     parser.add_argument("--sample_min", type=int, default=50)
     parser.add_argument("--sample_max", type=int, default=100)
@@ -411,19 +493,33 @@ def main():
     verifier = None
     use_mock = args.mock
     if args.live:
+        # Determine provider: explicit --provider > model name heuristic > env keys
+        if args.provider:
+            provider = args.provider
+        elif args.model:
+            ml = args.model.lower()
+            if "gemini" in ml or "flash" in ml or "pro" in ml and "gpt" not in ml:
+                provider = "gemini"
+            elif "claude" in ml or "sonnet" in ml or "haiku" in ml or "opus" in ml:
+                provider = "anthropic"
+            else:
+                provider = "openai"
+        else:
+            provider = (
+                "openai"
+                if os.getenv("OPENAI_API_KEY")
+                else "gemini" if os.getenv("GEMINI_API_KEY") else "anthropic"
+            )
+
         api_key = (
-            os.getenv("OPENAI_API_KEY")
+            os.getenv(f"{provider.upper()}_API_KEY")
+            or os.getenv("OPENAI_API_KEY")
             or os.getenv("GEMINI_API_KEY")
             or os.getenv("ANTHROPIC_API_KEY")
         )
         if not api_key:
-            print("ERROR: --live requires OPENAI/GEMINI/ANTHROPIC API key")
+            print(f"ERROR: --live requires an API key for provider '{provider}'")
             sys.exit(1)
-        provider = (
-            "openai"
-            if os.getenv("OPENAI_API_KEY")
-            else "gemini" if os.getenv("GEMINI_API_KEY") else "anthropic"
-        )
         verifier = Verifier(
             api_key=api_key,
             provider=provider,
@@ -436,28 +532,26 @@ def main():
 
     escalator = Escalator()
 
-    # 3. For mock mode, pre-compute decisions (needs gt for the mock).
-    #    For live mode, decisions are computed inside run_conformal_evaluation.
+    # 3. Pre-compute LLM decisions for ALL sampled alerts (once, not per-fold).
+    #    This minimizes API calls (N alerts x k samples, not 5xN) and supports
+    #    resumability via a cache file for low-budget runs.
+    cache_path = Path(args.output).with_suffix(".cache.json")
+    all_decisions: List[Tuple[Decision, str, Alert]] = []
+
     if use_mock:
         rng = random.Random(args.seed)
-        mock_decisions: List[Tuple[Decision, str, Alert]] = []
         for alert, gt in sampled:
             d = mock_verifier_decision(alert, gt, rng)
-            mock_decisions.append((d, gt, alert))
-        # Run folds over pre-computed mock decisions.
-        fold_results = _run_folds_on_decisions(
-            mock_decisions, escalator, args.folds, args.alpha, args.seed
-        )
+            all_decisions.append((d, gt, alert))
     else:
-        fold_results = run_conformal_evaluation(
-            sampled,
-            verifier,
-            escalator,
-            args.folds,
-            args.alpha,
-            args.seed,
-            use_mock=False,
+        all_decisions = _compute_live_decisions(
+            sampled, verifier, cache_path, args.temperature
         )
+
+    # 4. Run folds over the pre-computed decisions (no more API calls).
+    fold_results = _run_folds_on_decisions(
+        all_decisions, escalator, args.folds, args.alpha, args.seed
+    )
 
     # 4. Summarize and report.
     summary = summarize(fold_results)
