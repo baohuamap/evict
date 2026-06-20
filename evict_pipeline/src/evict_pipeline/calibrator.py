@@ -40,6 +40,8 @@ class Calibrator:
         try:
             q_hat = np.quantile(cal_scores, min(q_level, 1.0), method="higher")
         except TypeError:
-            q_hat = np.quantile(cal_scores, min(q_level, 1.0), interpolation="higher")
+            q_hat = np.quantile(  # type: ignore[call-overload]
+                cal_scores, min(q_level, 1.0), interpolation="higher"
+            )
         self.threshold = float(q_hat)
         return float(q_hat)
