@@ -1,14 +1,57 @@
 # Codebase Concerns
 
 **Analysis Date:** 2026-06-20
+**Last updated:** 2026-06-20 (post-fix session)
 
 This document audits the EVICT research codebase (NeurIPS 2026 paper + Python triage
-pipeline). The most severe findings are **research-integrity gaps**: the paper's headline
-preliminary results (Table 2: 91.2% precision, ECE 0.08, "23 LLM errors corrected") are
-**not reproducible from the committed code**, which contains stubs and hardcoded numbers.
+pipeline). The most severe findings were **research-integrity gaps**: the paper's headline
+preliminary results (Table 2: 91.2% precision, ECE 0.08, "23 LLM errors corrected") were
+**not reproducible from the committed code**, which contained stubs and hardcoded numbers.
 Real measured results (Table 1) are ~42-60% precision with ECE 0.36-0.55.
 
 Findings are ordered by severity. Each was verified by reading the actual file.
+
+---
+
+## Resolution Status (2026-06-20 update)
+
+| # | Concern | Severity | Status | Resolution |
+|---|---------|----------|--------|------------|
+| Tech Debt 1 | Symbolic escalation stub | CRITICAL | **RESOLVED** | Z3 SMT solving implemented (SAT/UNSAT/UNKNOWN), 15 sanitizer patterns, JPF integration. 0 corrections on real PoC (Z3 returns UNKNOWN for Java string conditions). See `escalator.py` |
+| Tech Debt 2 | Conformal calibration never wired | CRITICAL | **RESOLVED** | `fit_threshold` implemented (NumPy compat fix), wired into `benchmark_juliet_conformal.py` with 5-fold CV. Real q_hat=0.2, but vote-share is degenerate (85% unanimous). See `calibrator.py` |
+| Tech Debt 3 | num_samples=1 contradicts k=5 | HIGH | **RESOLVED** | PoC benchmark uses k=5 (`--live` mode). CWE-Bench uses k=1 for budget. Both supported via `--num_samples` flag |
+| Tech Debt 4 | Paper figures hardcoded | HIGH | **PARTIALLY RESOLVED** | Table 2 numbers updated in `preliminary_results.tex`. Figures (`calibration_plot.pdf`, `risk_coverage_curve.pdf`) are still STALE — need regeneration from real PoC data |
+| Tech Debt 5 | Path-constraint extraction stub | HIGH | **RESOLVED** | Real if/while/for guard extraction implemented (regex-based). See `extractor.py:_extract_path_constraints` |
+| Bugs 1 | CodeQL query path invalid | CRITICAL | **RESOLVED** | Fixed: bootstrapped `java-security-alerts.qls` suite + `--search-path`. 549 alerts generated across 45 projects. See `generate_sarifs.sh` |
+| Bugs 2 | CodeQL version mismatch | HIGH | **RESOLVED** | `config.py` updated from `1.8.1` to `0.8.3` (matches distro) |
+| Bugs 3 | 156 Docker images missing | HIGH | **ACCEPTED** | Scoped eval to 45 available projects. Building 156 locally is future work |
+| Security 1 | API key handling | LOW | **RESOLVED** | `.env` added to `.gitignore` (was not gitignored). Keys never committed |
+| Security 2 | Large untracked artifacts | MEDIUM | **PARTIALLY RESOLVED** | `artifacts/codeql_results/` gitignored (37MB regenerable). `data.tar.gz`/`data.zip` (4.7GB) still untracked |
+| Results 1 | Real results far below paper | CRITICAL | **RESOLVED** | Paper Table 2 reconciled with real numbers. See `docs/summaries/FINDINGS_AND_RESULTS.md` |
+| Results 2 | CWE-Bench pipeline blocked | HIGH | **RESOLVED** | Full pipeline working: SARIF gen → benchmark. 549 alerts triaged. 3.3% precision, 93.3% recall |
+| Fragility 1 | CWE-Bench orchestration | MEDIUM | **RESOLVED** | Scripts fixed and tested end-to-end |
+| Fragility 2 | Escalator/Calibrator interaction | MEDIUM | **RESOLVED** | 10 unit tests cover all interaction paths |
+| Scale 1 | Juliet scale vs "1,000 samples" | MEDIUM | **RESOLVED** | Paper updated to "247 samples" (real count) |
+| Scale 2 | Docker registry dependency | LOW | **ACCEPTED** | Documented limitation |
+| Env 1 | Python 3.14 vs >=3.9 | MEDIUM | **ACCEPTED** | Works on 3.14; NumPy compat handled in `fit_threshold` |
+| Env 2 | IRIS v2 vendored snapshot | LOW | **ACCEPTED** | No action needed |
+| Missing 1 | Calibration driver | HIGH | **RESOLVED** | `benchmark_juliet_conformal.py` implements full driver |
+| Missing 2 | Real symbolic verification | HIGH | **PARTIALLY RESOLVED** | Z3 implemented; JPF is stub (needs `JPF_HOME`). Z3 returns UNKNOWN for Java string conditions |
+
+### New Concerns Discovered During Fix Session
+
+| # | New Concern | Severity | Status |
+|---|------------|----------|--------|
+| New 1 | Vote-share confidence is degenerate (85% unanimous 5/5) | **CRITICAL** | Documented in `FINDINGS_AND_RESULTS.md`. Motivates richer confidence signals (token logprobs) |
+| New 2 | Z3 integer-proxy can't model Java string conditions | HIGH | Documented. Motivates JPF or Z3 string-theory encoding |
+| New 3 | Evidence-Free ≈ Evidence-Conditioned (no precision gain) | HIGH | Documented. EvidencePack may not provide useful signal to LLM |
+| New 4 | Lite LLMs are TP-biased (78-94% TP predictions) | HIGH | Documented. Opposite of desired triage behavior |
+| New 5 | CWE-Bench ground truth is 97% FP | MEDIUM | Documented. This is the target use case but makes precision look terrible |
+| New 6 | Figures are stale (show old aspirational curves) | MEDIUM | Need regeneration from real PoC data |
+
+---
+
+## Original Findings (pre-fix, preserved for reference)
 
 ---
 
