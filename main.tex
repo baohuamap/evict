@@ -1,0 +1,66 @@
+\documentclass{article}
+
+% NeurIPS 2026 style
+\usepackage[final,main]{neurips_2026}
+
+% Core packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{graphicx}
+% Algorithm packages not available, using custom environment
+\input{algorithm_env}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{cleveref}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\setcitestyle{numbers,square,comma,sort&compress}
+
+% Title and authors
+\title{EVICT: Evidence-Conditioned Investigation with Calibrated Triage for Static Analysis Alerts}
+
+\author{%
+  Anonymous Authors\\
+  Anonymous Institution\\
+  \texttt{anonymous@institution.edu}
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Static analysis tools are routinely disabled or ignored in practice because false-positive (FP) rates of 40--90\%~\cite{johnson2013,christakis2016} and 10--20 minutes of triage time per alert~\cite{tencent2023} render exhaustive review intractable. LLM-based triage improves precision, yet existing systems treat confidence heuristically, force binary classification, and rely on computationally expensive frontier models. We present \textbf{EVICT} (Evidence-Conditioned Investigation with Calibrated Triage), which reframes alert triage as a \emph{cost-sensitive selective prediction} problem: the system accepts only those alerts for which calibrated evidence supports a reliable decision, and explicitly defers uncertain cases to human review. EVICT extracts structured analyzer evidence, applies schema-guided LLM reasoning, calibrates confidence through split-conformal prediction, and invokes symbolic verification selectively after the calibrated stage abstains. This sequencing lets us state finite-sample validity for the \emph{pre-escalation} selective predictor while treating symbolic checks as a targeted audit mechanism outside the conformal guarantee.
+
+We contribute two complementary empirical studies. A multi-model zero-shot evaluation of five lite LLMs on 3,000+ Juliet alerts spanning 87+ CWE classes finds precision ceilings of 42--60\% and expected calibration errors (ECE) exceeding 0.35 across all models---establishing both a baseline and a concrete motivation for EVICT's calibration layer. Among the models evaluated, Claude Haiku 4.5 achieves the highest precision (59.9\%) and FP mitigation rate (80.3\%), while GPT-4o Mini achieves the highest recall (90.8\%); all models exhibit poor calibration, confirming that raw confidence scores do not reliably track correctness. A focused proof-of-concept applying the full EVICT pipeline to CWE-89, CWE-78, and CWE-190 demonstrates that conformal selective prediction achieves 89.3\% precision at 87.3\% coverage with ECE\,=\,0.08---improving over an evidence-free baseline (83.5\% precision, ECE\,=\,0.15) and reducing selective risk from 0.165 to 0.107. Symbolic escalation further lifts precision to 91.2\% at 89.6\% coverage, correcting 23 LLM errors of which 73.9\% were safety-critical FP\,$\to$\,TP reversals. We further establish finite-sample excess-risk bounds, distribution-free conformal validity, and exact optimal asymmetric threshold selection. The PoC validates the symmetric split-conformal case; the asymmetric label-conditional extension (Theorems~3--4) is proven but awaits empirical validation in the full evaluation.
+\end{abstract}
+
+% Main sections
+\input{sections/introduction}
+\input{sections/background}
+\input{sections/methodology}
+\input{sections/theory}
+\input{sections/preliminary_results}
+\input{sections/evaluation_plan}
+\input{sections/discussion}
+\input{sections/broader_impact}
+
+
+% References
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\appendix
+\input{sections/appendix}
+
+\end{document}

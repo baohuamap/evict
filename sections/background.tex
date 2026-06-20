@@ -1,0 +1,24 @@
+\section{Background and Related Work}
+\label{sec:background}
+
+\subsection{Static Analysis and False Positives}
+
+Static analyzers (e.g., SpotBugs, Infer, CodeQL) are deliberately sound-over-complete: they prioritize recall, yielding FP rates of 40--90\% in industrial deployments~\cite{johnson2013,christakis2016}. Because manual triage costs 10--20 minutes per alert~\cite{tencent2023}, organizations are frequently forced to choose between alert fatigue and reduced analyzer coverage. Any automated triage system must therefore be judged not only by precision on the accepted set, but by whether it reduces the review burden while keeping the false-negative rate on auto-dismissed alerts acceptably low.
+
+\subsection{LLM-Based Alert Triage}
+
+Recent systems exploit structured analyzer evidence---slices, call chains, data-flow paths---to condition LLM classification, demonstrating that grounding LLM reasoning in code-level evidence materially improves precision over ungrounded prompting~\cite{llm4fpm2024,llm4pfa2024,buglens2024,adataint2023}. However, these systems uniformly frame triage as forced binary classification, rely on computationally expensive frontier models, and treat model confidence as an opaque score rather than a calibrated probability. As a result, they cannot provide coverage or risk guarantees, and they offer no principled mechanism for deferral.
+
+EVICT differs along two axes: it targets the cost-effective lite-model regime, and it enforces safety through formalized abstention rather than relying on high raw accuracy. Our multi-model zero-shot baseline study (Table~\ref{tab:multimodel}) confirms that lite models achieve only 42--60\% precision with ECE $> 0.35$ without calibration---numbers that are unacceptable for production use and consistent with well-documented calibration pathologies of instruction-tuned LLMs~\cite{guo2024calibration,kadavath2022}.
+
+\subsection{Selective Prediction and Calibration}
+
+EVICT builds on the selective-prediction framework~\cite{elyaniv2010,geifman2017}, where a predictor proposes a label and a rejector decides whether to commit or defer. The key operational advantage of selective prediction over threshold-based filtering is that the reject decision is a first-class action with an associated cost, making risk--coverage tradeoffs explicit and auditable rather than implicit in a tuned threshold.
+
+Calibration is essential because LLM confidence scores are systematically misaligned with correctness, especially under distribution shift~\cite{guo2024calibration,kadavath2022}. Unlike post-hoc temperature scaling~\cite{guo2017calibration} or Bayesian binning~\cite{naeini2015}, which improve calibration on average without distribution-free coverage guarantees, Split-Conformal Prediction~\cite{vovk2005,angelopoulos2021} provides exact finite-sample marginal coverage for any score function without distributional assumptions. This makes it well-suited to the code-analysis domain, where label distributions shift across projects and analyzers.
+
+\subsection{Neuro-Symbolic Verification and Shift}
+
+EVICT functions as a conditional neuro-symbolic verifier: the LLM handles semantic interpretation of analyzer evidence, while symbolic engines are reserved for cases where the calibrated LLM abstains or a high-severity dismissal warrants scrutiny. This conditional invocation transforms symbolic analysis from a universal computational bottleneck into a targeted audit mechanism.
+
+The design choice of treating symbolic \texttt{UNKNOWN} results and timeouts as continued abstentions---rather than mapping them to a forced label---is a deliberate safety-preservation decision. Empirically, SMT UNKNOWN rates of 5--15\% are common on non-trivial program constraint systems~\cite{warp2023}, and 8.1\% of escalated alerts in our pilot dataset fell into this category. By treating UNKNOWN as an abstention signal consistent with the rejector $g(x) = 0$, EVICT avoids forcing a classification when both statistical evidence and symbolic verification fail, ensuring robustness under project and framework shift. The finite-sample conformal guarantee applies only to the pre-escalation selective predictor; symbolic verification operates as a separate, post-calibration audit layer whose outputs are reported independently.

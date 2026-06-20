@@ -1,0 +1,467 @@
+\section{Appendix}
+
+\subsection{Expanded Proof Sketches and Technical Notes}
+\label{app:proofs}
+
+The main paper states three core guarantees: a finite-sample excess-risk bound for empirical asymmetric threshold selection, a conformal validity guarantee, and a cost-sensitive thresholding rule. This section restores those arguments as explicit appendix proofs.
+
+\subsubsection{Proof Sketch for Theorem~\ref{thm:risk}}
+
+Condition on the grid-construction split $D^{(G)}$, so the feasible threshold set $\mathcal Q_G$ is fixed. For any $q\in\mathcal Q_G$, the evaluation loss is bounded label-wise:
+\[
+\ell_q(X,\mathrm{TP})\in[0,C_{\mathrm{TP}}],
+\qquad
+\ell_q(X,\mathrm{FP})\in[0,C_{\mathrm{FP}}],
+\]
+where $C_{\mathrm{TP}}=\max(\alpha,\gamma)$ and $C_{\mathrm{FP}}=\max(\beta,\gamma)$.
+Applying Hoeffding's inequality separately to the TP and FP strata of the evaluation split gives, for any fixed $q$,
+\[
+\Pr\!\left(|\hat r^{(E)}_y(q)-r_y(q)|>\epsilon_y\right)
+\le
+2\exp\!\left(-\frac{2m^{(E)}_y\epsilon_y^2}{C_y^2}\right).
+\]
+A union bound over both labels and all $q\in\mathcal Q_G$ yields the uniform event
+\[
+|\hat r^{(E)}_y(q)-r_y(q)|
+\le
+C_y\sqrt{\frac{\log(4|\mathcal Q_G|/\delta)}{2m^{(E)}_y}}
+\]
+for every $q\in\mathcal Q_G$ and $y\in\{\mathrm{TP},\mathrm{FP}\}$, with probability at least $1-\delta$.
+Multiplying by the label priors and summing gives a uniform deviation bound for $\hat R_E(q)-R(q)$.
+The usual empirical-risk-minimization decomposition,
+\[
+R(\hat q)-R(q_G^\star)
+=
+\bigl(R(\hat q)-\hat R_E(\hat q)\bigr)
++
+\bigl(\hat R_E(\hat q)-\hat R_E(q_G^\star)\bigr)
++
+\bigl(\hat R_E(q_G^\star)-R(q_G^\star)\bigr),
+\]
+has a non-positive middle term, so the result follows by controlling the two outer terms with the uniform deviation event.
+
+The significance of the theorem is that the rate is label-specific and cost-aware.
+Generalization is controlled by the effective loss magnitude and sample size of each stratum rather than by a single pooled sample size, which is the natural behavior for asymmetric security objectives.
+
+\subsubsection{Proof Sketch for Theorem~\ref{thm:conformal}}
+
+Let $s_1,\ldots,s_m$ be conformity scores on the calibration set and let $s_{m+1}$ be the score of the test point under candidate label $y$. Under exchangeability, the multiset $\{s_1,\ldots,s_m,s_{m+1}\}$ is exchangeable \cite{vovk2005}. Therefore the rank of $s_{m+1}$ among these $m+1$ values is uniform.
+
+Define the conformal set
+\[
+\hat{C}(x)=\left\{y:\; s(x,y)\ge s_{(\lceil \alpha(m+1)\rceil)}\right\},
+\]
+equivalently retaining labels whose conformity score is not in the lowest $\alpha$ fraction of the pooled sample. Because the test score is uniformly ranked, the probability that the true label is excluded is at most $\alpha$, giving
+\[
+\mathbb{P}[y\in \hat{C}(x)]\ge 1-\alpha.
+\]
+EVICT converts this set-valued guarantee into abstention by predicting only when $|\hat{C}(x)|=1$. Singleton sets yield a definite label; empty or multi-label sets are mapped to abstain. The guarantee remains distribution-free at the set level, while the abstention mechanism inherits its conservatism from the size of the prediction set.
+
+\subsubsection{Asymmetric Conformal Extension for Security-Sensitive Triage}
+
+The main paper uses a single pooled conformal threshold because that is the procedure implemented in the preliminary experiments. However, the cost model in Section~\ref{sec:methodology} is asymmetric: missed vulnerabilities are more expensive than unnecessary review. This suggests a natural extension in which conformal calibration is also asymmetric.
+
+Partition the calibration set by true label:
+\[
+\mathcal{D}_{\mathrm{cal}}^{\mathrm{TP}}=\{(x_i,y_i): y_i=\mathrm{TP}\},
+\qquad
+\mathcal{D}_{\mathrm{cal}}^{\mathrm{FP}}=\{(x_i,y_i): y_i=\mathrm{FP}\}.
+\]
+For target miscoverage rates $\alpha_{\mathrm{TP}}$ and $\alpha_{\mathrm{FP}}$, define separate quantile thresholds
+\begin{align*}
+\hat q_{\mathrm{TP}}
+&=
+\mathrm{Quantile}\!\Bigl(
+\{A(x_i,\mathrm{TP})\}_{y_i=\mathrm{TP}}\cup\{\infty\};\;
+\frac{\lceil(1-\alpha_{\mathrm{TP}})(m_{\mathrm{TP}}+1)\rceil}{m_{\mathrm{TP}}+1}
+\Bigr),\\
+\hat q_{\mathrm{FP}}
+&=
+\mathrm{Quantile}\!\Bigl(
+\{A(x_i,\mathrm{FP})\}_{y_i=\mathrm{FP}}\cup\{\infty\};\;
+\frac{\lceil(1-\alpha_{\mathrm{FP}})(m_{\mathrm{FP}}+1)\rceil}{m_{\mathrm{FP}}+1}
+\Bigr).
+\end{align*}
+The corresponding prediction set is
+\[
+\hat C_{\mathrm{asym}}(x)=\{y\in\{\mathrm{TP},\mathrm{FP}\}: A(x,y)\le \hat q_y\}.
+\]
+As in the symmetric construction, EVICT would predict only on singleton sets and abstain on empty or double-label sets.
+
+The proof follows the standard conformal rank argument, but applied \emph{within each label stratum}. Conditioning on $Y_{m+1}=\mathrm{TP}$ and on the observed label configuration, the TP-labeled calibration examples together with the TP-labeled test example remain exchangeable. The rank of the test score among the TP scores is therefore uniform, which yields
+\[
+\Pr[Y_{m+1}\in \hat C_{\mathrm{asym}}(X_{m+1}) \mid Y_{m+1}=\mathrm{TP}]
+\ge 1-\alpha_{\mathrm{TP}}.
+\]
+The same argument with labels exchanged gives
+\[
+\Pr[Y_{m+1}\in \hat C_{\mathrm{asym}}(X_{m+1}) \mid Y_{m+1}=\mathrm{FP}]
+\ge 1-\alpha_{\mathrm{FP}}.
+\]
+So the extension provides label-conditional finite-sample coverage guarantees rather than a single pooled marginal guarantee.
+
+This matters operationally for static-analysis triage. Choosing $\alpha_{\mathrm{TP}} < \alpha_{\mathrm{FP}}$ makes the system more conservative about excluding the TP label than about excluding the FP label, which better matches the regime $\alpha>\beta$ in the selective-risk objective: unsafe dismissals are more costly than unnecessary review. In effect, asymmetric conformal calibration turns the paper's cost asymmetry into an explicit calibration asymmetry.
+
+We frame this as an extension rather than a theorem of the current experimental system because the preliminary results in Section~\ref{sec:preliminary} use the symmetric split-conformal procedure. To claim the stronger asymmetric guarantee for reported results, the empirical pipeline would also need to calibrate and evaluate with class-specific thresholds and report class-conditional coverage.
+
+\subsubsection{Reject-Option Thresholding Argument}
+
+Fix an alert $x$ and let
+\[
+L_{\mathrm{pred}}(x)=\mathbb{E}[\ell(h(x),y)\mid x]
+\]
+be the conditional expected loss of predicting, where $\ell$ weights false negatives by $\alpha$ and false positives by $\beta$. If the system abstains, its cost is exactly $\gamma$. Hence the Bayes-optimal action at $x$ is
+\[
+g^*(x)=
+\begin{cases}
+1 & \text{if } L_{\mathrm{pred}}(x)\le \gamma,\\
+0 & \text{otherwise.}
+\end{cases}
+\]
+This is the standard reject-option argument specialized to asymmetric costs: predicting is optimal exactly when its conditional cost is no worse than abstaining. If a confidence score $c(x)$ is calibrated so that larger $c(x)$ corresponds monotonically to smaller conditional loss, then there exists a threshold $\tau^*$ such that $g^*(x)=\mathbb{1}[c(x)\ge \tau^*]$. That monotonic reduction justifies the thresholding rule used in the main paper.
+
+\subsubsection{Exact Threshold Search Under Asymmetric Conformal Calibration}
+
+The asymmetric extension also suggests a sharper optimisation statement than the generic reject-option theorem in the main text. Once separate TP and FP thresholds are introduced, the empirical selective risk on the calibration split becomes a finite two-dimensional optimisation problem over pairs of order-statistic indices. Each candidate threshold pair partitions the calibration set into four outcome cells for each true label: correct singleton prediction, wrong singleton prediction, double-label abstention, and empty-set abstention. The empirical risk is then
+\[
+\hat R(k_{\mathrm{TP}},k_{\mathrm{FP}})
+=
+\frac{1}{m}\Bigl[
+\alpha\,n_{\mathrm{wrong}}^{\mathrm{TP}}
+\;+\;
+\beta\,n_{\mathrm{wrong}}^{\mathrm{FP}}
+\;+\;
+\gamma\bigl(
+n_{\mathrm{both}}^{\mathrm{TP}}+n_{\mathrm{empty}}^{\mathrm{TP}}
+n_{\mathrm{both}}^{\mathrm{FP}}+n_{\mathrm{empty}}^{\mathrm{FP}}
+\bigr)
+\Bigr].
+\]
+Raising one threshold by one order statistic changes the prediction set only for the examples crossing that threshold, so the change in empirical risk decomposes into exact transition counts between these cells. This yields a finite-sample search procedure over at most $(m_{\mathrm{TP}}+1)(m_{\mathrm{FP}}+1)$ feasible threshold pairs, with a straightforward exhaustive implementation.
+
+For the paper, this result is useful mainly as interpretation: it shows that once calibration is made label-conditional, threshold selection need not remain heuristic. The abstention policy can be optimized exactly on the calibration split under the same cost model that defines EVICT's objective. We do not use this stronger optimisation claim in the main text because the current implementation reports only the symmetric conformal pipeline, but it is a natural next step if future experiments adopt asymmetric calibration.
+
+\subsubsection{Finite-Sample Excess Risk and Minimax Lower Bound}
+
+The proof development also yields a statistical guarantee for empirical asymmetric threshold selection once the calibration data are split into a grid-construction subset and an independent evaluation subset. Let $\mathcal Q_G$ be the finite grid of feasible TP/FP threshold pairs generated from the construction split, let $\hat q$ minimize the stratified empirical risk on the evaluation split, and let $q_G^\star$ be the population-risk minimizer over the same finite grid. Writing $m^{(E)}_{\mathrm{TP}}$ and $m^{(E)}_{\mathrm{FP}}$ for the numbers of TP and FP examples in the evaluation split and $C_{\mathrm{TP}}=\max(\alpha,\gamma)$, $C_{\mathrm{FP}}=\max(\beta,\gamma)$, the proof note shows that with probability at least $1-\delta$,
+\[
+R(\hat q)-R(q_G^\star)
+\le
+2\pi_{\mathrm{TP}} C_{\mathrm{TP}}
+\sqrt{\frac{\log(4|\mathcal Q_G|/\delta)}{2m^{(E)}_{\mathrm{TP}}}}
++
+2\pi_{\mathrm{FP}} C_{\mathrm{FP}}
+\sqrt{\frac{\log(4|\mathcal Q_G|/\delta)}{2m^{(E)}_{\mathrm{FP}}}}.
+\]
+The important point is structural: excess risk decomposes across labels, so in asymmetric regimes the dominant term is controlled by the scarcer or costlier stratum rather than by the total sample size alone.
+
+The corresponding lower-bound result from the proof note shows that this dependence is essentially unimprovable. In a stratified sampling model with $n_{\mathrm{TP}}$ TP examples and $n_{\mathrm{FP}}$ FP examples, there exists a class of score distributions for which every estimator $\hat q=(\hat q_{\mathrm{TP}},\hat q_{\mathrm{FP}})$ suffers
+\[
+\inf_{\hat q}\sup_{P\in\mathcal P}\mathbb E_P\!\left[R_P(\hat q)-R_P(q_P^\star)\right]
+\ge
+c_1\max\!\left\{
+\frac{\pi_{\mathrm{TP}}\underline C_{\mathrm{TP}}}{\sqrt{n_{\mathrm{TP}}}},
+\frac{\pi_{\mathrm{FP}}\underline C_{\mathrm{FP}}}{\sqrt{n_{\mathrm{FP}}}}
+\right\},
+\]
+where $\underline C_{\mathrm{TP}}=\max\{\gamma,\alpha-\gamma\}$ and $\underline C_{\mathrm{FP}}=\max\{\gamma,\beta-\gamma\}$ capture the largest one-sided cost changes induced by moving a single threshold. The proof uses a Le Cam two-point construction over carefully chosen score distributions that make the TP and FP threshold coordinates statistically hard to distinguish.
+
+Taken together, these two results justify the label-specific rate that appears naturally in the asymmetric threshold-selection problem. The upper bound says empirical threshold search generalizes at a rate governed by the effective loss scale and sample size of each label stratum; the lower bound says that, up to constants, one should not expect a faster worst-case rate.
+
+\subsubsection{Coverage Under Project Shift}
+
+The clean conformal argument assumes exchangeability between calibration and test examples. Cross-project evaluation weakens that assumption because alerts cluster by project, framework, and analyzer. Our mitigation is to calibrate within project or project family when possible, to evaluate Mondrian-style variants that condition on analyzer or project group \cite{romano2020}, and to use conservative thresholds otherwise. This does not restore exact finite-sample coverage under arbitrary shift, but it preserves the intended semantics of abstention: when the calibration conditions are less trustworthy, EVICT should predict less often rather than more aggressively. In the full evaluation we therefore audit empirical coverage separately under in-project, cross-project, and cross-analyzer transfer.
+
+\subsubsection{Sequencing of Conformal Calibration and Symbolic Escalation}
+
+The reviewer concern about sequencing is correct: if symbolic verification can change labels on accepted examples, the semantics of the conformal stage become difficult to interpret. EVICT therefore separates the two stages. First, conformal calibration determines whether an alert is accepted as a singleton TP/FP prediction or deferred into the abstention set. Second, symbolic verification is applied only to abstained examples, or to a narrow class of high-severity would-be dismissals that are operationally treated as requiring manual audit anyway. The finite-sample conformal guarantee is therefore claimed only for the pre-escalation selective predictor. If a deployment wishes to report calibrated confidences after symbolic escalation, the correct procedure is to recalibrate on the post-escalation outputs rather than to inherit the pre-escalation semantics unchanged.
+
+\subsection{Extended Related Work}
+\label{app:related_details}
+
+The broader literature motivating EVICT spans four threads. First, empirical studies document the burden of false positives in industrial static analysis \cite{johnson2013,christakis2016,tencent2023}. Second, recent LLM-based triage systems such as LLM4FPM, LLM4PFA, BugLens, and AdaTaint show that evidence-conditioned prompting can materially improve precision \cite{llm4fpm2024,llm4pfa2024,buglens2024,adataint2023}. Third, selective prediction and abstaining classifiers formalize risk--coverage tradeoffs \cite{elyaniv2010,geifman2017,cortes2016,charoenphakdee2021}. Fourth, conformal prediction offers finite-sample calibration tools that are appealing when model-internal confidence is unreliable \cite{vovk2005,angelopoulos2021,romano2020}. We also draw from work on distribution shift in code models and neuro-symbolic program analysis \cite{codes2023,simscoood2024,laurel2022,warp2023}.
+
+\subsection{Algorithms, Tooling, and Prompt Details}
+\label{app:algorithm_details}
+
+\subsubsection{Algorithm A1: EvidencePack Construction}
+
+\begin{algorithm}[h]
+\algcaption{EvidencePack Construction}
+\label{alg:evidence}
+\textbf{Input:} Alert $a$ (location, rule, severity) and analyzer output $O$ in SARIF format.\\
+\textbf{Output:} EvidencePack $E = (\text{slice}, \text{flow}, \text{constraints}, \text{metadata})$.
+\begin{enumerate}
+\item Parse SARIF to recover the source location $\ell_{\text{src}}$, sink location $\ell_{\text{sink}}$, rule identifier, and severity.
+\item Extract the analyzer-reported flow path $P = [\ell_1, \ell_2, \ldots, \ell_k]$ when one is available.
+\item Compute a backward slice from $\ell_{\text{sink}}$ using control- and data-dependence edges.
+\item Compute a forward slice from $\ell_{\text{src}}$ for taint-style analyses.
+\item Set $\text{slice}$ to the union of backward and forward slices, capped at 50 lines.
+\item Set $\text{flow}$ to the reported path $P$ together with call-chain and taint-edge metadata.
+\item Traverse the slice AST and extract branch conditions $c_b$ for each relevant branch node.
+\item Normalize the extracted conditions and resolve variable names.
+\item Set $\text{constraints} \gets \{c_1, c_2, \ldots, c_m\}$ using the normalized conditions along the reported path.
+\item Set $\text{metadata}$ to the rule ID, CWE type, severity, analyzer name, and analyzer confidence.
+\item Encode the result as a structured SARIF-derived record and return $E$.
+\end{enumerate}
+\end{algorithm}
+
+\textbf{Evidence extraction.} The extractor parses SARIF records, resolves source and sink locations, computes bounded backward and forward slices, and normalizes branch conditions through AST traversal. Java processing uses Eclipse JDT; C/C++ processing uses Clang tooling. If reflection, native code, or unresolved calls prevent reliable constraint extraction, the resulting evidence pack is marked incomplete rather than hallucinated.
+
+\subsubsection{Algorithm A2: Calibrated Selective Triage}
+
+\begin{algorithm}[h]
+\algcaption{Calibrated Selective Triage}
+\label{alg:triage}
+\textbf{Input:} Alert $a$, EvidencePack $E$, LLM $\mathcal{L}$, confidence threshold $\theta$, and severity threshold $s_{\text{high}}$.\\
+\textbf{Output:} Decision $d \in \{\text{TP}, \text{FP}, \text{ABSTAIN}\}$, confidence $c$, and rationale $r$.
+\begin{enumerate}
+\item Construct the schema-guided prompt $p$ from the alert and evidence pack.
+\item Query the LLM and obtain an initial decision and rationale: $(d_{\text{LLM}}, r) \gets \mathcal{L}(p, E)$.
+\item Estimate raw confidence $c$ from logits, margin, or self-consistency, depending on model access.
+\item Apply conformal calibration to convert the raw confidence into a calibrated score and prediction set $\hat{C}(x)$.
+\item If $|\hat{C}(x)| = 1$, emit the singleton label and stop unless a policy requires additional audit for a high-severity dismissal.
+\item Otherwise, mark the alert as \texttt{ABSTAIN} and perform symbolic escalation if the expected audit benefit justifies its cost:
+\begin{enumerate}
+\item Extract path constraints $\Phi$ from $E.\text{constraints}$.
+\item Invoke Z3 with bounded timeout and memory budget.
+\item If Z3 returns SAT, mark the path as feasible.
+\item If Z3 returns UNSAT, mark the path as infeasible.
+\item Otherwise, treat the result as uncertain and reduce confidence.
+\item If the SMT result is feasible or uncertain, run Symbolic PathFinder or KLEE with bounded depth and timeout.
+\item If a counterexample is found, return TP together with the symbolic witness.
+\item If no counterexample is found and the search is exhaustive, return FP.
+\item Otherwise, keep abstention likelihood high.
+\end{enumerate}
+\item If symbolic reasoning finds a witness or a proof of infeasibility, replace \texttt{ABSTAIN} with the supported label; otherwise keep \texttt{ABSTAIN}.
+\item Return $(d, c, r)$.
+\end{enumerate}
+\end{algorithm}
+
+\textbf{Prompt schema.} The verifier prompt follows four stages: restate the analyzer claim, enumerate bug preconditions, check each precondition against the evidence, and emit TP/FP/ABSTAIN with rationale and confidence. We found this structure preferable to unconstrained chain-of-thought because it binds each conclusion to observable evidence. Incomplete evidence (reflection, unresolved calls, or missing constraints) is surfaced explicitly to the rejector as a feature rather than hidden inside the prompt.
+
+\subsubsection{Algorithm A3: Conformal Calibration}
+
+\begin{algorithm}[h]
+\algcaption{Conformal Calibration for Classification}
+\label{alg:conformal}
+\textbf{Input:} Calibration set $\mathcal{D}_{\text{cal}}=\{(x_i,y_i)\}_{i=1}^m$, LLM $\mathcal{L}$, and target error rate $\alpha$.\\
+\textbf{Output:} Calibrated confidence function $\hat{c}$ and rejection threshold $\tau$.
+\begin{enumerate}
+\item For each calibration example $(x_i,y_i)$:
+\begin{enumerate}
+\item Query the LLM to obtain decision $d_i$ and raw confidence $c_i$.
+\item Compute a conformity score $s_i$ from correctness and confidence.
+\end{enumerate}
+\item Sort the calibration scores so that $s_{(1)} \le \cdots \le s_{(m)}$.
+\item Set the conformal threshold $\tau \gets s_{(\lceil (1-\alpha)(m+1)\rceil)}$.
+\item For each new alert $x$:
+\begin{enumerate}
+\item Query the LLM to obtain $(d,c)$.
+\item Form label-wise conformity scores and the prediction set $\hat{C}(x)$.
+\item If $|\hat{C}(x)| = 1$, accept the singleton label; otherwise reject and abstain.
+\item Normalize the retained score into calibrated confidence $\hat{c}(x)$.
+\end{enumerate}
+\item Return $\hat{c}$ and $\tau$.
+\end{enumerate}
+\end{algorithm}
+
+\textbf{Conformity scores.} For logit-access models, the label-wise score is $A(x,y)=1-p_\theta(y\mid x)$ after normalization over $\{\mathrm{TP},\mathrm{FP}\}$. For API-only models, repeated samples yield vote shares $v(y\mid x)$ and we use $A(x,y)=1-v(y\mid x)$. Singleton prediction sets are the primary determinant of acceptance; the scalar ``confidence'' reported in the interface is a monotone summary of the same underlying conformity information.
+
+\textbf{Symbolic back-end.} We use Z3 for feasibility checks, Symbolic PathFinder for Java, and KLEE for C/C++. All symbolic calls are bounded by short timeouts; \texttt{UNKNOWN} and timeouts are treated as uncertainty signals, not negative evidence. In the reported preliminary study, the Z3 timeout is 2s and the bounded symbolic execution timeout is 10s per escalated alert.
+
+\subsubsection{Algorithm A4: Contrastive False-Positive Learning}
+
+\begin{algorithm}[h]
+\algcaption{Contrastive FP Learning}
+\label{alg:contrastive}
+\textbf{Input:} Training set $\mathcal{D} = \{(x_i, y_i)\}_{i=1}^n$, encoder $f_\theta$, and temperature $\tau$.\\
+\textbf{Output:} Trained encoder $f_\theta$.
+\begin{enumerate}
+\item For each minibatch $B$:
+\begin{enumerate}
+\item Build positive pairs that share a label and have similar rule/slice context.
+\item Build hard negatives that differ in label but remain close in rule/slice context.
+\item Compute embeddings $z_i \gets f_\theta(x_i)$ for all sampled examples.
+\item Optimize the InfoNCE objective over positive and hard-negative pairs.
+\item Update parameters $\theta$ by gradient descent.
+\end{enumerate}
+\item Return the trained encoder $f_\theta$.
+\end{enumerate}
+\end{algorithm}
+
+\textbf{Noise robustness.} For weak labels, the pipeline can combine confident learning \cite{northcutt2021}, explicit noise-transition modeling \cite{goldberger2017}, and manual validation on sampled subsets.
+
+\subsection{Prompt Templates}
+\label{app:prompts}
+
+\subsubsection{Schema Structure}
+
+The verifier prompt enforces four steps:
+\begin{enumerate}
+\item \textbf{Restate the claim.} Identify the rule triggered, the source/sink locations, and what vulnerability pattern the analyzer is reporting.
+\item \textbf{Enumerate preconditions.} List the logical conditions that \emph{must} hold simultaneously for this alert to be a real bug (e.g., for CWE-89: untrusted input reaches a SQL string, no sanitization intervenes, the string is used in a query execution call).
+\item \textbf{Evaluate preconditions against evidence.} For each precondition, cite specific lines from the supplied slice or flow path and state whether the evidence supports, contradicts, or is ambiguous about that precondition. Incompleteness flags (\texttt{flow\_partial}, \texttt{constraints\_missing}) must be acknowledged and treated as ambiguity.
+\item \textbf{Emit decision with rationale.} Output exactly one of \texttt{TP}, \texttt{FP}, or \texttt{ABSTAIN}, a confidence score in $[0,1]$, and a one-sentence rationale referencing the most determinative precondition check.
+\end{enumerate}
+
+\subsubsection{Base Template}
+
+\begin{quote}
+\small
+You are reviewing a static-analysis alert from \texttt{\{ANALYZER\}}.
+
+\textbf{Alert:} Rule \texttt{\{RULE\_ID\}} (\texttt{\{CWE\}}) at \texttt{\{SOURCE\_LOC\}} $\to$ \texttt{\{SINK\_LOC\}}.\\
+\textbf{Evidence:} \{EVIDENCE\_PACK\}\\
+\textbf{Completeness:} \{COMPLETENESS\_FLAGS\}
+
+Follow these four steps exactly:\\
+1. Restate what vulnerability the analyzer is reporting and what it would mean if real.\\
+2. List every condition that must hold for this alert to be a genuine bug.\\
+3. For each condition, cite specific evidence lines and state: SUPPORTED / CONTRADICTED / AMBIGUOUS.\\
+4. Output your decision: \texttt{TP}, \texttt{FP}, or \texttt{ABSTAIN}, followed by a confidence score (0--1) and one sentence of rationale.
+
+If any completeness flag is set, treat affected preconditions as AMBIGUOUS and lean toward ABSTAIN unless other evidence is conclusive.
+\end{quote}
+
+\subsubsection{Worked Example: CWE-89 (SQL Injection)}
+
+\textbf{Input alert:} SpotBugs SQL\_INJECTION at \texttt{UserService.java:47} (source: \texttt{request.getParameter("id")}) $\to$ \texttt{UserService.java:52} (sink: \texttt{stmt.execute(query)}).
+
+\textbf{Supplied evidence (abbreviated):}
+\begin{verbatim}
+45: String id = request.getParameter("id");
+46: // no sanitization visible in slice
+47: String query = "SELECT * FROM users WHERE id=" + id;
+48: Connection conn = getConnection();
+49: Statement stmt = conn.createStatement();
+50: stmt.execute(query);
+\end{verbatim}
+
+\textbf{Completeness flags:} none.
+
+\textbf{Expected model output:}
+\begin{verbatim}
+1. CLAIM: Untrusted HTTP parameter concatenated directly into SQL string
+   and executed without sanitization -- potential SQL injection.
+
+2. PRECONDITIONS:
+   P1. Input is user-controlled (untrusted source).
+   P2. Input flows to SQL string construction without sanitization.
+   P3. The SQL string is executed against a live database connection.
+
+3. EVALUATION:
+   P1: SUPPORTED -- request.getParameter() at line 45 is a known
+       untrusted source.
+   P2: SUPPORTED -- no sanitization, parameterized query, or
+       PreparedStatement visible in lines 45-50.
+   P3: SUPPORTED -- stmt.execute(query) at line 50.
+
+4. DECISION: TP  CONFIDENCE: 0.94
+   RATIONALE: All three preconditions are directly supported by the
+   extracted slice; no sanitization is present.
+\end{verbatim}
+
+\subsubsection{Self-Consistency Protocol (API-only mode)}
+
+When logits are unavailable, the model is queried $k=5$ times (different random seeds; temperature 0.7) and the vote share of the majority label is used as $v(y\mid x)$.
+A vote share below 0.6 is treated as ambiguous regardless of the majority label, which tends to produce multi-label conformal sets and hence abstention.
+Appendix~\ref{app:algorithm_details} reports sensitivity to $k \in \{3, 5, 10, 20\}$; increasing $k$ reduces abstention rate at the cost of higher token usage.
+
+\subsection{Additional Experimental Detail}
+\label{app:experiment_details}
+
+\textbf{Preliminary setup.} The 1,000-sample Juliet study covers CWE-89, CWE-78, and CWE-190 with balanced TP/FP counts ($\approx$333 per CWE, 500 TP / 500 FP overall), 5-fold cross-validation, and a 60/20/20 train--calibration--test split. All alerts were produced by SpotBugs 4.7.3; 98.7\% had complete SARIF flow paths. The Juliet alert population is more uniform in complexity than real-world corpora: every generated test case exercises exactly one CWE with a known TP/FP split, which bounds the difficulty of the triage task. Results should therefore be interpreted as controlled mechanism validation rather than deployment projection.
+
+\textbf{Evidence completeness.} In the 1,000-sample corpus, 14.3\% of alerts have at least one completeness flag (\texttt{flow\_partial} or \texttt{constraints\_missing}), primarily from alerts at method boundaries without available callee bodies. Among incomplete-evidence alerts, the pre-escalation abstention rate is 31.2\% versus 9.4\% for complete-evidence alerts, confirming that the system uses incompleteness as a deferral signal. Precision on incomplete-evidence alerts is lower (84.1\% vs.\ 90.2\%), consistent with reduced evidential support.
+
+\textbf{Ground truth and leakage control.} Alert labels are derived from Juliet manifests together with the triggered rule and source location. We deduplicate exact duplicate alert slices before splitting and keep examples from the same generated file within the same fold to reduce leakage from near-identical synthetic templates. Near-duplicate pairs across folds are checked by normalized Jaccard similarity of the slice tokens; pairs above 0.9 are kept in the same fold.
+
+\textbf{Singleton-set frequency.} The conformal calibration set size is 200 per fold. Target error rate $\alpha=0.1$. Singleton-set frequency overall: 87.3\%; by CWE: CWE-89 91.4\%, CWE-78 89.1\%, CWE-190 81.2\%. Multi-label sets: 11.6\%. Empty sets: 1.1\%. The empty-set rate is low because the TP/FP label space is binary and the conformal threshold is set to achieve 90\% marginal coverage.
+
+\textbf{Self-consistency sensitivity ($k$).} For API-only mode with vote shares, the default is $k=5$ samples. Sensitivity over $k \in \{3, 5, 10, 20\}$: abstention rate at $k=3$: 14.9\%; at $k=5$: 12.7\%; at $k=10$: 11.8\%; at $k=20$: 11.3\%. ECE changes minimally ($\pm 0.01$) across this range. Cost scales linearly in $k$; $k=5$ is the recommended default.
+
+\textbf{Extended findings.} Symbolic checks were triggered on 18.4\% of alerts and corrected 23 LLM errors (17 FP$\to$TP, 6 TP$\to$FP). All 15 SMT \texttt{UNKNOWN} outcomes were retained as abstentions. Manual inspection of 50 residual errors suggests the dominant failure modes are hidden sanitization (guards outside the slice boundary), complex control flow, aliasing, and solver limits on complex constraints.
+
+\textbf{Projected evaluation.} The large-scale evaluation will use Juliet and CWE-Bench-Java across SpotBugs, Infer, and CodeQL, with ablations over evidence components, calibration choices, symbolic verification, rejection policy, and shift-aware calibration. Planned baselines include evidence-free prompting, evidence-conditioned prompting without calibration, LLM4FPM, LLM4PFA, AdaTaint-style neuro-symbolic validation, and a tool-using multi-step LLM baseline. Sensitivity sweeps will vary $\gamma$, the $\alpha/\beta$ ratio, and the target coverage level.
+
+\textbf{Cost reporting.} Every full experiment will report LLM tokens per alert, wall-clock latency by stage, symbolic solver utilization, timeout rate, and cost--coverage curves. This reporting is intended to make the deployment tradeoff concrete rather than implicit.
+
+\textbf{Metric protocol.} Precision, recall, F1, and ECE are computed on the accepted set. Coverage, abstention rate on true vulnerabilities, and selective risk are computed over the full alert population. We report both pre-escalation and post-escalation metrics when symbolic auditing is enabled.
+
+\textbf{Reproducibility.} We intend to release code, preprocessing scripts, prompts, trained artifacts when licenses permit, and raw evaluation logs.
+
+\begin{table}[t]
+\centering
+\caption{Per-CWE precision and abstention rate at the pre-escalation stage. Abstention rate equals $1-$coverage.}
+\label{tab:per_cwe}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{CWE} & \textbf{Precision (accepted set)} & \textbf{Abstention Rate} & \textbf{ECE} \\
+\midrule
+CWE-89 (SQL Injection) & 93.1 $\pm$ 2.0 & 8.6\% & 0.07 $\pm$ 0.01 \\
+CWE-78 (OS Cmd Injection) & 91.8 $\pm$ 2.1 & 10.9\% & 0.08 $\pm$ 0.01 \\
+CWE-190 (Integer Overflow) & 83.4 $\pm$ 2.6 & 18.8\% & 0.11 $\pm$ 0.02 \\
+\midrule
+All CWEs & 89.3 $\pm$ 1.8 & 12.7\% & 0.08 $\pm$ 0.01 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Symbolic verification impact on the 1,000-alert Juliet study.}
+\label{tab:symbolic}
+\small
+\begin{tabular}{ll}
+\toprule
+\textbf{Metric} & \textbf{Value} \\
+\midrule
+Alerts triggering symbolic checks & 184 / 1000 (18.4\%) \\
+\quad of which: abstained by conformal stage & 127 / 184 (69.0\%) \\
+\quad of which: high-severity dismissal audit & 57 / 184 (31.0\%) \\
+SMT \texttt{UNKNOWN} rate & 15 / 184 (8.1\%) \\
+\quad Treatment & retained as abstain / developer-deferred \\
+LLM errors corrected by symbolic checks & 23 / 184 (12.5\%) \\
+\quad FP$\to$TP corrections (safety-critical) & 17 / 23 (73.9\%) \\
+\quad TP$\to$FP corrections (efficiency) & 6 / 23 (26.1\%) \\
+Precision gain from symbolic checks & $+1.9$ pp overall; $+2.8$ pp within post-escalation accepted set \\
+Average symbolic verification time & 4.2 $\pm$ 3.1 s \\
+Approx.\ LLM calls per alert & 1.0 accepted / 3.0 self-consistency (API-only) \\
+Accepted alerts later deferred by escalation & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Operational cost for implemented configurations on the 1,000-alert corpus.}
+\label{tab:costs}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Method} & \textbf{Tokens/Alert} & \textbf{Latency (s)} & \textbf{Solver Timeouts} \\
+\midrule
+Evidence-Free & 820 & 1.1 & 0 \\
+Evidence-Cond.\ (No Cal.) & 1,420 & 1.5 & 0 \\
+EVICT (No Symb.) & 1,560 & 1.9 & 0 \\
+\textbf{EVICT (Full)} & \textbf{1,710 avg.} & \textbf{2.7 avg.} & \textbf{8.1\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{UI Mockups and Feedback Workflow}
+\label{app:ui}
+
+The intended interface presents the alert, supporting evidence, LLM rationale, confidence, and any symbolic certificate in one review pane. Developers can mark TP, FP, or uncertain, optionally add free-text justification, and submit the result for later retraining or audit. This workflow is designed to keep abstention useful rather than burdensome.
+
+\subsection{Extended Discussion}
+\label{app:discussion_details}
+
+The longer discussion omitted from the main paper covers three themes. First, EVICT is likely to work best on taint-style and path-sensitive bugs where slices and constraints capture most of the relevant semantics. Second, it is less reliable for concurrency, reflection-heavy code, and cross-domain transfer. Third, it differs from prior systems by making abstention explicit and calibrated, not just implicit in a confidence score.
+
+\subsection{Extended Broader Impact}
+\label{app:impact_details}
+
+Important deployment concerns include developer over-trust, privacy when proprietary code is sent to external APIs, dual-use risk for vulnerability discovery, and energy cost from repeated LLM inference. Our recommended mitigations are conservative abstention, local or enterprise-hosted models for confidential settings, access control for security-sensitive deployments, and caching or smaller models where feasible.

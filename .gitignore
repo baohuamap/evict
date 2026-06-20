@@ -12,3 +12,17 @@
 .env.*
 !.env.example
 artifacts/codeql_results/
+venv/
+evict_pipeline/venv/
+data.tar.gz
+data.zip
+*.pyc
+# Local benchmark data (regenerate via scripts/setup_*.sh + scripts/generate_sarifs.sh)
+data/juliet_java/
+data/juliet_sarifs/
+data/cwe-bench-java/
+data/iris-v2/
+data/literature_exports/
+data/*.sarif
+# Local analyzer binaries (download via scripts/setup_juliet_*.sh)
+bin/

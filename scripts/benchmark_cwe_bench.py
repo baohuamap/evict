@@ -62,49 +62,63 @@ def run_benchmark(
     temperature: float = None,
     provider_name: str = None,
     num_samples: int = 1,
+    base_url: str = None,
 ):
     print(f"Starting CWE-Bench-Java evaluation (k={num_samples})...")
 
     # Initialize components
     extractor = Extractor()
 
-    # Determine provider: explicit > model heuristic > env keys
-    if provider_name:
-        provider = provider_name
-    elif model_name:
-        ml = model_name.lower()
-        if "gemini" in ml or "flash" in ml or ("pro" in ml and "gpt" not in ml):
+    # On-prem OpenAI-compatible server (vLLM, SGLang, Ollama, TGI) takes
+    # precedence over the cloud provider auto-detection below.
+    if base_url:
+        provider = "openai"
+        api_key = (
+            os.getenv("OPENAI_API_KEY") or os.getenv("LOCAL_LLM_API_KEY") or "EMPTY"
+        )
+        # The served-model-name MUST match what the server advertised via
+        # --served-model-name. Default to $LOCAL_MODEL_NAME or a placeholder.
+        model_name = model_name or os.getenv("LOCAL_MODEL_NAME") or "local-model"
+        print(f"On-prem mode: base_url={base_url}, model={model_name}")
+    else:
+        # Determine provider: explicit > model heuristic > env keys
+        if provider_name:
+            provider = provider_name
+        elif model_name:
+            ml = model_name.lower()
+            if "gemini" in ml or "flash" in ml or ("pro" in ml and "gpt" not in ml):
+                provider = "gemini"
+            elif "claude" in ml or "sonnet" in ml or "haiku" in ml or "opus" in ml:
+                provider = "anthropic"
+            else:
+                provider = "openai"
+        elif os.getenv("OPENAI_API_KEY"):
+            provider = "openai"
+        elif os.getenv("GEMINI_API_KEY"):
             provider = "gemini"
-        elif "claude" in ml or "sonnet" in ml or "haiku" in ml or "opus" in ml:
+        elif os.getenv("ANTHROPIC_API_KEY"):
             provider = "anthropic"
         else:
-            provider = "openai"
-    elif os.getenv("OPENAI_API_KEY"):
-        provider = "openai"
-    elif os.getenv("GEMINI_API_KEY"):
-        provider = "gemini"
-    elif os.getenv("ANTHROPIC_API_KEY"):
-        provider = "anthropic"
-    else:
-        provider = "gemini"  # Default fallback
+            provider = "gemini"  # Default fallback
 
-    api_key = (
-        os.getenv(f"{provider.upper()}_API_KEY")
-        or os.getenv("OPENAI_API_KEY")
-        or os.getenv("GEMINI_API_KEY")
-        or os.getenv("ANTHROPIC_API_KEY")
-    )
+        api_key = (
+            os.getenv(f"{provider.upper()}_API_KEY")
+            or os.getenv("OPENAI_API_KEY")
+            or os.getenv("GEMINI_API_KEY")
+            or os.getenv("ANTHROPIC_API_KEY")
+        )
 
-    if not api_key:
-        print("Warning: No API key found, using mock.")
-        provider = "mock"
-        api_key = "mock-key"
+        if not api_key:
+            print("Warning: No API key found, using mock.")
+            provider = "mock"
+            api_key = "mock-key"
 
     verifier = Verifier(
         api_key=api_key,
         provider=provider,
         model_name=model_name,
         temperature=temperature,
+        base_url=base_url,
     )
     calibrator = Calibrator(threshold=0.4)
     escalator = Escalator()
@@ -287,7 +301,15 @@ if __name__ == "__main__":
     parser.add_argument(
         "--provider",
         choices=["openai", "gemini", "anthropic"],
-        help="LLM provider (auto-detected from model name if omitted).",
+        help="LLM provider (auto-detected from model name if omitted). Ignored "
+        "when --base_url is set, since vLLM/Ollama/TGI are OpenAI-compatible.",
+    )
+    parser.add_argument(
+        "--base_url",
+        default=None,
+        help="OpenAI-compatible base URL for an on-prem LLM server (vLLM, SGLang, "
+        "Ollama, TGI). Defaults to $LOCAL_LLM_URL. When set, provider is "
+        "forced to 'openai' and api_key defaults to 'EMPTY'.",
     )
     parser.add_argument(
         "--num_samples",
@@ -310,4 +332,5 @@ if __name__ == "__main__":
         temperature=args.temperature,
         provider_name=args.provider,
         num_samples=args.num_samples,
+        base_url=args.base_url or os.getenv("LOCAL_LLM_URL"),
     )

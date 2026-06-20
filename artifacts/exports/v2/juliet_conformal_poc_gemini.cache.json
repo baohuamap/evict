@@ -1,0 +1,1731 @@
+{
+  "DLS_DEAD_LOCAL_STORE_OF_NULL_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_executeBatch_22b.java_238": {
+    "alert_id": "DLS_DEAD_LOCAL_STORE_OF_NULL",
+    "label": "FP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claim: Dead store of null to local variable. Evidence shows the alert originates and ends at line 238. The program slice shows line 238: `data = null;` within an `else` block. This `else` block is part of an `if (CWE89_SQL_Injection__connect_tcp_executeBatch_22a.badPublicStatic)` condition. The `data = null;` assignment is dead code *if* the `if` condition is false. The alert is flagging this dead assignment, not a security vulnerability. The actual SQL injection vulnerability is in the",
+    "stage": "LLM"
+  },
+  "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__Property_executeBatch_06.java_208": {
+    "alert_id": "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE",
+    "label": "FP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims 'Redundant nullcheck of value known to be non-null'. The code slice shows `if (data != null)` checked before sink. However, `data` is read from `System.getProperty('user.home')` which can return null. Thus, the null check is *not* redundant. The alert is likely a false positive due to the analyzer's inability to determine that `System.getProperty` can return null in this context.\n---\nAnalyzer claims redundant null check. Code shows `data = System.getProperty(\"user.home\")` which c",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeBatch_06.java_484": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "FP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims hardcoded absolute path. Evidence shows `C:\\data.txt` read into `data`. However, the code slice does not show `data` being used in a dangerous context (like SQL execution). The SQL injection alert type is misleading given the provided context. The hardcoded path itself is not a vulnerability without a vulnerable sink.\n---\nAnalyzer claims hardcoded absolute pathname. Evidence shows `new File(\"C:\\\\data.txt\")`. This is a file path, not a direct command execution or SQL query, and no",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__Environment_execute_02.java_192": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "The analyzer correctly identifies that a non-constant string, obtained from an environment variable 'ADD', is directly concatenated into an SQL statement executed via `sqlStatement.execute()`. This is a textbook SQL injection vulnerability, as an attacker could control the environment variable to manipulate the SQL query. The `if (true)` blocks surrounding both the source and sink ensure this path is always taken in the `bad()` method.\n---\nThe analyzer correctly identifies a potential SQL inject",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__Environment_executeQuery_14.java_131": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "The analyzer claims a non-constant string is passed to an SQL execute method. The source is `System.getenv(\"ADD\")` which is inherently non-constant. This data is concatenated directly into an SQL query `sqlStatement.executeQuery(\"select * from users where name='\"+data+\"'\")`. This is a classic SQL injection vulnerability. The `if (IO.staticFive==5)` condition does not mitigate the vulnerability as it only controls execution flow, not the source of the data. Thus, it's a True Positive.\n---\nThe ana",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_prepareStatement_06.java_242": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: `prepareStatement` generated from non-constant string. Evidence shows `data` read from `System.in` via `BufferedReader.readLine()` is directly concatenated into the SQL query string passed to `dbConnection.prepareStatement()`. This is a classic SQL Injection vulnerability. Preconditions: 1. User input is read. 2. Input is used in a SQL query. 3. Input is not properly sanitized or parameterized. All preconditions are met. The flow is partial, but the critical concatenation is evid",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_executeQuery_12.java_102": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "The analyzer claims a non-constant string is passed to an SQL execute method. The evidence shows data flows from `console_readLine` to `sqlStatement.executeQuery` via string concatenation. The program slice confirms this flow, where `data` (read from console) is directly embedded in the SQL query string: `select * from users where name='` + data + `'`. This is a textbook SQL injection vulnerability. The `if(IO.staticReturnsTrueOrFalse())` blocks represent control flow that doesn't sanitize or pa",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__listen_tcp_executeUpdate_10.java_133": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims non-constant string to SQL execute. Evidence shows 'data' read from TCP socket (untrusted input) is directly concatenated into `sqlStatement.executeUpdate(\"insert into users (status) values ('updated') where name='\"+data+\"'\")`. This is a classic SQL injection vulnerability. Preconditions met: untrusted input source, sink using string concatenation for SQL, and IO.staticTrue ensures this path is taken.\n---\nAnalyzer claim: Nonconstant string passed to execute or addBatch method on ",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__Property_executeBatch_04.java_67": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "1. Analyzer Claim: SpotBugs flags a non-constant string passed to `executeBatch`. 2. Bug Preconditions: The vulnerability occurs when user-controlled data is directly concatenated into an SQL query executed via `Statement.addBatch()` and `Statement.executeBatch()`. This allows an attacker to inject malicious SQL. 3. Evidence Check: The `bad()` method reads data from `System.getProperty(\"user.home\")`. This data is then split into `names` and each `names[i]` is directly concatenated into an SQL st",
+    "stage": "LLM"
+  },
+  "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_executeBatch_09.java_172": {
+    "alert_id": "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE",
+    "label": "FP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claim is 'Redundant nullcheck of value known to be non-null'. The code slice shows `if (data != null)` before using `data`. However, `data` is read from `System.in` and could be `null` if `readLine()` returns `null`. The `if (IO.STATIC_FINAL_TRUE)` block ensures `data` is read, but `data` itself can be `null`. Therefore, the null check is not redundant. The alert is likely a false positive due to misinterpretation of control flow or data initialization.\n---\nAnalyzer claim: Redundant nul",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getQueryString_Servlet_executeBatch_71b.java_110": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims non-constant string passed to execute or addBatch. Evidence shows `data` (tainted) split into `names`, then each `names[i]` concatenated into `sqlStatement.addBatch(\"update users set hitcount=hitcount+1 where name='\" + names[i] + \"'\")`. This is a direct concatenation of potentially untrusted input into an SQL query executed via `executeBatch`, a clear SQL injection vulnerability.\n---\nAnalyzer claims non-constant string to execute/addBatch. Evidence shows `names[i]` (derived from ",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__getCookies_Servlet_executeUpdate_02.java_186": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Nonconstant string passed to execute or addBatch method on an SQL statement. Evidence shows data from cookies is directly concatenated into an SQL statement used in `sqlStatement.executeUpdate()`. This is a classic SQL injection vector. The flow is partial, and constraints are missing, but the direct concatenation is the critical factor. The `bad` method explicitly demonstrates this vulnerability.\n---\nAnalyzer claim: Nonconstant string passed to execute or addBatch method on an S",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_executeQuery_04.java_126": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Nonconstant string passed to execute or addBatch method on an SQL statement. Evidence shows 'data' flows into `sqlStatement.executeQuery(\"select * from users where name='\"+data+\"'\")`. Program slice confirms 'data' is concatenated directly into the SQL query string. This is a classic SQL injection vulnerability. No path constraints or sanitization are apparent. Therefore, it's a True Positive.\n---\nAnalyzer claim: Nonconstant string to execute/addBatch. Evidence: Source/sink same l",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_executeBatch_73b.java_47": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claims non-constant string passed to execute or addBatch. Evidence shows `sqlStatement.addBatch(\"update users set hitcount=hitcount+1 where name='\" + names[i] + \"'\")` where `names[i]` is derived from user input (`data`). This directly concatenates potentially untrusted input into an SQL statement, creating an SQL injection vulnerability. The `executeBatch` method is used, and the data flow is partial, but the core issue of unsanitized input in SQL is present.\n---\nAnalyzer claims noncons",
+    "stage": "LLM"
+  },
+  "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_executeBatch_42.java_167": {
+    "alert_id": "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE",
+    "label": "FP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Redundant nullcheck of value known to be non-null. Evidence shows the alert originates from a null check on 'data' at line 167. However, 'data' is obtained from `badSource()` which reads from `System.in`. There's no guarantee `readLine()` will return non-null. The `if (data != null)` check is therefore necessary and not redundant. The `goodB2G()` method demonstrates a fix using `PreparedStatement`, implying the original code *is* vulnerable to SQL injection, but the null check it",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__Environment_executeQuery_02.java_131": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Non-constant string used in SQL execution method. Preconditions: 1. Data read from an environment variable. 2. Data directly concatenated into an SQL query. 3. Query executed via `executeQuery` with a `Statement`. Evidence check: 1. `data = System.getenv(\"ADD\")` confirms environment variable source. 2. `sqlStatement.executeQuery(\"select * from users where name='\"+data+\"'\")` shows direct concatenation. 3. `dbConnection.createStatement()` and `sqlStatement.executeQuery()` match sin",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__Environment_executeUpdate_04.java_185": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Nonconstant string passed to execute or addBatch method on an SQL statement. Preconditions: 1. Source reads from an environment variable. 2. Data from source is concatenated into an SQL query. 3. Sink is an executeUpdate method. Evidence check: 1. `data = System.getenv(\"ADD\")` at line 185 is a source from environment variable. 2. `sqlStatement.executeUpdate(\"insert into users (status) values ('updated') where name='\"+data+\"'\")` at line 185 concatenates `data` directly into the SQ",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__PropertiesFile_executeBatch_74b.java_111": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Nonconstant string passed to execute or addBatch method on an SQL statement. Evidence shows data from a properties file is split and concatenated into an SQL query string within `sqlStatement.addBatch()`. This directly matches the analyzer's description of a potential SQL injection vulnerability. The code uses `Statement.addBatch()` with concatenated user-controlled input, a classic SQL injection pattern. The code slice is relevant and demonstrates the vulnerable pattern.\n---\nAna",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getQueryString_Servlet_executeQuery_54e.java_105": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims nonconstant string `data` passed to `executeQuery` via `sqlStatement.executeQuery(\"select * from users where name='\"+data+\"'\u201d);`. Evidence shows `data` originates from an unknown source and flows directly to the sink at line 105. The `badSink` method, which is called, constructs SQL with string concatenation, a known SQL injection vector. Lack of path constraints and missing constraints indicate potential for external input to reach the sink. This constitutes a true positive.\n---",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_executeBatch_45.java_200": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claim: Nonconstant string passed to execute or addBatch method on an SQL statement. Evidence shows data read from a TCP connection (taint source) is used in `sqlStatement.addBatch(\"update users set hitcount=hitcount+1 where name='\" + names[i] + \"'\")` (taint sink). The code directly concatenates the potentially untrusted input `names[i]` into the SQL query. This is a classic SQL injection vector. Preconditions for SQL injection are met: data from an untrusted source is used in a database",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getParameter_Servlet_prepareStatement_07.java_196": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "The analyzer claims a non-constant String is used to generate a prepared statement. The program slice shows `data`, which originates from `request.getParameter(\"name\")` (a source of untrusted input), is directly concatenated into the SQL string passed to `dbConnection.prepareStatement()`. This is a classic SQL injection vulnerability. The `privateFive` variable and the `if (privateFive==5)` blocks are control flow constructs that do not sanitize or validate the `data` before it's used in the SQL",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__database_execute_22b.java_31": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claim: Primitive field is public. Evidence shows data from a source is directly concatenated into an SQL query executed via `sqlStatement.execute()`. This is a classic SQL injection vulnerability. The alert type 'Unknown' is a misclassification by SpotBugs for this specific CWE. The extracted evidence directly points to a tainted `data` variable being used unsafely in a SQL statement, fulfilling the conditions for SQL injection.\n---\nAnalyzer claim: Primitive field is public. Relevant pr",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__PropertiesFile_execute_10.java_159": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claim: Nonconstant string passed to execute or addBatch method on an SQL statement. Evidence shows data read from a properties file is concatenated directly into an SQL execute() call, creating a classic SQL injection vulnerability. The code slice confirms this pattern in the `bad()` method. Preconditions for SQL injection are met: tainted data from an external source (properties file) is used in an SQL query without sanitization or parameterization. The `execute()` method with string c",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__listen_tcp_executeBatch_10.java_295": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "FP",
+    "confidence": 0.4,
+    "rationale": "Analyzer claims nonconstant string to execute/addBatch. Evidence shows `data` from `IO.staticTrue` branch, hardcoded to 'foo'. This 'foo' is split and used in `addBatch`. The string passed to `addBatch` is constructed as `\"update users set hitcount=hitcount+1 where name='\" + names[i] + \"'\"`. Since `names[i]` originates from 'foo', it's not user-controlled and thus not exploitable. The `goodG2B2` method shows this path.\n---\nAnalyzer claims non-constant string to execute/addBatch. Evidence shows d",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__listen_tcp_prepareStatement_06.java_137": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: `prepareStatement` from non-constant String. Evidence: Source/Sink at line 137, `sqlStatement = dbConnection.prepareStatement(\"insert into users (status) values ('updated') where name='\"+data+\"'\");`. Preconditions: User-controlled input (`data`) used in SQL query. Check: `data` is concatenated directly into the `prepareStatement` call. Prediction: TP. The code constructs a prepared statement with a directly concatenated string, which is vulnerable to SQL injection if `data` is un",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getParameter_Servlet_executeUpdate_75b.java_53": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claim: Non-constant string passed to execute or addBatch method on SQL statement. Evidence shows data from `getParameter_Servlet` (tainted source) is deserialized and concatenated directly into an SQL `executeUpdate` call, forming a SQL injection vulnerability. The program slice confirms this flow at line 53.\n---\nAnalyzer claim: Nonconstant string passed to execute or addBatch method on an SQL statement. Evidence shows 'data' is directly concatenated into the SQL query `sqlStatement.exe",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__getCookies_Servlet_executeQuery_68a.java_66": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: SpotBugs flags writing to static field `data` from an instance method (`bad`, `goodG2B`, `goodB2G`). Evidence shows `data` is static and modified in instance methods. Flow is partial, constraints missing, but the core issue of a static field being written to by instance methods is present. This pattern can lead to race conditions or unexpected behavior if not handled carefully, especially in concurrent environments. While not directly an SQL Injection vulnerability based on this ",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__Environment_executeQuery_07.java_60": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "1. Analyzer claim: SpotBugs flags a non-constant string passed to an SQL execute method. 2. Preconditions: The code must read data from an untrusted source (environment variable) and then use it directly in an SQL query without sanitization or parameterized statements. 3. Evidence check: The code reads from `System.getenv(\"ADD\")` (an untrusted source) and concatenates it into `sqlStatement.executeQuery(\"select * from users where name='\"+data+\"'\")` (a vulnerable sink). The `privateFive==5` condit",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__getCookies_Servlet_prepareStatement_04.java_138": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims a prepared statement is generated from a non-constant string. The evidence shows `data` from `request.getCookies()` is directly concatenated into the SQL string within `dbConnection.prepareStatement()`. This is a classic SQL injection vulnerability. The `PRIVATE_STATIC_FINAL_TRUE` flag ensures this path is taken. Therefore, it's a True Positive.\n---\n1. **Analyzer Claim:** SpotBugs claims a prepared statement is generated from a non-constant String, indicating a potential SQL inje",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getQueryString_Servlet_executeBatch_67b.java_46": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims nonconstant string to execute/addBatch. Evidence shows data flowing from a source to a sink via `sqlStatement.addBatch(\"update users set hitcount=hitcount+1 where name='\" + names[i] + \"'\")`. This directly concatenates user-controlled input (`names[i]`, derived from `data`) into an SQL query executed via `addBatch`, a clear SQL injection vector.\n---\nAnalyzer claims non-constant string passed to execute or addBatch. Evidence shows data from getQueryString_Servlet_executeBatch_67b.j",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeBatch_09.java_281": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims nonconstant string to execute/addBatch. Evidence shows data from `IO.STATIC_FINAL_TRUE` (which is likely controllable or non-hardcoded in real scenarios) split and added to batch SQL. Code snippet shows `data` derived from `IO.STATIC_FINAL_TRUE` used in `sqlStatement.addBatch(\"update users set hitcount=hitcount+1 where name='\" + names[i] + \"'\")`. This is a clear SQL injection vector, hence True Positive.\n---\nAnalyzer claims nonconstant string in `executeBatch`. Evidence shows `da",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__URLConnection_executeBatch_06.java_195": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Nonconstant string passed to execute or addBatch method on an SQL statement. Evidence shows data read from URLConnection is used in `sqlStatement.addBatch(\"update users set hitcount=hitcount+1 where name='\" + names[i] + \"'\")`. The `data` variable is read from external input (URLConnection). This is a direct string concatenation into an SQL statement, a classic SQL injection vulnerability. The `PRIVATE_STATIC_FINAL_FIVE==5` condition is met, enabling the vulnerable path. Therefore",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__URLConnection_prepareStatement_41.java_46": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims a prepared statement is generated from a non-constant string. Evidence shows data from URLConnection read into a string `data` and then directly concatenated into a SQL query within `dbConnection.prepareStatement(\"insert into users (status) values ('updated') where name='\"+data+\"'\")`. This is a classic SQL injection vulnerability where external input is not properly sanitized before being used in a SQL query. The `prepareStatement` method is called with a string that is construct",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__Environment_executeBatch_14.java_60": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "The analyzer correctly identifies that a non-constant string, read from an environment variable (`System.getenv(\"ADD\")`), is passed to `sqlStatement.addBatch()`. This method is part of an `executeBatch()` operation, and concatenating user-controlled input directly into SQL statements used in batch operations is a classic SQL injection vulnerability. The `Flow Partial: True` and `Constraints Missing: True` indicate the analysis might not have a complete picture, but the core path from a tainted s",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__Property_executeQuery_13.java_205": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "The analyzer correctly identifies a potential SQL injection vulnerability. The `bad()` method reads data from a system property (`user.home`) and directly concatenates it into an SQL query executed via `executeQuery`. This is a classic SQL injection pattern. The control flow `if (IO.STATIC_FINAL_FIVE==5)` is met, making the vulnerable code path reachable. The `Flow Partial: True` and `Constraints Missing: True` indicate the analysis might not have fully explored all execution paths or constraint",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__Property_prepareStatement_74b.java_99": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: A prepared statement is generated from a nonconstant String. Evidence shows data from a HashMap is directly concatenated into the SQL string passed to prepareStatement(), which is a classic SQL injection vulnerability (BadSink). The program slice confirms this unsafe usage.\n---\n1. Analyzer claim: SpotBugs alerts on `prepareStatement` generated from non-constant String. \n2. Bug preconditions: Data from a source (e.g., system property) directly concatenated into `prepareStatement` ",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__database_executeBatch_22b.java_245": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Primitive field is public. Relevant preconditions: A public field is used. Evidence: The source and sink are at the same location, indicating a direct flow. The code snippet shows data being concatenated directly into an SQL query within `sqlStatement.addBatch(\"update users set hitcount=hitcount+1 where name='\" + names[i] + \"'\");`. This is a classic SQL injection vulnerability. The alert 'Primitive field is public' is likely a misclassification by SpotBugs, but the underlying cod",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__listen_tcp_execute_71b.java_42": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claim: Nonconstant string passed to execute or addBatch method on an SQL statement. Evidence shows `data` from `listen_tcp` is directly concatenated into `sqlStatement.execute(\"insert into users (status) values ('updated') where name='\"+data+\"'\")`. This is a classic SQL injection vulnerability where user-controlled input `data` is embedded unsafely into an SQL query. The flow is partial, but the critical sink `execute` is clearly shown to be vulnerable due to direct string concatenation",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__getCookies_Servlet_executeUpdate_04.java_193": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "The analyzer correctly identified that a non-constant string, obtained from a cookie, is directly concatenated into an SQL statement executed via `Statement.executeUpdate()`. This is a classic SQL injection vulnerability pattern. The `Flow Partial: True` and `Constraints Missing: True` flags indicate that the static analysis might not have fully resolved the data flow or constraints, but the core issue of unsanitized user input being used in a sensitive SQL operation is evident.\n---\nAnalyzer cla",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeUpdate_67a.java_137": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claim: Hardcoded absolute pathname. Evidence: Source/sink at same line, `new File(\"C:\\\\data.txt\")`. Program slice shows file read into `data`, then passed to `badSink`. This directly matches the alert type and the code's behavior, indicating a hardcoded pathname is used to read potentially untrusted data, leading to SQL injection vulnerability in the sink.\n---\nAnalyzer claim: Hardcoded absolute pathname. Evidence shows code reads from 'C:\\data.txt'. This is an absolute pathname. The cod",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeBatch_09.java_125": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims nonconstant string to execute/addBatch. Evidence shows `data.split` results used in `addBatch`. `data` is derived from external input (implied by `juliet/testcases/CWE89_SQL_Injection` path). This direct use of potentially untrusted input in SQL is classic SQL injection.\n---\nAnalyzer claims nonconstant string to execute/addBatch. Evidence shows `sqlStatement.addBatch(\"update users set hitcount=hitcount+1 where name='\")` concatenating `names[i]`, where `names` is from `data.split(",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__database_executeBatch_10.java_279": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claim: Nonconstant string passed to execute or addBatch method on an SQL statement. Preconditions: Tainted data must reach an SQL execute/addBatch method. Evidence shows data flows to `sqlStatement.addBatch` in `goodG2B2`. The code snippet explicitly shows `data` being concatenated into the `addBatch` call: `sqlStatement.addBatch(\"update users set hitcount=hitcount+1 where name='\" + names[i] + \"'\")`. Although `data` is assigned `\"foo\"` in the `if (IO.staticTrue)` block, this block is wi",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__database_prepareStatement_61a.java_40": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims prepareStatement from non-constant string. Evidence shows `prepareStatement(\"insert into users (status) values ('updated') where name='\"+data+\"'\")` at line 40. `data` is from `badSource()` which likely returns untrusted input. String concatenation into `prepareStatement` is a classic SQL Injection vector. Thus, TP.\n---\nAnalyzer claims `prepareStatement` from non-constant string. Evidence shows `data` from `badSource` (potentially untrusted) is directly concatenated into `prepareS",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__Property_executeQuery_51b.java_105": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims nonconstant string passed to executeQuery. Evidence shows data from a system property (bad source) is concatenated into an SQL query in `badSink` via `sqlStatement.executeQuery(\"select * from users where name='\"+data+\"'\")`. This directly matches the alert description and code slice, indicating a clear SQL injection vulnerability.\n---\nAnalyzer claims non-constant string to executeQuery. Evidence shows data from a system property (bad source) is directly concatenated into an SQL qu",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeUpdate_42.java_181": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Non-constant string passed to executeUpdate. Evidence shows data read from a file is concatenated directly into an SQL executeUpdate call. This is a classic SQL injection pattern. Preconditions: (1) Data originates from an untrusted source (file). (2) Data is used in an SQL query without sanitization or parameterization. (3) The sink is an SQL execution method. All preconditions are met. The code explicitly reads from a file (`C:\\data.txt`) and directly concatenates the read data",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_executeQuery_11.java_252": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "The analyzer correctly identifies that user-controlled input from `console_readLine` is directly concatenated into an SQL query executed by `executeQuery`. This is a classic SQL injection vulnerability. The `if (IO.staticReturnsTrue())` blocks are designed to allow the tainted data to reach the sink. No sanitization or parameterized queries are used in the `bad()` method's sink.\n---\nThe analyzer correctly identifies that user input from `console_readLine` (a known source for potential injection)",
+    "stage": "LLM"
+  },
+  "DLS_DEAD_LOCAL_STORE_OF_NULL_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_executeBatch_22b.java_308": {
+    "alert_id": "DLS_DEAD_LOCAL_STORE_OF_NULL",
+    "label": "FP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Dead store of null to local variable. Evidence shows source and sink at the same line (308). Program slice shows `data = null;` in an `else` block that is conditionally executed based on `CWE89_SQL_Injection__console_readLine_executeBatch_22a.badPublicStatic`. This `else` block is marked as `incidental: CWE 561 Dead Code`. The main `if` block (where the vulnerability is likely located) is not shown in its entirety, but the dead code comment strongly suggests this specific branch ",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_prepareStatement_17.java_117": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Prepared statement generated from non-constant String. Evidence: Source (File read) -> Sink (prepareStatement). Program slice shows `data` read from file is directly concatenated into the SQL query string within `prepareStatement`. This is a classic SQL injection vector. Path constraints missing and flow partial are noted, but the direct concatenation is sufficient evidence for a TP.\n---\nAnalyzer claim: Prepared statement generated from non-constant String. Evidence shows data re",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_executeBatch_68b.java_46": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Analyzer claim: Nonconstant string passed to execute or addBatch method on an SQL statement. Evidence shows `data` (from `console_readLine`) is concatenated into `sqlStatement.addBatch(\"update users set hitcount=hitcount+1 where name='\" + names[i] + \"'\")`. `names[i]` is derived from `data`. This is a direct concatenation of potentially untrusted input into an SQL statement executed via `executeBatch`. Preconditions for SQL injection are met: a data flow from a source (console input) to a sink (S",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_execute_22b.java_40": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "The alert indicates a non-constant string passed to an SQL execute method. The code slice shows the 'badSink' method, which takes a 'data' string and concatenates it directly into an SQL query executed via `sqlStatement.execute(\"insert into users (status) values ('updated') where name='\"+data+\"'\")`. This is a classic SQL injection vulnerability. The source is not shown, but the description of the CWE (CWE89_SQL_Injection__File_execute_22b) implies data comes from a file, a common source for untr",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__URLConnection_executeUpdate_75b.java_53": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "The analyzer claims a non-constant string is passed to `execute` or `addBatch` on an SQL statement. The evidence points to line 53 in CWE89_SQL_Injection__URLConnection_executeUpdate_75b.java. The code slice shows `sqlStatement.executeUpdate(\"insert into users (status) values ('updated') where name='\"+data+\"'\");` which directly concatenates the `data` variable into the SQL query. This is a clear SQL injection vulnerability. The `data` variable is deserialized from a byte array, and its origin is",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeUpdate_75b.java_53": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims non-constant string passed to `executeUpdate`. Evidence shows `data` deserialized from a byte array is concatenated directly into the SQL query string: `sqlStatement.executeUpdate(\"insert into users (status) values ('updated') where name='\"+data+\"'\")`. This directly matches the vulnerability description and code pattern for SQL injection.\n---\nAnalyzer claims non-constant string passed to `executeUpdate`. Evidence shows data from `File` source deserialized and concatenated into SQ",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getQueryString_Servlet_executeQuery_71b.java_43": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims a non-constant string is passed to executeQuery. Evidence shows `data` (from `getQueryString_Servlet`) is concatenated into the SQL query: `sqlStatement.executeQuery(\"select * from users where name='\"+data+\"'\")`. This is a direct SQL injection vulnerability. The `badSink` method directly uses the tainted `data` in a string concatenation to build an SQL query, which is then executed. This matches the alert's description of a non-constant string being passed to `executeQuery` and i",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__Environment_prepareStatement_22b.java_159": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Analyzer claim: Primitive field is public. Evidence: Source location and sink location are the same line (159), indicating a direct flow. The program slice shows `data` is directly concatenated into a SQL `prepareStatement` call, a clear indicator of SQL injection vulnerability. Although the alert is generic ('Primitive field is public'), the context provided by the program slice points to a real vulnerability.\n---\nAnalyzer claim: Primitive field is public. Evidence shows data is read from an en",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__URLConnection_executeBatch_02.java_111": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Nonconstant string passed to execute or addBatch method on an SQL statement. Evidence shows `data` read from `URLConnection` is concatenated into `sqlStatement.addBatch(\"update users set hitcount=hitcount+1 where name='\" + names[i] + \"'\")`. The `if (true)` block ensures this code path is always taken. This directly matches the analyzer's description of a potential SQL injection vulnerability.\n---\nAnalyzer claim: Nonconstant string passed to execute or addBatch method on an SQL st",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_executeQuery_75b.java_54": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "The analyzer correctly identified that a non-constant string (`data`) is passed to `sqlStatement.executeQuery()`. The program slice shows this data is concatenated directly into the SQL query: `\"select * from users where name='\"+data+\"'\"`. This is a classic SQL injection vulnerability. The `goodB2GSink` method demonstrates a fix using a prepared statement, further confirming the vulnerability in the `badSink` and `goodG2BSink` methods.\n---\nThe analyzer correctly identifies that a non-constant st",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__PropertiesFile_prepareStatement_12.java_197": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Method uses the same code for two branches. Evidence shows a data flow from a file read (POTENTIAL FLAW) into a SQL query. The code slice contains two branches controlled by `if(IO.staticReturnsTrueOrFalse())`. The `bad()` method has a branch that concatenates `data` directly into a `prepareStatement` call, creating a SQL injection vulnerability. The alert is triggered because the same `if` statement controlling the `data` source also controls the sink, and the vulnerability exis",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__getCookies_Servlet_prepareStatement_68a.java_66": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims write to static field 'data' from instance method 'bad'. Evidence shows data flow from cookie read (source) to 'data' (static field) and then to a sink in 'CWE89_SQL_Injection__getCookies_Servlet_prepareStatement_68b'. This matches the alert type 'Write to static field from instance method' and indicates a potential SQL Injection vulnerability via tainted static data.\n---\nAnalyzer claims write to static field 'data' from instance method 'bad'. Evidence shows 'data' (static field)",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getParameter_Servlet_executeUpdate_12.java_55": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claims `data` from `request.getParameter` is concatenated into an SQL statement via `sqlStatement.executeUpdate`. Evidence shows `data` from `getParameter` is used in `executeUpdate` where `sqlStatement.executeUpdate(\"insert into users (status) values ('updated') where name='\"+data+\"'\")`. This matches the claim and is a classic SQL injection vulnerability.\n---\nAnalyzer claim: Nonconstant string passed to execute or addBatch method on an SQL statement. Evidence shows data from getParamet",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_execute_02.java_100": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims nonconstant string passed to execute method. Evidence shows data read from console (taint source) is directly concatenated into an SQL execute statement (sink). Path constraints are missing, but the flow is direct and the sink is vulnerable to SQL injection. This is a textbook SQL injection vulnerability.\n---\nAnalyzer claim: Nonconstant string passed to execute or addBatch method on an SQL statement. Evidence shows data read from console (tainted source) is directly concatenated ",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_prepareStatement_15.java_45": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims hardcoded absolute pathname. Evidence points to `C:\\data.txt` as source. Code reads from this file into `data`. Vulnerability description and code snippet indicate `data` is used in `prepareStatement`, suggesting potential SQL injection if file content is malicious. Path constraints missing, but source is clear. Flow partial, constraints missing, but core issue (hardcoded path for input) present.\n---\nAnalyzer claim: Hardcoded absolute path. Evidence shows `new File(\"C:\\\\data.txt\"",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_prepareStatement_45.java_50": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "1. **Analyzer Claim:** SpotBugs flags a `PreparedStatement` generated from a non-constant string, indicating a potential SQL injection vulnerability. 2. **Bug Preconditions:** The vulnerability exists if user-controlled data is directly concatenated into an SQL query passed to `PreparedStatement`. 3. **Evidence Check:** The code slice shows `data` (obtained from a network socket) being concatenated into the `prepareStatement` call: `dbConnection.prepareStatement(\"insert into users (status) value",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeBatch_68b.java_31": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Primitive field is public. Evidence shows `data` (String, primitive wrapper) is a public static member of `CWE89_SQL_Injection__File_executeBatch_68a`. This field is directly used in `badSink` and `goodG2BSink` where it's concatenated into a SQL query without sanitization, creating an SQL injection vulnerability. The alert type 'Unknown' is likely a placeholder for a more specific SQL injection alert. The code directly demonstrates the vulnerability described by CWE89.\n---\nAnalyz",
+    "stage": "LLM"
+  },
+  "DLS_DEAD_LOCAL_STORE_OF_NULL_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__URLConnection_executeQuery_22b.java_232": {
+    "alert_id": "DLS_DEAD_LOCAL_STORE_OF_NULL",
+    "label": "FP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Dead store of null to local variable. Evidence shows the alert originates from `juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__URLConnection_executeQuery_22b.java:232`. The program slice contains two branches, one executed when `CWE89_SQL_Injection__URLConnection_executeQuery_22a.badPublicStatic` is true, and another when it's false. The `else` block, which is executed when `badPublicStatic` is false, contains `data = null;`. This is a dead store as `data` is not u",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getQueryString_Servlet_execute_54e.java_98": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Nonconstant string passed to execute or addBatch method on an SQL statement. Evidence shows `data` from a potentially untrusted source is directly concatenated into an SQL `execute` call: `sqlStatement.execute(\"insert into users (status) values ('updated') where name='\"+data+\"'\")`. This is a clear SQL injection vulnerability.\n---\nAnalyzer claim: Nonconstant string passed to execute method on an SQL statement. Evidence shows a string `data` is concatenated into `sqlStatement.execu",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getQueryString_Servlet_execute_01.java_60": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Nonconstant string passed to execute or addBatch method on an SQL statement. Evidence shows data from getQueryString_Servlet is directly concatenated into an SQL execute statement. This matches the alert description and the code clearly demonstrates a direct concatenation of user-controlled input (data) into an SQL query string used with `sqlStatement.execute()`, creating a classic SQL injection vulnerability.\n---\nAnalyzer claims nonconstant string to `execute`. Evidence shows `d",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__URLConnection_prepareStatement_03.java_174": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Prepared statement generated from non-constant string. Preconditions: 1. Data originates from an untrusted source. 2. Data is directly concatenated into a SQL query string used in `prepareStatement`. Evidence: Source `URLConnection` reads data, which is untrusted. Data `data` is concatenated into `dbConnection.prepareStatement(\"insert into users (status) values ('updated') where name='\"+data+\"'\")`. This directly matches the analyzer's claim and the vulnerability pattern for SQL i",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_execute_52a.java_39": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Hardcoded absolute pathname. Evidence shows `new File(\"C:\\\\data.txt\")`. This is a hardcoded absolute pathname, matching the alert. Preconditions: Code uses `java.io.File` with a hardcoded absolute path. Evidence: `File file = new File(\"C:\\\\data.txt\");`. This matches the precondition. The code reads data from this file and passes it to a sink (`CWE89_SQL_Injection__File_execute_52b`). The description also explicitly mentions SQL Injection, and the `bad()` method reads from a file ",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getQueryString_Servlet_executeBatch_07.java_157": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims non-constant string to execute/addBatch. Evidence shows `data` from `request.getQueryString()` (taint source) is directly concatenated into `sqlStatement.addBatch(\"update users set hitcount=hitcount+1 where name='\" + names[i] + \"'\")` (taint sink). Path constraints are missing, but the flow itself is clear. The `privateFive` variable controls execution, but the `bad` method explicitly uses the vulnerable path where `privateFive==5`. This is a clear SQL injection vulnerability.\n---",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__database_execute_01.java_180": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Nonconstant string passed to execute or addBatch method on an SQL statement. Evidence shows data read from a database (source) is concatenated directly into an SQL execute statement (sink). Path constraints are missing, but the flow is partial and the sink is an execute method directly using string concatenation. This matches the description of an SQL injection vulnerability.\n---\nAnalyzer claim: Nonconstant string passed to execute or addBatch method on an SQL statement. Evidence",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__listen_tcp_prepareStatement_14.java_270": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claims `prepareStatement` from non-constant string. Evidence shows `data` (tainted from `goodG2B2`'s `IO.staticFive==5` branch) concatenated into SQL query for `prepareStatement`. Path constraints missing, flow partial, constraints missing suggest analyzer might not have full context but the direct concatenation is a strong indicator of SQLi.\n---\nAnalyzer claims: Prepared statement from non-constant string. Preconditions: User input (taint source) concatenated into SQL string for `prepa",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_execute_75b.java_53": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Nonconstant string passed to execute or addBatch. Evidence shows 'data' is deserialized and concatenated into an SQL statement within `sqlStatement.execute()`. The `goodB2GSink` method demonstrates the fix by using a `PreparedStatement`, confirming the `badSink` is vulnerable. Flow is partial, but the direct use of unsanitized, deserialized input in a string-concatenated SQL query is a clear SQL injection vulnerability.\n---\nAnalyzer claim: Nonconstant string passed to execute or ",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_executeUpdate_06.java_247": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "The analyzer claim is that a non-constant string is passed to an execute method on an SQL statement. The evidence shows a data flow from a TCP socket read (`data`) to `sqlStatement.executeUpdate(\"insert into users (status) values ('updated') where name='\"+data+\"'\")`. This directly concatenates user-controlled input into an SQL query, creating a clear SQL injection vulnerability. The preconditions for SQL injection (tainted input, execution of SQL statement without sanitization) are met.\n---\nAnal",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__listen_tcp_executeQuery_03.java_284": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claim: Nonconstant string passed to execute or addBatch method on an SQL statement. Evidence shows 'data' (a string) is concatenated into an SQL query string used in `sqlStatement.executeQuery()`. The `goodG2B2` method, where the alert originates, explicitly sets `data = \"foo\"` in a hardcoded manner within a `if (5==5)` block. However, the SQL query itself is constructed as `\"select * from users where name='\"+data+\"'\"`. This construction is inherently vulnerable to SQL injection if `dat",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__Environment_executeQuery_52c.java_105": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims non-constant string to `executeQuery`. Evidence shows `data` from an environment variable is directly concatenated into SQL query string `\"select * from users where name='\"+data+\"'\"` in `badSink`. This directly matches the description and is a classic SQL injection vulnerability. `Flow Partial: True` and `Constraints Missing: True` indicate the analysis may not have fully traced the source, but the sink clearly shows the vulnerable pattern.\n---\nAnalyzer claims non-constant string",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__Property_executeUpdate_17.java_51": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims non-constant string in executeUpdate. Evidence shows `data` from `System.getProperty` concatenated into `sqlStatement.executeUpdate`. This is a classic SQL injection pattern where user-controlled input directly influences the SQL query. The `bad()` method demonstrates this exact flow. Therefore, it's a True Positive.\n---\nAnalyzer claim: Nonconstant string passed to execute or addBatch method on an SQL statement. Evidence shows data from System.getProperty(\"user.home\") is directly",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeBatch_51a.java_128": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims hardcoded absolute pathname. Evidence shows `File file = new File(\"C:\\\\data.txt\");` which is an absolute pathname. This is a direct match to the alert description.\n---\nAnalyzer (SpotBugs) claims hardcoded absolute pathname. Evidence shows `new File(\"C:\\\\data.txt\")`. This is a hardcoded absolute path. Code slice confirms file reading and passing to `badSink`, which likely handles SQL. This matches the CWE89_SQL_Injection pattern.",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_prepareStatement_54e.java_39": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Prepared statement generated from non-constant String. Evidence shows `prepareStatement(\"insert into users (status) values ('updated') where name='\"+data+\"'\")` at line 39. The `data` variable is a String argument, not a constant. The SQL statement is constructed by concatenating `data` directly into the query string, a classic SQL injection vulnerability. Therefore, it's a True Positive.\n---\nAnalyzer claim: Prepared statement generated from non-constant string. Evidence shows `pr",
+    "stage": "LLM"
+  },
+  "DLS_DEAD_LOCAL_STORE_OF_NULL_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__URLConnection_execute_22b.java_85": {
+    "alert_id": "DLS_DEAD_LOCAL_STORE_OF_NULL",
+    "label": "FP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims 'Dead store of null to local variable'. Code slice shows 'data = null;' in an 'else' block. This assignment is part of a control flow that is not executed when the 'badPublicStatic' variable is true, which is the condition for the vulnerable sink. Therefore, the dead store does not affect the vulnerable path.\n---\nAnalyzer claim: Dead store of null to local variable. Evidence shows a dead code path where `data` is set to `null`. This is intentional and not a vulnerability. The `ba",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__Environment_executeUpdate_05.java_124": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Nonconstant string passed to execute or addBatch method on an SQL statement. Evidence shows data read from System.getenv(\"ADD\") is concatenated into an SQL statement executed by `sqlStatement.executeUpdate()`. The `privateTrue` flag ensures this path is taken. The code explicitly marks this as a POTENTIAL FLAW: data concatenated into SQL statement used in executeUpdate(), which could result in SQL Injection. This directly matches the analyzer's alert and the code's intent.\n---\nAn",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__URLConnection_prepareStatement_16.java_165": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: PreparedStatement generated from non-constant String. Precondition: User-controlled data is directly embedded into SQL query string passed to `prepareStatement()`. Evidence: `data` from `URLConnection` is concatenated directly into the SQL string: `sqlStatement = dbConnection.prepareStatement(\"insert into users (status) values ('updated') where name='\"+data+\"'\");`. This directly matches the analyzer's claim and indicates a SQL injection vulnerability.\n---\nAnalyzer claim: Prepared",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_executeQuery_08.java_190": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims nonconstant string passed to executeQuery. Evidence shows data read from console (untrusted) concatenated directly into SQL query. Path constraints missing, flow partial, but the core vulnerability pattern (tainted input in SQL) is present.\n---\nAnalyzer claim: Nonconstant string passed to execute or addBatch method on an SQL statement. Preconditions: 1. User input is read into a variable. 2. That variable is concatenated into an SQL query. 3. The query is executed via `executeQue",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_prepareStatement_17.java_177": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Prepared statement generated from nonconstant String. Evidence shows data read from a file is directly concatenated into a `dbConnection.prepareStatement()` call. This directly matches the analyzer's claim and indicates a SQL injection vulnerability because external input controls the SQL query structure.\n---\nAnalyzer claim: Prepared statement generated from non-constant string. Evidence shows data read from a file is concatenated directly into a SQL query string passed to `dbCon",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeBatch_09.java_204": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "FP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims non-constant string to executeBatch. Evidence shows 'data' variable used. 'data' is assigned 'foo' in goodG2B1, which is a constant. Therefore, the claim is false.\n---\nAnalyzer claims nonconstant string to execute/addBatch. Evidence shows `data = \"foo\"` in `goodG2B1`. This is a hardcoded, constant string, not derived from user input. The `data.split(\"-\")` part is also safe as the delimiter is constant. Therefore, the alert is a false positive.",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__getCookies_Servlet_prepareStatement_16.java_57": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: SpotBugs flags a prepared statement generated from a non-constant String. Evidence shows data from a cookie (`request.getCookies()`) is directly concatenated into a SQL query string passed to `dbConnection.prepareStatement()`. This is a classic SQL injection vulnerability, as user-controlled input is embedded unsanitized into the SQL. Preconditions met: Source is user input (cookie), sink is SQL prepareStatement, data flows directly. Therefore, it's a True Positive.\n---\nAnalyzer ",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getQueryString_Servlet_prepareStatement_12.java_175": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims same code used for two branches. Evidence shows a data flow from `getQueryString` to `prepareStatement` where `data` is directly concatenated. This is a classic SQL injection vulnerability. Preconditions for SQL injection (tainted input used in SQL query) are met. The `if(IO.staticReturnsTrueOrFalse())` construct ensures both branches of the control flow (one of which is the 'bad' path) can reach the vulnerable sink. Therefore, it's a True Positive.\n---\n1. **Analyzer Claim:** Spo",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__PropertiesFile_68b.java_52": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims potential OS command injection. Preconditions: user-controlled data used in OS command execution. Evidence shows `data` from `CWE78_OS_Command_Injection__PropertiesFile_68a.data` (sourced from PropertiesFile) is concatenated with OS command strings and passed to `Runtime.getRuntime().exec()`. This directly matches the vulnerability pattern. Constraints missing and flow partial indicate analyzer couldn't fully trace, but the core sink usage is clear.\n---\nAnalyzer claims locale-par",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__database_01.java_102": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer: SpotBugs. Alert: Unknown - Consider using Locale parameterized version of invoked method. Evidence: Source: CWE78_OS_Command_Injection__database_01.java:102 (database read). Sink: CWE78_OS_Command_Injection__database_01.java:102 (Runtime.getRuntime().exec()). Flow: Data from DB query directly appended to OS command. Preconditions: Data read from external source (DB) directly used in OS command execution. Evidence matches preconditions: `data` from `resultSet.getString(1)` is concatenat",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__console_readLine_51b.java_50": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Locale-parameterized method invocation. Evidence: Source/Sink at same line, data flow trace, partial flow, missing constraints. Program slice: `Runtime.getRuntime().exec(osCommand + data)` is a clear OS command injection sink. `data` is user-controlled input (from `console_readLine` in the context of the CWE78 example). The alert is likely a false positive *for the Locale issue*, but the underlying command injection is a real vulnerability. The tool flagged the command injection ",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__Property_67b.java_30": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims Locale issue. Evidence shows `Runtime.getRuntime().exec(osCommand + data)` where `data` is from a property read. `exec` is a known sink for command injection. The `data` is directly concatenated into the command without sanitization or locale awareness. This is a classic OS command injection vulnerability.\n---\nAnalyzer claims `Unknown` alert, but description implies locale issue. Code uses `Runtime.getRuntime().exec(osCommand + data)`. `data` is read from a system property (taint",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_74b.java_31": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Use Locale-parameterized method. Evidence: `Runtime.getRuntime().exec(osCommand + data)` is a sink for OS command injection. The data originates from `URLConnection` (a BadSource). The alert suggests using a Locale-parameterized version, implying `exec` is a sensitive method. The code directly concatenates user-controlled data (`data`) into a command string executed by `exec`, which is a classic OS command injection vulnerability. The alert, though phrased oddly, points to a know",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__File_12.java_134": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claim: Same code in two branches. Evidence shows `bad()` method reads from a file into `data` in one branch of `if (IO.staticReturnsTrueOrFalse())`. The other branch assigns a hardcoded string 'foo' to `data`. The `exec` sink uses this `data` potentially leading to command injection. The alert is triggered because the `exec` call is outside the `if` but `data` is conditionally assigned. SpotBugs is likely flagging the potential for the file-read data to reach the sink, which is a real v",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__listen_tcp_54e.java_29": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claims potential command injection. Evidence shows data flowing from a source (implied by 'listen_tcp_54e') to a sink (Runtime.getRuntime().exec()). The program slice confirms `data` is concatenated directly into a command string passed to `exec`, a known OS command injection vector. The alert's nature ('Unknown' type, but description points to locale issues which can sometimes mask or be related to injection depending on context) is less critical than the clear data flow to a dangerous",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__Property_02.java_112": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Alert: Use Locale parameterized method. Evidence: Source/Sink at same line, custom code. Slice shows System.getProperty(\"user.home\") concatenated to OS command. This is classic OS Command Injection. Locale alert is likely misclassified but the underlying vulnerability is present.\n---\nAnalyzer claim: Use Locale-parameterized method. Evidence shows `System.getProperty(\"user.home\")` is read and concatenated into `Runtime.getRuntime().exec()`. This is a known OS command injection vulnerability (CWE7",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getQueryString_Servlet_10.java_55": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claim: Use Locale-parameterized method. Evidence: Source and sink at line 55, data flow from source to sink, flow partial, constraints missing. Program slice: `bad()` method. Source: `request.getQueryString()` parsed into `data`. Sink: `Runtime.getRuntime().exec(osCommand + data)`. Preconditions: User-controlled input from `getQueryString` is directly concatenated into a command executed by `exec()`. This is a classic OS command injection pattern. The analyzer's suggestion to use Locale",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_22a.java_74": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims potential OS command injection. Evidence shows data from `badSource()` (which reads from `URLConnection`) directly concatenated into `Runtime.getRuntime().exec()`. This is a classic command injection pattern. The alert's suggestion to use locale-parameterized methods is a secondary concern, but the primary vulnerability is the direct execution of user-controlled input.\n---\nAnalyzer claims Locale-parameterized method use. Evidence shows `Runtime.getRuntime().exec(osCommand + data)",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__PropertiesFile_71b.java_30": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "SpotBugs alert: 'Consider using Locale parameterized version of invoked method' is likely a misclassification. The actual vulnerability is OS Command Injection. The code `Runtime.getRuntime().exec(osCommand + data)` concatenates user-controlled data (`data`) directly into an OS command, a classic OS command injection vulnerability. The source is reading from a properties file, and the sink is `Runtime.getRuntime().exec()`. The data flow is confirmed by the program slice. The analyzer's descripti",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__database_07.java_182": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims Locale-parameterized method use is missing. Evidence shows data from a database (`resultSet.getString(1)`) is concatenated directly into `osCommand + data` and passed to `Runtime.getRuntime().exec()`. This is a classic OS Command Injection vulnerability. The alert is relevant as it points to potential issues with how external data is handled in command execution. While the specific alert text is about locale, the underlying issue is unsanitized input to a command execution sink, ",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__connect_tcp_01.java_104": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "SpotBugs alert is 'Consider using Locale parameterized version of invoked method'. The code uses Runtime.getRuntime().exec() with user-controlled input 'data' obtained from a network socket. This is a classic OS command injection vulnerability. The alert, while vaguely worded, points to a potential issue in string handling that could be exploited in conjunction with command execution. The `data` from the socket directly concatenates into the `osCommand` string before being passed to `exec`, crea",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getQueryString_Servlet_52c.java_29": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Analyzer claim: Use Locale-parameterized method. Preconditions: Method takes String input, method performs OS command execution. Evidence: `badSink` takes String `data`, concatenates it with a command string, and passes to `Runtime.getRuntime().exec()`. This directly matches CWE78 OS Command Injection. The alert suggests a more secure version of `exec` might exist, implying the current usage is vulnerable. The code slice confirms data from an external source (implied by `getQueryString_Servlet` ",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_01.java_89": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: SpotBugs warns about potential command injection due to using a method without locale parameter. Evidence shows data read from URLConnection (a potential source) is directly concatenated with a command string and passed to Runtime.getRuntime().exec() (a known sink for command injection). The code slice confirms this flow. The alert is relevant and the data flow is a direct path to execution, indicating a high likelihood of a true positive.\n---\nAnalyzer claim: SpotBugs warns about",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__console_readLine_04.java_132": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Analyzer claim: Alert indicates potential OS command injection due to using a non-locale-aware method for data that might be used in a command. Evidence: Source is `console_readLine()`, sink is `Runtime.getRuntime().exec()`. The data flow is direct. The `bad()` method reads user input via `readLine()` and directly concatenates it to a command string passed to `exec()`. This is a classic OS command injection vulnerability. The alert's suggestion to use a locale-parameterized version is a mitigati",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__File_04.java_47": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Alert: Hardcoded absolute pathname. Evidence shows code reads from 'C:\\data.txt' (absolute path) and passes it to Runtime.getRuntime().exec(), creating a command injection vulnerability. Preconditions: 1. Hardcoded absolute path. 2. Path used in exec. Both met.\n---\nAnalyzer claim: Hardcoded absolute pathname. Evidence shows code reading from 'C:\\data.txt' into 'data', then executing a command using 'osCommand + data'. This is a clear OS command injection vulnerability (CWE78). The hardcoded abso",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_08.java_108": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims `Runtime.getRuntime().exec()` is called with potentially untrusted input from `URLConnection.getInputStream()`. Evidence shows data read from `URLConnection` is directly concatenated into `osCommand` before being passed to `exec()`. This creates a clear command injection vector. The `Locale` parameterization alert is a hint for a potential exploit path, not a reason for FP.\n---\nAnalyzer claims method use requires locale. Evidence shows `Runtime.getRuntime().exec()` called with `d",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__Environment_41.java_28": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "SpotBugs alert is 'Consider using Locale parameterized version of invoked method'. The code uses `Runtime.getRuntime().exec(osCommand + data)` where `data` is read from an environment variable. This is a classic OS command injection vulnerability. Although the alert message is generic, the underlying code clearly demonstrates a sink that is vulnerable to command injection, and the source is an environment variable, which is untrusted input. The presence of `exec()` with concatenated user-control",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__connect_tcp_72b.java_54": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claims `exec` is called with potentially untrusted input. Evidence shows `data` from `dataVector.remove(2)` concatenated to `osCommand` and passed to `Runtime.getRuntime().exec()`. This forms a command injection vulnerability. Preconditions met: untrusted input (`data`), vulnerable sink (`Runtime.getRuntime().exec()`), data flow exists.\n---\nAnalyzer claims Locale issue. Evidence shows `Runtime.getRuntime().exec(osCommand + data)` where `data` is from an untrusted source (implied by test",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__database_31.java_110": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims locale-aware method usage. Evidence shows string `data` read from DB, then concatenated with `osCommand` and passed to `Runtime.getRuntime().exec()`. This is a classic OS command injection vulnerability. Locale-aware methods don't mitigate this. Therefore, it's a True Positive.\n---\nAnalyzer claims `Unknown` alert, likely `OS Command Injection`. Evidence shows data from DB (`BadSource`) flows to `Runtime.getRuntime().exec()` (`BadSink`), a classic OS command injection. `dataCopy` ",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_75b.java_42": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: SpotBugs warns about using a non-locale parameterized method. Preconditions: The code uses `Runtime.getRuntime().exec()`, which is a known sink for OS command injection. The data passed to `exec()` is derived from deserialized input (`data`), which is a taint source. The alert specifically points to the `exec` method. Evidence shows data flowing from a deserialization point (sink) to `Runtime.getRuntime().exec()` (sink). The `exec(String command)` overload is indeed locale-sensit",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__File_09.java_108": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Use Locale-parameterized version of invoked method. Evidence shows data read from a file is directly concatenated into a Runtime.exec() call. This is a classic OS Command Injection pattern. The alert is likely indicating that the file read operation itself, or its subsequent processing, might be locale-sensitive and could lead to unexpected behavior or exploitability, especially if the file content is attacker-controlled. The core vulnerability is command injection, which is pres",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__Property_68a.java_31": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims primitive field 'data' is public. Evidence shows 'data' is a public static String. The program slice shows 'data' is read from a system property ('user.home') and then passed to a sink that performs command execution. This is a classic OS command injection vulnerability pattern. The alert, though generic, points to a potentially dangerous pattern of exposing raw input (from a system property) to a sensitive sink.\n---\nAnalyzer claims 'Primitive field is public'. Evidence shows a p",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getQueryString_Servlet_72b.java_54": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: SpotBugs warns about using a non-locale parameterized method. Evidence shows data from getQueryString_Servlet directly concatenated into Runtime.getRuntime().exec(). This is a classic OS command injection vulnerability. Preconditions for OS command injection are met: user-controlled input (from getQueryString) is used in a command execution sink (Runtime.getRuntime().exec). The code directly concatenates the tainted data `data` to `osCommand`, creating a command injection vector.",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__connect_tcp_71b.java_53": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "SpotBugs claims potential OS command injection. Evidence shows data from a TCP source flowing into `Runtime.getRuntime().exec()`. The code concatenates user-controlled input (`data`) to a command, enabling injection. This matches the CWE description and is a clear vulnerability.\n---\nAnalyzer claim: `Unknown` alert from SpotBugs, suggests using locale-parameterized methods. Evidence: Source and sink at same line `juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__connect_tcp_",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__Property_68b.java_29": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims `Unknown` alert, but description `Consider using Locale parameterized version of invoked method` suggests a potential internationalization/localization issue. However, the extracted evidence clearly points to CWE78 OS Command Injection. The code reads data from a system property (`CWE78_OS_Command_Injection__Property_68a.data`) and concatenates it directly into a command executed by `Runtime.getRuntime().exec()`. This is a textbook OS command injection vulnerability. The `Flow Pa",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__database_22a.java_74": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Use Locale-parameterized method. Evidence: Source/sink on line 74, data flows to Runtime.getRuntime().exec(). Program slice shows `Runtime.getRuntime().exec(osCommand + data)` where `data` is read from a database (badSource). This directly leads to OS command injection. The alert likely flags the use of `exec()` without proper sanitization or Locale considerations, which is a valid concern for command execution, especially with potentially untrusted input from a database.\n---\nAna",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getCookies_Servlet_54e.java_51": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Use Locale-parameterized String methods. Evidence: Sink `Runtime.getRuntime().exec()` concatenates user-controlled data `data` with OS command. This is a classic OS command injection vulnerability. Preconditions: Data originates from user input (cookies via `getCookies_Servlet`) and is directly used in a command execution sink without sanitization. The code slice clearly shows `osCommand + data` being passed to `Runtime.getRuntime().exec()`. This directly matches the pattern for ",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__PropertiesFile_21.java_128": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Use locale parameterized version of invoked method. Evidence shows data read from a properties file is used in Runtime.getRuntime().exec(). This is a classic OS command injection vulnerability. The alert's description is a bit misleading as it doesn't directly point to locale issues, but the underlying problem is the unsanitized input being used in a sensitive operation. The code slice confirms this flow. The `bad_source` reads data from `config.properties`, and this data is conc",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_72b.java_31": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "SpotBugs alert: Consider using Locale parameterized version of invoked method. Evidence shows data from a source (URLConnection, though not shown in slice) is passed to Runtime.getRuntime().exec(). The code concatenates this data with an OS command, creating a direct OS command injection vulnerability. The alert is likely a generic warning that can precede more specific vulnerability findings like this one. The sink directly executes a command constructed with user-controlled data. Therefore, it",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__PropertiesFile_15.java_116": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims a potential OS command injection vulnerability. The evidence shows data read from a properties file is directly concatenated into a Runtime.getRuntime().exec() call. This is a classic command injection pattern, where external input controls the command executed. The `data` variable is sourced from `properties.getProperty(\"data\")` and directly passed to `osCommand + data` which is then executed. This matches the CWE-78 description.\n---\nAnalyzer claim: Locale-sensitive method usage",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getQueryString_Servlet_66b.java_53": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: 'Consider using Locale parameterized version of invoked method'. This SpotBugs alert is unrelated to the provided code snippet's vulnerability. The actual vulnerability is OS command injection. The `Runtime.getRuntime().exec()` sink is directly called with user-controlled data (`data`) concatenated to a base command. This is a classic OS command injection pattern. The data originates from `getQueryString_Servlet` (indicated by filename and context), which is a known untrusted sou",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getQueryString_Servlet_13.java_91": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Use locale-parameterized method. The alert is about potential OS command injection (CWE78). The code `Runtime.getRuntime().exec(osCommand + data)` concatenates user-controlled input (`data` from `getQueryString_Servlet`) directly into a command executed by the OS. This is a classic OS command injection vulnerability. The locale-parameterized method suggestion is likely a secondary finding or a generic recommendation by SpotBugs, but the primary issue is the command injection itse",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_68b.java_29": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: SpotBugs suggests using Locale-parameterized methods to avoid issues related to default locale. Evidence shows a data flow from a `URLConnection` source to `Runtime.getRuntime().exec()`, a known OS command injection sink. The `data` variable, read from `URLConnection`, is directly concatenated into the command executed by `exec()`. This is a classic OS command injection vulnerability. The alert is relevant to the data flow and sink, and the code explicitly demonstrates the potent",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__listen_tcp_10.java_158": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: `Unknown` alert from SpotBugs; description: 'Consider using Locale parameterized version of invoked method'. This is a generic recommendation from SpotBugs, often indicating potential issues with string handling or internationalization that *could* lead to vulnerabilities. Evidence shows a data flow from a TCP socket read (`listen_tcp`) into `Runtime.getRuntime().exec()`. This pattern is a classic OS command injection vulnerability. The alert is likely a proxy for this more sever",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getCookies_Servlet_06.java_126": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: SpotBugs flagged a potential OS command injection vulnerability due to the use of a method that doesn't consider locale. Evidence shows data from HTTP cookies is directly concatenated into a Runtime.getRuntime().exec() call. This is a classic OS command injection pattern. The alert is about using a locale-unaware method, implying that the concatenation might be problematic in certain locales, or more broadly, the direct use of user-controlled input in a command is inherently risk",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__listen_tcp_09.java_192": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer: SpotBugs. Alert: Consider using Locale parameterized version of invoked method. This alert is often a precursor to or related to other vulnerabilities. The extracted evidence points to a `Runtime.getRuntime().exec()` call, which is a known sink for OS command injection vulnerabilities. The source is a TCP listener, meaning external input can control the command executed. The code clearly demonstrates a pattern of reading external input and directly concatenating it into a command strin",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__console_readLine_68a.java_35": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Primitive field `data` is public. Preconditions: Public primitive field accessible by other classes. Evidence: `data` is public static String, `bad()` and `goodG2B()` methods in `CWE78_OS_Command_Injection__console_readLine_68a` set `data`, and `badSink()` in `CWE78_OS_Command_Injection__console_readLine_68b` (not shown) likely uses it. This matches the alert and the CWE78 pattern, indicating a potential OS command injection vulnerability through the public field.\n---\nAnalyzer cl",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__PropertiesFile_14.java_148": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: SpotBugs warns about using non-Locale parameterized methods. The code uses `Runtime.getRuntime().exec(osCommand + data)`. The `data` variable is read from a properties file. If the properties file contains malicious input, it can lead to OS command injection. The alert is relevant as it points to a potential command injection vulnerability due to unsanitized input from a file. The `exec` method is a known sink for command injection. The fact that the `data` variable is read from ",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getParameter_Servlet_61a.java_30": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: `Unknown` alert implies potential issue with locale. Evidence shows data from `getParameter_Servlet` (taint source) flows to `Runtime.getRuntime().exec()` (sink). This is a classic OS command injection pattern. The `Unknown` alert type is likely a generic placeholder for this type of flow, not directly related to locale. Preconditions for OS command injection are met: tainted input is used in `exec()`. The code slice clearly demonstrates this flow. Therefore, it's a True Positive",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getParameter_Servlet_17.java_36": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claim: Locale-unaware method usage. Evidence: Source `request.getParameter(\"name\")` flows to sink `Runtime.getRuntime().exec(osCommand + data)`. Preconditions: User-controlled input from `getParameter` is directly concatenated into a command executed by `exec`. This is a classic OS command injection vulnerability. The analyzer likely flags this because `exec` can be locale-sensitive, and using a locale-aware version might mitigate certain injection vectors or ensure consistent behavior.",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__File_31.java_110": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Use locale-parameterized method for `Runtime.getRuntime().exec()`. Evidence shows `Runtime.getRuntime().exec(osCommand + data)` where `data` is read from a file (`C:\\data.txt`). This is a known OS command injection vulnerability. The alert is likely a FP if the analyzer is specifically looking for a `exec(String, Locale)` variant which is not directly used here, but the core vulnerability exists. The `exec(String)` overload is a direct risk. The alert may be imprecise in its word",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__Environment_73b.java_54": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Use Locale-parameterized method. Evidence: Source/Sink at same line (54), data flow trace to same line, incomplete flow, missing constraints. Program slice shows `Runtime.getRuntime().exec(osCommand + data)`. `data` is read from an environment variable (implied by CWE78_OS_Command_Injection__Environment). Concatenating unsanitized user-controlled input (`data`) to a command string passed to `exec()` is a classic OS Command Injection vulnerability. The alert is likely valid as it ",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__File_68b.java_52": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: SpotBugs suggests using Locale parameterized version of invoked method. Evidence shows command injection vulnerability via Runtime.getRuntime().exec() with user-controlled data. Preconditions: Data from a file (CWE78_OS_Command_Injection__File_68b.java:52) is used in exec(). This is met. The output is directly concatenated into an OS command, allowing injection. The alert's description is generic, but the code clearly demonstrates a command injection flaw.\n---\nAnalyzer claims `ex",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__PropertiesFile_45.java_112": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Use locale-parameterized method. Evidence: Data flows from PropertiesFile read to Runtime.exec(). This is a CWE78 OS Command Injection. Preconditions: Tainted data from external source (PropertiesFile) used in OS command execution (Runtime.exec()). Evidence matches preconditions. The alert is likely a true positive related to the OS command injection vulnerability, even though the specific alert is about locale, it's a symptom of a larger issue where untrusted input is used in a ",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__PropertiesFile_67b.java_53": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims Locale-sensitive issue. Evidence shows `Runtime.getRuntime().exec(osCommand + data)`. `data` is user-controlled (from `PropertiesFile` source). Concatenating user input directly into `exec` is a classic OS Command Injection vulnerability. While the alert mentions Locale, the core issue is command injection, which is a severe vulnerability. The Locale aspect might be a secondary warning or a misinterpretation by the analyzer, but the primary vulnerability is present.\n---\nAnalyzer ",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getCookies_Servlet_02.java_86": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Use locale-parameterized method. Evidence shows data read from cookies is directly concatenated to a command executed via `Runtime.getRuntime().exec()`. This is a classic OS command injection vulnerability. The alert suggests using a locale-parameterized version, implying the current usage is problematic and potentially unsafe, especially if the cookie data contains characters interpreted by the OS or shell. The code slice clearly shows the sink `Runtime.getRuntime().exec()` is r",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__listen_tcp_22a.java_37": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims locale-sensitive method usage. Evidence shows `Runtime.getRuntime().exec(osCommand + data)`. `data` is from `listen_tcp` source, implying external input. Concatenating external input to a command string without sanitization or locale-specific handling is a classic OS command injection vulnerability. The alert, though worded about locale, points to the core issue of uncontrolled input being passed to an exec call. This is a true positive for command injection, with the locale aspe",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__File_08.java_54": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Hardcoded absolute path name. Evidence shows `File file = new File(\"C:\\\\data.txt\");` and this path is directly used in `FileInputStream` and then its content is used in `Runtime.getRuntime().exec()`. This is a clear OS Command Injection vulnerability because the file content can be controlled by an attacker and appended to a command. Preconditions: 1. Absolute path hardcoded. 2. Data from file used in OS command. Both met. Therefore, True Positive.\n---\nAnalyzer claims hardcoded a",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__database_11.java_142": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims potential OS command injection. Evidence shows data read from a database (source) is concatenated with a command string and passed to Runtime.getRuntime().exec() (sink). This is a classic OS command injection vulnerability. Preconditions are met: tainted data from a database is used in a command execution sink.\n---\nAnalyzer claims potential OS command injection due to untrusted data from a database being used in `Runtime.getRuntime().exec()`. Evidence shows data flows from a data",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__database_09.java_106": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Locale-sensitive method invocation. Evidence shows data from a database read (source) is concatenated with a command string and passed to Runtime.getRuntime().exec() (sink). This is a classic OS Command Injection vulnerability. The alert likely points to the potential for locale-specific issues in how the command string is formed or interpreted, but the core vulnerability (command injection) is present regardless of locale. The data flow is confirmed, and the sink is dangerous. T",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__listen_tcp_21.java_219": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Use locale-parameterized method. Evidence shows data from TCP socket read (bad_source) directly concatenated into Runtime.exec(). This is a classic OS command injection. The alert is about locale, which is a secondary concern to the primary OS command injection vulnerability. However, the core issue of untrusted input being passed to exec is present, making it a True Positive for a security vulnerability, even if the alert's specific focus is on locale handling.\n---\nAnalyzer clai",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getCookies_Servlet_74b.java_31": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: `Unknown` alert type from SpotBugs suggesting `Consider using Locale parameterized version of invoked method`. Evidence shows data from `getCookies_Servlet` (a source of user input) flows to `Runtime.getRuntime().exec()`, a known sink for OS Command Injection. The `badSink` method directly concatenates user-supplied `data` with a command string (`osCommand + data`) before executing it via `exec()`. This is a classic OS Command Injection vulnerability. The 'Unknown' alert type is ",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getQueryString_Servlet_06.java_131": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: SpotBugs alerts on potential OS command injection due to invoking a method without locale consideration. Evidence shows user-controlled input `data` from `getQueryString_Servlet` is directly concatenated into `Runtime.getRuntime().exec()`. This is a classic OS command injection vulnerability. The alert is relevant as `exec()` is a sink for command injection. The data flow is partial and constraints are missing, but the direct concatenation of tainted input to a command execution ",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_41.java_36": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: SpotBugs suggests using a locale-parameterized version of a method. Evidence shows a data flow from a URLConnection read (taint source) to Runtime.exec() (taint sink) in CWE78_OS_Command_Injection__URLConnection_41.java. This directly indicates a potential OS command injection vulnerability, where data read from an external source can be used to construct a command executed by the system. The `badSink` concatenates `data` to `osCommand`, making it vulnerable. The alert, though ph",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getQueryString_Servlet_41.java_79": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims locale-sensitive method use. Evidence shows `Runtime.getRuntime().exec(osCommand + data)` where `data` originates from `request.getQueryString()`. This is a known OS command injection vulnerability. The analyzer's specific alert about locale might be a secondary concern or a heuristic for potential issues, but the core vulnerability of command injection is present.\n---\nAnalyzer claim: Use Locale-parameterized method. Evidence: Source and sink are identical, `Runtime.getRuntime().",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__Environment_09.java_42": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims potential OS command injection via environment variable input. Code reads from System.getenv('ADD') and concatenates it to an OS command executed by Runtime.getRuntime().exec(). This is a direct OS command injection vector. The 'Unknown' alert type is likely a misclassification by SpotBugs, but the underlying vulnerability is present.\n---\nAnalyzer claims potential OS command injection. Evidence shows data read from environment variable `ADD` (source) is concatenated with a comman",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__File_74a.java_40": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims hardcoded absolute pathname. Evidence shows `new File(\"C:\\\\data.txt\")` at line 40. This string literal is an absolute path. The code reads data from this file and passes it to a sink that executes OS commands, indicating a potential OS command injection vulnerability. Preconditions met.\n---\nAnalyzer claims hardcoded absolute pathname. Evidence shows `new File(\"C:\\\\data.txt\")` at line 40. This is an absolute path. While not directly a command injection sink, it's a precursor to fi",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getQueryString_Servlet_12.java_81": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims same code for two branches. Evidence shows `data` is tainted in one branch from `getQueryString` and used in `exec`. The other branch assigns a safe value. However, the `if (IO.staticReturnsTrueOrFalse())` creates a control flow where the tainted path *can* be taken, leading to command injection. The alert is likely flagging the potential for the tainted branch to be executed, even if another branch is safe. The code structure is intended to test the tainted path.\n---\nAnalyzer cl",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__console_readLine_15.java_91": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "SpotBugs alert: 'Consider using Locale parameterized version of invoked method'. Evidence shows data read from console (`System.in`) is directly concatenated into `Runtime.getRuntime().exec()`. This is a classic OS command injection vulnerability (CWE78). The alert, while phrased as a locale issue, likely hints at the unsanitized input being passed to a system call, which is the core of the vulnerability. The `bad()` method clearly demonstrates this flow. `console_readLine` is a known source for",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__File_72a.java_40": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims hardcoded absolute pathname. Evidence points to `C:\\data.txt` at line 40. This is an absolute path. The code reads from this file into `data` and passes `data` to a sink (`badSink`) which is likely vulnerable to OS command injection (implied by class name and `exec` in description). Therefore, the hardcoded path is a relevant part of the potential vulnerability.\n---\nAnalyzer claim: Hardcoded absolute pathname. Preconditions: Code reads data from a file specified by an absolute pa",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__connect_tcp_21.java_157": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims Locale issue. Code uses Runtime.exec with user-controlled input from a network socket. This is a classic OS command injection vulnerability. The Locale alert is likely a secondary or misplaced alert, but the primary vulnerability is present.\n---\nAnalyzer claim: Use locale-parameterized method. Evidence shows `Runtime.getRuntime().exec(osCommand + data)` where `data` is read from a network socket. This is a classic OS Command Injection vulnerability. The alert is likely a secondar",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getCookies_Servlet_11.java_50": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Use Locale parameterized method. Evidence shows data from `request.getCookies()` is directly concatenated into `Runtime.getRuntime().exec()`. This is a classic OS command injection vulnerability. The analyzer's specific alert about locale is a hint towards potential sanitization/encoding issues related to different character sets, which would be relevant if the data were being processed in a locale-sensitive way before execution. However, the core issue is the direct unsanitized ",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__PropertiesFile_61a.java_58": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Use Locale-parameterized method. Evidence shows `Runtime.getRuntime().exec(osCommand + data)` at line 58. This is a known OS command injection sink. The data originates from `PropertiesFile_61b().badSource()`, which is designed to be untrusted. The code directly concatenates user-controlled data into a command executed via `exec()`, creating a clear OS command injection vulnerability. The 'Locale parameterized' alert is likely a secondary suggestion or a misinterpretation of the ",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getCookies_Servlet_42.java_83": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer: SpotBugs. Alert: Consider using Locale parameterized version of invoked method. Evidence: Source is request cookies, sink is Runtime.getRuntime().exec(). The code directly concatenates user-controlled cookie data into an OS command. This is a classic OS command injection vulnerability. The alert is likely a generic warning that SpotBugs cannot fully analyze the locale implications of string concatenation used in a potentially dangerous context, but the core vulnerability is clear.\n---\n",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__Environment_03.java_78": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Use Locale-parameterized method. Evidence shows `System.getenv` (taint source) feeding directly into `Runtime.getRuntime().exec` (sink) via string concatenation. This is classic OS command injection. The analyzer's specific alert about Locale is likely a misinterpretation or a separate, less critical finding. However, the core issue of untrusted input in `exec` is present and exploitable. The `bad()` method directly reads from an environment variable and concatenates it to a comm",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_68b.java_52": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claim: Use Locale-parameterized method for string operations. Evidence shows `System.getProperty('os.name').toLowerCase()` is used. This operation is locale-sensitive and could lead to unexpected behavior or bypass if the locale is not controlled. The sink executes a command using user-controlled data (`data`), which is a clear OS Command Injection vulnerability. The SpotBugs alert, while seemingly unrelated to command injection, points to a potential underlying issue that *could* contr",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getParameter_Servlet_22a.java_70": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Write to static field from instance method. Evidence shows `badPublicStatic` (static field) is written to in `bad()` (instance method). This matches the alert. Preconditions: 1. Static field accessed. 2. Instance method writing to static field. Both met. The code clearly demonstrates writing to a static field from an instance method.\n---\nAnalyzer claim: Write to static field from instance method. Evidence shows `badPublicStatic` (static field) is set in `bad()` (instance method) ",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__int_connect_tcp_square_09.java_271": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Bad comparison of int value with long constant. Evidence shows data read from a TCP connection is squared. The code slice includes a `bad()` method where data is read from a TCP connection and then squared: `int result = (int)(data * data);`. This operation can overflow if `data` is large enough, leading to incorrect results. The alert type 'Unknown' and description 'Bad comparison of int value with long constant' is likely a generic SpotBugs warning for potential integer overflo",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_listen_tcp_square_13.java_298": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims 'Bad comparison of int value with long constant'. The code reads an integer from TCP, then squares it. If the input integer is large enough, `data * data` will overflow. The comparison `data * data > Integer.MAX_VALUE` is implicitly handled by the cast `(int)(data * data)`, which truncates the overflowed value. The alert likely refers to the potential for overflow when comparing the squared value, which can exceed `Integer.MAX_VALUE` but is then cast back to `int`, leading to une",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_multiply_54a.java_58": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: SpotBugs flags a random object created and used only once. Evidence shows a `short` variable `data` is initialized with a random value using `java.security.SecureRandom()`. This `data` is then passed to `badSink` in `CWE190_Integer_Overflow__short_rand_multiply_54b`. The `CWE190_Integer_Overflow__short_rand_multiply_54a.java` code itself doesn't show the sink, but the context implies the random value is used in a multiplication that can cause an integer overflow. The alert's desc",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_multiply_10.java_155": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Integer overflow due to multiplication. Preconditions: `data` is assigned a random byte value. `data` is checked if `data > 0`. `data` is multiplied by 2. `result` is cast back to byte. Evidence check: `data` is assigned a random value from `SecureRandom().nextInt()`. The `bad()` method's `if (IO.staticTrue)` blocks are active. The sink multiplies `data` by 2. Preconditions met, leading to potential overflow if `data` is greater than `Byte.MAX_VALUE / 2`.\n---\nAnalyzer claim: Rand",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_add_08.java_118": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: A random object is created and used only once. This is a generic SpotBugs rule for potential issues. Relevant preconditions: The code uses `java.security.SecureRandom().nextInt()` to generate a `short` value. This value is then incremented by 1. The `bad()` method demonstrates a potential integer overflow if the randomly generated `data` is `Short.MAX_VALUE`. The flow trace confirms the random number generation and the subsequent addition, directly linking the source to the sink.",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_square_13.java_146": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims random object used once. Evidence shows `data` from `SecureRandom` at line 146 is directly squared at line 146. This is a direct use of a random value in a sensitive operation (squaring) without sanitization, creating a potential for integer overflow. The path constraint is missing, and flow is partial, but the core issue is evident: random input to squaring. This is a true positive for integer overflow vulnerability.\n---\nAnalyzer claim: Random object created and used only once. ",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_File_multiply_71a.java_141": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "FP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claim: Hardcoded absolute pathname. Evidence shows `File file = new File(\"C:\\\\data.txt\");`. This is a hardcoded path, but it's used for reading data from a file, not directly as an executable path or sensitive resource access. The vulnerability CWE190 relates to integer overflow, not insecure file path handling. The hardcoded path itself is not the vulnerability, but the source of data for the integer overflow. Thus, the alert is misclassified.\n---\nAnalyzer claims hardcoded absolute pat",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_max_square_09.java_124": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Bad comparison of int value with long constant. Evidence shows `data` (short) is assigned `Short.MAX_VALUE`. Sink involves `data * data`. `Short.MAX_VALUE` squared exceeds `Short.MAX_VALUE`, causing overflow. The alert is likely valid as `data * data` can overflow. The comparison mentioned in the alert type might be an indirect indicator or a misinterpretation by SpotBugs, but the core issue of integer overflow from squaring `Short.MAX_VALUE` is present.\n---\nAnalyzer claim: SpotB",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_square_52a.java_32": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Random object created and used only once. Preconditions: 1. Data originates from a random source. 2. Data is used in a sink where its value can cause an overflow. 3. The data flow is partial, meaning the analyzer might not have full visibility. Evidence check: 1. `data = (new SecureRandom()).nextInt();` satisfies precondition 1. 2. The `bad()` method passes `data` to `badSink` in `CWE190_Integer_Overflow__int_random_square_52b()`. The Javadoc for `CWE190_Integer_Overflow__int_ran",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_multiply_75a.java_37": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claim: Random object created and used once. Evidence shows a random integer 'data' is generated and then serialized. The `bad()` method in `CWE190_Integer_Overflow__int_random_multiply_75a.java` uses this random `data` and passes it to `CWE190_Integer_Overflow__int_random_multiply_75b().badSink()`. The description of CWE190 indicates integer overflow is a vulnerability. The random nature of the input and its subsequent use in a multiplication sink (implied by the class name and sink met",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_SIGNED_BYTE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_square_41.java_77": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_SIGNED_BYTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims 'Bad comparison of signed byte'. The code `byte result = (byte)(data * data);` in `badSink` directly squares a byte. If `data` is outside the range [-127, 127], `data * data` can exceed `Byte.MAX_VALUE` (127), leading to an integer overflow when cast back to `byte`. The `bad()` method sources data using `new java.security.SecureRandom()`, which can produce values leading to this overflow. The alert, though generically named 'Unknown', points to this specific overflow vulnerabilit",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_getCookies_Servlet_square_08.java_172": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims a bad comparison of int with long constant. Evidence points to a potential integer overflow vulnerability in `bad()` method at line 172. The `data` variable, read from cookies, is squared `(int)(data * data)`, which can exceed `Integer.MAX_VALUE`. This matches the alert type and the identified sink. The `privateReturnsTrue()` condition ensures this code path is reachable. Although no explicit path constraints are extracted, the code clearly shows an integer overflow risk.\n---\nAna",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_square_07.java_110": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Random object created and used only once. Evidence shows `data` is initialized with `rand()` and then squared. The code slice confirms this flow. Preconditions: Data sourced from a random generator is used in a calculation that can overflow. Check: `data = (new java.security.SecureRandom()).nextLong();` and `long result = (long)(data * data);` directly match. The `if (privateFive==5)` blocks control the execution of both the source and sink, and both are true in the `bad()` metho",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_square_68b.java_55": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims bad comparison of int to long constant. Evidence points to a `byte` variable `data` being squared. The `badSink` and `goodG2BSink` methods directly square `data` and cast it back to `byte`. This operation can easily lead to an integer overflow for `byte` if `data` is outside the range of approximately -17 to 17. The `goodB2GSink` explicitly checks for this condition before squaring, confirming the vulnerability in the other sinks. The alert itself is miscategorized as 'Unknown' b",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_max_square_04.java_131": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims bad comparison of int with long constant. The code sets `data` to `Integer.MAX_VALUE` and then calculates `result = (int)(data * data)`. Squaring `Integer.MAX_VALUE` will cause an integer overflow. The alert is relevant to the overflow vulnerability, not the comparison itself. The `(int)(data * data)` cast is problematic. The `bad()` method directly squares `Integer.MAX_VALUE` without checks, leading to overflow.\n---\nAnalyzer claims bad comparison of int with long constant. Evide",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_square_31.java_93": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims 'Bad comparison of int value with long constant'. The code slice shows a `short` variable `data` being squared, `short result = (short)(data * data);`. This operation can indeed lead to an integer overflow for `short` if `data` is large enough. The alert likely stems from SpotBugs' analysis of potential overflow conditions during arithmetic operations, especially when data types are implicitly cast or compared. While the alert description is vague, the sink operation (squaring `d",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_square_54a.java_58": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Random object created and used once. Preconditions: 1. Data sourced from a random number generator. 2. Data used in a calculation that can overflow. Evidence check: Code shows `data = (new java.security.SecureRandom()).nextLong();` (precondition 1 met). Data is passed to `goodB2GSink` which, based on the file name and context, likely performs a square operation (precondition 2 met). Prediction: True Positive. The random input can lead to an integer overflow when squared.\n---\nAnal",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_square_03.java_124": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: SpotBugs flags a comparison of an `int` value with a `long` constant. Evidence shows the `bad()` method, line 124, where `data` (a `short`) is squared. The code `(short)(data * data)` involves an implicit conversion of `data * data` (which could exceed `Short.MAX_VALUE`) before casting to `short`. The `nextInt()` method returns an `int`. Although the alert message states 'int value with long constant', the underlying issue is the potential for integer overflow when squaring a `sh",
+    "stage": "LLM"
+  },
+  "INT_VACUOUS_COMPARISON_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_max_multiply_06.java_174": {
+    "alert_id": "INT_VACUOUS_COMPARISON",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Vacuous comparison of integer value. Evidence shows data is initialized to Integer.MAX_VALUE in `bad()`. The code then checks `if(data > 0)` which is true for MAX_VALUE. Subsequently, it calculates `result = (int)(data * 2)`. Multiplying Integer.MAX_VALUE by 2 will cause an integer overflow, leading to a negative result. The comparison `if(data > 0)` is not vacuous because `data` is positive, but the subsequent multiplication *is* problematic. The alert seems to be misinterpretin",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_multiply_81a.java_30": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "SpotBugs claims 'Random object created and used only once'. Evidence shows a `SecureRandom` object created and its result assigned to `data` at line 30. This `data` is then passed to `baseObject.action(data)` at line 30. The `bad()` method uses this random `data` and passes it to a `CWE190_Integer_Overflow__short_rand_multiply_81_bad` object. The `goodB2G()` method also uses random `data` and passes it to `CWE190_Integer_Overflow__short_rand_multiply_81_goodB2G`. Given the CWE is Integer Overflo",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_console_readLine_add_12.java_141": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Method uses the same code for two branches. The code slice shows `bad()` method with two `if` blocks that execute similar logic. The first `if` block reads user input, which is a potential source of integer overflow. The second `if` block performs addition, which can lead to overflow if `data` is `Byte.MAX_VALUE`. The code uses `IO.staticReturnsTrueOrFalse()` to control flow, meaning both branches of the `if` statements can be executed. The fact that the same code, specifically t",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_multiply_22a.java_38": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Write to static field from instance method. Evidence shows data from random source is written to `badPublicStatic` (a static field) within the `bad()` instance method. Path constraints are missing, but the flow is partial, indicating the analyzer likely identified the direct assignment. This directly matches the analyzer's description and is a potential security concern, as static fields can be shared and modified unexpectedly by different instances or threads, potentially leadin",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_getQueryString_Servlet_square_54e.java_52": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims bad comparison int with long constant. Code shows `int result = (int)(data * data);` which is a direct multiplication. The `data` is obtained from `getQueryString_Servlet`, a known source of untrusted input. The sink `badSink` directly squares this `data` without any checks, which can lead to integer overflow if `data * data` exceeds `Integer.MAX_VALUE`. The `goodB2GSink` explicitly shows a correct way to handle this by checking `Math.abs(data) <= (long)Math.sqrt(Integer.MAX_VALU",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_console_readLine_square_12.java_279": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims `Bad comparison of int value with long constant` on a `byte` type. The code reads a `byte` from console and squares it. The sink checks `Math.abs(data) <= (long)Math.sqrt(Byte.MAX_VALUE)`. This is a comparison of a `byte` (promoted to `int` or `long` for the comparison) against a `long` constant. If the input `byte` is large enough, `data * data` will overflow `byte` before casting. The comparison itself is not the issue, but the potential overflow is. The alert type is generic, ",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_multiply_21.java_33": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "1. **Analyzer Claim:** SpotBugs flags the creation and single use of a random object, suggesting a potential issue. The alert type 'Unknown' and description 'Random object created and used only once' are vague but likely point to the way `data` is generated and used. \n2. **Bug Preconditions:** The core vulnerability is CWE190 Integer Overflow. Specifically, the `byte` type is used, and multiplication by 2 occurs. An overflow happens if `data * 2` exceeds `Byte.MAX_VALUE` when `data` is positive.",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_square_07.java_149": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Random object created and used only once. Preconditions: 1. A random object is created. 2. This random object is used exactly once. Evidence check: The code creates a random `short data` in `bad()` and then uses it once in `(short)(data * data)`. Preconditions met. Prediction: True Positive, as the random data can cause an integer overflow when squared, which is the vulnerability CWE190.\n---\nAnalyzer claim: SpotBugs flagged an 'Unknown' alert type, described as 'Random object cre",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_add_22a.java_59": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "1. **Analyzer Claim**: SpotBugs flags an unknown alert type: 'Random object created and used only once'. This suggests a potential issue with how a randomly generated object is handled, possibly leading to unexpected behavior or security flaws if that object's value is critical. \n2. **Bug Preconditions**: The description 'Random object created and used only once' implies that the vulnerability might arise from the unpredictable nature of the random value. If this random value is used in a contex",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_max_multiply_22b.java_76": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "FP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Primitive field is public. Evidence shows a public static variable `CWE190_Integer_Overflow__short_max_multiply_22a.badPublicStatic` controlling flow. The alert is likely misinterpreting the intent. The code itself is designed to test integer overflow, and while it uses public static variables for control, the alert is about a primitive field being public, which is a design choice for the test case, not a vulnerability in the application logic being tested.\n---\nAnalyzer claim: Pr",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__short_console_readLine_square_14.java_230": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims 'Bad comparison of int value with long constant'. The source reads a short from console, then squares it. The squaring operation `data * data` can indeed overflow a `short` if `data` is large enough. The constant `Short.MAX_VALUE` is implicitly used in the overflow check logic within the `goodB2G1` and `goodB2G2` methods, hinting at the potential for an integer overflow vulnerability. While the alert message is slightly inaccurate regarding 'int vs long', the core issue of intege",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_File_square_06.java_277": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: SpotBugs detected a potential integer overflow vulnerability due to a comparison of an 'int' value with a 'long' constant. Relevant preconditions: The code reads an integer from a file into the 'data' variable. This 'data' variable is then squared in the 'bad' sink. If the squared value exceeds Integer.MAX_VALUE, an overflow occurs. The alert points to line 277, which is within the 'bad' sink where the squaring operation happens. Evidence check: The extracted evidence confirms th",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_Environment_square_16.java_115": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: SpotBugs flags a comparison of an `int` with a `long` constant in `CWE190_Integer_Overflow__int_Environment_square_16.java:115`. This is highly suspicious for integer overflow vulnerabilities. The code reads an `int` from an environment variable and then squares it in a `while(true)` loop, without any checks. If the environment variable is set to a value whose square exceeds `Integer.MAX_VALUE`, an overflow will occur. The `main` method is not relevant as it calls `mainFromParent",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_SIGNED_BYTE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_max_square_41.java_77": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_SIGNED_BYTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: \"Bad comparison of signed byte\". Relevant preconditions: The `badSink` method calculates `data * data` and casts it back to a `byte`. If `data` is `Byte.MAX_VALUE` (127), `data * data` is 16129, which far exceeds `Byte.MAX_VALUE`. This results in an integer overflow. The `bad` method sets `data` to `Byte.MAX_VALUE` and calls `badSink`. This directly triggers the overflow. Therefore, it's a True Positive.\n---\nAnalyzer claim: Bad comparison of signed byte. Preconditions: 1. A signe",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_add_21.java_67": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claim: \"Random object created and used only once\". Evidence shows `data` is initialized with a random value and then passed to `badSink`. `badSink` adds 1 to `data`. If `data` is `Short.MAX_VALUE`, an integer overflow occurs. This is a direct integer overflow vulnerability, hence True Positive.\n---\nAnalyzer claims 'Random object created and used only once'. Evidence shows a `short data` is initialized with a random value from `SecureRandom` at line 67. This `data` is then passed to `bad",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_add_15.java_131": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims random object used once. Evidence shows `data` is set to a random int, then incremented by 1. This can lead to Integer Overflow if `data` is `Integer.MAX_VALUE`. The code directly uses the random value and performs an addition without checks, fitting the 'used only once' and potential overflow scenario. Path constraints missing and flow partial are noted, but the core logic for overflow is present.\n---\nAnalyzer claim: Random object created and used only once. Evidence shows a ran",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_square_21.java_67": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: \"Random object created and used only once\" likely refers to the use of `java.security.SecureRandom().nextInt()` as a source for `data`, which is then used in a squaring operation (`data * data`) in the `badSink` function. This operation can lead to an integer overflow if `data` is large enough. Relevant bug preconditions: 1. `data` is initialized with a random value. 2. `data` is used in a squaring operation. 3. The result of the squaring operation is cast back to `short`. Eviden",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_add_16.java_32": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Integer overflow from random byte addition. Preconditions: Random byte input, addition of 1. Evidence shows data from `SecureRandom` assigned to `byte data` at line 32. Then, `data + 1` is calculated at line 32. This matches the alert description and preconditions, indicating a real vulnerability.\n---\nAnalyzer claim: Random object created and used only once. This points to a potential integer overflow vulnerability. The `bad()` method uses `new java.security.SecureRandom()` to ge",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_add_31.java_32": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims random object used once, which is true. Preconditions: A random byte is generated and used in an addition that can overflow. Evidence: The code explicitly uses `java.security.SecureRandom` to generate a `byte` and then adds 1 to it without checking for `Byte.MAX_VALUE`. This directly matches the vulnerability description for CWE190 Integer Overflow.\n---\nAnalyzer claims 'Random object created and used only once'. Evidence shows a random byte is generated (`new java.security.Secure",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_multiply_02.java_31": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims 'Random object created and used only once'. The code slice shows a `long data` initialized with `(new java.security.SecureRandom()).nextLong()`. This value is then multiplied by 2. The `bad()` method contains a direct multiplication `data * 2` after a check `if(data > 0)`. If `data` is large enough, this multiplication can overflow `Long.MAX_VALUE`, leading to an integer overflow vulnerability. The alert is triggered because the source is random and the sink is a direct multiplic",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_getQueryString_Servlet_square_22a.java_61": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Write to static field from instance method. Evidence shows `badPublicStatic = true;` in an instance method `bad()`. This directly matches the analyzer's claim. Preconditions for this type of alert are the existence of a static field and an instance method writing to it. The provided code slice clearly demonstrates both. Therefore, it's a True Positive.\n---\nAnalyzer claim: Write to static field from instance method. Evidence shows static field `badPublicStatic` is written to in in",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__short_console_readLine_square_51b.java_52": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims a bad comparison of int with long. The code shows `data * data` where `data` is a `short`. SpotBugs likely flags this because `data * data` can exceed `Short.MAX_VALUE` (a `short` can be up to 32767, squaring 180 results in 32400, but squaring 181 results in 32761, and squaring 182 results in 33124, which overflows a short). The `badSink` directly squares the `short` data without checks, leading to potential overflow, which aligns with the CWE190 description. The alert type 'Unkn",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_SIGNED_BYTE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_add_06.java_128": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_SIGNED_BYTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims 'Bad comparison of signed byte'. Evidence points to `CWE190_Integer_Overflow__byte_rand_add_06.java:128` where a `byte` is incremented (`data + 1`). The `bad()` method uses a random byte as input. If this random byte is `Byte.MAX_VALUE`, adding 1 will cause an integer overflow, resulting in `Byte.MIN_VALUE`. This is a known integer overflow vulnerability (CWE190). The alert type 'Unknown' is likely a misclassification by SpotBugs; the description 'Bad comparison of signed byte' i",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_square_04.java_151": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims 'Random object created and used only once'. Evidence shows `data` assigned from `rand()` at line 151 and then used in a multiplication `data * data` at line 151. This multiplication is flagged as a POTENTIAL FLAW for integer overflow. The code explicitly uses `rand()` which is a source of unpredictable input. The `if (PRIVATE_STATIC_FINAL_TRUE)` guards both the random data generation and the squaring operation, ensuring both happen. The lack of path constraints and missing constr",
+    "stage": "LLM"
+  },
+  "INT_VACUOUS_COMPARISON_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_max_multiply_12.java_133": {
+    "alert_id": "INT_VACUOUS_COMPARISON",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Vacuous comparison of integer value. The code assigns `Integer.MAX_VALUE` to `data` and then checks `if(data > 0)`. Since `Integer.MAX_VALUE` is always greater than 0, this condition is always true, making the check vacuous. This leads to `data * 2` which will overflow `Integer.MAX_VALUE`.\n---\nAnalyzer claim: Vacuous comparison of integer value. Evidence shows `data` is set to `Integer.MAX_VALUE` in one branch of `IO.staticReturnsTrueOrFalse()`. The `bad()` sink checks `if(data >",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_square_11.java_145": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "SpotBugs claim: 'Random object created and used only once'. Evidence shows `data` is initialized with `(new java.security.SecureRandom()).nextLong()` in `bad()` method, which is a random value. This `data` is then used in the sink `(long)(data * data)` which can lead to integer overflow. The alert is accurate as a random value is used and can cause overflow.\n---\nAnalyzer claim: Random object created and used only once (CWE190_Integer_Overflow__long_rand_square_11.java:145). Bug precondition: A r",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_multiply_81a.java_30": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Random object created and used once. Evidence shows data from `rand()` is passed to `action` method. Code slice confirms `rand()` is used as source. `action` method likely performs multiplication, fitting CWE190 Integer Overflow. Preconditions: Data from a random source used in a sensitive operation. Check: `rand()` is used, data passed to `action`. This is a TP. Vulnerability: Integer overflow possible via multiplication of random byte.\n---\nAnalyzer claim: Random object created ",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_square_03.java_31": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Random object created and used only once. Evidence shows data originates from `new java.security.SecureRandom()` and is directly used in a multiplication `data * data`. The code explicitly states `POTENTIAL FLAW: if (data*data) > Byte.MAX_VALUE, this will overflow`. This matches the vulnerability description (Integer Overflow) and the data flow path. Thus, it's a True Positive.\n---\nAnalyzer claims 'Random object created and used only once'. Evidence shows data originates from `ne",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__int_URLConnection_square_04.java_251": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims bad comparison of int with long constant. Evidence shows `int data` read from URLConnection, then `data * data` assigned to `int result`. The `data * data` operation can overflow `int`. The `goodB2G1` and `goodB2G2` methods demonstrate how to fix this by checking `Math.abs(data) <= (long)Math.sqrt(Integer.MAX_VALUE)`. This confirms the potential for integer overflow vulnerability.\n---\nAnalyzer claim: SpotBugs flagged a potential integer overflow due to comparing an int value with",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_getQueryString_Servlet_square_01.java_116": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims a bad comparison of int with long constant. The code shows `data` (an int) is squared, `data * data`, which can overflow if `data` is large. The result is cast to `int`. The alert is triggered at line 116, where the multiplication occurs. Although no explicit path constraints are extracted, the `BadSource` reads from `request.getQueryString()`, meaning a malicious actor can control `data`. If `data` is, for example, 50000, `data * data` will exceed `Integer.MAX_VALUE`, causing an",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_max_square_22a.java_73": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims 'Write to static field from instance method'. Evidence shows `badPublicStatic = true;` at line 73, which is an instance method (`bad()`) writing to a static field (`badPublicStatic`). This matches the analyzer's claim.\n---\nAnalyzer claim: Writing to a static field from an instance method. Evidence shows `badPublicStatic` (static field) is set within the `bad()` instance method. This directly matches the alert description. Preconditions: 1. An instance method modifies a static fie",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_SIGNED_BYTE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_square_75b.java_154": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_SIGNED_BYTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims bad comparison of signed byte. The code calculates `data * data` and casts it to a byte. If `data` is, for example, 13, `data*data` is 169. When cast to a byte, this overflows. The `badSink` method directly performs this potentially overflowing calculation. The alert is therefore a True Positive.\n---\nAnalyzer claims 'Bad comparison of signed byte'. Code slice shows `byte result = (byte)(data * data);` which directly squares a byte. Squaring a byte can easily exceed `Byte.MAX_VALU",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_File_add_31.java_42": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "FP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims hardcoded absolute pathname. Evidence shows `new File(\"C:\\\\data.txt\")`. This is a hardcoded path, but not an absolute pathname *within the code itself*. The path is a string literal. The vulnerability intended by this rule is typically for paths that are directly embedded and unchangeable, leading to predictable file access. Here, the file path is a string, and the actual file being read is external to the compiled code. The SpotBugs rule likely targets hardcoded paths used for c",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_max_add_68a.java_31": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: SpotBugs flags writing to a static field from an instance method. Evidence shows `data` (static field) is written to in `bad()` (instance method) with `Integer.MAX_VALUE`. This matches the analyzer's concern about potential misuse or unintended state modification. Preconditions: 1. Static field modified from instance method. 2. Modification occurs in a vulnerable context (e.g., `bad()` method). Evidence check: Both preconditions are met. The `data` field is static and modified wi",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_add_11.java_31": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "SpotBugs claims a random object is created and used once. The code confirms a random short is generated via `new java.security.SecureRandom().nextInt()` and then added to 1. The `short` type has a maximum value of `Short.MAX_VALUE`. If the random value `data` is `Short.MAX_VALUE`, then `data + 1` will overflow, leading to an integer overflow vulnerability. The flow trace and program slice confirm this direct path from source to sink.\n---\nAnalyzer claims 'Random object created and used only once'",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_multiply_68a.java_59": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims: Write to static field 'data' from instance method 'bad'. Evidence shows 'data' (static field) is written to in 'bad()' (instance method) at line 59. This matches the analyzer's claim. Preconditions for CWE190 Integer Overflow are met: data originates from a random source and is used in a multiplication sink. The code clearly sets a static field from an instance method, directly fulfilling the alert's description.\n---\nAnalyzer claims write to static field 'data' from instance met",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_PropertiesFile_add_12.java_120": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims same code used for two branches. Evidence shows `bad()` method uses `IO.staticReturnsTrueOrFalse()` twice. First `if` block handles data input, second `if` block handles data addition. Both branches of the first `if` have different data sources (PropertiesFile vs. hardcoded 2). Both branches of the second `if` perform `data + 1`. If first `if` takes PropertiesFile and second `if` takes `data + 1`, and `data` is `Integer.MAX_VALUE`, overflow occurs. This matches CWE190. TP.\n---\nAn",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_square_68a.java_31": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claims 'Primitive field is public'. Evidence shows 'data' is a public static field. Code slice confirms 'public static short data;'. This directly matches the alert. While the alert itself is generic, the context of the CWE190 indicates potential for integer overflow vulnerabilities when such public fields are used in calculations without proper sanitization, which is precisely what the code attempts to demonstrate.\n---\nAnalyzer claims 'Primitive field is public'. Evidence shows `public",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__int_console_readLine_square_22a.java_98": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Write to static field from instance method. Evidence shows data read from console (source) is passed to `badSink` which likely modifies a static field. The program slice directly shows `badPublicStatic = true;` before calling `badSink`. This matches the alert description.\n---\nThe alert states 'Write to static field from instance method'. The `bad()` method, an instance method, writes to the static field `badPublicStatic`. This directly matches the alert's description, indicating ",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_square_07.java_110": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims 'Random object created and used only once'. Evidence shows a `java.security.SecureRandom().nextInt()` used to generate `data` which is then squared. This aligns with the analyzer's claim that a random value is used. The `bad()` method directly squares `data` without checks, creating an integer overflow vulnerability (CWE190). The data flow is direct and the random source is explicit. Thus, it's a True Positive.\n---\nAnalyzer claim: Random object created and used only once. Evidenc",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_max_square_03.java_157": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Bad comparison of int value with long constant. Evidence shows `data` is set to `Integer.MAX_VALUE`. The sink `(int)(data * data)` performs a multiplication that will overflow when `data` is `Integer.MAX_VALUE`. The alert type 'Unknown' is misleading; the underlying issue is integer overflow. The description 'Bad comparison of int value with long constant' is likely a misinterpretation by SpotBugs, but the core vulnerability (integer overflow via squaring `Integer.MAX_VALUE`) is ",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_multiply_71a.java_30": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims random object used once. Evidence shows `rand()` used as source, passed as Object, likely to a sink. This matches vulnerability pattern: random input leading to potential overflow in `multiply` sink. Preconditions met: random source, data flow, sink susceptible to overflow. True Positive.\n---\nAnalyzer claims: Random object created and used once. Evidence shows `java.security.SecureRandom().nextLong()` used in `bad()` and passed to `badSink`. This matches the description; a random",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_add_74a.java_31": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims a \"Random object created and used only once.\" The code slice shows `data` initialized with `new java.security.SecureRandom().nextLong()`. This random value is then passed into a HashMap and subsequently to `badSink`. The sink likely performs an operation (addition) that, when combined with a random, potentially large or small `long`, can lead to integer overflow (CWE190). The flow is partial, and constraints are missing, but the source is clearly a random value, fitting the analy",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_max_add_12.java_85": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Same code for two branches. Evidence: Source/Sink at line 85, data flow at line 85. Program slice: The `bad()` method has an `if(IO.staticReturnsTrueOrFalse())` block. Inside this block, the code `long result = (long)(data + 1);` is executed in both branches. If `data` is `Long.MAX_VALUE`, this addition will cause an integer overflow. The `else` branch of the inner `if` statement correctly checks for overflow, but the `then` branch does not. The analyzer correctly identifies that",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__int_console_readLine_square_01.java_188": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Bad comparison of int value with long constant. Evidence shows data read from console (tainted source) is used in a squaring operation (sink). The `bad()` method directly squares `data` without checks, leading to potential integer overflow, as described in the `CWE190_Integer_Overflow__int_console_readLine_square_01.java` comments. Although no explicit path constraints are extracted, the nature of `readLine` allowing arbitrary input makes overflow possible. The alert likely stems",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_add_12.java_85": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Method uses same code for two branches. This indicates a control flow issue where identical code paths are taken under different conditions, often masking vulnerabilities or leading to redundant checks. Evidence: Source and sink are at the same line (85) in `bad()` method. Program slice shows `if(IO.staticReturnsTrueOrFalse())` followed by `if(IO.staticReturnsTrueOrFalse())`. In `bad()`, the first `if` block assigns `data` from `rand()`, and the second `if` block performs `data +",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_File_square_10.java_40": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "FP",
+    "confidence": 0.6,
+    "rationale": "Analyzer claim is 'hard coded reference to an absolute pathname'. The provided code slice does not contain any hardcoded absolute pathnames. The path 'C:\\data.txt' is used, but it's dynamically created as a File object. The alert seems to be misinterpreting the intent or context. The actual vulnerability identified in the code is CWE190 (Integer Overflow) due to squaring user-supplied input from a file, not a hardcoded path.\n---\nAnalyzer claims hardcoded absolute path. Evidence shows `new File(\"",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_getParameter_Servlet_square_06.java_154": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims 'Bad comparison of int value with long constant'. Evidence shows data read from `getParameter` (tainted source) is directly used in `data * data` (sink) without proper bounds checking. The sink `(int)(data * data)` can overflow if `data` is large. The `if (PRIVATE_STATIC_FINAL_FIVE==5)` conditional is always true due to `PRIVATE_STATIC_FINAL_FIVE` being `final` and initialized to `5`. This means the vulnerable sink is always reached. The comparison mentioned by SpotBugs likely re",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__int_URLConnection_square_53d.java_52": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: SpotBugs warns about comparing an int with a long constant. Preconditions: The code involves an integer `data` that is squared. If `data * data` exceeds `Integer.MAX_VALUE`, an integer overflow occurs. The `badSink` method directly calculates `data * data` without checks, leading to a potential overflow. The alert is triggered by SpotBugs' analysis of this direct squaring operation. Evidence: The source and sink locations are the same line (52), indicating the squaring operation ",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__int_URLConnection_add_12.java_300": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "FP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claims same code in two branches. Evidence shows `bad()` method has an `if (IO.staticReturnsTrueOrFalse())` block where both branches read from `URLConnection` and then a second `if (IO.staticReturnsTrueOrFalse())` where the first branch adds 1 to `data` and the second branch checks for overflow before adding 1. The alert is likely triggered by the duplicate `URLConnection` read logic or the duplicate `add` logic. However, the `URLConnection` read is a bad source and the `add` operation",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_getCookies_Servlet_square_07.java_164": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: SpotBugs - Bad comparison of int value with long constant. Evidence shows data read from cookies is parsed into an int and then squared. The `bad()` method has a conditional block `if (privateFive==5)` which is always true as `privateFive` is initialized to 5 and never changed. Inside this block, `data * data` is calculated. The code comments explicitly state 'POTENTIAL FLAW: if (data*data) > Integer.MAX_VALUE, this will overflow'. While the alert message mentions comparing an in",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_PropertiesFile_square_13.java_213": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: SpotBugs found an unknown alert type for \"Bad comparison of int value with long constant\" at juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_PropertiesFile_square_13.java:213. The alert originates from the `bad()` method where an integer `data` read from a properties file is squared. The sink is `(int)(data * data)`. The source is reading an integer from a properties file. The bug preconditions are: 1. The integer `data` read from the properties file mus",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_multiply_11.java_115": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Random object created and used only once. Evidence shows a random short is generated and then multiplied by 2. The code explicitly labels this as a POTENTIAL FLAW: if (data*2) > Short.MAX_VALUE, this will overflow. The flow is partial and constraints are missing, but the core logic aligns with the Integer Overflow CWE. The sink location uses the data directly after a conditional check, which is where the overflow would occur. This is a true positive for integer overflow.\n---\nThe ",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_listen_tcp_square_72b.java_56": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: SpotBugs warns about comparing an `int` to a `long` constant, indicating a potential integer overflow. Evidence: The `badSink` and `goodG2BSink` methods in the provided Java code square an `int` variable `data`. The calculation `data * data` can exceed `Integer.MAX_VALUE`, leading to an integer overflow, which is the vulnerability described by CWE190. The `goodB2GSink` method attempts to mitigate this with a check, but the alert specifically targets the unsafe squaring operation.",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_Property_add_22b.java_94": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "The alert indicates a primitive field is public. The provided code snippet, while not directly showing a public field declaration, is part of a test case designed to demonstrate integer overflow vulnerabilities. The 'badSink' method explicitly checks for `data == Integer.MAX_VALUE` and comments `POTENTIAL FLAW: if data == Integer.MAX_VALUE, this will overflow`, directly linking to the vulnerability type. Although the alert itself is generic ('Primitive field is public'), in the context of this c",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_multiply_66a.java_62": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Random object created and used only once. Evidence shows `java.security.SecureRandom()` is used to generate `data` which is then passed to `badSink`. This matches the claim. Preconditions for CWE190 Integer Overflow: 1. Input is from an uncontrolled source (like `rand()`). 2. Input is used in an arithmetic operation that can overflow. 3. The operation is a multiplication that can lead to overflow. Evidence check: 1. `rand()` is used as per `BadSource` description. 2. `data` is pa",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_Environment_square_73b.java_56": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims bad comparison of int with long constant. Evidence shows int data is squared into an int `result`. SpotBugs likely flags `data * data` as a potential overflow, which is a valid integer overflow vulnerability. The code explicitly states `POTENTIAL FLAW: if (data*data) > Integer.MAX_VALUE, this will overflow`. The `goodB2GSink` method demonstrates how to mitigate this by checking if `Math.abs(data) <= (long)Math.sqrt(Integer.MAX_VALUE)`. The alert type 'Unknown' is misleading, but ",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_add_02.java_31": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Random object created and used only once. Preconditions: Data is sourced from a random number generator and used in a sink that can cause an integer overflow. Evidence: The code uses `new java.security.SecureRandom()` to generate `data`. The `bad()` method then directly adds 1 to `data` without checks, which can lead to an overflow if `data` is `Byte.MAX_VALUE`. This matches the analyzer's claim and the CWE description. The flow is partial, but the critical source and sink are pr",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_File_square_74a.java_41": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claims hardcoded absolute pathname. Evidence points to `C:\\data.txt` in the code. This is a hardcoded absolute path, which can be a security risk if the file contains sensitive information or if its existence/content is relied upon by the application in an insecure way. The data flow trace confirms the path is used. Therefore, it's a True Positive.\n---\nAnalyzer (SpotBugs) claims hardcoded absolute pathname. Evidence shows `File file = new File(\"C:\\data.txt\");` at `41`. This is a hardcod",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_console_readLine_square_16.java_189": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Bad comparison of int value with long constant. Evidence shows `data` (byte) read from console, then squared `data * data`. The `byte` type is promoted to `int` for multiplication. The result is cast back to `byte`. If `data * data` exceeds `Byte.MAX_VALUE`, an integer overflow occurs. The alert is triggered because SpotBugs likely flags the potential for `data * data` to exceed `Byte.MAX_VALUE` without proper checking, which is a valid integer overflow vulnerability. The mention",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_multiply_08.java_129": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claim: Random object created and used only once. Evidence shows a random integer `data` is generated and then multiplied by 2 within a conditional block that checks `data > 0`. The multiplication `data * 2` is directly identified as a potential integer overflow flaw. The code slice shows `data` is obtained from `new SecureRandom().nextInt()`. This directly matches the analyzer's claim of a random object being used in a potentially vulnerable operation. The `if (data > 0)` check and the ",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_max_square_68a.java_31": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims writing to static field 'data' from instance method 'bad'. Evidence shows 'data' (static) is written to with Integer.MAX_VALUE in 'bad' (instance method) at line 31, then passed to 'badSink'. This matches alert. Preconditions: (1) Static field written from instance method, (2) Data flow from source to sink. Both met.\n---\nAnalyzer claim: Write to static field 'data' from instance method 'bad'. Evidence shows 'data' (static) is written to in 'bad' (instance) with Integer.MAX_VALUE.",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_Environment_multiply_22a.java_135": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Analyzer claim: Write to static field from instance method. Evidence shows a static field `badPublicStatic` is written to from an instance method `bad()`. This matches the claim. The code snippet is part of a test case designed to demonstrate integer overflow vulnerabilities. The `bad()` method reads data from an environment variable and then sets `badPublicStatic` to true before calling a sink method. This pattern is typical for security vulnerability testing, making it highly probable that thi",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_multiply_08.java_170": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: SpotBugs flagged an 'Unknown' alert for 'Random object created and used only once.' This implies a potential issue where a randomly generated value is used in a way that might not be properly handled, leading to unexpected behavior. The extracted evidence points to `CWE190_Integer_Overflow__int_random_multiply_08.java` at line 170 for both source and sink. The program slice shows a `SecureRandom().nextInt()` generating `data`, which is then conditionally multiplied by 2 in a `bad",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__int_database_add_22b.java_44": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "FP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims 'Primitive field is public'. The provided code slice does not contain any public primitive fields. The alert is likely misattributed or related to a different part of the codebase not included in the slice. The code slice itself demonstrates integer overflow handling, not a public primitive field vulnerability.\n---\nAnalyzer claims 'Primitive field is public'. The provided code slice is for a sink method `badSink` which receives `data` as a parameter. There are no public primitive",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_console_readLine_add_68a.java_104": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Writing to static field 'data' from instance method 'bad()' in CWE190_Integer_Overflow__byte_console_readLine_add_68a.java. Bug preconditions: 1. Static field 'data' is written to. 2. The write operation occurs within an instance method. 3. The write operation is potentially unsafe (e.g., leads to integer overflow). Evidence check: 1. `public static byte data;` declares a static field. 2. `data = Byte.parseByte(stringNumber.trim());` writes to this static field within the `bad()`",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_add_08.java_44": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: SpotBugs flags a 'Random object created and used only once' as a potential issue. Preconditions for this alert likely involve the creation of a random object that isn't reused, suggesting it might be a mistake or an inefficient pattern. The extracted evidence points to `juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_add_08.java:44` as both source and sink. The program slice confirms a `new java.security.SecureRandom()` is instantiated and its resu",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_add_06.java_36": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Random object created and used only once. This maps to CWE190 Integer Overflow. The code at line 36 in `bad()` initializes `data` with a random `long` value. The sink at line 36 attempts to add 1 to `data`. If `data` is `Long.MAX_VALUE`, this will cause an integer overflow. The flow is partial and constraints are missing, but the direct use of a random value in an addition operation that can overflow is a clear vulnerability pattern. Therefore, it's a True Positive.\n---\nAnalyzer ",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_square_21.java_118": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: SpotBugs detected a bad comparison of an int value with a long constant. Evidence shows data is a random int, then squared in `badSink`. The `badSink` lacks overflow checks, making it vulnerable. The comparison alert likely stems from SpotBugs' internal analysis of potential overflow conditions, even if not explicitly a direct `int == long` comparison in the provided slice. The core issue is the unchecked squaring of a potentially large random integer, leading to overflow. The pr",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_SIGNED_BYTE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_max_square_52c.java_52": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_SIGNED_BYTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims 'Bad comparison of signed byte'. Evidence points to `CWE190_Integer_Overflow__byte_max_square_52c.java:52` where `data * data` is calculated. The `badSink` directly squares `data` without checks, which can lead to overflow if `data` is `Byte.MAX_VALUE` (127), as 127*127 is 16129, far exceeding `Byte.MAX_VALUE`. This is a clear integer overflow vulnerability. The alert description is slightly misleading; the core issue is the overflow from squaring, not a comparison itself. Howeve",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_SIGNED_BYTE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_add_04.java_162": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_SIGNED_BYTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer `SpotBugs` claims `Bad comparison of signed byte`. The `bad()` method in the provided code slice directly performs `byte result = (byte)(data + 1);` where `data` is sourced from `rand()`. This addition can lead to integer overflow if `data` is `Byte.MAX_VALUE`, causing `result` to wrap around to `Byte.MIN_VALUE`. The alert is triggered at line 162, which is the sink location, and the data flow trace confirms the flow from the random source to this addition. The flow is partial, and cons",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_multiply_22a.java_34": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Random object created and used only once. Evidence shows a random short is generated and passed to a sink. Preconditions: A random value is used as input to a function. This value can be any value within the range of a short. A vulnerability exists if this random value, when processed by the sink, can lead to an overflow. The code slice shows `data` is assigned a random value and then passed to `badSink`. The description of CWE190 confirms integer overflow is a vulnerability. The",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_max_add_12.java_85": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claim: Same code used for two branches. Preconditions: Method contains conditional logic (if statements) where identical code blocks are executed in different branches. Evidence: The `bad()` method has two `if` blocks. The first `if` block assigns `data`. The second `if` block performs an addition. In the second `if` block, both branches contain the same `byte result = (byte)(data + 1);` code, and the `else` branch of the first `if` block also contains this identical code. This matches ",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_max_square_66b.java_55": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Analyzer claims bad comparison of `int` with `long` constant. Evidence points to `short` data being squared. The `badSink` directly squares `data` (`short`) into a `short` result. If `data` is large (e.g., close to `Short.MAX_VALUE`), `data * data` will exceed `Short.MAX_VALUE`, causing an integer overflow. The `goodB2GSink` explicitly checks for this overflow condition using `Math.sqrt(Short.MAX_VALUE)`, confirming the vulnerability in the `badSink`. The alert type 'Unknown' is misleading, but ",
+    "stage": "LLM"
+  }
+}

@@ -11,13 +11,20 @@ Implements the evaluation described in sections/preliminary_results.tex:
   - Metrics: Precision, Recall, F1, Coverage, ECE, Selective Risk (mean +/- std)
 
 Modes:
-  --live   Run the real LLM verifier (requires OPENAI/GEMINI/ANTHROPIC API key).
+  --live   Run the real LLM verifier (requires OPENAI/GEMINI/ANTHROPIC API key,
+           or --base_url for an OpenAI-compatible on-prem server such as vLLM).
   --mock   Use a deterministic mock verifier (no API key) to validate the
            calibration + escalation mechanics end-to-end.
 
 Usage:
   python scripts/benchmark_juliet_conformal.py --mock
   python scripts/benchmark_juliet_conformal.py --live --model gpt-4o-mini
+
+  # On-prem vLLM server (GLM-4.5, Kimi K2, DeepSeek, Qwen Coder, ...):
+  export LOCAL_LLM_URL=http://gpu-host:8000/v1
+  export LOCAL_MODEL_NAME=glm-4.5
+  python scripts/benchmark_juliet_conformal.py --live \
+      --base_url "$LOCAL_LLM_URL" --model "$LOCAL_MODEL_NAME"
 """
 
 import argparse
@@ -462,7 +469,15 @@ def main():
         "--provider",
         default=None,
         choices=["openai", "gemini", "anthropic"],
-        help="LLM provider (auto-detected from model name if omitted)",
+        help="LLM provider (auto-detected from model name if omitted). Ignored "
+        "when --base_url is set, since vLLM/Ollama/TGI are OpenAI-compatible.",
+    )
+    parser.add_argument(
+        "--base_url",
+        default=None,
+        help="OpenAI-compatible base URL for an on-prem LLM server (vLLM, SGLang, "
+        "Ollama, TGI). Defaults to $LOCAL_LLM_URL. When set, provider is "
+        "forced to 'openai' and api_key defaults to 'EMPTY'.",
     )
     parser.add_argument("--temperature", type=float, default=0.7)
     parser.add_argument("--sample_min", type=int, default=50)
@@ -493,40 +508,66 @@ def main():
     verifier = None
     use_mock = args.mock
     if args.live:
-        # Determine provider: explicit --provider > model name heuristic > env keys
-        if args.provider:
-            provider = args.provider
-        elif args.model:
-            ml = args.model.lower()
-            if "gemini" in ml or "flash" in ml or "pro" in ml and "gpt" not in ml:
-                provider = "gemini"
-            elif "claude" in ml or "sonnet" in ml or "haiku" in ml or "opus" in ml:
-                provider = "anthropic"
-            else:
-                provider = "openai"
-        else:
-            provider = (
-                "openai"
-                if os.getenv("OPENAI_API_KEY")
-                else "gemini" if os.getenv("GEMINI_API_KEY") else "anthropic"
+        # Resolve base_url: explicit --base_url > $LOCAL_LLM_URL.
+        base_url = args.base_url or os.getenv("LOCAL_LLM_URL")
+        # When a base_url is supplied we always go OpenAI-compatible
+        # (vLLM/SGLang/Ollama/TGI all speak the OpenAI chat.completions API).
+        if base_url:
+            provider = "openai"
+            api_key = (
+                os.getenv("OPENAI_API_KEY") or os.getenv("LOCAL_LLM_API_KEY") or "EMPTY"
             )
+            # Default the served model name to $LOCAL_MODEL_NAME or a generic
+            # placeholder; vLLM rejects requests whose `model` does not match
+            # --served-model-name, so the user MUST pass --model if they
+            # overrode --served-model-name on the server.
+            model_name = args.model or os.getenv("LOCAL_MODEL_NAME") or "local-model"
+            verifier = Verifier(
+                api_key=api_key,
+                provider=provider,
+                model_name=model_name,
+                base_url=base_url,
+                temperature=args.temperature,
+            )
+            print(
+                f"Live mode (on-prem): base_url={base_url}, "
+                f"model={verifier.model_name}"
+            )
+        else:
+            # Determine provider: explicit --provider > model name heuristic > env keys
+            if args.provider:
+                provider = args.provider
+            elif args.model:
+                ml = args.model.lower()
+                if "gemini" in ml or "flash" in ml or "pro" in ml and "gpt" not in ml:
+                    provider = "gemini"
+                elif "claude" in ml or "sonnet" in ml or "haiku" in ml or "opus" in ml:
+                    provider = "anthropic"
+                else:
+                    provider = "openai"
+            else:
+                provider = (
+                    "openai"
+                    if os.getenv("OPENAI_API_KEY")
+                    else "gemini" if os.getenv("GEMINI_API_KEY") else "anthropic"
+                )
 
-        api_key = (
-            os.getenv(f"{provider.upper()}_API_KEY")
-            or os.getenv("OPENAI_API_KEY")
-            or os.getenv("GEMINI_API_KEY")
-            or os.getenv("ANTHROPIC_API_KEY")
-        )
-        if not api_key:
-            print(f"ERROR: --live requires an API key for provider '{provider}'")
-            sys.exit(1)
-        verifier = Verifier(
-            api_key=api_key,
-            provider=provider,
-            model_name=args.model,
-            temperature=args.temperature,
-        )
-        print(f"Live mode: provider={provider}, model={verifier.model_name}")
+            api_key = (
+                os.getenv(f"{provider.upper()}_API_KEY")
+                or os.getenv("OPENAI_API_KEY")
+                or os.getenv("GEMINI_API_KEY")
+                or os.getenv("ANTHROPIC_API_KEY")
+            )
+            if not api_key:
+                print(f"ERROR: --live requires an API key for provider '{provider}'")
+                sys.exit(1)
+            verifier = Verifier(
+                api_key=api_key,
+                provider=provider,
+                model_name=args.model,
+                temperature=args.temperature,
+            )
+            print(f"Live mode: provider={provider}, model={verifier.model_name}")
     else:
         print("Mock mode: using deterministic mock verifier (no API calls)")
 

@@ -1,0 +1,2732 @@
+{
+  "jenkinsci__workflow-cps-global-lib-plugin_CVE-2022-25174_544.vff04fa68714d_java/polynomial-redos_src/main/java/org/jenkinsci/plugins/workflow/libs/SCMSourceRetriever.java_246": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims regex with user input is slow on '../' paths. Evidence shows user input flows to reg..."
+  },
+  "apache__shiro_CVE-2023-34478_1.11.0_java/tainted-permissions-check_core/src/main/java/org/apache/shiro/authz/permission/WildcardPermissionResolver.java_75": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input influences permission checks. Evidence shows tainted data from JdbcRealm ..."
+  },
+  "apache__shiro_CVE-2023-34478_1.11.0_java/unvalidated-url-redirection_web/src/main/java/org/apache/shiro/web/util/RedirectView.java_300": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims untrusted URL redirection from user input. Source: PortFilter.java:114 (likely user-..."
+  },
+  "apache__shiro_CVE-2023-34478_1.11.0_java/unvalidated-url-redirection_web/src/main/java/org/apache/shiro/web/util/RedirectView.java_304": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user-controlled input reaches a redirect sink. Evidence shows data flow from PortFil..."
+  },
+  "apache__shiro_CVE-2023-34478_1.11.0_java/http-response-splitting_web/src/main/java/org/apache/shiro/web/util/RedirectView.java_304": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "1. Analyzer claim: User-controlled input to `PortFilter` can lead to response splitting via `Redirec..."
+  },
+  "apache__shiro_CVE-2023-34478_1.11.0_java/unsafe-deserialization_lang/src/main/java/org/apache/shiro/io/DefaultSerializer.java_77": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims unsafe deserialization from user input. Evidence shows data flow from SimpleCookie (..."
+  },
+  "apache__shiro_CVE-2023-34478_1.11.0_java/unsafe-deserialization_lang/src/main/java/org/apache/shiro/io/XmlSerializer.java_76": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims unsafe deserialization via user-controlled input. Source is SimpleCookie, sink is Xm..."
+  },
+  "apache__shiro_CVE-2023-34478_1.11.0_java/xxe_lang/src/main/java/org/apache/shiro/io/XmlSerializer.java_76": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing vulnerable to external entity expansion due to unsanitized user input. E..."
+  },
+  "alibaba__one-java-agent_CVE-2022-25842_0.0.1_java/zipslip_one-java-agent-plugin/src/main/java/com/alibaba/oneagent/utils/IOUtils.java_122": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims unsanitized archive entry used in file op. Evidence shows data flowing from archive ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/stack-trace-exposure_dspace-sword/src/main/java/org/purl/sword/server/ServiceDocumentServlet.java_152": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze...."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/unvalidated-url-redirection_dspace-api/src/main/java/org/dspace/rdf/negotiation/Negotiator.java_277": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims untrusted URL redirection. Source is user-controlled input (likely HTTP headers/para..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/unvalidated-url-redirection_dspace-api/src/main/java/org/dspace/rdf/negotiation/Negotiator.java_307": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input redirects. Evidence shows data from Negotiator.java:307 (sink) flows from..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/unvalidated-url-redirection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/ControlledVocabularyServlet.java_53": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice missing, cannot analyze data flow or context. Alert claims untrusted URL redirection, but..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/unvalidated-url-redirection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SearchResultLogServlet.java_71": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims untrusted URL redirect from user input. Evidence shows data flow from a source at li..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/unvalidated-url-redirection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/VersionHistoryServlet.java_112": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims untrusted URL redirection via user input. Evidence shows user input from `Util.java`..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/unvalidated-url-redirection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/admin/MetadataFieldRegistryServlet.java_211": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims untrusted URL redirect. Evidence shows user input at line 186 flows to line 211. No ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/unvalidated-url-redirection_dspace-xmlui/src/main/java/org/dspace/app/xmlui/aspect/eperson/LoginRedirect.java_84": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims untrusted URL redirection. Evidence shows data flow from line 83 (likely user input)..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/unvalidated-url-redirection_dspace-xmlui/src/main/java/org/dspace/app/xmlui/cocoon/DSpaceCocoonServletFilter.java_258": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims untrusted URL redirection. Source is user-provided value, sink is redirection. No co..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/unvalidated-url-redirection_dspace-xmlui/src/main/java/org/dspace/app/xmlui/cocoon/DSpaceCocoonServletFilter.java_270": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims untrusted URL redirection. Evidence shows user-controlled data (source) flows to a r..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/http-response-splitting_dspace-api/src/main/java/org/dspace/rdf/negotiation/Negotiator.java_277": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input to header causes response splitting. Evidence shows user input flowing to..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/http-response-splitting_dspace-api/src/main/java/org/dspace/rdf/negotiation/Negotiator.java_307": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input to header causes response splitting. Evidence shows user input (likely fr..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/http-response-splitting_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/ItemExportArchiveServlet.java_96": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input in header leads to response splitting. Evidence shows data flow from line..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/http-response-splitting_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/MetadataExportServlet.java_92": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user-controlled input in header leads to response splitting. Evidence shows data flo..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/http-response-splitting_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/MyDSpaceServlet.java_727": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input (source at 702) influences HTTP header (sink at 727) without sanitization..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/weak-cryptographic-algorithm_dspace-api/src/main/java/org/dspace/checker/CheckerCommand.java_197": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5, a weak crypto algorithm, is used. Evidence shows MD5 usage from source (line 43..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/weak-cryptographic-algorithm_dspace-api/src/main/java/org/dspace/core/Utils.java_129": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5 usage. Evidence points to MD5 in Utils.java. No path constraints, flow partial, ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/weak-cryptographic-algorithm_dspace-api/src/main/java/org/dspace/eperson/PasswordHash.java_260": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5 is weak/unsafe. Evidence points to MD5 usage at PasswordHash.java:260. Lack of p..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/weak-cryptographic-algorithm_dspace-api/src/main/java/org/dspace/storage/bitstore/BitstreamStorageManager.java_309": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5 weak. Evidence points to MD5 usage at `BitstreamStorageManager.java:309`. No pat..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/weak-cryptographic-algorithm_dspace-api/src/main/java/org/dspace/storage/bitstore/BitstreamStorageManager.java_414": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5 weak. Evidence shows MD5 usage at `BitstreamStorageManager.java:414`. No path co..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/weak-cryptographic-algorithm_dspace-api/src/main/java/org/dspace/storage/bitstore/BitstreamStorageManager.java_457": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claim: MD5 crypto algorithm used. Preconditions: MD5 use in security context (hashing for i..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/weak-cryptographic-algorithm_dspace-sword/src/main/java/org/purl/sword/base/ChecksumUtils.java_63": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently e..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/weak-cryptographic-algorithm_dspace-sword/src/main/java/org/purl/sword/base/ChecksumUtils.java_123": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5 is weak/unsafe. Evidence points to MD5 usage at line 123 in ChecksumUtils.java. ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/ssrf_dspace-sword/src/main/java/org/purl/sword/client/Client.java_255": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims SSRF. User input flows from ServletClient to Client. No path constraints mean input ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/tainted-format-string_dspace-api/src/main/java/org/dspace/content/LicenseUtils.java_89": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims format string uses user input. Evidence shows user input flows to LicenseUtils.java:..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/regex-injection_dspace-jspui/src/main/java/org/dspace/app/webui/handle/HandleJSONResolver.java_36": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims regex built from user input. Evidence shows user input flowing into regex constructi..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/polynomial-redos_dspace-api/src/main/java/org/dspace/discovery/SolrServiceImpl.java_2071": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims regex with user input vulnerable to ReDoS. Evidence shows user input flowing to a re..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/polynomial-redos_dspace-api/src/main/java/org/dspace/discovery/SolrServiceImpl.java_2089": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims regex depends on user input, susceptible to ReDoS. Evidence shows user input flows t..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/polynomial-redos_dspace-jspui/src/main/java/org/dspace/app/webui/discovery/DiscoverUtility.java_437": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "1. Claim: User input (source) may cause regex denial-of-service (sink) via crafted strings. 2. Preco..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/zipslip_dspace-api/src/main/java/org/dspace/app/itemimport/ItemImport.java_2078": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims unsanitized archive entry used in file op. Evidence shows source/sink at same line, ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/zipslip_dspace-api/src/main/java/org/dspace/app/itemimport/ItemImport.java_2065": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims unsanitized archive entry ('..') used in file op. Evidence shows data flow from arch..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/app/itemexport/ItemExport.java_1151": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sensitive operation (sink). Evidence shows data from a web reques..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/app/itemexport/ItemExport.java_1155": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sensitive sink (ItemExport.java:1155). Evidence shows flow from u..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/app/itemexport/ItemExport.java_1174": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sensitive sink. Evidence shows flow from `ItemExportArchiveServle..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/app/itemexport/ItemExport.java_1193": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "CodeQL alert: user input reaches sink. Evidence shows user input from ItemExportArchiveServlet (sour..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/app/itemimport/ItemImport.java_1003": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches ItemImport.java:1003. Evidence shows data flows from MyDSpaceServ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/app/itemimport/ItemImport.java_2443": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches `ItemImport.java:2443`. Evidence shows data flow from `MyDSpaceSe..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/core/ConfigurationManager.java_529": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches configuration manager. Evidence shows taint flow from user-input-..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/core/ConfigurationManager.java_541": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches ConfigurationManager.java:541. Evidence shows user input from Cur..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/core/NewsManager.java_58": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "CodeQL claims user input reaches NewsManager.java:58. Evidence shows flow from NewsEditServlet.java:..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/core/NewsManager.java_102": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "CodeQL claims user input reaches `NewsManager.java:102`. Evidence shows flow from `NewsEditServlet.j..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/MyDSpaceServlet.java_717": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claim: User input reaches sink. Preconditions: User input used in sensitive operation. Evid..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/MyDSpaceServlet.java_730": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sink. Evidence shows data flow from line 702 to 730. No path cons..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SitemapServlet.java_82": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sink. Evidence shows flow from line 69 (likely user input source)..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SitemapServlet.java_111": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sink. Evidence shows data flow from line 69 (source) to 111 (sink..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SubmissionController.java_284": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sink. Evidence shows data flow from source (1701) to sink (284) v..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SubmissionController.java_1590": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze taint flow...."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SubmissionController.java_1599": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sink. Evidence shows data flow from source (1583) to sink (1599) ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SubmissionController.java_1706": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze flow. Analyzer claims unknown type, missing constraints, and partia..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SubmissionController.java_1711": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze data flow...."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SubmissionController.java_1712": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sink. Evidence shows flow from line 1701 to 1712. Constraints mis..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-sword/src/main/java/org/dspace/sword/DepositManager.java_267": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sink without sanitization. Evidence shows data flow from `Deposit..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-sword/src/main/java/org/dspace/sword/DepositManager.java_268": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Alert claims user-controlled value flows to sink. Evidence shows flow from `DepositServlet` (likely ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-sword/src/main/java/org/dspace/sword/DepositManager.java_271": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "CodeQL claims user input (source: DepositServlet.java:402) flows to a sensitive operation (sink: Dep..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-sword/src/main/java/org/dspace/sword/DepositManager.java_277": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches a sensitive sink without sanitization. Evidence shows a flow from..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/app/sherpa/SHERPAResponse.java_55": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently e..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/authority/orcid/xml/Converter.java_39": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims unchecked XML external entity expansion. Evidence shows user-controlled input (sourc..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/content/authority/LCNameAuthority.java_180": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user input without entity expansion protection. Evidence points to ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/content/authority/SHERPARoMEOProtocol.java_116": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parse vulnerable to external entity expansion. Evidence points to user-provided ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/content/packager/METSManifest.java_708": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user input without external entity protection. Evidence shows data ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/ctask/general/MetadataWebService.java_272": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user input without external entity expansion protection. Evidence s..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/license/CCLookup.java_196": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing vulnerable to XXE via user input. Evidence shows user input flows to XML..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/license/CCLookup.java_306": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims insecure XML parsing. Evidence shows user input flows to XML parsing without sanitiz..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/license/CCLookup.java_354": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Claim: XML parse uses user input, vulnerable to XXE. Preconditions: XML parser, user input, no exter..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/submit/lookup/ArXivService.java_130": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user input without external entity protection. Evidence points to u..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/submit/lookup/CiNiiService.java_112": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing vulnerable to external entity expansion. Evidence points to user-provide..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/submit/lookup/CiNiiService.java_192": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user input without external entity expansion protection. Evidence p..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/submit/lookup/CrossRefService.java_117": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user input without external entity expansion protection. Evidence p..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/submit/lookup/PubmedService.java_140": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing vulnerable to external entities via user input. Evidence points to user ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/submit/lookup/PubmedService.java_259": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user input unsafely. Evidence points to code at line 259 processing..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/tainted-numeric-cast_dspace-xmlui/src/main/java/org/dspace/app/xmlui/cocoon/servlet/multipart/DSpaceTokenStream.java_133": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input cast to narrower type may truncate. Evidence shows data flows from DSpace..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/tainted-numeric-cast_dspace-xmlui/src/main/java/org/dspace/app/xmlui/cocoon/servlet/multipart/DSpaceTokenStream.java_148": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently e..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xml/xpath-injection_dspace-api/src/main/java/org/dspace/content/authority/DSpaceControlledVocabulary.java_168": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently e..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/maven/non-https-url_dspace/modules/xmlui-mirage2/pom.xml_331": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims artifact download/upload via insecure protocol (HTTP). Evidence points to 'rubygems-..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/maven/non-https-url_pom.xml_1632": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims insecure protocol download/upload from http://maven.restlet.org. Evidence points to ..."
+  },
+  "vert-x3__vertx-web_CVE-2019-17640_3.9.3_java/weak-cryptographic-algorithm_vertx-web/src/main/java/io/vertx/ext/web/handler/impl/DigestAuthHandlerImpl.java_58": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5 use is a vulnerability. Evidence points to MD5 use in DigestAuthHandlerImpl. Cod..."
+  },
+  "vert-x3__vertx-web_CVE-2019-17640_3.9.3_java/weak-cryptographic-algorithm_vertx-web/src/main/java/io/vertx/ext/web/handler/sockjs/impl/SockJSHandlerImpl.java_247": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5 use is weak. Evidence points to MD5 usage at line 247. No path constraints mean ..."
+  },
+  "vert-x3__vertx-web_CVE-2019-17640_3.9.3_java/redos_vertx-web-api-contract/src/main/java/io/vertx/ext/web/api/validation/impl/RegularExpressions.java_8": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Alert: Regex exponential backtracking. Evidence: Location 8, regex. Preconditions: Regex vulnerable ..."
+  },
+  "apache__mina-sshd_CVE-2023-35887_2.9.2_java/weak-cryptographic-algorithm_sshd-common/src/main/java/org/apache/sshd/common/cipher/BaseCipher.java_107": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims RC4, a weak crypto, used. Evidence shows RC4 used in `BaseRC4Cipher` (source) and re..."
+  },
+  "apache__mina-sshd_CVE-2023-35887_2.9.2_java/weak-cryptographic-algorithm_sshd-common/src/main/java/org/apache/sshd/common/cipher/BaseRC4Cipher.java_47": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims ARCFOUR is weak. Evidence shows ARCFOUR usage in BaseRC4Cipher.java, called from var..."
+  },
+  "apache__mina-sshd_CVE-2023-35887_2.9.2_java/weak-cryptographic-algorithm_sshd-contrib/src/main/java/org/apache/sshd/contrib/common/signature/LegacyDSASigner.java_61": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims LegacySHA1withDSA is weak. Evidence shows code using LegacyDSASigner at specified lo..."
+  },
+  "apache__mina-sshd_CVE-2023-35887_2.9.2_java/implicit-cast-in-compound-assignment_sshd-common/src/main/java/org/apache/sshd/common/mac/Poly1305Mac.java_196": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims implicit cast long to int. Evidence points to a `long` being assigned to an `int` at..."
+  },
+  "apache__mina-sshd_CVE-2023-35887_2.9.2_java/implicit-cast-in-compound-assignment_sshd-common/src/main/java/org/apache/sshd/common/mac/Poly1305Mac.java_197": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims implicit `long` to `int` cast. Evidence shows cast at line 197. Program slice empty...."
+  },
+  "apache__mina-sshd_CVE-2023-35887_2.9.2_java/implicit-cast-in-compound-assignment_sshd-common/src/main/java/org/apache/sshd/common/mac/Poly1305Mac.java_198": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims implicit `long` to `int` cast. Evidence shows cast at line 198. Program slice is emp..."
+  },
+  "apache__mina-sshd_CVE-2023-35887_2.9.2_java/implicit-cast-in-compound-assignment_sshd-common/src/main/java/org/apache/sshd/common/mac/Poly1305Mac.java_199": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Claim: Implicit long to int cast. Evidence: Source/sink line 199. Slice: Empty. No path constraints...."
+  },
+  "apache__mina-sshd_CVE-2023-35887_2.9.2_java/implicit-cast-in-compound-assignment_sshd-common/src/main/java/org/apache/sshd/common/mac/Poly1305Mac.java_200": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims implicit `long` to `int` cast. Evidence points to `Poly1305Mac.java:200`. This cast ..."
+  },
+  "apache__mina-sshd_CVE-2023-35887_2.9.2_java/implicit-cast-in-compound-assignment_sshd-common/src/test/java/org/apache/sshd/common/cipher/BaseAuthenticatedCipherTest.java_58": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims implicit int to byte cast. Evidence points to a test file. No path constraints, flow..."
+  },
+  "apache__mina-sshd_CVE-2023-35887_2.9.2_java/implicit-cast-in-compound-assignment_sshd-core/src/main/java/org/apache/sshd/common/channel/ChannelOutputStream.java_194": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims implicit long-to-int cast. Evidence points to ChannelOutputStream.java:194. No path ..."
+  },
+  "apache__mina-sshd_CVE-2023-35887_2.9.2_java/implicit-cast-in-compound-assignment_sshd-core/src/main/java/org/apache/sshd/common/channel/ChannelOutputStream.java_195": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims implicit cast from long to int. Evidence points to ChannelOutputStream.java:195. Mis..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/unsafe-hostname-verification_hutool-http/src/main/java/cn/hutool/http/HttpConnection.java_578": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims hostname verifier always accepts any cert. Evidence points to `HttpConnection.java:5..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/weak-cryptographic-algorithm_hutool-core/src/main/java/cn/hutool/core/lang/UUID.java_116": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5 is weak. Evidence points to MD5 usage at UUID.java:116. No path constraints mean..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/weak-cryptographic-algorithm_hutool-crypto/src/main/java/cn/hutool/crypto/SecureUtil.java_93": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims weak crypto algorithms (MD5, SHA1, DES, DESede) used. Evidence shows these algorithm..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/weak-cryptographic-algorithm_hutool-crypto/src/main/java/cn/hutool/crypto/SecureUtil.java_122": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims DES/DESede usage. Evidence shows DES/DESede instantiation at sink. Weak crypto usage..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/weak-cryptographic-algorithm_hutool-crypto/src/main/java/cn/hutool/crypto/SecureUtil.java_187": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims DES/DESede weak crypto. Evidence shows DES/DESede usage in SecureUtil.java, called f..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/weak-cryptographic-algorithm_hutool-crypto/src/main/java/cn/hutool/crypto/digest/Digester.java_53": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5 crypto alg is weak. Evidence traces MD5 (source) through code to Digester.java:5..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/weak-cryptographic-algorithm_hutool-crypto/src/main/java/cn/hutool/crypto/digest/HMac.java_70": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims HmacMD5/SHA1 weak. Evidence shows HmacAlgorithm enum constants for these weak algori..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/weak-cryptographic-algorithm_hutool-crypto/src/main/java/cn/hutool/crypto/symmetric/SymmetricCrypto.java_133": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims DES, DES/{} etc. weak. Evidence shows `SymmetricCrypto.java` at line 133 uses `DES.j..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/insecure-cookie_hutool-extra/src/main/java/cn/hutool/extra/servlet/ServletUtil.java_376": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims: cookie set without 'secure' flag. Preconditions: cookie set, 'secure' flag absent. ..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/insecure-cookie_hutool-extra/src/main/java/cn/hutool/extra/servlet/ServletUtil.java_387": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie lacks 'secure' flag. Evidence points to cookie addition. Preconditions: cooki..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/insecure-trustmanager_hutool-http/src/main/java/cn/hutool/http/ssl/SSLSocketFactoryBuilder.java_110": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims `TrustManager` trusts any certificate. Evidence shows data flow from `SSLSocketFacto..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/zipslip_hutool-core/src/main/java/cn/hutool/core/util/ZipUtil.java_389": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims unsanitized archive entry with '..' used in filesystem op. Evidence shows data flow ..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/path-injection_hutool-core/src/main/java/cn/hutool/core/convert/impl/PathConverter.java_33": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches `PathConverter`. Evidence shows `ServletUtil` (likely handles use..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/xss_hutool-core/src/main/java/cn/hutool/core/io/IoUtil.java_173": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Source (ServletUtil.java:102) likely takes user input. Sink (IoUtil.java:173) l..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/implicit-cast-in-compound-assignment_hutool-core/src/main/java/cn/hutool/core/date/DateUtil.java_1471": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims implicit cast double->int. Evidence shows same-line source/sink, no constraints, flo..."
+  },
+  "apache__sling-org-apache-sling-servlets-resolver_CVE-2024-23673_2.10.0_java/xss_src/main/java/org/apache/sling/servlets/resolver/internal/console/WebConsolePlugin.java_138": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Evidence shows user input flows to sink unsanitized. Preconditions: user input,..."
+  },
+  "codehaus-plexus__plexus-archiver_CVE-2018-1002200_3.5_java/concatenated-command-line_src/test/java/org/codehaus/plexus/archiver/tar/TarFileAttributesTest.java_99": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze...."
+  },
+  "codehaus-plexus__plexus-archiver_CVE-2018-1002200_3.5_java/concatenated-command-line_src/test/java/org/codehaus/plexus/archiver/tar/TarFileAttributesTest.java_173": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims command line built with string concat. Evidence points to test file, no explicit pat..."
+  },
+  "codehaus-plexus__plexus-archiver_CVE-2018-1002200_3.5_java/concatenated-command-line_src/test/java/org/codehaus/plexus/archiver/tar/TarFileAttributesTest.java_242": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims string concatenation for command line. Evidence points to a test file (`TarFileAttri..."
+  },
+  "codehaus-plexus__plexus-archiver_CVE-2018-1002200_3.5_java/concatenated-command-line_src/test/java/org/codehaus/plexus/archiver/tar/TarFileAttributesTest.java_308": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice unavailable, cannot analyze data flow or context. Analyzer claim is about string concaten..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/weak-cryptographic-algorithm_utils/src/main/java/org/owasp/dependencycheck/utils/Checksum.java_69": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5/SHA1 weak. Evidence shows MD5/SHA1 usage at sink (line 69) originating from sour..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/weak-cryptographic-algorithm_utils/src/main/java/org/owasp/dependencycheck/utils/Checksum.java_194": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5/SHA1 usage. Evidence shows MD5/SHA1 in Checksum.java.  Code slice unavailable, b..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/overly-large-range_core/src/main/java/org/owasp/dependencycheck/dependency/VulnerableSoftware.java_210": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze. VulnerableSoftware.java:210 source/sink. Suspicious char range ale..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/polynomial-redos_core/src/main/java/org/owasp/dependencycheck/utils/DependencyVersion.java_79": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims regex depends on user input and may be slow. Evidence shows data flow from EngineVer..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/zipslip_core/src/main/java/org/owasp/dependencycheck/analyzer/ArchiveAnalyzer.java_516": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims unsanitized archive entry ('..') used in filesystem op. Evidence shows data flow fro..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/zipslip_core/src/main/java/org/owasp/dependencycheck/utils/ExtractionUtil.java_102": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims unsanitized archive entry used in file op. Evidence points to `ExtractionUtil.java` ..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/zipslip_core/src/main/java/org/owasp/dependencycheck/utils/ExtractionUtil.java_199": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims unsanitized archive entry ('..') used in file op. Evidence shows data flow from line..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/path-injection_core/src/main/java/org/owasp/dependencycheck/analyzer/AbstractNpmAnalyzer.java_116": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claim: User input flows into NSP search, potentially leading to injection or other issues. ..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/path-injection_utils/src/main/java/org/owasp/dependencycheck/utils/Checksum.java_70": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input flows to Checksum.java. Evidence shows data from NspSearch.java (likely u..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/maven/non-https-url_core/src/test/resources/dwr-pom.xml_143": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims insecure artifact download/upload via HTTP. Evidence points to `dwr-pom.xml` (a POM ..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/maven/non-https-url_core/src/test/resources/dwr-pom.xml_280": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims insecure protocol download/upload. Evidence points to `dwr-pom.xml` line 280, refere..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/maven/non-https-url_core/target/test-classes/dwr-pom.xml_143": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims insecure artifact download/upload via HTTP. Evidence points to `dwr-pom.xml` (a Mave..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/maven/non-https-url_core/target/test-classes/dwr-pom.xml_280": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims insecure protocol (FTP) for artifact download/upload. Evidence points to `dwr-pom.xm..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/maven/non-https-url_maven/src/it/false-positives/pom.xml_31": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims insecure artifact download. Evidence points to `pom.xml` line 31, a dependency decla..."
+  },
+  "apache__dolphinscheduler_CVE-2022-26884_2.0.5_java/ssrf_dolphinscheduler-datasource-plugin/dolphinscheduler-datasource-api/src/main/java/org/apache/dolphinscheduler/plugin/datasource/api/provider/JdbcDataSourceProvider.java_51": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "1. Analyzer claim: User-provided value flows to sensitive sink, potentially causing SSRF. 2. Precond..."
+  },
+  "apache__dolphinscheduler_CVE-2022-26884_2.0.5_java/ssrf_dolphinscheduler-datasource-plugin/dolphinscheduler-datasource-api/src/main/java/org/apache/dolphinscheduler/plugin/datasource/api/provider/JdbcDataSourceProvider.java_76": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sink, potentially enabling SSRF. Evidence shows user input flows ..."
+  },
+  "apache__dolphinscheduler_CVE-2022-26884_2.0.5_java/insecure-cookie_dolphinscheduler-api/src/main/java/org/apache/dolphinscheduler/api/controller/LoginController.java_114": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Claim: Cookie set without 'secure' flag. Preconditions: Application uses cookies for sensitive data ..."
+  },
+  "apache__dolphinscheduler_CVE-2022-26884_2.0.5_java/ldap-injection_dolphinscheduler-api/src/main/java/org/apache/dolphinscheduler/api/security/impl/ldap/LdapService.java_92": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims LDAP query uses user input. Evidence shows data flow from LoginController (likely us..."
+  },
+  "apache__dolphinscheduler_CVE-2022-26884_2.0.5_java/insecure-trustmanager_dolphinscheduler-common/src/main/java/org/apache/dolphinscheduler/common/utils/HttpUtils.java_100": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims 'HttpUtils' uses 'TrustManager' that trusts any certificate. Evidence points to 'Htt..."
+  },
+  "apache__dolphinscheduler_CVE-2022-26884_2.0.5_java/concatenated-command-line_dolphinscheduler-server/src/main/java/org/apache/dolphinscheduler/server/monitor/AbstractMonitor.java_77": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze...."
+  },
+  "joniles__mpxj_CVE-2020-35460_8.3.4_java/redos_src/main/java/net/sf/mpxj/fasttrack/FastTrackReader.java_632": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Claim: Regex exponential backtrack. Preconditions: Regex accepting repeated patterns, input matching..."
+  },
+  "joniles__mpxj_CVE-2020-35460_8.3.4_java/zipslip_src/main/java/net/sf/mpxj/common/InputStreamHelper.java_126": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims unsanitized archive entry (path traversal risk) used in file op. Evidence shows data..."
+  },
+  "asf__tapestry-5_CVE-2019-0207_5.4.4_java/weak-cryptographic-algorithm_tapestry-core/src/main/java/org/apache/tapestry5/internal/services/ClientDataEncoderImpl.java_68": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims HmacSHA1 is weak. Evidence points to its direct use at line 68. No context suggests ..."
+  },
+  "asf__tapestry-5_CVE-2019-0207_5.4.4_java/insecure-cookie_tapestry-core/src/main/java/org/apache/tapestry5/modules/InternalModule.java_95": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claim: Cookie set without 'secure' flag. Preconditions: Cookie set, 'secure' flag absent. E..."
+  },
+  "asf__tapestry-5_CVE-2019-0207_5.4.4_java/unsafe-deserialization_tapestry-core/src/main/java/org/apache/tapestry5/corelib/components/Form.java_725": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims unsafe deserialization. Source is user-provided value (request data). Sink is Form c..."
+  },
+  "asf__tapestry-5_CVE-2019-0207_5.4.4_java/regex-injection_tapestry-core/src/main/java/org/apache/tapestry5/modules/TapestryModule.java_1007": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input builds regex. Evidence shows user input flows to `TypeCoercerImpl` then `..."
+  },
+  "asf__tapestry-5_CVE-2019-0207_5.4.4_java/redos_tapestry-core/src/main/java/org/apache/tapestry5/ContentType.java_41": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims regex exponential backtracking. Evidence points to `ContentType.java:41` as source/s..."
+  },
+  "asf__tapestry-5_CVE-2019-0207_5.4.4_java/redos_tapestry-webresources/src/main/java/com/yahoo/platform/yui/compressor/CssCompressor.java_149": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer: CodeQL. Alert: Regex exponential backtrack. Location: CssCompressor.java:149. Claim: Regex..."
+  },
+  "asf__tapestry-5_CVE-2019-0207_5.4.4_java/path-injection_commons/src/main/java/org/apache/tapestry5/ioc/internal/BasicTypeCoercions.java_272": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sink. Evidence shows user input (request parameter) flows to `Req..."
+  },
+  "asf__tapestry-5_CVE-2019-0207_5.4.4_java/path-injection_tapestry-core/src/main/java/org/apache/tapestry5/internal/test/PageTesterContext.java_42": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches a sensitive sink. Evidence shows data flow from RequestImpl to Pa..."
+  },
+  "asf__tapestry-5_CVE-2019-0207_5.4.4_java/maven/non-https-url_quickstart/build/classes/main/archetype-resources/pom.xml_130": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims insecure protocol (HTTP) used for artifact download/upload from a repository. Eviden..."
+  },
+  "asf__tapestry-5_CVE-2019-0207_5.4.4_java/maven/non-https-url_quickstart/filtered/archetype-resources/pom.xml_130": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Claim: insecure artifact download. Preconditions: artifact download/upload over HTTP. Evidence: Repo..."
+  },
+  "asf__tapestry-5_CVE-2019-0207_5.4.4_java/xss_tapestry-core/src/main/java/org/apache/tapestry5/internal/TapestryInternalUtils.java_370": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Data flows from RequestImpl (likely user input) to TapestryInternalUtils (poten..."
+  },
+  "vert-x3__vertx-web_CVE-2018-12542_3.5.3.CR1_java/weak-cryptographic-algorithm_vertx-web/src/main/java/io/vertx/ext/web/handler/impl/DigestAuthHandlerImpl.java_58": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5 use is weak. Evidence points to MD5 usage in DigestAuthHandlerImpl. Without code..."
+  },
+  "vert-x3__vertx-web_CVE-2018-12542_3.5.3.CR1_java/weak-cryptographic-algorithm_vertx-web/src/main/java/io/vertx/ext/web/handler/sockjs/impl/SockJSHandlerImpl.java_251": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5 weak. Evidence shows MD5 usage at line 251. Preconditions: MD5 used in crypto. E..."
+  },
+  "vert-x3__vertx-web_CVE-2018-12542_3.5.3.CR1_java/redos_vertx-web-api-contract/src/main/java/io/vertx/ext/web/api/validation/impl/RegularExpressions.java_8": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims regex causes exponential backtracking. Evidence points to regex location. No path co..."
+  },
+  "jenkinsci__perfecto-plugin_CVE-2020-2261_1.17_java/ssrf_src/main/java/io/plugins/perfecto/credentials/PerfectoCredentials.java_112": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice unavailable. Cannot analyze data flow or preconditions...."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/stack-trace-exposure_dspace-sword/src/main/java/org/purl/sword/server/ServiceDocumentServlet.java_152": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice unavailable. Cannot analyze source/sink or trace flow. Insufficient evidence for TP/FP de..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/unvalidated-url-redirection_dspace-api/src/main/java/org/dspace/rdf/negotiation/Negotiator.java_277": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims untrusted URL redirection via user input. Evidence shows user input at source (Negot..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/unvalidated-url-redirection_dspace-api/src/main/java/org/dspace/rdf/negotiation/Negotiator.java_307": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims untrusted URL redirection. Evidence shows user-controlled data flowing from `Negotia..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/unvalidated-url-redirection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/ControlledVocabularyServlet.java_53": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims untrusted URL redirection via user input. Evidence shows data flowing from line 38 (..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/unvalidated-url-redirection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SearchResultLogServlet.java_71": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims untrusted URL redirect from user input. Evidence shows data flow from user input (li..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/unvalidated-url-redirection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/VersionHistoryServlet.java_112": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims untrusted URL redirection via user input. Evidence shows user input (source) flows t..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/unvalidated-url-redirection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/admin/MetadataFieldRegistryServlet.java_211": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze...."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/unvalidated-url-redirection_dspace-xmlui/src/main/java/org/dspace/app/xmlui/aspect/eperson/LoginRedirect.java_84": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims untrusted URL redirect from user input. Evidence shows data flow from line 83 (likel..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/unvalidated-url-redirection_dspace-xmlui/src/main/java/org/dspace/app/xmlui/cocoon/DSpaceCocoonServletFilter.java_258": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims untrusted URL redirect from user input. Evidence shows data flow from user input (so..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/unvalidated-url-redirection_dspace-xmlui/src/main/java/org/dspace/app/xmlui/cocoon/DSpaceCocoonServletFilter.java_270": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims untrusted URL redirection from user input. Evidence shows data flow from line 267 (l..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/http-response-splitting_dspace-api/src/main/java/org/dspace/rdf/negotiation/Negotiator.java_277": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input influences response headers, risking splitting. Evidence shows data flow ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/http-response-splitting_dspace-api/src/main/java/org/dspace/rdf/negotiation/Negotiator.java_307": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input to header causes response splitting. Evidence shows user input (likely fr..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/http-response-splitting_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/ItemExportArchiveServlet.java_96": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input in header leads to response splitting. Evidence shows data flowing from l..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/http-response-splitting_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/MetadataExportServlet.java_92": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input in header leads to response splitting. Evidence shows data from line 59 (..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/http-response-splitting_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/MyDSpaceServlet.java_727": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input influences header, risking response splitting. Evidence shows data flow f..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/weak-cryptographic-algorithm_dspace-api/src/main/java/org/dspace/checker/CheckerCommand.java_197": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5 usage is a vulnerability. Evidence shows MD5 being used in `CheckerCommand.java`..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/weak-cryptographic-algorithm_dspace-api/src/main/java/org/dspace/core/Utils.java_129": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5 weak. Evidence points to MD5 usage at Utils.java:129. No path constraints or mis..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/weak-cryptographic-algorithm_dspace-api/src/main/java/org/dspace/eperson/PasswordHash.java_260": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5 use. Evidence points to MD5 usage at line 260, PasswordHash.java. Precondition: ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/weak-cryptographic-algorithm_dspace-api/src/main/java/org/dspace/storage/bitstore/BitstreamStorageManager.java_309": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5 weak. Evidence points to MD5 usage at line 309. No constraints suggest sanitized..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/weak-cryptographic-algorithm_dspace-api/src/main/java/org/dspace/storage/bitstore/BitstreamStorageManager.java_414": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5, a weak crypto algo, used. Evidence points to MD5 usage at specific line. No con..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/weak-cryptographic-algorithm_dspace-api/src/main/java/org/dspace/storage/bitstore/BitstreamStorageManager.java_457": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5 use is weak. Evidence points to MD5 use at line 457. No constraints suggest miti..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/weak-cryptographic-algorithm_dspace-sword/src/main/java/org/purl/sword/base/ChecksumUtils.java_63": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5 usage is weak. Evidence shows MD5 used at line 63, `ChecksumUtils.java`. No path..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/weak-cryptographic-algorithm_dspace-sword/src/main/java/org/purl/sword/base/ChecksumUtils.java_123": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer flags MD5, a weak crypto algo. Evidence points to ChecksumUtils.java line 123, likely where..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/ssrf_dspace-sword/src/main/java/org/purl/sword/client/Client.java_255": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims SSRF via user input. Evidence shows user input flowing to a sink `Client.java:255`. ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/tainted-format-string_dspace-api/src/main/java/org/dspace/content/LicenseUtils.java_89": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims format string uses user input. Evidence shows user input flows to LicenseUtils.java:..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/regex-injection_dspace-jspui/src/main/java/org/dspace/app/webui/handle/HandleJSONResolver.java_36": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims regex built from user input. Evidence shows user input flowing to regex construction..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/polynomial-redos_dspace-api/src/main/java/org/dspace/discovery/SolrServiceImpl.java_2071": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims regex depends on user input, vulnerable to ReDoS. Evidence shows user input flowing ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/polynomial-redos_dspace-api/src/main/java/org/dspace/discovery/SolrServiceImpl.java_2089": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims regex dependent on user input may cause ReDoS. Evidence shows user input flows to a ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/polynomial-redos_dspace-jspui/src/main/java/org/dspace/app/webui/discovery/DiscoverUtility.java_437": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user-input regex can cause ReDoS. Evidence shows user input flows into Solr query co..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/zipslip_dspace-api/src/main/java/org/dspace/app/itemimport/ItemImport.java_2078": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims unsanitized archive entry used in file op. Evidence shows Source and Sink at same un..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/zipslip_dspace-api/src/main/java/org/dspace/app/itemimport/ItemImport.java_2065": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims unsanitized archive entry (potentially '..') is used in file system op. Evidence sho..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/app/itemexport/ItemExport.java_1151": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sink. Evidence shows user input (source 47) flows to ItemExport.j..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/app/itemexport/ItemExport.java_1155": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sensitive sink. Evidence shows data flow from user input (Servlet..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/app/itemexport/ItemExport.java_1174": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sensitive operation. Preconditions: User input used in ItemExport..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/app/itemexport/ItemExport.java_1193": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sensitive sink 'ItemExport.java:1194'. Evidence shows data flow f..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/app/itemimport/ItemImport.java_1003": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input flows to ItemImport.java:1003. No constraints found. User input likely co..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/app/itemimport/ItemImport.java_2443": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches ItemImport.java:2443. Evidence shows flow from MyDSpaceServlet.ja..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/core/ConfigurationManager.java_529": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches ConfigurationManager.java:529. Evidence shows data flow from Cura..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/core/ConfigurationManager.java_541": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sensitive configuration manager. Evidence shows user input (Servl..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/core/NewsManager.java_58": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "CodeQL claims user input reaches NewsManager.java:58, a sink. Evidence shows data flow from NewsEdit..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/core/NewsManager.java_102": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches `NewsManager.java:102`. Preconditions: user input used in `NewsMa..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/MyDSpaceServlet.java_717": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze flow...."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/MyDSpaceServlet.java_730": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user-provided value reaches sink. Evidence shows data flow from line 702 (source) to..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SitemapServlet.java_82": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sink. Evidence shows flow from `request.getParameter` (source) to..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SitemapServlet.java_111": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input flows to a sink. Evidence shows data flow from line 69 (likely user input..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SubmissionController.java_284": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "CodeQL alert: user input to unknown sink. Evidence shows user input at 1701 flows to sink at 284. No..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SubmissionController.java_1590": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze...."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SubmissionController.java_1599": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sink. Evidence shows user input source and sink in same file, sam..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SubmissionController.java_1706": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice missing. Cannot analyze data flow...."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SubmissionController.java_1711": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sink without sanitization. Evidence shows data flows from line 17..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SubmissionController.java_1712": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "CodeQL claims user input reaches sink. Evidence shows data flow from line 1701 (source) to 1712 (sin..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-sword/src/main/java/org/dspace/sword/DepositManager.java_267": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sensitive operation (Sink: DepositManager.java:267). Evidence sho..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-sword/src/main/java/org/dspace/sword/DepositManager.java_268": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "CodeQL claims user input reaches sink. Source in DepositServlet, sink in DepositManager. Data flows ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-sword/src/main/java/org/dspace/sword/DepositManager.java_271": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "1. Analyzer claims user input reaches a sensitive sink. 2. Preconditions: User input is used in a wa..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-sword/src/main/java/org/dspace/sword/DepositManager.java_277": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches a sensitive sink (`DepositManager.java:277`). Evidence shows a da..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/app/sherpa/SHERPAResponse.java_55": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parse uses user input, risks external entity expansion (XXE). Evidence shows dat..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/authority/orcid/xml/Converter.java_39": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims: XML parse vulnerable to XXE. Preconditions: User input XML, XML parser lacks extern..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/content/authority/LCNameAuthority.java_180": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user input without external entity expansion protection. Evidence p..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/content/authority/SHERPARoMEOProtocol.java_116": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user input without external entity expansion protection. Evidence p..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/content/packager/METSManifest.java_708": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing vulnerable to XXE via user input. Evidence shows user-controlled data fl..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/ctask/general/MetadataWebService.java_272": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user input without DTD validation. Evidence shows data flow from li..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/license/CCLookup.java_196": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims external entity expansion risk from user input XML parsing. Evidence shows user inpu..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/license/CCLookup.java_306": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing vulnerable to external entity expansion via user input. Evidence shows d..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/license/CCLookup.java_354": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user input without disabling external entities. Evidence points to ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/submit/lookup/ArXivService.java_130": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input to XML parser, no external entity protection. Evidence points to user-pro..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/submit/lookup/CiNiiService.java_112": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user input, no external entity expansion guard. Evidence points to ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/submit/lookup/CiNiiService.java_192": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user input without XXE protection. Evidence points to user input be..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/submit/lookup/CrossRefService.java_117": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user data, no external entity expansion guard. Evidence points to `..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/submit/lookup/PubmedService.java_140": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user input, no external entity expansion guard. Evidence points to ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/submit/lookup/PubmedService.java_259": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user input without external entity expansion protection. Evidence p..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/tainted-numeric-cast_dspace-xmlui/src/main/java/org/dspace/app/xmlui/cocoon/servlet/multipart/DSpaceTokenStream.java_133": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cast to narrower type from user input causes truncation. Evidence shows user input (..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/tainted-numeric-cast_dspace-xmlui/src/main/java/org/dspace/app/xmlui/cocoon/servlet/multipart/DSpaceTokenStream.java_148": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input cast to narrower type may truncate. Evidence shows data flow from user-co..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xml/xpath-injection_dspace-api/src/main/java/org/dspace/content/authority/DSpaceControlledVocabulary.java_168": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claim: XPath expression depends on user input. Preconditions: User input reaches XPath eval..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/maven/non-https-url_dspace/modules/xmlui-mirage2/pom.xml_331": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims insecure protocol for artifact download/upload. Evidence points to `rubygems-proxy.t..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/maven/non-https-url_pom.xml_1632": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims insecure artifact download/upload via HTTP. Evidence points to pom.xml (Maven config..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/unvalidated-url-redirection_src/main/java/org/owasp/esapi/filters/SecurityWrapperResponse.java_436": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims untrusted URL redirection. Source (user input) flows to sink (response redirect). Da..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/unvalidated-url-redirection_src/main/java/org/owasp/esapi/waf/ESAPIWebApplicationFirewallFilter.java_463": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims untrusted URL redirection via user-provided value. Evidence shows data flow from use..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/http-response-splitting_src/main/java/org/owasp/esapi/reference/DefaultHTTPUtilities.java_242": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input to HTTP header causes response splitting. Flow traces show user input (so..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/weak-cryptographic-algorithm_src/main/java/org/owasp/esapi/crypto/CipherText.java_833": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims HmacSHA1 is weak. Evidence points to its use at src/main/java/org/owasp/esapi/crypto..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/weak-cryptographic-algorithm_src/main/java/org/owasp/esapi/crypto/KeyDerivationFunction.java_371": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims HmacSHA1, a weak crypto algo, used. Evidence shows HmacSHA1 used at src/main/java/or..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/weak-cryptographic-algorithm_src/main/java/org/owasp/esapi/reference/crypto/JavaEncryptor.java_665": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims weak crypto (ECB/NoPadding). Evidence shows data flow from CipherSpec (source) to Ja..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/weak-cryptographic-algorithm_src/main/java/org/owasp/esapi/reference/crypto/JavaEncryptor.java_1038": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims SHA1withDSA is weak. Evidence shows it's used via JavaEncryptor.java:1038, originati..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/weak-cryptographic-algorithm_src/test/java/org/owasp/esapi/reference/crypto/CryptoPolicy.java_63": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims AES/ECB/NoPadding is weak. Evidence points to this algorithm usage at CryptoPolicy.j..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/insecure-cookie_src/main/java/org/owasp/esapi/filters/SecurityWrapperRequest.java_748": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie lacks 'secure' flag. Evidence points to code setting cookie. No path constrai..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/insecure-cookie_src/main/java/org/owasp/esapi/filters/SecurityWrapperResponse.java_110": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie missing 'secure' flag. Evidence points to `SecurityWrapperResponse.java:110`,..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/insecure-cookie_src/main/java/org/owasp/esapi/reference/DefaultHTTPUtilities.java_203": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie lacks 'secure' flag. Evidence points to cookie setting code. Precondition: co..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/insecure-cookie_src/main/java/org/owasp/esapi/reference/DefaultHTTPUtilities.java_729": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims: Cookie set without 'secure' flag. Preconditions: Cookie set, 'secure' flag absent. ..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/insecure-cookie_src/main/java/org/owasp/esapi/reference/DefaultHTTPUtilities.java_961": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie set without 'secure' flag. Evidence points to cookie setting code. 'Secure' f..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/insecure-cookie_src/main/java/org/owasp/esapi/reference/DefaultHTTPUtilities.java_993": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims missing 'secure' flag on cookie. Evidence points to cookie setting code. Missing pat..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/insecure-cookie_src/test/java/org/owasp/esapi/http/MockFilterChain.java_43": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie lacks 'secure' flag. Evidence points to `MockFilterChain.java:43`, likely set..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/insecure-cookie_src/test/java/org/owasp/esapi/waf/HttpOnlyTest.java_80": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claim: Cookie added without 'secure' flag. Preconditions: Cookie manipulation, sensitive da..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/polynomial-redos_src/main/java/org/owasp/esapi/codecs/ref/EncodingPatternPreservation.java_58": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims regex depends on user input leading to ReDoS. Evidence shows user input flows into r..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/xss_src/test/java/org/owasp/esapi/http/MockFilterChain.java_42": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Evidence shows data flow from SecurityWrapperRequest to MockFilterChain. Howeve..."
+  },
+  "kubernetes-client__java_CVE-2020-8570_client-java-parent-9.0.1_java/insecure-trustmanager_kubernetes/src/main/java/io/kubernetes/client/openapi/ApiClient.java_1343": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims `TrustManager` trusts any certificate. Evidence points to `ApiClient.java` at lines ..."
+  },
+  "kubernetes-client__java_CVE-2020-8570_client-java-parent-9.0.1_java/zipslip_util/src/main/java/io/kubernetes/client/Copy.java_140": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims unsanitized archive entry used in file op. Evidence shows data flowing from source (..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5405_2.1.6.RELEASE_java/polynomial-redos_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/encryption/EnvironmentPrefixHelper.java_128": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims regex with user input vulnerable to ReDoS. Evidence shows data flow from EncryptionC..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5405_2.1.6.RELEASE_java/polynomial-redos_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/encryption/EnvironmentPrefixHelper.java_132": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims regex depends on user input, causing ReDoS. Evidence shows data flow from Encryption..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5405_2.1.6.RELEASE_java/path-injection_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/environment/SvnKitEnvironmentRepository.java_191": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input flows to SCM operations. Preconditions: user input influences SCM reposit..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5405_2.1.6.RELEASE_java/path-injection_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/environment/SvnKitEnvironmentRepository.java_193": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches SCM operation (SvnKitEnvironmentRepository.java:193). Preconditio..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5405_2.1.6.RELEASE_java/path-injection_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/environment/SvnKitEnvironmentRepository.java_195": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches SvnKitEnvironmentRepository sink. Evidence shows user input flowi..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5405_2.1.6.RELEASE_java/path-injection_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/support/AbstractScmAccessor.java_266": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sensitive SCM accessor. Evidence shows data flow from Environment..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5405_2.1.6.RELEASE_java/xss_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/encryption/EncryptionController.java_101": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Evidence shows user input (source) flows to sink without sanitization. Missing ..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5405_2.1.6.RELEASE_java/xss_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/encryption/EncryptionController.java_115": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Evidence shows user input flowing from EncryptionController.java:105 to Encrypt..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5410_2.1.8.RELEASE_java/polynomial-redos_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/encryption/EnvironmentPrefixHelper.java_128": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Reconstructed claim: User input to regex leading to ReDoS. Preconditions: User input influences rege..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5410_2.1.8.RELEASE_java/polynomial-redos_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/encryption/EnvironmentPrefixHelper.java_132": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims a regex dependent on user input may be slow with specific patterns. Data flow shows ..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5410_2.1.8.RELEASE_java/path-injection_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/environment/SvnKitEnvironmentRepository.java_191": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claim: User input flows to SvnKitEnvironmentRepository, potentially leading to command inje..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5410_2.1.8.RELEASE_java/path-injection_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/environment/SvnKitEnvironmentRepository.java_193": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches SvnKitEnvironmentRepository. Data flow traces confirm this. No co..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5410_2.1.8.RELEASE_java/path-injection_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/environment/SvnKitEnvironmentRepository.java_195": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user-controlled input reaches SvnKitEnvironmentRepository sink. Evidence shows data ..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5410_2.1.8.RELEASE_java/path-injection_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/support/AbstractScmAccessor.java_266": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user-input flows to SCM accessor. Evidence shows flow from EnvironmentController (li..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5410_2.1.8.RELEASE_java/xss_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/encryption/EncryptionController.java_101": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Evidence shows user input flows to sink without sanitization. Preconditions met..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5410_2.1.8.RELEASE_java/xss_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/encryption/EncryptionController.java_115": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Evidence shows user input (Source 105) flows to sink (115) via EnvironmentPrefi..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/stack-trace-exposure_jspwiki-main/src/main/java/org/apache/wiki/attachment/AttachmentServlet.java_324": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice is unavailable, preventing analysis of source/sink interaction and precondition validatio..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/stack-trace-exposure_jspwiki-main/src/main/java/org/apache/wiki/attachment/AttachmentServlet.java_353": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice is empty. Cannot analyze taint flow or preconditions...."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/stack-trace-exposure_jspwiki-main/src/main/java/org/apache/wiki/tags/AuthorTag.java_72": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice unreadable. Cannot verify taint flow or vulnerability preconditions...."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/stack-trace-exposure_jspwiki-main/src/main/java/org/apache/wiki/tags/InsertPageTag.java_128": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice unreadable. Cannot analyze data flow or verify preconditions...."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/stack-trace-exposure_jspwiki-main/src/main/java/org/apache/wiki/tags/PageSizeTag.java_63": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze flow or constraints. Analyzer claim: Error info exposed externally...."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/stack-trace-exposure_jspwiki-main/src/main/java/org/apache/wiki/tags/PluginTag.java_126": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze flow...."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/stack-trace-exposure_jspwiki-main/src/main/java/org/apache/wiki/tags/VariableTag.java_107": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice is empty. Cannot analyze data flow or determine vulnerability...."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/unvalidated-url-redirection_jspwiki-main/src/main/java/org/apache/wiki/attachment/AttachmentServlet.java_304": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims untrusted URL redirect. Evidence shows user-provided value from source (204) flows t..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/weak-cryptographic-algorithm_jspwiki-main/src/main/java/org/apache/wiki/ReferenceManager.java_384": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5 weak. Evidence points to MD5 usage at specific line. No path constraints or expl..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/weak-cryptographic-algorithm_jspwiki-main/src/main/java/org/apache/wiki/parser/CreoleToJSPWikiTranslator.java_515": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5 use. Evidence points to MD5 usage. No constraints negate. TP...."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/insecure-cookie_jspwiki-main/src/main/java/org/apache/wiki/auth/login/CookieAssertionLoginModule.java_148": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie lacks 'secure' flag. Evidence points to cookie setting code. Precondition: co..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/insecure-cookie_jspwiki-main/src/main/java/org/apache/wiki/auth/login/CookieAssertionLoginModule.java_161": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie lacks 'secure' flag. Evidence points to cookie addition at line 161. No path ..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/insecure-cookie_jspwiki-main/src/main/java/org/apache/wiki/auth/login/CookieAuthenticationLoginModule.java_250": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie lacks 'secure' flag. Evidence points to cookie creation. Lack of 'secure' fla..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/insecure-cookie_jspwiki-main/src/main/java/org/apache/wiki/auth/login/CookieAuthenticationLoginModule.java_299": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie added without 'secure' flag. Evidence points to cookie setting code. Missing ..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/insecure-cookie_jspwiki-main/src/main/java/org/apache/wiki/tags/CookieTag.java_282": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie set without 'secure' flag. Evidence points to CookieTag.java:282, likely sett..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/insecure-cookie_jspwiki-main/src/main/java/org/apache/wiki/tags/CookieTag.java_286": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie lacks 'secure' flag. Evidence points to `CookieTag.java:286`. This suggests a..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/regex-injection_jspwiki-main/src/main/java/org/apache/wiki/forms/FormSelect.java_137": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Alert claims regex built from user input. Data flows from WikiContext (likely user-controlled) to Fo..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/regex-injection_jspwiki-main/src/main/java/org/apache/wiki/plugin/IndexPlugin.java_142": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claim: User input forms regex, potentially leading to ReDoS. Preconditions: User input used..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/regex-injection_jspwiki-main/src/main/java/org/apache/wiki/plugin/IndexPlugin.java_143": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input builds regex. Evidence shows user input flows into `WikiContext` (source)..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/polynomial-redos_jspwiki-main/src/main/java/org/apache/wiki/parser/CreoleToJSPWikiTranslator.java_507": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims regex depends on user input, leading to ReDoS. Evidence shows data flow from WikiCon..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/polynomial-redos_jspwiki-main/src/main/java/org/apache/wiki/plugin/WeblogPlugin.java_341": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims regex with user input may be slow. Evidence shows user input flows to regex in Weblo..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/path-injection_jspwiki-main/src/main/java/org/apache/wiki/auth/login/CookieAuthenticationLoginModule.java_124": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sensitive sink. Evidence shows data flow from HttpUtil (likely pa..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/path-injection_jspwiki-main/src/main/java/org/apache/wiki/auth/login/CookieAuthenticationLoginModule.java_213": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sensitive sink (CookieAuthenticationLoginModule). Evidence shows ..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/concatenated-command-line_jspwiki-util/src/test/java/org/apache/wiki/util/FileUtilTest.java_102": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims command line built with string concatenation. Evidence shows alert on a test file (F..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/xss_jspwiki-main/src/main/java/org/apache/wiki/plugin/SampleAjaxPlugin.java_59": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "CodeQL claims XSS. Evidence shows user input (source) flows to a sink (SampleAjaxPlugin.java:59) via..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/xss_jspwiki-main/src/main/java/org/apache/wiki/tags/AuthorTag.java_72": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Source is user-controlled input (WikiContext). Sink is AuthorTag (likely render..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/xss_jspwiki-main/src/main/java/org/apache/wiki/tags/CalendarTag.java_320": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Source is user-provided value in WikiEngine. Data flows through multiple calls,..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/xss_jspwiki-main/src/main/java/org/apache/wiki/tags/CookieTag.java_256": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS from user input to sink. Evidence shows data flow: Source (user input) -> Sink. ..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/xss_jspwiki-main/src/main/java/org/apache/wiki/tags/FeedDiscoveryTag.java_59": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Source: WikiContext.java (user input likely). Sink: FeedDiscoveryTag.java (outp..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/xss_jspwiki-main/src/main/java/org/apache/wiki/tags/FeedDiscoveryTag.java_72": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Source: WikiContext, Sink: FeedDiscoveryTag. Data flows through VariableManager..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/xss_jspwiki-main/src/main/java/org/apache/wiki/tags/FeedDiscoveryTag.java_75": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Source is WikiContext, sink FeedDiscoveryTag. Data flows via VariableManager, F..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/xss_jspwiki-main/src/main/java/org/apache/wiki/tags/InsertPageTag.java_128": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS from user input. Source is WikiContext, sink is InsertPageTag. Data flows throug..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/xss_jspwiki-main/src/main/java/org/apache/wiki/tags/PluginTag.java_126": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Source: WikiContext.java:503 (user input). Sink: PluginTag.java:126 (rendering)..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/xss_jspwiki-main/src/main/java/org/apache/wiki/tags/VariableTag.java_107": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS from user input to sink. Evidence shows data flow from WikiContext.java (likely ..."
+  },
+  "codehaus-plexus__plexus-utils_CVE-2017-1000487_3.0.15_java/polynomial-redos_src/main/java/org/codehaus/plexus/util/xml/XmlReader.java_742": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Alert claims regex on user input vulnerable to ReDoS on '<?xml' prefixes. Evidence shows user input ..."
+  },
+  "codehaus-plexus__plexus-utils_CVE-2017-1000487_3.0.15_java/zipslip_src/main/java/org/codehaus/plexus/util/Expand.java_116": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims unsanitized archive entry ('..') used in filesystem op. Evidence shows data flow fro..."
+  },
+  "apache__rocketmq_CVE-2019-17572_4.6.0_java/weak-cryptographic-algorithm_common/src/main/java/org/apache/rocketmq/common/consistenthash/ConsistentHashRouter.java_117": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze MD5 usage. Analyzer claim: MD5 weak. Precondition: MD5 used in cryp..."
+  },
+  "apache__rocketmq_CVE-2019-17572_4.6.0_java/weak-cryptographic-algorithm_srvutil/src/main/java/org/apache/rocketmq/srvutil/FileWatchService.java_43": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5, a weak crypto alg, is used. Evidence points to MD5 usage at FileWatchService.ja..."
+  },
+  "apache__rocketmq_CVE-2019-17572_4.6.0_java/sql-injection_broker/src/main/java/org/apache/rocketmq/broker/transaction/jdbc/JDBCTransactionStore.java_128": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claim: User-controlled data reaches sink. Preconditions: User input reaches MixAll.java:222..."
+  },
+  "codehaus-plexus__plexus-utils_CVE-2022-4244_3.0.23_java/polynomial-redos_src/main/java/org/codehaus/plexus/util/xml/XmlReader.java_742": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Claim: User input to regex causes ReDoS. Preconditions: Regex used on user input. XML parsing involv..."
+  },
+  "codehaus-plexus__plexus-utils_CVE-2022-4244_3.0.23_java/zipslip_src/main/java/org/codehaus/plexus/util/Expand.java_116": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims unsanitized archive entry ('..') used in filesystem op. Evidence shows data flows fr..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/insecure-cookie_src/main/java/spark/Response.java_235": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie set without 'secure' flag. Evidence points to Response.java:235, a likely coo..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/insecure-cookie_src/main/java/spark/Response.java_246": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie lacks 'secure' flag. Evidence points to `Response.java:246` as source/sink. S..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_121": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie lacks 'secure' flag. Evidence points to `ResponseTest.java:121`. While code s..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_137": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims insecure cookie set. Evidence points to `ResponseTest.java:137`. Missing code slice ..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_152": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice is empty. Cannot analyze...."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_167": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie lacks 'secure' flag. Evidence points to `ResponseTest.java:167`. Although cod..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_182": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze...."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_197": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie lacks 'secure' flag. Evidence points to a test file setting a cookie. Without..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_213": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie lacks 'secure' flag. Evidence points to a cookie being set at line 213. Missi..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/path-injection_src/main/java/spark/resource/ClassPathResource.java_120": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sensitive sink. Evidence shows data flow from AbstractResourceHan..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/path-injection_src/main/java/spark/resource/ClassPathResource.java_139": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input path is used in resource loading. Evidence shows data flows from Abstract..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/path-injection_src/main/java/spark/resource/ClassPathResource.java_161": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "1. Analyzer claim: User input flows to `ClassPathResource.java:161` without sanitization. 2. Precond..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/path-injection_src/main/java/spark/resource/ExternalResource.java_40": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches `ExternalResource.java:40`. Evidence shows data flow from `Abstra..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/path-injection_src/main/java/spark/resource/ExternalResource.java_67": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input influences file path retrieval, leading to potential path traversal. Evid..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/path-injection_src/main/java/spark/resource/JarResourceHandler.java_109": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sink. Evidence shows data flow from source (line 68) to sink (lin..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/path-injection_src/main/java/spark/utils/ResourceUtils.java_222": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sensitive sink (ResourceUtils.java:222). Evidence shows direct fl..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/insecure-cookie_src/main/java/spark/Response.java_251": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie lacks 'secure' flag. Evidence points to cookie setting code. Precondition: co..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/insecure-cookie_src/main/java/spark/Response.java_273": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie lacks 'secure' flag. Evidence points to Response.java:273, the likely source/..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_124": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie lacks 'secure' flag. Evidence points to cookie setting code. Without 'secure'..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_141": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie lacks 'secure' flag. Evidence points to line 141 in ResponseTest.java, settin..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_157": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie added without 'secure' flag. Evidence points to code setting cookie. Lack of ..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_173": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze...."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_189": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie lacks 'secure' flag. Evidence points to test code setting a cookie. Test code..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_205": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie lacks 'secure' flag. Evidence points to a cookie being set at ResponseTest.ja..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_221": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims: Cookie added without 'secure' flag. Preconditions: Cookie set, 'secure' flag absent..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_237": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie lacks 'secure' flag. Evidence points to a cookie being set without it. Missin..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/path-injection_src/main/java/spark/resource/ClassPathResource.java_120": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sensitive `ClassPathResource.java:120`. Traces show input flowing..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/path-injection_src/main/java/spark/resource/ClassPathResource.java_139": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sensitive `ClassPathResource.java:139`. Evidence shows data flow ..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/path-injection_src/main/java/spark/resource/ClassPathResource.java_161": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches `ClassPathResource.java:161`. Evidence shows data flows from `Abs..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/path-injection_src/main/java/spark/resource/ExternalResource.java_40": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sink `ExternalResource.java:40`. Evidence shows data flow from `A..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/path-injection_src/main/java/spark/resource/ExternalResource.java_67": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches ExternalResource.java:67. Evidence shows flow from AbstractResour..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/path-injection_src/main/java/spark/staticfiles/DirectoryTraversal.java_19": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches DirectoryTraversal sink. Evidence shows data flow from AbstractRe..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/path-injection_src/main/java/spark/utils/ResourceUtils.java_222": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "1. Analyzer claim: User input reaches a sensitive sink (ResourceUtils.java:222) via multiple paths, ..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/unsafe-hostname-verification_agent/jvm/src/test/java/org/jolokia/jvmagent/JolokiaServerTest.java_308": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Alert claims hostname verifier always accepts. Evidence points to `JolokiaServerTest.java`, a test f..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/unsafe-hostname-verification_agent/jvm/src/test/java/org/jolokia/jvmagent/JolokiaServerTest.java_467": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims insecure hostname verifier. Evidence points to a test file (JolokiaServerTest.java)...."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/weak-cryptographic-algorithm_agent/core/src/main/java/org/jolokia/util/JolokiaCipher.java_141": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims AES/CBC/PKCS5Padding is weak. Evidence points to this algorithm's usage at specific ..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/overly-large-range_agent/core/src/main/java/org/jolokia/util/NetworkUtil.java_328": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice missing. Cannot analyze alert without code context...."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/insecure-trustmanager_agent/jvm/src/main/java/org/jolokia/jvmagent/security/DelegatingAuthenticator.java_156": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims TrustManager trusts any cert. Evidence points to DelegatingAuthenticator using Trust..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/insecure-trustmanager_agent/jvm/src/test/java/org/jolokia/jvmagent/JolokiaServerTest.java_306": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims TrustManager trusts any cert. Evidence shows this is in a test file (JolokiaServerTe..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/insecure-trustmanager_agent/jvm/src/test/java/org/jolokia/jvmagent/JolokiaServerTest.java_486": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims TrustManager trusts any cert. Evidence shows code is in a test file (JolokiaServerTe..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/regex-injection_agent/core/src/main/java/org/jolokia/http/HttpRequestHandler.java_358": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims regex built from user input. Evidence shows user input flowing to regex construction..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/polynomial-redos_agent/core/src/main/java/org/jolokia/handler/ExecHandler.java_220": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "1. **Claim**: User input processed by `AgentServlet` can lead to a ReDoS vulnerability in a regex wi..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/polynomial-redos_agent/core/src/main/java/org/jolokia/handler/ExecHandler.java_226": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claim: User input to regex causes ReDoS. Preconditions: User input used in regex, regex vul..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/maven/non-https-url_client/javascript/pom.xml_70": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims artifact download/upload over insecure protocol (HTTP). Evidence points to `pom.xml`..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/maven/non-https-url_client/javascript/test-app/pom.xml_115": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims insecure protocol download/upload. Evidence points to pom.xml, likely artifact repos..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/maven/non-https-url_tools/roo-addon/pom.xml_40": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims insecure protocol use for artifact download/upload. Evidence points to pom.xml (40) ..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/maven/non-https-url_tools/roo-addon/pom.xml_47": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims insecure artifact download. Evidence points to `pom.xml` defining artifact source. N..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/xss_agent/core/src/main/java/org/jolokia/http/AgentServlet.java_503": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS from user input. Evidence shows data flow from line 472 (likely user input sourc..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/unvalidated-url-redirection_servlet/src/test/java/io/undertow/servlet/test/request/RedirectServlet.java_16": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims untrusted URL redirect from user input. Evidence shows data flow from a wrapper to a..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/unvalidated-url-redirection_servlet/src/test/java/io/undertow/servlet/test/wrapper/NonStandardResponseWrapper.java_341": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims untrusted URL redirection. Evidence shows user input (source) flows to a response wr..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/http-response-splitting_servlet/src/main/java/io/undertow/servlet/websockets/ServletWebSocketHttpExchange.java_126": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input in header can cause response splitting. Evidence shows data flow from sou..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/http-response-splitting_servlet/src/test/java/io/undertow/servlet/test/wrapper/NonStandardResponseWrapper.java_368": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input in header causes response splitting. Evidence shows flow from WebSocket h..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/weak-cryptographic-algorithm_core/src/main/java/io/undertow/security/idm/DigestAlgorithm.java_71": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5 is weak. Evidence shows MD5 used in `DigestAlgorithm.java` (source 33 to sink 71..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/weak-cryptographic-algorithm_core/src/main/java/io/undertow/security/impl/SimpleNonceManager.java_142": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5, a weak crypto algo, used. Evidence shows MD5 usage via data flow from line 63 t..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/weak-cryptographic-algorithm_core/src/main/java/io/undertow/websockets/client/WebSocket13ClientHandshake.java_150": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims SHA1 crypto weak. Evidence points to SHA1 usage at line 150. No evidence contradicts..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/weak-cryptographic-algorithm_core/src/main/java/io/undertow/websockets/core/WebSocketUtils.java_58": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5, a weak crypto algorithm, used. Evidence points to MD5 usage at WebSocketUtils.j..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/ssrf_servlet/src/test/java/io/undertow/servlet/test/servletcontext/ReadFileServlet.java_22": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims SSRF. Evidence shows user input (source: ReadFileServlet.java:20) flows to file reso..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/insecure-cookie_servlet/src/test/java/io/undertow/servlet/test/wrapper/NonStandardResponseWrapper.java_263": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims missing 'secure' flag on cookie. Evidence points to cookie addition without flag. No..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/path-injection_core/src/main/java/io/undertow/server/handlers/resource/FileResourceManager.java_89": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "CodeQL claims user input reaches FileResourceManager.java:89. Evidence shows data flow from DefaultS..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/maven/non-https-url_pom.xml_378": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims artifact download/upload over insecure protocol. Evidence points to `pom.xml:378` (l..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/maven/non-https-url_pom.xml_395": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims insecure artifact download. Evidence points to pom.xml line 395, likely a dependency..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/main/java/io/undertow/servlet/handlers/DefaultServlet.java_155": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS via user input. Evidence shows user input flowing from source (DefaultServlet.ja..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/charset/DefaultCharsetFormParserServlet.java_17": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice unavailable. Cannot verify analyzer claim or preconditions...."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/charset/EchoServlet.java_29": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Evidence shows data flow from line 24 to 29 in EchoServlet.java. No path constr..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/errorpage/PathServlet.java_16": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze flow. Evidence points to XSS, but missing code prevents verificatio..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/path/PathMappingServlet.java_37": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice missing. Cannot analyze taint flow...."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/request/RequestPathServlet.java_43": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze. Source/sink at same line, but no code to inspect. Constraints miss..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/request/RequestPathServlet.java_45": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice unavailable. Cannot analyze taint flow...."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/request/RequestPathServlet.java_46": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze...."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/request/RequestPathServlet.java_47": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Source/sink same line, 47. Data flow traces same line, 47. No path constraints...."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/response/contenttype/ContentTypeServlet.java_45": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Evidence shows user input flows from source (ContentTypeServlet.java:36) to sin..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/security/form/EchoServlet.java_20": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Evidence shows user input (source: EchoServlet.java:19) flowing to output (sink..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/security/form/RequestParamEchoServlet.java_41": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Evidence shows user input (source) directly flows to output (sink) without sani..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/session/ChangeSessionIdServlet.java_22": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Source is `ServletCookieAdaptor.java:46` (likely cookie creation/manipulation)...."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/streams/BlockingInputStreamServlet.java_45": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Evidence shows user input (source at 39) flowing to output (sink at 45) via Ser..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/util/ParameterEchoServlet.java_71": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Evidence shows user input flowing from source (ParameterEchoServlet.java:37) to..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/util/PathTestServlet.java_19": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice unavailable. Cannot verify analyzer claim or preconditions...."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/util/PathTestServlet.java_20": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice is empty. Cannot analyze...."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/util/PathTestServlet.java_22": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze vulnerability without source code...."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/implicit-cast-in-compound-assignment_core/src/main/java/io/undertow/conduits/ChunkedStreamSourceConduit.java_209": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims implicit `long` to `int` cast. Evidence shows `long` to `int` cast at line 209. No p..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/implicit-cast-in-compound-assignment_core/src/main/java/io/undertow/io/UndertowOutputStream.java_237": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims implicit cast of long to int. Evidence shows source/sink at same line, no path const..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/implicit-cast-in-compound-assignment_core/src/main/java/io/undertow/server/HttpServerExchange.java_1425": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims implicit long-to-int cast. Evidence shows source/sink at same line (1425), no path c..."
+  },
+  "asf__commons-io_CVE-2021-29425_2.6_java/weak-cryptographic-algorithm_src/main/java/org/apache/commons/io/input/MessageDigestCalculatingInputStream.java_88": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5, a weak crypto algo, is used. Evidence points to MessageDigestCalculatingInputSt..."
+  },
+  "asf__commons-io_CVE-2021-29425_2.6_java/polynomial-redos_src/main/java/org/apache/commons/io/input/XmlStreamReader.java_742": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims regex dependent on user input may cause ReDoS. Evidence shows user input flowing int..."
+  },
+  "asf__commons-io_CVE-2021-29425_2.6_java/polynomial-redos_src/test/java/org/apache/commons/io/input/compatibility/XmlStreamReader.java_700": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims regex, user input, slow regex. Evidence shows test code. Regex in test code likely c..."
+  },
+  "asf__commons-io_CVE-2021-29425_2.6_java/concatenated-command-line_src/test/java/org/apache/commons/io/FileUtilsTestCase.java_838": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims command line built with string concatenation. Evidence shows source/sink at same lin..."
+  },
+  "asf__commons-io_CVE-2021-29425_2.6_java/concatenated-command-line_src/test/java/org/apache/commons/io/FileUtilsTestCase.java_842": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice unavailable. Cannot analyze string concatenation for command line construction...."
+  },
+  "zeroturnaround__zt-zip_CVE-2018-1002201_1.12_java/zipslip_src/main/java/org/zeroturnaround/zip/ZipUtil.java_1150": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims unsanitized archive entry (with '..') used in filesystem op. Evidence shows data flo..."
+  },
+  "zeroturnaround__zt-zip_CVE-2018-1002201_1.12_java/zipslip_src/main/java/org/zeroturnaround/zip/ZipUtil.java_1196": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims unsanitized archive entry used in file op. Evidence shows data flowing from ZipUtil ..."
+  },
+  "zeroturnaround__zt-zip_CVE-2018-1002201_1.12_java/zipslip_src/main/java/org/zeroturnaround/zip/ZipUtil.java_1258": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims unsanitized archive entry used in filesystem op. Evidence shows data flows from zip ..."
+  },
+  "zeroturnaround__zt-zip_CVE-2018-1002201_1.12_java/zipslip_src/main/java/org/zeroturnaround/zip/Zips.java_676": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims unsanitized archive entry used in file op. Evidence shows data flow from archive ent..."
+  },
+  "zeroturnaround__zt-zip_CVE-2018-1002201_1.12_java/zipslip_src/test/java/example/UnpackExample.java_29": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims unsanitized archive entry used in file op. Evidence points to `..` in archive entry ..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/ssrf_tika-core/src/main/java/org/apache/tika/io/TikaInputStream.java_408": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims SSRF. User input flows from DetectorResource to TikaInputStream. No path constraints..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/ssrf_tika-translate/src/main/java/org/apache/tika/language/translate/JoshuaNetworkTranslator.java_208": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims SSRF. User input flows from TranslateResource to JoshuaNetworkTranslator, potentiall..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/redos_tika-core/src/main/java/org/apache/tika/sax/StandardsText.java_56": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claim: Regex exponential backtrack (ReDoS) on '9.' + '9' repeats. Preconditions: Vulnerable..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/polynomial-redos_tika-parsers/src/main/java/org/apache/tika/parser/code/SourceCodeParser.java_140": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims regex depends on user input, leading to potential DoS via ReDoS. Evidence shows user..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/polynomial-redos_tika-parsers/src/main/java/org/apache/tika/parser/mail/MailUtil.java_90": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims regex depends on user input ('!' character) causing denial of service (ReDoS). Evide..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/polynomial-redos_tika-parsers/src/main/java/org/apache/tika/parser/mbox/MboxParser.java_164": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims regex from user input may cause ReDoS. Evidence shows user input flows to MboxParser..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/polynomial-redos_tika-parsers/src/main/java/org/apache/tika/parser/mbox/MboxParser.java_178": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claim: User input to regex in MboxParser.java. Preconditions: User input reaches regex, reg..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-core/src/main/java/org/apache/tika/io/TemporaryResources.java_81": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches TemporaryResources.java:81. Evidence shows data flow from Detecto..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-core/src/main/java/org/apache/tika/io/TikaInputStream.java_399": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches a dangerous sink (TikaInputStream.java:399). Evidence shows a cle..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-core/src/main/java/org/apache/tika/io/TikaInputStream.java_480": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claim: User input reaches TikaInputStream. Evidence: User input indeed reaches TikaInputStr..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-core/src/main/java/org/apache/tika/io/TikaInputStream.java_589": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches `TikaInputStream.java:589`. Evidence shows data flow from `Detect..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-core/src/main/java/org/apache/tika/io/TikaInputStream.java_586": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sensitive sink. Evidence shows data flow from DetectorResource (l..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-core/src/main/java/org/apache/tika/parser/digest/InputStreamDigester.java_164": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input flows into `InputStreamDigester.java:164`. Evidence shows data from `Meta..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-core/src/main/java/org/apache/tika/utils/RereadableInputStream.java_194": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches `RereadableInputStream.java:194`. Evidence shows user input from ..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-core/src/main/java/org/apache/tika/utils/RereadableInputStream.java_251": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claim: User input flows to RereadableInputStream. Preconditions: User input must reach Rere..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-example/src/main/java/org/apache/tika/example/RollbackSoftware.java_114": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches `RollbackSoftware.java:114`. Evidence shows user input from `Meta..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-parsers/src/main/java/org/apache/tika/parser/journal/GrobidRESTParser.java_72": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sensitive sink (GrobidRESTParser.java:72). Evidence shows user-co..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-parsers/src/main/java/org/apache/tika/parser/journal/GrobidRESTParser.java_75": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sensitive sink (GrobidRESTParser.java:75). Evidence shows data fl..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-parsers/src/main/java/org/apache/tika/parser/journal/JournalParser.java_63": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches JournalParser.java:63. Evidence shows data flows from MetadataRes..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-parsers/src/main/java/org/apache/tika/parser/mp4/DirectFileReadDataSource.java_45": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches MP4Parser's DirectFileReadDataSource, a known vulnerability point..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-parsers/src/main/java/org/apache/tika/parser/pot/PooledTimeSeriesParser.java_133": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sensitive parser. Evidence shows data flow from MetadataResource ..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-parsers/src/main/java/org/apache/tika/parser/pot/PooledTimeSeriesParser.java_135": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sensitive sink (PooledTimeSeriesParser). Evidence shows data flow..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xxe_tika-core/src/main/java/org/apache/tika/detect/XmlRootExtractor.java_63": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims untrusted XML input processed without disabling external entity expansion. Evidence ..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xxe_tika-core/src/main/java/org/apache/tika/parser/NetworkParser.java_129": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parse uses user input, no external entity protection. Evidence shows data flow f..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xxe_tika-core/src/test/java/org/apache/tika/parser/mock/MockParser.java_84": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "1. Analyzer claim: XML parsing (MockParser.java:84) uses user-provided data (MetadataResource.java:8..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xxe_tika-parsers/src/main/java/org/apache/tika/parser/dif/DIFParser.java_66": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input is used in XML parsing without entity expansion protection. Evidence show..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xxe_tika-parsers/src/main/java/org/apache/tika/parser/epub/EpubContentParser.java_53": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user input without protection against external entity expansion. Ev..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xxe_tika-parsers/src/main/java/org/apache/tika/parser/image/xmp/JempboxExtractor.java_70": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input (MetadataResource.java:88) reaches XML parser (JempboxExtractor.java:70) ..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xxe_tika-parsers/src/main/java/org/apache/tika/parser/iwork/IWorkPackageParser.java_207": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user input without entity expansion protection. Evidence shows data..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xxe_tika-parsers/src/main/java/org/apache/tika/parser/microsoft/ooxml/xwpf/ml2006/Word2006MLParser.java_61": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user input without external entity expansion protection. Evidence s..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xxe_tika-parsers/src/main/java/org/apache/tika/parser/microsoft/xml/AbstractXML2003Parser.java_99": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user input without protection against external entity expansion. Ev..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xxe_tika-parsers/src/main/java/org/apache/tika/parser/odf/OpenDocumentContentParser.java_601": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user input without external entity expansion protection. Evidence s..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xxe_tika-parsers/src/main/java/org/apache/tika/parser/xml/XMLParser.java_73": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims: XML parsing uses user input without XXE protection. Evidence shows user input (from..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xxe_tika-parsers/src/test/java/org/apache/tika/XMLTestBase.java_116": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user input without protection. Evidence shows data flows to `XMLTes..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xxe_tika-parsers/src/test/java/org/apache/tika/XMLTestBase.java_141": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user input without protection against external entity expansion. Ev..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/concatenated-command-line_tika-parsers/src/main/java/org/apache/tika/parser/ocr/TesseractOCRParser.java_219": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims command line built with string concat. Evidence shows data flow to command line buil..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/command-line-injection_tika-core/src/main/java/org/apache/tika/parser/external/ExternalParser.java_236": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches ExternalParser's command line. Evidence shows data flow from Meta..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/command-line-injection_tika-core/src/main/java/org/apache/tika/parser/external/ExternalParser.java_238": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims external parser command line depends on user input. Evidence shows data flows from T..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/command-line-injection_tika-parsers/src/main/java/org/apache/tika/parser/gdal/GDALParser.java_362": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches GDALParser.java:362, a command execution sink. Evidence shows dat..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/command-line-injection_tika-parsers/src/main/java/org/apache/tika/parser/gdal/GDALParser.java_364": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claim: User input to command line. Preconditions: User input (source) reaches command line ..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/command-line-injection_tika-parsers/src/main/java/org/apache/tika/parser/ocr/TesseractOCRParser.java_528": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches TesseractOCRParser command line. Evidence shows user input (Metad..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/tainted-numeric-cast_tika-core/src/main/java/org/apache/tika/utils/RereadableInputStream.java_256": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input cast to narrower type, causing truncation. Evidence shows user input flow..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/tainted-numeric-cast_tika-parsers/src/main/java/org/apache/tika/parser/rtf/TextExtractor.java_386": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input cast to narrower type. Evidence shows user input (likely from HTTP reques..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/tainted-numeric-cast_tika-parsers/src/main/java/org/apache/tika/parser/rtf/TextExtractor.java_400": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input causes truncation via cast. Evidence shows user input flows to TextExtrac..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/maven/non-https-url_tika-server/pom.xml_35": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims insecure protocol (HTTP) for artifact download/upload. Evidence points to `tika-serv..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xss_tika-server/src/main/java/org/apache/tika/server/resource/MetadataResource.java_105": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Evidence shows user input (source) flows to output (sink) without sanitization...."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/implicit-cast-in-compound-assignment_tika-batch/src/main/java/org/apache/tika/batch/fs/strawman/StrawManTikaAppDriver.java_140": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claim: Implicit long to int cast. Preconditions: long value exceeds int max, code relies on..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/implicit-cast-in-compound-assignment_tika-core/src/main/java/org/apache/tika/detect/MagicDetector.java_365": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims implicit long-to-int cast. Evidence shows source/sink at same line (365), no path co..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/implicit-cast-in-compound-assignment_tika-core/src/main/java/org/apache/tika/io/LookaheadInputStream.java_120": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims implicit `long` to `int` cast. Evidence points to `LookaheadInputStream.java:120`. T..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/implicit-cast-in-compound-assignment_tika-parsers/src/main/java/org/apache/tika/parser/chm/lzx/ChmLzxBlock.java_333": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims implicit int to short cast. Evidence shows no code slice, no constraints. Flow parti..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/implicit-cast-in-compound-assignment_tika-parsers/src/main/java/org/apache/tika/parser/chm/lzx/ChmLzxBlock.java_368": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The service is currently ..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/implicit-cast-in-compound-assignment_tika-parsers/src/main/java/org/apache/tika/parser/chm/lzx/ChmLzxBlock.java_403": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze implicit cast without code context. No path constraints. Flow parti..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/implicit-cast-in-compound-assignment_tika-parsers/src/main/java/org/apache/tika/parser/chm/lzx/ChmLzxBlock.java_477": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer: Implicit int to short cast. Evidence: Source/Sink line 477, ChmLzxBlock.java. Flow partial..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/implicit-cast-in-compound-assignment_tika-parsers/src/main/java/org/apache/tika/parser/chm/lzx/ChmLzxBlock.java_775": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze implicit cast. Need context for `long` to `int` conversion. Potenti..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/implicit-cast-in-compound-assignment_tika-parsers/src/main/java/org/apache/tika/parser/chm/lzx/ChmLzxBlock.java_827": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims implicit long to int cast. Evidence points to line 827 in ChmLzxBlock.java. No code ..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/unsafe-hostname-verification_testsuite/integration/web/src/test/java/org/jboss/as/test/integration/web/handlers/RequestDumpingHandlerTestImpl.java_353": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze...."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/stack-trace-exposure_testsuite/shared/src/main/java/org/jboss/as/test/integration/management/util/SimpleServlet.java_59": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze...."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/stack-trace-exposure_testsuite/shared/src/main/java/org/jboss/as/test/integration/security/common/servlets/DataSourceTestServlet.java_95": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze...."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/stack-trace-exposure_testsuite/shared/src/main/java/org/jboss/as/test/integration/security/common/servlets/DataSourceTestServlet.java_97": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice is empty. Cannot analyze data flow or verify preconditions...."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/stack-trace-exposure_testsuite/shared/src/main/java/org/wildfly/test/security/servlets/CheckIdentityPermissionServlet.java_89": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze...."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/insufficient-key-size_testsuite/shared/src/main/java/org/jboss/as/test/integration/security/common/VaultHandler.java_127": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims weak key size. Evidence shows data flow from line 191 to 127 in VaultHandler.java. L..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/weak-cryptographic-algorithm_jdr/jboss-as-jdr/src/main/java/org/jboss/as/jdr/commands/JarCheck.java_60": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5 is weak. Evidence points to MD5 usage at line 60. No path constraints or other e..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/weak-cryptographic-algorithm_security/subsystem/src/main/java/org/jboss/as/security/vault/VaultSession.java_171": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims PBEwithMD5andDES is weak. Evidence shows this algorithm is used (source/sink). No pa..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/weak-cryptographic-algorithm_testsuite/shared/src/main/java/org/jboss/as/test/integration/security/common/Utils.java_163": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims MD5 usage is weak. Evidence shows MD5 instantiation at line 157, call to digest() at..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/insecure-cookie_testsuite/integration/web/src/test/java/org/jboss/as/test/integration/web/cookie/CookieReadServlet.java_72": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie lacks 'secure' flag. Evidence points to cookie creation at line 72. No eviden..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/insecure-cookie_testsuite/integration/web/src/test/java/org/jboss/as/test/integration/web/cookie/CookieReadServlet.java_73": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie sent without 'secure' flag. Evidence shows cookie creation at line 73. No pat..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/insecure-cookie_testsuite/integration/web/src/test/java/org/jboss/as/test/integration/web/cookie/CookieServlet.java_58": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie lacks 'secure' flag. Evidence points to cookie creation at specific line. Lac..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/insecure-cookie_testsuite/integration/web/src/test/java/org/jboss/as/test/integration/web/cookie/CookieServlet.java_62": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie lacks 'secure' flag. Evidence points to cookie creation at line 62. Program s..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/insecure-cookie_testsuite/integration/web/src/test/java/org/jboss/as/test/integration/web/cookie/CookieServlet.java_76": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie set without 'secure' flag. Evidence points to code setting cookie. Lack of 's..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/insecure-cookie_testsuite/integration/web/src/test/java/org/jboss/as/test/integration/web/cookie/CookieServlet.java_79": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie set without 'secure' flag. Evidence points to cookie setting code. No path co..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/insecure-cookie_testsuite/integration/web/src/test/java/org/jboss/as/test/integration/web/cookie/CookieServlet.java_83": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie lacks 'secure' flag. Evidence points to cookie setting at line 83. Code slice..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/jndi-injection_testsuite/shared/src/main/java/org/jboss/as/test/integration/common/JndiServlet.java_63": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims JNDI lookup uses user input. Evidence shows data flow from a likely user input sourc..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/jndi-injection_testsuite/shared/src/main/java/org/jboss/as/test/integration/management/util/SimpleServlet.java_56": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims JNDI lookup may use user input. Evidence shows user input flows to a JNDI lookup. No..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/jndi-injection_testsuite/shared/src/main/java/org/jboss/as/test/integration/security/common/servlets/DataSourceTestServlet.java_84": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims JNDI lookup uses user input. Evidence shows user input (source) flows to JNDI lookup..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/insecure-trustmanager_testsuite/integration/web/src/test/java/org/jboss/as/test/integration/web/handlers/RequestDumpingHandlerTestImpl.java_346": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims TrustManager trusts any cert. Evidence shows TrustManager usage in test code. Test c..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/insecure-trustmanager_testsuite/shared/src/main/java/org/jboss/as/test/http/util/TestHttpClientUtils.java_91": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims 'TrustManager' defined in 'TestHttpClientUtils' trusts any certificate. Evidence sho..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/insecure-trustmanager_testsuite/shared/src/main/java/org/jboss/as/test/http/util/TestHttpClientUtils.java_93": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims 'TrustManager' trusts any certificate. Evidence points to 'TestHttpClientUtils.java'..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/maven/non-https-url_pom.xml_6249": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims insecure download/upload via HTTP. Evidence points to pom.xml:6249, likely a depende..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/maven/non-https-url_pom.xml_6266": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims insecure artifact download. Evidence points to pom.xml, a dependency configuration f..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/maven/non-https-url_testsuite/pom.xml_660": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims artifact download/upload via HTTP. Evidence points to testsuite/pom.xml:660, likely ..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/xss_testsuite/integration/web/src/test/java/org/jboss/as/test/integration/web/cookie/CookieReadServlet.java_56": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze...."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/xss_testsuite/integration/web/src/test/java/org/jboss/as/test/integration/web/formauth/SecuredPostServlet.java_59": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Program slice empty. Cannot analyze data flow. Source/sink unclear without code...."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/xss_testsuite/integration/web/src/test/java/org/jboss/as/test/integration/web/formauth/SecuredPostServlet.java_60": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze source/sink. Insufficient info...."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/xss_testsuite/integration/web/src/test/java/org/jboss/as/test/integration/web/security/SecuredServlet.java_50": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice unavailable. Cannot verify taint flow...."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/xss_testsuite/integration/web/src/test/java/org/jboss/as/test/smoke/web/SimpleLegacyServlet.java_47": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Program slice empty. Cannot analyze data flow. Analyzer claims XSS from user input to sink, but code..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/xss_testsuite/integration/web/src/test/java/org/jboss/as/test/smoke/web/SimpleServlet.java_56": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Source (53) to Sink (56) flow shown. No path constraints, but flow is partial=F..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/xss_testsuite/shared/src/main/java/org/jboss/as/test/integration/security/common/servlets/RolePrintingServlet.java_75": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Program slice empty. Cannot analyze source/sink interaction or verify preconditions...."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/xss_testsuite/shared/src/main/java/org/wildfly/test/security/servlets/ReadCredentialServlet.java_109": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice is empty. Cannot verify analyzer claim or preconditions...."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/xss_testsuite/shared/src/main/java/org/wildfly/test/security/servlets/ReadCredentialServlet.java_118": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze flow...."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/xss_testsuite/shared/src/main/java/org/wildfly/test/security/servlets/ReadCredentialServlet.java_127": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze...."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/xss_testsuite/shared/src/main/java/org/wildfly/test/security/servlets/ReadCredentialServlet.java_149": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Evidence shows user input (source at 97) flows directly to output (sink at 149)..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/stack-trace-exposure_api/src/main/java/javax/faces/webapp/_PageContextOutWriter.java_73": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze...."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/stack-trace-exposure_impl/src/main/java/org/apache/myfaces/application/ViewHandlerImpl.java_460": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice is empty. Cannot verify analyzer claim or preconditions...."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/stack-trace-exposure_impl/src/main/java/org/apache/myfaces/application/jsp/JspViewHandlerImpl.java_269": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze...."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/stack-trace-exposure_impl/src/main/java/org/apache/myfaces/context/PartialResponseWriterImpl.java_467": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice unavailable. Cannot analyze taint flow...."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/stack-trace-exposure_impl/src/main/java/org/apache/myfaces/context/servlet/ServletExternalContextImpl.java_507": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Program slice empty. Cannot assess taint flow or vulnerability...."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/stack-trace-exposure_impl/src/main/java/org/apache/myfaces/renderkit/ErrorPageWriter.java_320": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze...."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/stack-trace-exposure_impl/src/main/java/org/apache/myfaces/renderkit/ErrorPageWriter.java_712": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze...."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/stack-trace-exposure_impl/src/main/java/org/apache/myfaces/renderkit/ErrorPageWriter.java_745": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Program slice is empty. Cannot analyze...."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/stack-trace-exposure_impl/src/main/java/org/apache/myfaces/view/jsp/JspViewDeclarationLanguage.java_227": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze...."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/stack-trace-exposure_impl/src/test/java/org/apache/myfaces/mc/test/core/MockDefaultViewDeclarationLanguage.java_145": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice empty. Cannot analyze...."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/stack-trace-exposure_shared/src/main/java/org/apache/myfaces/shared/context/AjaxExceptionHandlerImpl.java_284": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice missing. Cannot analyze flow...."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/unvalidated-url-redirection_impl/src/main/java/org/apache/myfaces/context/servlet/ServletExternalContextImpl.java_465": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently e..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/http-response-splitting_shared/src/main/java/org/apache/myfaces/shared/context/flash/FlashImpl.java_637": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input in header leads to response splitting. Evidence shows data flow from Exte..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/weak-cryptographic-algorithm_shared/src/main/java/org/apache/myfaces/shared/util/StateUtils.java_308": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Alert claims DES, ECB/PKCS5Padding weak. Evidence shows data flow through StateUtils.java using thes..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/weak-cryptographic-algorithm_shared/src/main/java/org/apache/myfaces/shared/util/StateUtils.java_451": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims DES/ECB/PKCS5Padding weak crypto used. Evidence shows DES/ECB/PKCS5Padding at `State..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/weak-cryptographic-algorithm_shared/src/main/java/org/apache/myfaces/shared/util/StateUtils.java_735": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims DES crypto is weak. Evidence shows DES usage (implied by alert type/description and ..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/weak-cryptographic-algorithm_shared/src/main/java/org/apache/myfaces/shared/util/StateUtils.java_752": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently e..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/weak-cryptographic-algorithm_shared/src/main/java/org/apache/myfaces/shared/util/StateUtils.java_786": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims DES crypto use is weak. Evidence shows DES usage from source line 99 to sink line 78..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/weak-cryptographic-algorithm_shared/src/main/java/org/apache/myfaces/shared/util/StateUtils.java_834": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims DES algorithm use. Evidence shows DES usage in StateUtils.java. No constraints sugge..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/weak-cryptographic-algorithm_shared/src/main/java/org/apache/myfaces/shared/util/StateUtils.java_931": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims HmacSHA1 weak. Evidence shows HmacSHA1 used. No constraints to mitigate. Likely TP...."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/weak-cryptographic-algorithm_shared/src/main/java/org/apache/myfaces/shared/util/StateUtils.java_979": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims HmacSHA1 is weak. Evidence shows HmacSHA1 (source) used in StateUtils.java and data ..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/ssrf_impl/src/main/java/org/apache/myfaces/view/facelets/compiler/SAXCompiler.java_670": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims SSRF. Evidence shows user-controlled data (from cookie ImplicitObject) flowing to SA..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/ssrf_impl/src/main/java/org/apache/myfaces/view/facelets/compiler/SAXCompiler.java_707": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims SSRF. Evidence shows user-controlled input (CookieImplicitObject) flowing to a parsi..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/ssrf_impl/src/test/java/org/apache/myfaces/view/facelets/mock/MockServletContext.java_104": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Alert claims SSRF. Source `CookieImplicitObject.java:43` (likely user-controlled cookie data). Sink ..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/insecure-cookie_impl/src/main/java/org/apache/myfaces/context/servlet/ServletExternalContextImpl.java_710": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Claim: Cookie set without 'secure' flag. Preconditions: Cookie set, 'secure' flag absent. Evidence: ..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/insecure-cookie_shared/src/main/java/org/apache/myfaces/shared/context/flash/FlashImpl.java_594": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie missing 'secure' flag. Evidence points to cookie setting code. Missing flag i..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/insecure-cookie_shared/src/main/java/org/apache/myfaces/shared/context/flash/FlashImpl.java_637": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims cookie lacks 'secure' flag. Evidence points to cookie setting in FlashImpl.java. Mis..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/insecure-cookie_shared/src/main/java/org/apache/myfaces/shared/context/flash/FlashImpl.java_740": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims: Cookie lacks 'secure' flag. Preconditions: Cookie set without 'secure' flag, transm..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/unsafe-deserialization_shared/src/main/java/org/apache/myfaces/shared/util/StateUtils.java_538": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims unsafe deserialization from user input. Evidence shows user-controlled data flows to..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/unsafe-deserialization_shared/src/main/java/org/apache/myfaces/shared/util/StateUtils.java_552": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims unsafe deserialization from user input. Source is ExternalContextWrapper, sink is St..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/path-injection_impl/src/main/java/org/apache/myfaces/view/facelets/util/Resource.java_100": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches sink. Evidence shows data flow from `ExternalContextWrapper` (use..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/path-injection_impl/src/test/java/org/apache/myfaces/view/facelets/mock/MockServletContext.java_64": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claim: User input reaches sink. Preconditions: User input must be controllable and reach a ..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/path-injection_impl/src/test/java/org/apache/myfaces/view/facelets/mock/MockServletContext.java_85": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input into `ExternalContextWrapper` reaches `MockServletContext`, a test class...."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/path-injection_impl/src/test/java/org/apache/myfaces/view/facelets/mock/MockServletContext.java_101": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input reaches a sink. Evidence shows data flow from ExternalContextWrapper to M..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/path-injection_impl/src/test/java/org/apache/myfaces/view/facelets/mock/MockServletContext.java_126": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user-controlled data flows to a sink. Evidence shows flow through test code (`MockSe..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/path-injection_impl/src/test/java/org/apache/myfaces/view/facelets/mock/MockServletContext.java_149": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims user input flows to sink. Evidence shows flow is within test code (MockServletContex..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xxe_impl/src/main/java/org/apache/myfaces/config/ConfigFilesXmlValidationUtils.java_223": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user input unsafely. Evidence shows data flow from line 220 (likely..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xxe_impl/src/main/java/org/apache/myfaces/config/ConfigFilesXmlValidationUtils.java_271": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parse uses user input, vulnerable to XXE. Evidence shows data flow from line 267..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xxe_impl/src/main/java/org/apache/myfaces/config/ConfigFilesXmlValidationUtils.java_372": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user input without DTD disabling. Evidence shows data flow from lin..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xxe_impl/src/main/java/org/apache/myfaces/config/ConfigFilesXmlValidationUtils.java_430": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user input without external entity expansion protection. Evidence s..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xxe_impl/src/main/java/org/apache/myfaces/config/impl/digester/DigesterFacesConfigUnmarshallerImpl.java_289": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing takes user input, vulnerable to XXE. Evidence shows data flowing from a ..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xxe_impl/src/main/java/org/apache/myfaces/view/facelets/compiler/TagLibraryConfig.java_640": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XML parsing uses user input, vulnerable to XXE. Evidence shows data flow from line 6..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/maven/non-https-url_api/pom.xml_540": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims artifact download via insecure HTTP. Evidence points to pom.xml, a common artifact c..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/maven/non-https-url_impl/pom.xml_920": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims insecure protocol (HTTP) for artifact download. Evidence points to a pom.xml depende..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/maven/non-https-url_pom.xml_583": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims insecure protocol for artifact download. Evidence points to `pom.xml` using `http://..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xss_api/src/main/java/javax/faces/webapp/_PageContextOutWriter.java_73": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Source is ExternalContextWrapper, sink is _PageContextOutWriter. Data flow show..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xss_impl/src/main/java/org/apache/myfaces/context/PartialResponseWriterImpl.java_467": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Source is ExternalContextWrapper (likely user input access). Sink is PartialRes..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xss_impl/src/main/java/org/apache/myfaces/renderkit/ErrorPageWriter.java_281": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "CodeQL claims XSS from user input to ErrorPageWriter. Evidence shows data flow from ExternalContextW..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xss_impl/src/main/java/org/apache/myfaces/renderkit/ErrorPageWriter.java_295": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Source: ExternalContextWrapper (likely internal). Sink: ErrorPageWriter (render..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xss_impl/src/main/java/org/apache/myfaces/renderkit/ErrorPageWriter.java_796": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS via user input to sink. Evidence shows data flow from ExternalContextWrapper (li..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xss_impl/src/main/java/org/apache/myfaces/renderkit/html/HtmlLabelRenderer.java_168": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS via user input. Evidence shows data flow from ExternalContextWrapper (potential ..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xss_impl/src/main/java/org/apache/myfaces/view/facelets/el/ELText.java_201": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently e..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xss_impl/src/main/java/org/apache/myfaces/view/facelets/el/ELText.java_303": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Source is `ExternalContextWrapper.java` (likely user input via external context..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xss_impl/src/main/java/org/apache/myfaces/view/facelets/tag/ui/UIDebug.java_135": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently e..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xss_shared/src/main/java/org/apache/myfaces/shared/renderkit/html/HtmlRendererUtils.java_1155": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS from user input. Evidence shows user-controlled cookie data flowing through mult..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xss_shared/src/main/java/org/apache/myfaces/shared/renderkit/html/HtmlTextRendererBase.java_160": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Analyzer claims XSS. Evidence shows data from `ExternalContextWrapper` (likely user input via `getRe..."
+  }
+}

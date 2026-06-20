@@ -1,0 +1,36 @@
+% Simple algorithm environment replacement
+\newcounter{algorithm}
+\newenvironment{algorithm}[1][t]{%
+  \refstepcounter{algorithm}%
+  \begin{center}%
+  \begin{minipage}{0.95\textwidth}%
+  \hrule
+  \vspace{0.5em}%
+  \textbf{Algorithm \thealgorithm:}%
+}{%
+  \vspace{0.5em}%
+  \hrule
+  \end{minipage}%
+  \end{center}%
+}
+
+\newcommand{\algcaption}[1]{\textbf{#1}\par\vspace{0.3em}}
+
+% Algorithmic commands
+\newcommand{\REQUIRE}{\textbf{Require:} }
+\newcommand{\ENSURE}{\textbf{Ensure:} }
+\newcommand{\STATE}{\par\hspace{1em}}
+\newcommand{\IF}{\textbf{if} }
+\newcommand{\THEN}{\textbf{then}}
+\newcommand{\ELSE}{\par\hspace{1em}\textbf{else}}
+\newcommand{\ENDIF}{\par\hspace{1em}\textbf{end if}}
+\newcommand{\FOR}{\textbf{for} }
+\newcommand{\ENDFOR}{\par\hspace{1em}\textbf{end for}}
+\newcommand{\RETURN}{\textbf{return} }
+
+\newenvironment{algorithmic}[1][1]{%
+  \small
+  \begin{flushleft}%
+}{%
+  \end{flushleft}%
+}
