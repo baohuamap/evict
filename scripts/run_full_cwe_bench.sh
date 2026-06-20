@@ -10,8 +10,33 @@ IRIS_DIR="$PROJECT_ROOT/data/iris-v2"
 OUTPUT_DIR="$PROJECT_ROOT/artifacts/codeql_results"
 EVICT_RESULTS_DIR="$PROJECT_ROOT/artifacts/exports"
 
+# CodeQL query configuration (see generate_sarifs.sh for rationale).
+# The previous query path "java/ql/src/Security/" was invalid and produced a
+# fatal error; only version 0.8.3 of the java-queries pack ships with IRIS.
+CODEQL_BIN="${CODEQL_BIN:-codeql}"
+CODEQL_QUERY_VERSION="${CODEQL_QUERY_VERSION:-0.8.3}"
+CODEQL_QUERIES="$IRIS_DIR/codeql/qlpacks/codeql/java-queries/$CODEQL_QUERY_VERSION"
+SECURITY_SUITE="${SECURITY_SUITE:-$CODEQL_QUERIES/codeql-suites/java-security-alerts.qls}"
+SEARCH_PATH="$IRIS_DIR/codeql/qlpacks"
+
 mkdir -p "$OUTPUT_DIR"
 mkdir -p "$EVICT_RESULTS_DIR"
+
+# Bootstrap the custom query suite on first run (see generate_sarifs.sh).
+if [ ! -f "$SECURITY_SUITE" ]; then
+    mkdir -p "$(dirname "$SECURITY_SUITE")"
+    cat > "$SECURITY_SUITE" <<'QLS'
+- description: Standard CodeQL code-scanning security alert queries for Java.
+    Derived from java-code-scanning.qls but excludes IRIS's experimental
+    myqueries/ (LLM-generated per-CVE queries) so only standard, high-precision
+    security queries run.
+- import: codeql-suites/java-code-scanning.qls
+- exclude:
+    query path:
+      - /^myqueries\/.*/
+QLS
+    echo "Created query suite: $SECURITY_SUITE"
+fi
 
 echo "=== Starting FULL CWE-Bench-Java Evaluation ==="
 echo "Estimated time: 20-60 hours."
@@ -41,9 +66,11 @@ for db in "$DB_DIR"/*-docker; do
     fi
     
     echo "Analyzing $slug..."
-    codeql database analyze "$db" \
-        java/ql/src/Security/ \
+    "$CODEQL_BIN" database analyze "$db" \
+        "$SECURITY_SUITE" \
+        --search-path="$SEARCH_PATH" \
         --format=sarif-latest \
+        --threads=2 \
         --output="$output_sarif"
 done
 
