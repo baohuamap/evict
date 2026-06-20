@@ -61,8 +61,9 @@ def run_benchmark(
     model_name: str = None,
     temperature: float = None,
     provider_name: str = None,
+    num_samples: int = 1,
 ):
-    print(f"Starting CWE-Bench-Java evaluation...")
+    print(f"Starting CWE-Bench-Java evaluation (k={num_samples})...")
 
     # Initialize components
     extractor = Extractor()
@@ -110,6 +111,16 @@ def run_benchmark(
 
     ground_truth = load_ground_truth(gt_path)
 
+    # Resumable cache for LLM decisions (important for low-budget runs).
+    cache_path = output_path.replace(".csv", ".cache.json")
+    cache: Dict[str, Dict[str, Any]] = {}
+    if os.path.exists(cache_path):
+        try:
+            cache = json.load(open(cache_path))
+            print(f"Loaded cache: {len(cache)} decisions from {cache_path}")
+        except Exception:
+            pass
+
     results = []
     sarif_files = list(Path(sarif_dir).glob("*.sarif"))
 
@@ -117,45 +128,86 @@ def run_benchmark(
         print(f"No SARIF files found in {sarif_dir}")
         return
 
+    total_alerts = 0
     for sarif_file in sarif_files:
-        # Project slug is usually the filename without .sarif
-        project_slug = sarif_file.stem
-        print(f"Processing project: {project_slug}...")
+        with open(sarif_file, "r") as f:
+            sarif_data = json.load(f)
+        total_alerts += len(extractor.extract_from_sarif(sarif_data))
+    print(f"Total alerts across {len(sarif_files)} SARIF files: {total_alerts}")
 
+    processed = 0
+    import time
+
+    t0 = time.time()
+
+    for sarif_file in sarif_files:
+        project_slug = sarif_file.stem
         with open(sarif_file, "r") as f:
             sarif_data = json.load(f)
 
         alerts = extractor.extract_from_sarif(sarif_data)
+        if not alerts:
+            continue
+
+        print(f"\nProcessing {project_slug} ({len(alerts)} alerts)...")
 
         for alert in alerts:
-            # 1. Determine Ground Truth
             actual_is_tp = is_true_positive(alert, project_slug, ground_truth)
+            cache_key = (
+                f"{project_slug}_{alert.alert_id}_{alert.file_path}_{alert.line_number}"
+            )
+            processed += 1
 
-            # 2. Run EVICT
-            try:
-                # Use a dummy project root for reading files if they don't exist locally
-                extractor.populate_evidence(alert, project_root=".")
-                decision = verifier.get_decision(alert)
-                decision = calibrator.calibrate(decision)
-                if decision.label == Label.ABSTAIN:
-                    decision = escalator.escalate(alert, decision)
+            if cache_key in cache:
+                entry = cache[cache_key]
+                prediction = entry["prediction"]
+                confidence = entry["confidence"]
+                rationale = entry["rationale"]
+            else:
+                try:
+                    extractor.populate_evidence(alert, project_root=".")
+                    decision = verifier.get_decision(alert, num_samples=num_samples)
+                    decision = calibrator.calibrate(decision)
+                    if decision.label == Label.ABSTAIN:
+                        decision = escalator.escalate(alert, decision)
 
-                prediction = decision.label.value
+                    prediction = decision.label.value
+                    confidence = f"{decision.confidence:.2f}"
+                    rationale = decision.rationale[:100] + "..."
 
-                results.append(
-                    {
-                        "Project": project_slug,
-                        "Alert ID": alert.alert_id,
-                        "File": alert.file_path,
-                        "Line": alert.line_number,
-                        "Ground Truth": "TP" if actual_is_tp else "FP",
-                        "EVICT Prediction": prediction,
-                        "Confidence": f"{decision.confidence:.2f}",
-                        "Rationale": decision.rationale[:100] + "...",
+                    cache[cache_key] = {
+                        "prediction": prediction,
+                        "confidence": confidence,
+                        "rationale": rationale,
                     }
-                )
-            except Exception as e:
-                print(f"Error processing alert {alert.alert_id}: {e}")
+                    with open(cache_path, "w") as cf:
+                        json.dump(cache, cf, indent=2)
+                except Exception as e:
+                    print(f"  Error: {e}")
+                    prediction = "ABSTAIN"
+                    confidence = "0.00"
+                    rationale = f"Error: {e}"
+
+            elapsed = time.time() - t0
+            rate = processed / elapsed if elapsed > 0 else 0
+            print(
+                f"  [{processed}/{total_alerts}] {alert.alert_id[:35]:<35} "
+                f"GT={'TP' if actual_is_tp else 'FP'} Pred={prediction} "
+                f"({elapsed:.0f}s, {rate:.1f}/s)"
+            )
+
+            results.append(
+                {
+                    "Project": project_slug,
+                    "Alert ID": alert.alert_id,
+                    "File": alert.file_path,
+                    "Line": alert.line_number,
+                    "Ground Truth": "TP" if actual_is_tp else "FP",
+                    "EVICT Prediction": prediction,
+                    "Confidence": confidence,
+                    "Rationale": rationale,
+                }
+            )
 
     # Write Results
     if results:
@@ -238,6 +290,12 @@ if __name__ == "__main__":
         help="LLM provider (auto-detected from model name if omitted).",
     )
     parser.add_argument(
+        "--num_samples",
+        type=int,
+        default=1,
+        help="Number of LLM samples per alert (k=1 saves budget, k=5 for vote-share).",
+    )
+    parser.add_argument(
         "--temperature", type=float, help="Optional temperature override."
     )
 
@@ -251,4 +309,5 @@ if __name__ == "__main__":
         model_name=args.model,
         temperature=args.temperature,
         provider_name=args.provider,
+        num_samples=args.num_samples,
     )
