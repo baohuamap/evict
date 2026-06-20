@@ -1,19 +1,20 @@
-import json
 import csv
+import json
 import os
 import sys
 import time
 from pathlib import Path
-from typing import List, Dict, Any, Set
+from typing import Any, Dict, List, Set
 
 # Add evict_pipeline to path
 sys.path.append(str(Path(__file__).resolve().parent.parent / "evict_pipeline" / "src"))
 
-from evict_pipeline import EvictPipeline, Alert, Decision, Label
-from evict_pipeline.extractor import Extractor
-from evict_pipeline.verifier import Verifier
+from evict_pipeline import Alert, Decision, EvictPipeline, Label
 from evict_pipeline.calibrator import Calibrator
 from evict_pipeline.escalator import Escalator
+from evict_pipeline.extractor import Extractor
+from evict_pipeline.verifier import Verifier
+
 
 def load_ground_truth(csv_path: str) -> Dict[str, List[Dict[str, Any]]]:
     """Loads ground truth from fix_info.csv, keyed by project slug."""
@@ -21,25 +22,30 @@ def load_ground_truth(csv_path: str) -> Dict[str, List[Dict[str, Any]]]:
     if not os.path.exists(csv_path):
         print(f"Warning: Ground truth file {csv_path} not found.")
         return gt
-        
+
     with open(csv_path, "r", newline="") as f:
         reader = csv.DictReader(f)
         for row in reader:
             slug = row["project_slug"]
             if slug not in gt:
                 gt[slug] = []
-            gt[slug].append({
-                "file": row["file"],
-                "start": int(row["method_start"]) if row["method_start"] else 0,
-                "end": int(row["method_end"]) if row["method_end"] else 0
-            })
+            gt[slug].append(
+                {
+                    "file": row["file"],
+                    "start": int(row["method_start"]) if row["method_start"] else 0,
+                    "end": int(row["method_end"]) if row["method_end"] else 0,
+                }
+            )
     return gt
 
-def is_true_positive(alert: Alert, project_slug: str, ground_truth: Dict[str, List[Dict[str, Any]]]) -> bool:
+
+def is_true_positive(
+    alert: Alert, project_slug: str, ground_truth: Dict[str, List[Dict[str, Any]]]
+) -> bool:
     """Checks if an alert matches any ground truth vulnerability for the project."""
     if project_slug not in ground_truth:
         return False
-        
+
     for bug in ground_truth[project_slug]:
         # Simple match: same file and line within method range
         if alert.file_path.endswith(bug["file"]):
@@ -47,36 +53,66 @@ def is_true_positive(alert: Alert, project_slug: str, ground_truth: Dict[str, Li
                 return True
     return False
 
-def run_benchmark(sarif_dir: str, gt_path: str, output_path: str, model_name: str = None, temperature: float = None):
+
+def run_benchmark(
+    sarif_dir: str,
+    gt_path: str,
+    output_path: str,
+    model_name: str = None,
+    temperature: float = None,
+    provider_name: str = None,
+):
     print(f"Starting CWE-Bench-Java evaluation...")
-    
+
     # Initialize components
     extractor = Extractor()
-    
-    api_key = os.getenv("OPENAI_API_KEY") or os.getenv("GEMINI_API_KEY") or os.getenv("ANTHROPIC_API_KEY")
-    if os.getenv("OPENAI_API_KEY"):
+
+    # Determine provider: explicit > model heuristic > env keys
+    if provider_name:
+        provider = provider_name
+    elif model_name:
+        ml = model_name.lower()
+        if "gemini" in ml or "flash" in ml or ("pro" in ml and "gpt" not in ml):
+            provider = "gemini"
+        elif "claude" in ml or "sonnet" in ml or "haiku" in ml or "opus" in ml:
+            provider = "anthropic"
+        else:
+            provider = "openai"
+    elif os.getenv("OPENAI_API_KEY"):
         provider = "openai"
     elif os.getenv("GEMINI_API_KEY"):
         provider = "gemini"
     elif os.getenv("ANTHROPIC_API_KEY"):
         provider = "anthropic"
     else:
-        provider = "gemini" # Default fallback
-    
+        provider = "gemini"  # Default fallback
+
+    api_key = (
+        os.getenv(f"{provider.upper()}_API_KEY")
+        or os.getenv("OPENAI_API_KEY")
+        or os.getenv("GEMINI_API_KEY")
+        or os.getenv("ANTHROPIC_API_KEY")
+    )
+
     if not api_key:
         print("Warning: No API key found, using mock.")
         provider = "mock"
         api_key = "mock-key"
 
-    verifier = Verifier(api_key=api_key, provider=provider, model_name=model_name, temperature=temperature)
+    verifier = Verifier(
+        api_key=api_key,
+        provider=provider,
+        model_name=model_name,
+        temperature=temperature,
+    )
     calibrator = Calibrator(threshold=0.4)
     escalator = Escalator()
-    
+
     ground_truth = load_ground_truth(gt_path)
-    
+
     results = []
     sarif_files = list(Path(sarif_dir).glob("*.sarif"))
-    
+
     if not sarif_files:
         print(f"No SARIF files found in {sarif_dir}")
         return
@@ -85,16 +121,16 @@ def run_benchmark(sarif_dir: str, gt_path: str, output_path: str, model_name: st
         # Project slug is usually the filename without .sarif
         project_slug = sarif_file.stem
         print(f"Processing project: {project_slug}...")
-        
+
         with open(sarif_file, "r") as f:
             sarif_data = json.load(f)
-            
+
         alerts = extractor.extract_from_sarif(sarif_data)
-        
+
         for alert in alerts:
             # 1. Determine Ground Truth
             actual_is_tp = is_true_positive(alert, project_slug, ground_truth)
-            
+
             # 2. Run EVICT
             try:
                 # Use a dummy project root for reading files if they don't exist locally
@@ -103,40 +139,71 @@ def run_benchmark(sarif_dir: str, gt_path: str, output_path: str, model_name: st
                 decision = calibrator.calibrate(decision)
                 if decision.label == Label.ABSTAIN:
                     decision = escalator.escalate(alert, decision)
-                
+
                 prediction = decision.label.value
-                
-                results.append({
-                    "Project": project_slug,
-                    "Alert ID": alert.alert_id,
-                    "File": alert.file_path,
-                    "Line": alert.line_number,
-                    "Ground Truth": "TP" if actual_is_tp else "FP",
-                    "EVICT Prediction": prediction,
-                    "Confidence": f"{decision.confidence:.2f}",
-                    "Rationale": decision.rationale[:100] + "..."
-                })
+
+                results.append(
+                    {
+                        "Project": project_slug,
+                        "Alert ID": alert.alert_id,
+                        "File": alert.file_path,
+                        "Line": alert.line_number,
+                        "Ground Truth": "TP" if actual_is_tp else "FP",
+                        "EVICT Prediction": prediction,
+                        "Confidence": f"{decision.confidence:.2f}",
+                        "Rationale": decision.rationale[:100] + "...",
+                    }
+                )
             except Exception as e:
                 print(f"Error processing alert {alert.alert_id}: {e}")
 
     # Write Results
     if results:
-        fieldnames = ["Project", "Alert ID", "File", "Line", "Ground Truth", "EVICT Prediction", "Confidence", "Rationale"]
+        fieldnames = [
+            "Project",
+            "Alert ID",
+            "File",
+            "Line",
+            "Ground Truth",
+            "EVICT Prediction",
+            "Confidence",
+            "Rationale",
+        ]
         with open(output_path, "w", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             writer.writeheader()
             writer.writerows(results)
-        
+
         # Calculate Metrics
-        tp = sum(1 for r in results if r["Ground Truth"] == "TP" and r["EVICT Prediction"] == "TP")
-        fp = sum(1 for r in results if r["Ground Truth"] == "FP" and r["EVICT Prediction"] == "TP")
-        fn = sum(1 for r in results if r["Ground Truth"] == "TP" and r["EVICT Prediction"] == "FP")
-        tn = sum(1 for r in results if r["Ground Truth"] == "FP" and r["EVICT Prediction"] == "FP")
-        
+        tp = sum(
+            1
+            for r in results
+            if r["Ground Truth"] == "TP" and r["EVICT Prediction"] == "TP"
+        )
+        fp = sum(
+            1
+            for r in results
+            if r["Ground Truth"] == "FP" and r["EVICT Prediction"] == "TP"
+        )
+        fn = sum(
+            1
+            for r in results
+            if r["Ground Truth"] == "TP" and r["EVICT Prediction"] == "FP"
+        )
+        tn = sum(
+            1
+            for r in results
+            if r["Ground Truth"] == "FP" and r["EVICT Prediction"] == "FP"
+        )
+
         precision = tp / (tp + fp) if (tp + fp) > 0 else 0
         recall = tp / (tp + fn) if (tp + fn) > 0 else 0
-        f1 = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0
-        
+        f1 = (
+            2 * (precision * recall) / (precision + recall)
+            if (precision + recall) > 0
+            else 0
+        )
+
         print("\n--- Benchmark Summary ---")
         print(f"Total Alerts: {len(results)}")
         print(f"Precision: {precision:.2f}")
@@ -144,16 +211,44 @@ def run_benchmark(sarif_dir: str, gt_path: str, output_path: str, model_name: st
         print(f"F1 Score: {f1:.2f}")
         print(f"Results saved to {output_path}")
 
+
 if __name__ == "__main__":
     import argparse
+
     parser = argparse.ArgumentParser(description="Run CWE-Bench-Java benchmark.")
-    parser.add_argument("--sarif_dir", default="artifacts/codeql_results", help="Directory containing SARIF files.")
-    parser.add_argument("--gt_path", default="data/cwe-bench-java/data/fix_info.csv", help="Path to ground truth CSV.")
-    parser.add_argument("--output", default="artifacts/exports/cwe_bench_evict_results.csv", help="Output path.")
+    parser.add_argument(
+        "--sarif_dir",
+        default="artifacts/codeql_results",
+        help="Directory containing SARIF files.",
+    )
+    parser.add_argument(
+        "--gt_path",
+        default="data/cwe-bench-java/data/fix_info.csv",
+        help="Path to ground truth CSV.",
+    )
+    parser.add_argument(
+        "--output",
+        default="artifacts/exports/cwe_bench_evict_results.csv",
+        help="Output path.",
+    )
     parser.add_argument("--model", help="Optional model name override.")
-    parser.add_argument("--temperature", type=float, help="Optional temperature override.")
-    
+    parser.add_argument(
+        "--provider",
+        choices=["openai", "gemini", "anthropic"],
+        help="LLM provider (auto-detected from model name if omitted).",
+    )
+    parser.add_argument(
+        "--temperature", type=float, help="Optional temperature override."
+    )
+
     args = parser.parse_args()
-    
+
     os.makedirs(os.path.dirname(args.output) or ".", exist_ok=True)
-    run_benchmark(args.sarif_dir, args.gt_path, args.output, model_name=args.model, temperature=args.temperature)
+    run_benchmark(
+        args.sarif_dir,
+        args.gt_path,
+        args.output,
+        model_name=args.model,
+        temperature=args.temperature,
+        provider_name=args.provider,
+    )
