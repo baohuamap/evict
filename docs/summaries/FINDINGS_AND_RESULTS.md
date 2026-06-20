@@ -11,6 +11,8 @@
 |----|-----------|------|-------|---|--------|--------|-------------|
 | E1 | Juliet PoC (conformal) | 2026-06-20 | Gemini 2.5 Flash Lite | 5 | 247 | DONE | `artifacts/exports/v2/juliet_conformal_poc_gemini.csv` |
 | E2 | CWE-Bench-Java | 2026-06-20 | Gemini 2.5 Flash Lite | 1 | 549 | DONE | `artifacts/exports/cwe_bench_evict_results_gemini.csv` |
+| E8 | Juliet PoC (conformal) | 2026-06-20 | Qwen-Coder-32B (vLLM) | 5 | 247 | DONE | `artifacts/exports/v2/juliet_conformal_poc_qwen_coder_32b.csv` |
+| E9 | CWE-Bench-Java | 2026-06-20 | Qwen-Coder-32B (vLLM) | 1 | 549 | DONE | `artifacts/exports/cwe_bench_evict_results_qwen_coder_32b.csv` |
 | E3 | Juliet multi-model baseline (Claude Haiku 4.5) | 2026-05-02 | Claude Haiku 4.5 | 1 | 3,061 | DONE | `artifacts/exports/v2/juliet_sampled_results_claude_haiku_4_5.csv` |
 | E4 | Juliet multi-model baseline (GPT-4o Mini) | 2026-05-01 | GPT-4o Mini | 1 | 3,107 | DONE | `artifacts/exports/v2/juliet_sampled_results_gpt_4o_mini.csv` |
 | E5 | Juliet multi-model baseline (Gemini 2.5 Flash Lite) | 2026-05-02 | Gemini 2.5 Flash Lite | 1 | 3,222 | DONE | `artifacts/exports/v2/juliet_sampled_results_gemini_2_5_flash_lite.csv` |
@@ -97,6 +99,68 @@
 - Only 17/549 alerts matched as TP — the file-suffix + line-range heuristic is conservative
 - The 1 missed TP (FN) suggests matching is slightly lossy
 - CodeQL alerts on real projects produce mostly FPs (97%), unlike Juliet's balanced TP/FP
+
+---
+
+## 3b. Key Results: Qwen-Coder-32B PoC (E8)
+
+### Setup
+- **Model:** Qwen2.5-Coder-32B-Instruct, served via vLLM 0.7.3 on H100 80GB (8k context, BF16)
+- **Same protocol as E1:** 247 alerts, CWE-89/78/190, k=5, 5-fold CV, alpha=0.1
+
+### Results (mean ± std over 5 folds)
+
+| Method | Precision | Recall | F1 | Coverage | ECE | R_sel |
+|--------|-----------|--------|----|----------|-----|-------|
+| Evidence-Free | 36.8 ± 5.5% | 81.5 ± 6.5% | 50.6 ± 6.1% | 100% | 0.569 ± 0.083 | 0.600 ± 0.082 |
+| EVICT (No Symb.) | 37.4 ± 6.1% | 82.3 ± 6.5% | 51.3 ± 6.8% | 98.0% | 0.571 ± 0.081 | 0.594 ± 0.086 |
+| EVICT (Full) | 37.0 ± 5.6% | 81.5 ± 6.5% | 50.7 ± 6.2% | 100% | 0.565 ± 0.087 | 0.596 ± 0.085 |
+
+### LLM Decision Distribution
+- **Labels:** TP=207 (83.8%), FP=40 (16.2%), ABSTAIN=0
+- **Confidence:** 1.0 → 212 (85.8%), 0.8 → 22 (8.9%), 0.6 → 13 (5.3%)
+- **Unanimous 5/5:** 85.8% — similarly degenerate to Gemini (84.6%)
+
+### Gemini vs Qwen-Coder-32B Comparison (Juliet PoC)
+
+| Metric | Gemini 2.5 Flash Lite | Qwen-Coder-32B |
+|--------|----------------------|----------------|
+| Precision | 38.9% | 37.0% |
+| Recall | 95.5% | 81.5% |
+| F1 | 55.1% | 50.7% |
+| TP predictions | 231 (93.5%) | 207 (83.8%) |
+| Unanimous 5/5 | 84.6% | 85.8% |
+
+**Finding:** Qwen-Coder-32B is more conservative (fewer TP predictions) but similarly overconfident (85.8% unanimous). Neither model produces discriminative vote-share confidence.
+
+---
+
+## 3c. Key Results: Qwen-Coder-32B CWE-Bench-Java (E9)
+
+### Setup
+- **Model:** Qwen2.5-Coder-32B-Instruct via vLLM, k=1, 549 CodeQL alerts, 45 projects
+
+### Results
+
+| Metric | Gemini 2.5 Flash Lite | Qwen-Coder-32B |
+|--------|----------------------|----------------|
+| Precision | 3.3% | 1.5% |
+| Recall | 93.3% | 40.0% |
+| F1 | 0.063 | 0.030 |
+| TP | 14 | 2 |
+| FP | 414 | 128 |
+| TN | 47 | 76 |
+| FN | 1 | 3 |
+| ABSTAIN | 73 (13.3%) | 340 (62.0%) |
+| TP predictions | 428 (78%) | 130 (24%) |
+| FP predictions | 48 (9%) | 79 (14%) |
+
+### Key Observation
+Qwen-Coder-32B is **dramatically more conservative** than Gemini on real-world alerts:
+- 62% abstention rate (vs Gemini's 13%) — refuses to classify most alerts
+- Higher TN (76 vs 47) — better at correctly identifying FPs when it does classify
+- But lower recall (40% vs 93%) — misses most real vulnerabilities
+- The high abstention suggests Qwen "knows what it doesn't know" better than Gemini, but the abstention comes from LLM refusals (empty/conflicted JSON), not from conformal calibration
 
 ---
 

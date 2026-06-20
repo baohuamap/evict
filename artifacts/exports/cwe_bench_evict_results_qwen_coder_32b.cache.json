@@ -1,0 +1,2732 @@
+{
+  "jenkinsci__workflow-cps-global-lib-plugin_CVE-2022-25174_544.vff04fa68714d_java/polynomial-redos_src/main/java/org/jenkinsci/plugins/workflow/libs/SCMSourceRetriever.java_246": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert suggests a regex with user-provided input may cause performance issues due to slow executi..."
+  },
+  "apache__shiro_CVE-2023-34478_1.11.0_java/tainted-permissions-check_core/src/main/java/org/apache/shiro/authz/permission/WildcardPermissionResolver.java_75": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty, making it impossible to evaluate the data flow and determine if the aler..."
+  },
+  "apache__shiro_CVE-2023-34478_1.11.0_java/unvalidated-url-redirection_web/src/main/java/org/apache/shiro/web/util/RedirectView.java_300": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates untrusted URL redirection based on user-provided values, which is a classic open..."
+  },
+  "apache__shiro_CVE-2023-34478_1.11.0_java/unvalidated-url-redirection_web/src/main/java/org/apache/shiro/web/util/RedirectView.java_304": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The data flow shows that a user-provided value can lead to a URL redirection, but the source file fo..."
+  },
+  "apache__shiro_CVE-2023-34478_1.11.0_java/http-response-splitting_web/src/main/java/org/apache/shiro/web/util/RedirectView.java_304": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "While the alert mentions a user-provided value influencing a header, the data flow traces and lack o..."
+  },
+  "apache__shiro_CVE-2023-34478_1.11.0_java/unsafe-deserialization_lang/src/main/java/org/apache/shiro/io/DefaultSerializer.java_77": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates unsafe deserialization from a user-provided value. The data flow traces show the..."
+  },
+  "apache__shiro_CVE-2023-34478_1.11.0_java/unsafe-deserialization_lang/src/main/java/org/apache/shiro/io/XmlSerializer.java_76": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the sink is completely empty, making it impossible to evaluate the deserializatio..."
+  },
+  "apache__shiro_CVE-2023-34478_1.11.0_java/xxe_lang/src/main/java/org/apache/shiro/io/XmlSerializer.java_76": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing with a user-provided value without guarding against external entity ..."
+  },
+  "alibaba__one-java-agent_CVE-2022-25842_0.0.1_java/zipslip_one-java-agent-plugin/src/main/java/com/alibaba/oneagent/utils/IOUtils.java_122": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to evaluate the data flow and determine ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/stack-trace-exposure_dspace-sword/src/main/java/org/purl/sword/server/ServiceDocumentServlet.java_152": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to evaluate the data flow and determine ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/unvalidated-url-redirection_dspace-api/src/main/java/org/dspace/rdf/negotiation/Negotiator.java_277": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the source file is completely empty, making it impossible to evaluate the data fl..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/unvalidated-url-redirection_dspace-api/src/main/java/org/dspace/rdf/negotiation/Negotiator.java_307": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The source file for Negotiator.java could not be read, making it impossible to fully analyze the dat..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/unvalidated-url-redirection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/ControlledVocabularyServlet.java_53": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty, making it impossible to evaluate the data flow and preconditions for the..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/unvalidated-url-redirection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SearchResultLogServlet.java_71": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty, making it impossible to determine if the data flow from the source to th..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/unvalidated-url-redirection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/VersionHistoryServlet.java_112": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the sink location is completely empty, making it impossible to verify the data fl..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/unvalidated-url-redirection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/admin/MetadataFieldRegistryServlet.java_211": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The provided code slice is empty, making it impossible to evaluate the alert's validity...."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/unvalidated-url-redirection_dspace-xmlui/src/main/java/org/dspace/app/xmlui/aspect/eperson/LoginRedirect.java_84": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice could not be read, making it impossible to determine if the alert is a True Positi..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/unvalidated-url-redirection_dspace-xmlui/src/main/java/org/dspace/app/xmlui/cocoon/DSpaceCocoonServletFilter.java_258": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to reconstruct the analyzer's claim or c..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/unvalidated-url-redirection_dspace-xmlui/src/main/java/org/dspace/app/xmlui/cocoon/DSpaceCocoonServletFilter.java_270": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to verify the data flow and check the preco..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/http-response-splitting_dspace-api/src/main/java/org/dspace/rdf/negotiation/Negotiator.java_277": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for Negotiator.java could not be read, making it impossible to fully evaluate the ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/http-response-splitting_dspace-api/src/main/java/org/dspace/rdf/negotiation/Negotiator.java_307": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty for the relevant file, making it impossible to verify the data..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/http-response-splitting_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/ItemExportArchiveServlet.java_96": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty and irrelevant to the alert, making it impossible to make an e..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/http-response-splitting_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/MetadataExportServlet.java_92": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is unavailable, making it impossible to verify the data flow and reconstruct the a..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/http-response-splitting_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/MyDSpaceServlet.java_727": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice could not be read, making it impossible to verify the data flow and determine if t..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/weak-cryptographic-algorithm_dspace-api/src/main/java/org/dspace/checker/CheckerCommand.java_197": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates the use of MD5, a weak cryptographic algorithm, which is flagged at multiple loc..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/weak-cryptographic-algorithm_dspace-api/src/main/java/org/dspace/core/Utils.java_129": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty and irrelevant to the alert, making it impossible to determine..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/weak-cryptographic-algorithm_dspace-api/src/main/java/org/dspace/eperson/PasswordHash.java_260": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is empty, making it impossible to verify the use of MD5 or any related vulnerabilitie..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/weak-cryptographic-algorithm_dspace-api/src/main/java/org/dspace/storage/bitstore/BitstreamStorageManager.java_309": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to determine if the MD5 usage is a true vul..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/weak-cryptographic-algorithm_dspace-api/src/main/java/org/dspace/storage/bitstore/BitstreamStorageManager.java_414": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to determine if the MD5 usage is part of a ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/weak-cryptographic-algorithm_dspace-api/src/main/java/org/dspace/storage/bitstore/BitstreamStorageManager.java_457": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty, making it impossible to evaluate the specific usage of MD5 in the contex..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/weak-cryptographic-algorithm_dspace-sword/src/main/java/org/purl/sword/base/ChecksumUtils.java_63": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "CodeQL alert mentions MD5 as a weak cryptographic algorithm. Given the source and sink location poin..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/weak-cryptographic-algorithm_dspace-sword/src/main/java/org/purl/sword/base/ChecksumUtils.java_123": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to determine if the code at the given lo..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/ssrf_dspace-sword/src/main/java/org/purl/sword/client/Client.java_255": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to verify the data flow and preconditions n..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/tainted-format-string_dspace-api/src/main/java/org/dspace/content/LicenseUtils.java_89": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the sink location is completely empty, making it impossible to verify the data..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/regex-injection_dspace-jspui/src/main/java/org/dspace/app/webui/handle/HandleJSONResolver.java_36": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the relevant source file (HandleJSONResolver.java) could not be read, making i..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/polynomial-redos_dspace-api/src/main/java/org/dspace/discovery/SolrServiceImpl.java_2071": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert describes a potential regex DoS (Denial of Service) vulnerability where user-provided inpu..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/polynomial-redos_dspace-api/src/main/java/org/dspace/discovery/SolrServiceImpl.java_2089": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates a potential ReDoS (Regular Expression Denial of Service) vulnerability due to a ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/polynomial-redos_dspace-jspui/src/main/java/org/dspace/app/webui/discovery/DiscoverUtility.java_437": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert identifies potential ReDoS (Regular Expression Denial of Service) vulnerabilities due to u..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/zipslip_dspace-api/src/main/java/org/dspace/app/itemimport/ItemImport.java_2078": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to determine if the alert is a True Positiv..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/zipslip_dspace-api/src/main/java/org/dspace/app/itemimport/ItemImport.java_2065": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates unsanitized archive entries used in file system operations, which may contain '...."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/app/itemexport/ItemExport.java_1151": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the sink location is missing, making it impossible to evaluate the flow of data a..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/app/itemexport/ItemExport.java_1155": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty for the sink location, making it impossible to determine if the d..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/app/itemexport/ItemExport.java_1174": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the sink location is missing, making it impossible to determine the exact data..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/app/itemexport/ItemExport.java_1193": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Program slice is completely empty for the sink location, making it impossible to determine if the da..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/app/itemimport/ItemImport.java_1003": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the sink location is completely empty, making it impossible to evaluate the data ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/app/itemimport/ItemImport.java_2443": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the sink location is completely empty, making it impossible to determine the data..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/core/ConfigurationManager.java_529": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the sink location in ConfigurationManager.java is missing, making it impossible t..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/core/ConfigurationManager.java_541": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The source file for ConfigurationManager.java could not be read, making it impossible to fully evalu..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/core/NewsManager.java_58": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The provided code slice for the sink location is missing, making it impossible to determine if there..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/core/NewsManager.java_102": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the sink location is missing, making it impossible to determine if the user-pr..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/MyDSpaceServlet.java_717": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to evaluate the data flow and determine if ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/MyDSpaceServlet.java_730": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to evaluate the data flow and determine ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SitemapServlet.java_82": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty and irrelevant to the alert, making it impossible to make an e..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SitemapServlet.java_111": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to determine if the data flow constitute..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SubmissionController.java_284": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to determine if the data flow represents a ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SubmissionController.java_1590": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice could not be read, making it impossible to evaluate the data flow and determine if..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SubmissionController.java_1599": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to evaluate the alert without the actual..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SubmissionController.java_1706": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The source code slice provided is empty, making it impossible to evaluate the data flow and determin..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SubmissionController.java_1711": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to reconstruct the analyzer claim or check ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SubmissionController.java_1712": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to evaluate the data flow and determine ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-sword/src/main/java/org/dspace/sword/DepositManager.java_267": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the sink location is missing, making it impossible to determine if the user-pr..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-sword/src/main/java/org/dspace/sword/DepositManager.java_268": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the sink location is completely empty, making it impossible to determine if th..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-sword/src/main/java/org/dspace/sword/DepositManager.java_271": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates a potential vulnerability based on user-provided input, but the data flow traces..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/path-injection_dspace-sword/src/main/java/org/dspace/sword/DepositManager.java_277": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for DepositManager.java is not available, making it impossible to conclusively det..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/app/sherpa/SHERPAResponse.java_55": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing with a user-provided value without guarding against external entity ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/authority/orcid/xml/Converter.java_39": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing uses a user-provided value without guarding against external entity ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/content/authority/LCNameAuthority.java_180": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing depends on a user-provided value without guarding against external e..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/content/authority/SHERPARoMEOProtocol.java_116": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty, making it impossible to verify the presence of the vulnerability or conf..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/content/packager/METSManifest.java_708": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing depends on a user-provided value without guarding against external e..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/ctask/general/MetadataWebService.java_272": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing with user-provided values without guarding against external entity e..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/license/CCLookup.java_196": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing using a user-provided value without guarding against external entity..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/license/CCLookup.java_306": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing using a user-provided value without guarding against external entity..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/license/CCLookup.java_354": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "CodeQL alert indicates XML parsing with user-provided value without guarding against external entity..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/submit/lookup/ArXivService.java_130": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to determine if the XML parsing is vulnerab..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/submit/lookup/CiNiiService.java_112": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing with a user-provided value without guarding against external entity ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/submit/lookup/CiNiiService.java_192": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing using a user-provided value without guarding against external entity..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/submit/lookup/CrossRefService.java_117": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to educatedly determine if the alert is a T..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/submit/lookup/PubmedService.java_140": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to determine if the alert is a true or fals..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xxe_dspace-api/src/main/java/org/dspace/submit/lookup/PubmedService.java_259": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to verify the presence of a vulnerability b..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/tainted-numeric-cast_dspace-xmlui/src/main/java/org/dspace/app/xmlui/cocoon/servlet/multipart/DSpaceTokenStream.java_133": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to evaluate the specific cast operation ..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/tainted-numeric-cast_dspace-xmlui/src/main/java/org/dspace/app/xmlui/cocoon/servlet/multipart/DSpaceTokenStream.java_148": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for DSpaceTokenStream.java is completely empty, making it impossible to evaluate t..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/xml/xpath-injection_dspace-api/src/main/java/org/dspace/content/authority/DSpaceControlledVocabulary.java_168": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the sink location is missing, making it impossible to determine if the XPath e..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/maven/non-https-url_dspace/modules/xmlui-mirage2/pom.xml_331": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates use of an insecure protocol (http) for downloading artifacts from http://rubygem..."
+  },
+  "DSpace__DSpace_CVE-2022-31195_5.10_java/maven/non-https-url_pom.xml_1632": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates downloading artifacts over an insecure protocol (http). Given that the data flow..."
+  },
+  "vert-x3__vertx-web_CVE-2019-17640_3.9.3_java/weak-cryptographic-algorithm_vertx-web/src/main/java/io/vertx/ext/web/handler/impl/DigestAuthHandlerImpl.java_58": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty, making it impossible to evaluate the claim or check preconditions...."
+  },
+  "vert-x3__vertx-web_CVE-2019-17640_3.9.3_java/weak-cryptographic-algorithm_vertx-web/src/main/java/io/vertx/ext/web/handler/sockjs/impl/SockJSHandlerImpl.java_247": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is not available, making it impossible to determine the exact usage of MD5 and whe..."
+  },
+  "vert-x3__vertx-web_CVE-2019-17640_3.9.3_java/redos_vertx-web-api-contract/src/main/java/io/vertx/ext/web/api/validation/impl/RegularExpressions.java_8": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to evaluate the alert based on the provided..."
+  },
+  "apache__mina-sshd_CVE-2023-35887_2.9.2_java/weak-cryptographic-algorithm_sshd-common/src/main/java/org/apache/sshd/common/cipher/BaseCipher.java_107": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "CodeQL alert indicates use of weak cryptographic algorithm ARCFOUR. Evidence shows ARCFOUR is used i..."
+  },
+  "apache__mina-sshd_CVE-2023-35887_2.9.2_java/weak-cryptographic-algorithm_sshd-common/src/main/java/org/apache/sshd/common/cipher/BaseRC4Cipher.java_47": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "CodeQL alerts that ARCFOUR is weak and should not be used. Evidence shows ARCFOUR is implemented in ..."
+  },
+  "apache__mina-sshd_CVE-2023-35887_2.9.2_java/weak-cryptographic-algorithm_sshd-contrib/src/main/java/org/apache/sshd/contrib/common/signature/LegacyDSASigner.java_61": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "LegacySHA1withDSA is known to be weak and insecure. Despite missing code slice, the alert points dir..."
+  },
+  "apache__mina-sshd_CVE-2023-35887_2.9.2_java/implicit-cast-in-compound-assignment_sshd-common/src/main/java/org/apache/sshd/common/mac/Poly1305Mac.java_196": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to determine if the implicit cast is a vuln..."
+  },
+  "apache__mina-sshd_CVE-2023-35887_2.9.2_java/implicit-cast-in-compound-assignment_sshd-common/src/main/java/org/apache/sshd/common/mac/Poly1305Mac.java_197": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is empty, making it impossible to evaluate the alert's validity...."
+  },
+  "apache__mina-sshd_CVE-2023-35887_2.9.2_java/implicit-cast-in-compound-assignment_sshd-common/src/main/java/org/apache/sshd/common/mac/Poly1305Mac.java_198": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to evaluate the specific cast operation ..."
+  },
+  "apache__mina-sshd_CVE-2023-35887_2.9.2_java/implicit-cast-in-compound-assignment_sshd-common/src/main/java/org/apache/sshd/common/mac/Poly1305Mac.java_199": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is empty and irrelevant, making it impossible to determine if the implicit cast is a ..."
+  },
+  "apache__mina-sshd_CVE-2023-35887_2.9.2_java/implicit-cast-in-compound-assignment_sshd-common/src/main/java/org/apache/sshd/common/mac/Poly1305Mac.java_200": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice could not be read, making it impossible to fully assess the data flow and determin..."
+  },
+  "apache__mina-sshd_CVE-2023-35887_2.9.2_java/implicit-cast-in-compound-assignment_sshd-common/src/test/java/org/apache/sshd/common/cipher/BaseAuthenticatedCipherTest.java_58": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert is about an implicit cast from int to byte. Without the code slice, it's unclear if this c..."
+  },
+  "apache__mina-sshd_CVE-2023-35887_2.9.2_java/implicit-cast-in-compound-assignment_sshd-core/src/main/java/org/apache/sshd/common/channel/ChannelOutputStream.java_194": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice could not be read, making it impossible to determine if the implicit cast is a sou..."
+  },
+  "apache__mina-sshd_CVE-2023-35887_2.9.2_java/implicit-cast-in-compound-assignment_sshd-core/src/main/java/org/apache/sshd/common/channel/ChannelOutputStream.java_195": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is empty, making it impossible to evaluate whether the implicit cast could lead to a ..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/unsafe-hostname-verification_hutool-http/src/main/java/cn/hutool/http/HttpConnection.java_578": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert claims a hostname verifier always accepts any certificate. Given the lack of explicit path..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/weak-cryptographic-algorithm_hutool-core/src/main/java/cn/hutool/core/lang/UUID.java_116": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty and irrelevant to the alert, making it impossible to determine if..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/weak-cryptographic-algorithm_hutool-crypto/src/main/java/cn/hutool/crypto/SecureUtil.java_93": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "CodeQL alert flags weak cryptographic algorithms (HmacMD5, HmacSHA1, DES, DESede) which are indeed k..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/weak-cryptographic-algorithm_hutool-crypto/src/main/java/cn/hutool/crypto/SecureUtil.java_122": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates the use of weak cryptographic algorithms (DES and DESede). The data flow traces ..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/weak-cryptographic-algorithm_hutool-crypto/src/main/java/cn/hutool/crypto/SecureUtil.java_187": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert points out the use of weak cryptographic algorithms (DES and DESede) in multiple locations..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/weak-cryptographic-algorithm_hutool-crypto/src/main/java/cn/hutool/crypto/digest/Digester.java_53": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "CodeQL flags MD5 as weak, and the data flow traces indicate MD5 is used in the DigestAlgorithm and D..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/weak-cryptographic-algorithm_hutool-crypto/src/main/java/cn/hutool/crypto/digest/HMac.java_70": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates that HmacMD5 and HmacSHA1 are weak cryptographic algorithms. The evidence points..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/weak-cryptographic-algorithm_hutool-crypto/src/main/java/cn/hutool/crypto/symmetric/SymmetricCrypto.java_133": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "CodeQL alert indicates weak cryptographic algorithms (DES, DESede) used, which is a known security r..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/insecure-cookie_hutool-extra/src/main/java/cn/hutool/extra/servlet/ServletUtil.java_376": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert is about a cookie being set without the 'secure' flag, but the program slice is unavailabl..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/insecure-cookie_hutool-extra/src/main/java/cn/hutool/extra/servlet/ServletUtil.java_387": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to make an educated guess about whether ..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/insecure-trustmanager_hutool-http/src/main/java/cn/hutool/http/ssl/SSLSocketFactoryBuilder.java_110": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates the use of a TrustManager that trusts any certificate. This is a critical securi..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/zipslip_hutool-core/src/main/java/cn/hutool/core/util/ZipUtil.java_389": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates potential path traversal due to unsanitized archive entries. The data flow trace..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/path-injection_hutool-core/src/main/java/cn/hutool/core/convert/impl/PathConverter.java_33": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The data flow from ServletUtil.java to PathConverter.java involves user-provided values being conver..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/xss_hutool-core/src/main/java/cn/hutool/core/io/IoUtil.java_173": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty and the source file for the sink location could not be read, making it im..."
+  },
+  "dromara__hutool_CVE-2018-17297_4.1.11_java/implicit-cast-in-compound-assignment_hutool-core/src/main/java/cn/hutool/core/date/DateUtil.java_1471": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty, making it impossible to verify the alert's validity...."
+  },
+  "apache__sling-org-apache-sling-servlets-resolver_CVE-2024-23673_2.10.0_java/xss_src/main/java/org/apache/sling/servlets/resolver/internal/console/WebConsolePlugin.java_138": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to determine if the data flow can be part o..."
+  },
+  "codehaus-plexus__plexus-archiver_CVE-2018-1002200_3.5_java/concatenated-command-line_src/test/java/org/codehaus/plexus/archiver/tar/TarFileAttributesTest.java_99": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert is about command line construction via string concatenation in a test file. Test code is n..."
+  },
+  "codehaus-plexus__plexus-archiver_CVE-2018-1002200_3.5_java/concatenated-command-line_src/test/java/org/codehaus/plexus/archiver/tar/TarFileAttributesTest.java_173": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to determine whether the alert is a true or..."
+  },
+  "codehaus-plexus__plexus-archiver_CVE-2018-1002200_3.5_java/concatenated-command-line_src/test/java/org/codehaus/plexus/archiver/tar/TarFileAttributesTest.java_242": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is empty and irrelevant to the alert, making it impossible to determine if the alert ..."
+  },
+  "codehaus-plexus__plexus-archiver_CVE-2018-1002200_3.5_java/concatenated-command-line_src/test/java/org/codehaus/plexus/archiver/tar/TarFileAttributesTest.java_308": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Program slice is completely empty and irrelevant to the alert, making any educated guess impossible...."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/weak-cryptographic-algorithm_utils/src/main/java/org/owasp/dependencycheck/utils/Checksum.java_69": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates that MD5 and SHA1 are weak cryptographic algorithms. However, the lack of a prog..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/weak-cryptographic-algorithm_utils/src/main/java/org/owasp/dependencycheck/utils/Checksum.java_194": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert mentions the use of weak cryptographic algorithms MD5 and SHA1, which are known vulnerabil..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/overly-large-range_core/src/main/java/org/owasp/dependencycheck/dependency/VulnerableSoftware.java_210": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice provided is empty and irrelevant to the alert, making it impossible to determine if t..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/polynomial-redos_core/src/main/java/org/owasp/dependencycheck/utils/DependencyVersion.java_79": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert describes potential regex slowdown due to user input, but the code slice is missing and no..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/zipslip_core/src/main/java/org/owasp/dependencycheck/analyzer/ArchiveAnalyzer.java_516": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to reconstruct the analyzer claim and check..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/zipslip_core/src/main/java/org/owasp/dependencycheck/utils/ExtractionUtil.java_102": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty and irrelevant to the alert, making it impossible to make an educ..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/zipslip_core/src/main/java/org/owasp/dependencycheck/utils/ExtractionUtil.java_199": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert suggests an unsanitized archive entry with '..' used in a file system operation, which cou..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/path-injection_core/src/main/java/org/owasp/dependencycheck/analyzer/AbstractNpmAnalyzer.java_116": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for AbstractNpmAnalyzer.java is completely empty, making it impossible to evaluate..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/path-injection_utils/src/main/java/org/owasp/dependencycheck/utils/Checksum.java_70": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the sink location in Checksum.java could not be read, making it impossible to ..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/maven/non-https-url_core/src/test/resources/dwr-pom.xml_143": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates downloading artifacts over an insecure protocol from http://repo1.maven.org/mave..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/maven/non-https-url_core/src/test/resources/dwr-pom.xml_280": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice could not be read, making it impossible to verify the alert's validity with the pr..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/maven/non-https-url_core/target/test-classes/dwr-pom.xml_143": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty and the source file could not be read, making it impossible to determine ..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/maven/non-https-url_core/target/test-classes/dwr-pom.xml_280": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice could not be read, and there's no code provided for analysis. This makes it imposs..."
+  },
+  "jeremylong__DependencyCheck_CVE-2018-12036_3.1.2_java/maven/non-https-url_maven/src/it/false-positives/pom.xml_31": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty and the source file could not be read, making it impossible to verify the..."
+  },
+  "apache__dolphinscheduler_CVE-2022-26884_2.0.5_java/ssrf_dolphinscheduler-datasource-plugin/dolphinscheduler-datasource-api/src/main/java/org/apache/dolphinscheduler/plugin/datasource/api/provider/JdbcDataSourceProvider.java_51": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The provided program slice is empty and unable to be read, making it impossible to evaluate the spec..."
+  },
+  "apache__dolphinscheduler_CVE-2022-26884_2.0.5_java/ssrf_dolphinscheduler-datasource-plugin/dolphinscheduler-datasource-api/src/main/java/org/apache/dolphinscheduler/plugin/datasource/api/provider/JdbcDataSourceProvider.java_76": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to make an educated guess about the true na..."
+  },
+  "apache__dolphinscheduler_CVE-2022-26884_2.0.5_java/insecure-cookie_dolphinscheduler-api/src/main/java/org/apache/dolphinscheduler/api/controller/LoginController.java_114": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates a cookie being added without the 'secure' flag, but the code slice is empty. Wit..."
+  },
+  "apache__dolphinscheduler_CVE-2022-26884_2.0.5_java/ldap-injection_dolphinscheduler-api/src/main/java/org/apache/dolphinscheduler/api/security/impl/ldap/LdapService.java_92": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The LDAP query directly uses a user-provided value, which can lead to LDAP injection. No explicit pa..."
+  },
+  "apache__dolphinscheduler_CVE-2022-26884_2.0.5_java/insecure-trustmanager_dolphinscheduler-common/src/main/java/org/apache/dolphinscheduler/common/utils/HttpUtils.java_100": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates usage of TrustManager which trusts any certificate, a known security vulnerabili..."
+  },
+  "apache__dolphinscheduler_CVE-2022-26884_2.0.5_java/concatenated-command-line_dolphinscheduler-server/src/main/java/org/apache/dolphinscheduler/server/monitor/AbstractMonitor.java_77": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making any educated guess impossible. More context is needed to ..."
+  },
+  "joniles__mpxj_CVE-2020-35460_8.3.4_java/redos_src/main/java/net/sf/mpxj/fasttrack/FastTrackReader.java_632": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty, making it impossible to reconstruct the analyzer claim or check precondi..."
+  },
+  "joniles__mpxj_CVE-2020-35460_8.3.4_java/zipslip_src/main/java/net/sf/mpxj/common/InputStreamHelper.java_126": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to determine if the data flow can lead t..."
+  },
+  "asf__tapestry-5_CVE-2019-0207_5.4.4_java/weak-cryptographic-algorithm_tapestry-core/src/main/java/org/apache/tapestry5/internal/services/ClientDataEncoderImpl.java_68": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to verify the use of HmacSHA1 and determine..."
+  },
+  "asf__tapestry-5_CVE-2019-0207_5.4.4_java/insecure-cookie_tapestry-core/src/main/java/org/apache/tapestry5/modules/InternalModule.java_95": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates a cookie is added without the 'secure' flag. However, the provided code slice is..."
+  },
+  "asf__tapestry-5_CVE-2019-0207_5.4.4_java/unsafe-deserialization_tapestry-core/src/main/java/org/apache/tapestry5/corelib/components/Form.java_725": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for Form.java is not provided, making it impossible to verify the exact data flow and..."
+  },
+  "asf__tapestry-5_CVE-2019-0207_5.4.4_java/regex-injection_tapestry-core/src/main/java/org/apache/tapestry5/modules/TapestryModule.java_1007": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the sink location is missing, making it impossible to determine if the data fl..."
+  },
+  "asf__tapestry-5_CVE-2019-0207_5.4.4_java/redos_tapestry-core/src/main/java/org/apache/tapestry5/ContentType.java_41": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to make an educated guess about whether the..."
+  },
+  "asf__tapestry-5_CVE-2019-0207_5.4.4_java/redos_tapestry-webresources/src/main/java/com/yahoo/platform/yui/compressor/CssCompressor.java_149": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to reconstruct the analyzer claim and check..."
+  },
+  "asf__tapestry-5_CVE-2019-0207_5.4.4_java/path-injection_commons/src/main/java/org/apache/tapestry5/ioc/internal/BasicTypeCoercions.java_272": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The data flow involves user-provided values being passed through several components and ultimately t..."
+  },
+  "asf__tapestry-5_CVE-2019-0207_5.4.4_java/path-injection_tapestry-core/src/main/java/org/apache/tapestry5/internal/test/PageTesterContext.java_42": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for PageTesterContext.java is missing, making it impossible to determine if the da..."
+  },
+  "asf__tapestry-5_CVE-2019-0207_5.4.4_java/maven/non-https-url_quickstart/build/classes/main/archetype-resources/pom.xml_130": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates use of an insecure protocol (http) for downloading/uploading artifacts from http..."
+  },
+  "asf__tapestry-5_CVE-2019-0207_5.4.4_java/maven/non-https-url_quickstart/filtered/archetype-resources/pom.xml_130": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to verify the exact nature of the data f..."
+  },
+  "asf__tapestry-5_CVE-2019-0207_5.4.4_java/xss_tapestry-core/src/main/java/org/apache/tapestry5/internal/TapestryInternalUtils.java_370": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The data flow traces through Base64 encoding and decoding, which likely sanitizes user input. The ab..."
+  },
+  "vert-x3__vertx-web_CVE-2018-12542_3.5.3.CR1_java/weak-cryptographic-algorithm_vertx-web/src/main/java/io/vertx/ext/web/handler/impl/DigestAuthHandlerImpl.java_58": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to determine if the use of MD5 is part of a..."
+  },
+  "vert-x3__vertx-web_CVE-2018-12542_3.5.3.CR1_java/weak-cryptographic-algorithm_vertx-web/src/main/java/io/vertx/ext/web/handler/sockjs/impl/SockJSHandlerImpl.java_251": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to determine if the MD5 usage is part of..."
+  },
+  "vert-x3__vertx-web_CVE-2018-12542_3.5.3.CR1_java/redos_vertx-web-api-contract/src/main/java/io/vertx/ext/web/api/validation/impl/RegularExpressions.java_8": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty and the source file could not be read, making it impossible to evaluate t..."
+  },
+  "jenkinsci__perfecto-plugin_CVE-2020-2261_1.17_java/ssrf_src/main/java/io/plugins/perfecto/credentials/PerfectoCredentials.java_112": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty and the source file could not be read, making it impossible to evaluate t..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/stack-trace-exposure_dspace-sword/src/main/java/org/purl/sword/server/ServiceDocumentServlet.java_152": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to evaluate the alert based on the provided..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/unvalidated-url-redirection_dspace-api/src/main/java/org/dspace/rdf/negotiation/Negotiator.java_277": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the source file Negotiator.java is not available, making it impossible to verify ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/unvalidated-url-redirection_dspace-api/src/main/java/org/dspace/rdf/negotiation/Negotiator.java_307": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The source code slice for Negotiator.java is missing, making it impossible to fully assess the data ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/unvalidated-url-redirection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/ControlledVocabularyServlet.java_53": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to evaluate the data flow and determine ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/unvalidated-url-redirection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SearchResultLogServlet.java_71": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to reconstruct the data flow and verify ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/unvalidated-url-redirection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/VersionHistoryServlet.java_112": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the sink location is missing, making it impossible to determine if the user-provi..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/unvalidated-url-redirection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/admin/MetadataFieldRegistryServlet.java_211": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty and there's no source code available for the given locations, ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/unvalidated-url-redirection_dspace-xmlui/src/main/java/org/dspace/app/xmlui/aspect/eperson/LoginRedirect.java_84": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to determine the presence of a vulnerabi..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/unvalidated-url-redirection_dspace-xmlui/src/main/java/org/dspace/app/xmlui/cocoon/DSpaceCocoonServletFilter.java_258": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to perform an educated guess about wheth..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/unvalidated-url-redirection_dspace-xmlui/src/main/java/org/dspace/app/xmlui/cocoon/DSpaceCocoonServletFilter.java_270": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The provided program slice is empty, making it impossible to determine if the data flow is actually ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/http-response-splitting_dspace-api/src/main/java/org/dspace/rdf/negotiation/Negotiator.java_277": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert claims a response-splitting vulnerability due to user-provided values in headers. However,..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/http-response-splitting_dspace-api/src/main/java/org/dspace/rdf/negotiation/Negotiator.java_307": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The source file for Negotiator.java could not be read, making it impossible to verify the exact data..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/http-response-splitting_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/ItemExportArchiveServlet.java_96": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to evaluate whether the data flow can cause..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/http-response-splitting_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/MetadataExportServlet.java_92": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to determine if the data flow can cause ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/http-response-splitting_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/MyDSpaceServlet.java_727": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty and irrelevant to the alert, making it impossible to make an educ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/weak-cryptographic-algorithm_dspace-api/src/main/java/org/dspace/checker/CheckerCommand.java_197": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates use of MD5, which is a weak cryptographic algorithm. The data flow traces show M..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/weak-cryptographic-algorithm_dspace-api/src/main/java/org/dspace/core/Utils.java_129": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to determine whether the cryptographic a..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/weak-cryptographic-algorithm_dspace-api/src/main/java/org/dspace/eperson/PasswordHash.java_260": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is empty, making it impossible to determine whether the alert is a true positive or f..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/weak-cryptographic-algorithm_dspace-api/src/main/java/org/dspace/storage/bitstore/BitstreamStorageManager.java_309": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to determine if the alert is a true or f..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/weak-cryptographic-algorithm_dspace-api/src/main/java/org/dspace/storage/bitstore/BitstreamStorageManager.java_414": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates MD5 is used, which is weak. However, the program slice is empty, making it impos..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/weak-cryptographic-algorithm_dspace-api/src/main/java/org/dspace/storage/bitstore/BitstreamStorageManager.java_457": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice could not be read, and the source file is missing, making it impossible to verify ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/weak-cryptographic-algorithm_dspace-sword/src/main/java/org/purl/sword/base/ChecksumUtils.java_63": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to determine if the use of MD5 is part of a..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/weak-cryptographic-algorithm_dspace-sword/src/main/java/org/purl/sword/base/ChecksumUtils.java_123": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert mentions MD5 as a weak cryptographic algorithm, but the code slice is missing. Without the..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/ssrf_dspace-sword/src/main/java/org/purl/sword/client/Client.java_255": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the relevant source file is completely empty, making it impossible to evaluate..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/tainted-format-string_dspace-api/src/main/java/org/dspace/content/LicenseUtils.java_89": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty or irrelevant, making it impossible to make an educated guess ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/regex-injection_dspace-jspui/src/main/java/org/dspace/app/webui/handle/HandleJSONResolver.java_36": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for HandleJSONResolver.java is unavailable, making it impossible to fully assess t..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/polynomial-redos_dspace-api/src/main/java/org/dspace/discovery/SolrServiceImpl.java_2071": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates a potential ReDoS (Regular Expression Denial of Service) vulnerability due to a ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/polynomial-redos_dspace-api/src/main/java/org/dspace/discovery/SolrServiceImpl.java_2089": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates a potential ReDoS (Regular Expression Denial of Service) vulnerability due to a ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/polynomial-redos_dspace-jspui/src/main/java/org/dspace/app/webui/discovery/DiscoverUtility.java_437": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates potential ReDoS (Regular Expression Denial of Service) vulnerabilities due to us..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/zipslip_dspace-api/src/main/java/org/dspace/app/itemimport/ItemImport.java_2078": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to evaluate the alert accurately...."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/zipslip_dspace-api/src/main/java/org/dspace/app/itemimport/ItemImport.java_2065": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Unsanitized archive entry that may contain '..' can lead to directory traversal attacks in file syst..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/app/itemexport/ItemExport.java_1151": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the sink is completely empty, making it impossible to determine if the data fl..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/app/itemexport/ItemExport.java_1155": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the sink location is completely empty, making it impossible to determine if the d..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/app/itemexport/ItemExport.java_1174": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the sink location is missing, making it impossible to determine if the alert d..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/app/itemexport/ItemExport.java_1193": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the sink location is missing, making it impossible to determine if the data fl..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/app/itemimport/ItemImport.java_1003": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the sink location is not available, making it impossible to reconstruct the an..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/app/itemimport/ItemImport.java_2443": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The source file for the sink location could not be read, making it impossible to fully analyze the d..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/core/ConfigurationManager.java_529": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for ConfigurationManager.java is missing, making it impossible to determine if user-p..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/core/ConfigurationManager.java_541": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for ConfigurationManager.java is completely empty, making it impossible to evaluate t..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/core/NewsManager.java_58": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for org/dspace/core/NewsManager.java is missing, making it impossible to determine th..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-api/src/main/java/org/dspace/core/NewsManager.java_102": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the sink location is completely empty, making it impossible to evaluate the data ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/MyDSpaceServlet.java_717": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to evaluate the data flow and determine if ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/MyDSpaceServlet.java_730": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to evaluate the data flow and determine ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SitemapServlet.java_82": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to evaluate the data flow and determine ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SitemapServlet.java_111": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to evaluate the alert's validity...."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SubmissionController.java_284": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to determine if the data flow can be par..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SubmissionController.java_1590": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The code slice is unavailable, but the alert lacks specific path constraints and indicates an incomp..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SubmissionController.java_1599": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to evaluate the alert with the provided ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SubmissionController.java_1706": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The provided code slice is completely empty, making it impossible to evaluate the alert based on the..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SubmissionController.java_1711": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to reconstruct the analyzer claim or verify..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-jspui/src/main/java/org/dspace/app/webui/servlet/SubmissionController.java_1712": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty and irrelevant to the alert, making any educated guess impossi..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-sword/src/main/java/org/dspace/sword/DepositManager.java_267": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the sink location is completely empty, making it impossible to evaluate the da..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-sword/src/main/java/org/dspace/sword/DepositManager.java_268": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for DepositManager.java is missing, making it impossible to determine if the data ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-sword/src/main/java/org/dspace/sword/DepositManager.java_271": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for DepositManager.java is missing, making it impossible to verify the exact data ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/path-injection_dspace-sword/src/main/java/org/dspace/sword/DepositManager.java_277": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The provided code slice for DepositManager.java is empty, making it impossible to evaluate the data ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/app/sherpa/SHERPAResponse.java_55": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "CodeQL alert indicates XML parsing uses user-provided value without preventing external entity expan..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/authority/orcid/xml/Converter.java_39": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "XML parsing depends on a user-provided value without guarding against external entity expansion. The..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/content/authority/LCNameAuthority.java_180": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing using a user-provided value without guarding against external entity..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/content/authority/SHERPARoMEOProtocol.java_116": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing using a user-provided value without guarding against external entity..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/content/packager/METSManifest.java_708": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing depends on a user-provided value without guarding against external e..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/ctask/general/MetadataWebService.java_272": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing depends on a user-provided value without guarding against external e..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/license/CCLookup.java_196": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing with a user-provided value without guarding against external entity ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/license/CCLookup.java_306": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing with a user-provided value without guarding against external entity ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/license/CCLookup.java_354": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "XML parsing with user-provided value without guarding against external entity expansion can lead to ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/submit/lookup/ArXivService.java_130": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is empty and irrelevant to the alert, making it impossible to judge without the actua..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/submit/lookup/CiNiiService.java_112": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates a potential XML external entity (XXE) vulnerability due to user-provided XML par..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/submit/lookup/CiNiiService.java_192": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing with a user-provided value without guarding against external entity ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/submit/lookup/CrossRefService.java_117": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing using a user-provided value without guarding against external entity..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/submit/lookup/PubmedService.java_140": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to verify the presence of a security vulner..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xxe_dspace-api/src/main/java/org/dspace/submit/lookup/PubmedService.java_259": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to determine if the alert is a True Posi..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/tainted-numeric-cast_dspace-xmlui/src/main/java/org/dspace/app/xmlui/cocoon/servlet/multipart/DSpaceTokenStream.java_133": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for DSpaceTokenStream.java is missing, making it impossible to evaluate the datafl..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/tainted-numeric-cast_dspace-xmlui/src/main/java/org/dspace/app/xmlui/cocoon/servlet/multipart/DSpaceTokenStream.java_148": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for DSpaceTokenStream.java could not be read, making it impossible to fully evalua..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/xml/xpath-injection_dspace-api/src/main/java/org/dspace/content/authority/DSpaceControlledVocabulary.java_168": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "While the alert indicates that XPath expressions depend on user-provided values, the lack of specifi..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/maven/non-https-url_dspace/modules/xmlui-mirage2/pom.xml_331": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice could not be read, making it impossible to verify the exact data flow and context ..."
+  },
+  "DSpace__DSpace_CVE-2022-31194_5.10_java/maven/non-https-url_pom.xml_1632": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates downloading artifacts over an insecure protocol (http) from http://maven.restlet..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/unvalidated-url-redirection_src/main/java/org/owasp/esapi/filters/SecurityWrapperResponse.java_436": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The data flow traces indicate that user-provided values are being processed through validation metho..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/unvalidated-url-redirection_src/main/java/org/owasp/esapi/waf/ESAPIWebApplicationFirewallFilter.java_463": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The data flow traces indicate that user-provided values are passed through validation methods in Def..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/http-response-splitting_src/main/java/org/owasp/esapi/reference/DefaultHTTPUtilities.java_242": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert mentions a potential response-splitting vulnerability due to user-provided values in HTTP ..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/weak-cryptographic-algorithm_src/main/java/org/owasp/esapi/crypto/CipherText.java_833": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates that HmacSHA1 is considered weak. Given that the source and sink location point ..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/weak-cryptographic-algorithm_src/main/java/org/owasp/esapi/crypto/KeyDerivationFunction.java_371": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates the use of HmacSHA1, a weak cryptographic algorithm. The data flow traces show t..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/weak-cryptographic-algorithm_src/main/java/org/owasp/esapi/reference/crypto/JavaEncryptor.java_665": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert mentions using a weak cryptographic algorithm (ECB mode without padding). However, the ext..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/weak-cryptographic-algorithm_src/main/java/org/owasp/esapi/reference/crypto/JavaEncryptor.java_1038": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "SHA1withDSA is considered weak and vulnerable to collision attacks. The alert points to its usage in..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/weak-cryptographic-algorithm_src/test/java/org/owasp/esapi/reference/crypto/CryptoPolicy.java_63": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert is about using AES/ECB/NoPadding, which is indeed weak. However, the source file could not..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/insecure-cookie_src/main/java/org/owasp/esapi/filters/SecurityWrapperRequest.java_748": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to determine if the 'secure' flag is set..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/insecure-cookie_src/main/java/org/owasp/esapi/filters/SecurityWrapperResponse.java_110": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to determine if the 'secure' flag is set on..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/insecure-cookie_src/main/java/org/owasp/esapi/reference/DefaultHTTPUtilities.java_203": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The lack of a program slice makes it impossible to verify the exact code. However, the ESAPI library..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/insecure-cookie_src/main/java/org/owasp/esapi/reference/DefaultHTTPUtilities.java_729": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert mentions that the 'secure' flag is not set for the cookie, which is a security concern. Ho..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/insecure-cookie_src/main/java/org/owasp/esapi/reference/DefaultHTTPUtilities.java_961": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to determine if the 'secure' flag is set..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/insecure-cookie_src/main/java/org/owasp/esapi/reference/DefaultHTTPUtilities.java_993": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to determine if the alert is a true positiv..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/insecure-cookie_src/test/java/org/owasp/esapi/http/MockFilterChain.java_43": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert is related to a test file (MockFilterChain.java) which is likely used for testing purposes..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/insecure-cookie_src/test/java/org/owasp/esapi/waf/HttpOnlyTest.java_80": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert is in a test file (HttpOnlyTest.java) which is likely used for testing purposes. Code in t..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/polynomial-redos_src/main/java/org/owasp/esapi/codecs/ref/EncodingPatternPreservation.java_58": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert mentions potential slow regex evaluation due to many repetitions of spaces in user-provide..."
+  },
+  "ESAPI__esapi-java-legacy_CVE-2022-23457_2.2.3.1_java/xss_src/test/java/org/owasp/esapi/http/MockFilterChain.java_42": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert claims a cross-site scripting (XSS) vulnerability due to user-provided values. However, th..."
+  },
+  "kubernetes-client__java_CVE-2020-8570_client-java-parent-9.0.1_java/insecure-trustmanager_kubernetes/src/main/java/io/kubernetes/client/openapi/ApiClient.java_1343": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates use of a TrustManager that trusts any certificate. This can lead to man-in-the-m..."
+  },
+  "kubernetes-client__java_CVE-2020-8570_client-java-parent-9.0.1_java/zipslip_util/src/main/java/io/kubernetes/client/Copy.java_140": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to evaluate the data flow and determine ..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5405_2.1.6.RELEASE_java/polynomial-redos_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/encryption/EnvironmentPrefixHelper.java_128": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates potential slow regex execution due to user-provided values, which can lead to De..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5405_2.1.6.RELEASE_java/polynomial-redos_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/encryption/EnvironmentPrefixHelper.java_132": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates a potential ReDoS (Regular Expression Denial of Service) vulnerability due to a ..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5405_2.1.6.RELEASE_java/path-injection_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/environment/SvnKitEnvironmentRepository.java_191": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to make an educated guess about whether the..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5405_2.1.6.RELEASE_java/path-injection_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/environment/SvnKitEnvironmentRepository.java_193": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty, making it impossible to evaluate the data flow and determine if it's a t..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5405_2.1.6.RELEASE_java/path-injection_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/environment/SvnKitEnvironmentRepository.java_195": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to determine if the data flow leads to a..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5405_2.1.6.RELEASE_java/path-injection_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/support/AbstractScmAccessor.java_266": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the sink location is completely empty, making it impossible to determine if the d..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5405_2.1.6.RELEASE_java/xss_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/encryption/EncryptionController.java_101": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The provided code slice is empty, making it impossible to verify the alert without the actual source..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5405_2.1.6.RELEASE_java/xss_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/encryption/EncryptionController.java_115": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to verify the data flow and preconditions f..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5410_2.1.8.RELEASE_java/polynomial-redos_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/encryption/EnvironmentPrefixHelper.java_128": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates that regular expressions dependent on user-provided values can run slowly for sp..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5410_2.1.8.RELEASE_java/polynomial-redos_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/encryption/EnvironmentPrefixHelper.java_132": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert suggests a potential ReDoS vulnerability due to a regex depending on user-provided input. ..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5410_2.1.8.RELEASE_java/path-injection_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/environment/SvnKitEnvironmentRepository.java_191": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the sink location is missing, making it impossible to evaluate the data flow and ..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5410_2.1.8.RELEASE_java/path-injection_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/environment/SvnKitEnvironmentRepository.java_193": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for SvnKitEnvironmentRepository.java is completely empty, making it impossible to ..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5410_2.1.8.RELEASE_java/path-injection_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/environment/SvnKitEnvironmentRepository.java_195": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for SvnKitEnvironmentRepository.java is missing, making it impossible to reconstru..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5410_2.1.8.RELEASE_java/path-injection_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/support/AbstractScmAccessor.java_266": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the sink location is missing, making it impossible to determine if the data fl..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5410_2.1.8.RELEASE_java/xss_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/encryption/EncryptionController.java_101": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to evaluate the data flow and preconditi..."
+  },
+  "spring-cloud__spring-cloud-config_CVE-2020-5410_2.1.8.RELEASE_java/xss_spring-cloud-config-server/src/main/java/org/springframework/cloud/config/server/encryption/EncryptionController.java_115": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice could not be read, making it impossible to verify the exact data flow and determin..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/stack-trace-exposure_jspwiki-main/src/main/java/org/apache/wiki/attachment/AttachmentServlet.java_324": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty and does not provide any code to analyze. Without the actual c..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/stack-trace-exposure_jspwiki-main/src/main/java/org/apache/wiki/attachment/AttachmentServlet.java_353": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty and irrelevant to the alert, making it impossible to make an educ..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/stack-trace-exposure_jspwiki-main/src/main/java/org/apache/wiki/tags/AuthorTag.java_72": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The provided code slice is empty and irrelevant, making it impossible to evaluate whether the alert ..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/stack-trace-exposure_jspwiki-main/src/main/java/org/apache/wiki/tags/InsertPageTag.java_128": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty, making it impossible to evaluate the taint source and sink. Without the ..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/stack-trace-exposure_jspwiki-main/src/main/java/org/apache/wiki/tags/PageSizeTag.java_63": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to evaluate the alert based on the provi..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/stack-trace-exposure_jspwiki-main/src/main/java/org/apache/wiki/tags/PluginTag.java_126": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The provided code slice is empty and irrelevant to the alert, making it impossible to determine if t..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/stack-trace-exposure_jspwiki-main/src/main/java/org/apache/wiki/tags/VariableTag.java_107": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty and the source file could not be read, making it impossible to evaluate t..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/unvalidated-url-redirection_jspwiki-main/src/main/java/org/apache/wiki/attachment/AttachmentServlet.java_304": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to evaluate the data flow and determine if ..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/weak-cryptographic-algorithm_jspwiki-main/src/main/java/org/apache/wiki/ReferenceManager.java_384": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to determine if the alert is a true or f..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/weak-cryptographic-algorithm_jspwiki-main/src/main/java/org/apache/wiki/parser/CreoleToJSPWikiTranslator.java_515": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is empty and irrelevant to the alert, making it impossible to determine if the alert ..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/insecure-cookie_jspwiki-main/src/main/java/org/apache/wiki/auth/login/CookieAssertionLoginModule.java_148": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates a cookie is added to the response without the 'secure' flag. This is a known sec..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/insecure-cookie_jspwiki-main/src/main/java/org/apache/wiki/auth/login/CookieAssertionLoginModule.java_161": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert claims a cookie is added without the 'secure' flag, but the code slice is unavailable. Giv..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/insecure-cookie_jspwiki-main/src/main/java/org/apache/wiki/auth/login/CookieAuthenticationLoginModule.java_250": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates a cookie is added without the 'secure' flag, which is a known security vulnerabi..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/insecure-cookie_jspwiki-main/src/main/java/org/apache/wiki/auth/login/CookieAuthenticationLoginModule.java_299": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates a cookie is set without the 'secure' flag, which is a known security vulnerabili..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/insecure-cookie_jspwiki-main/src/main/java/org/apache/wiki/tags/CookieTag.java_282": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates a cookie is added to a response without the 'secure' flag. This is a potential v..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/insecure-cookie_jspwiki-main/src/main/java/org/apache/wiki/tags/CookieTag.java_286": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making any educated guess impossible without the actual sourc..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/regex-injection_jspwiki-main/src/main/java/org/apache/wiki/forms/FormSelect.java_137": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates a user-provided value being used in a regular expression, but the code slice is ..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/regex-injection_jspwiki-main/src/main/java/org/apache/wiki/plugin/IndexPlugin.java_142": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the relevant Java file (IndexPlugin.java) could not be read, making it impossi..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/regex-injection_jspwiki-main/src/main/java/org/apache/wiki/plugin/IndexPlugin.java_143": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the relevant source file (IndexPlugin.java) could not be read, making it impos..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/polynomial-redos_jspwiki-main/src/main/java/org/apache/wiki/parser/CreoleToJSPWikiTranslator.java_507": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert suggests a regex issue that can cause slow performance with specific input patterns. The d..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/polynomial-redos_jspwiki-main/src/main/java/org/apache/wiki/plugin/WeblogPlugin.java_341": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert describes regexes using user-provided values that may cause slow performance with specific..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/path-injection_jspwiki-main/src/main/java/org/apache/wiki/auth/login/CookieAuthenticationLoginModule.java_124": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the relevant file is completely empty, making it impossible to make an educate..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/path-injection_jspwiki-main/src/main/java/org/apache/wiki/auth/login/CookieAuthenticationLoginModule.java_213": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the sink location is completely empty, making it impossible to evaluate the da..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/concatenated-command-line_jspwiki-util/src/test/java/org/apache/wiki/util/FileUtilTest.java_102": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty and irrelevant, making it impossible to evaluate the alert based ..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/xss_jspwiki-main/src/main/java/org/apache/wiki/plugin/SampleAjaxPlugin.java_59": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for SampleAjaxPlugin.java is missing, making it impossible to determine if the data f..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/xss_jspwiki-main/src/main/java/org/apache/wiki/tags/AuthorTag.java_72": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the sink location is completely empty, making it impossible to verify the presenc..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/xss_jspwiki-main/src/main/java/org/apache/wiki/tags/CalendarTag.java_320": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to verify the data flow and reconstruct the..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/xss_jspwiki-main/src/main/java/org/apache/wiki/tags/CookieTag.java_256": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The source code slice is unavailable, making it impossible to verify the data flow and determine if ..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/xss_jspwiki-main/src/main/java/org/apache/wiki/tags/FeedDiscoveryTag.java_59": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for FeedDiscoveryTag.java is not available, making it impossible to fully assess t..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/xss_jspwiki-main/src/main/java/org/apache/wiki/tags/FeedDiscoveryTag.java_72": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the sink location is completely empty, making it impossible to determine if the d..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/xss_jspwiki-main/src/main/java/org/apache/wiki/tags/FeedDiscoveryTag.java_75": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the relevant source file is completely empty, making it impossible to evaluate..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/xss_jspwiki-main/src/main/java/org/apache/wiki/tags/InsertPageTag.java_128": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to determine if the data flow can lead t..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/xss_jspwiki-main/src/main/java/org/apache/wiki/tags/PluginTag.java_126": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to verify the data flow and precondition..."
+  },
+  "apache__jspwiki_CVE-2019-0225_2.11.0.M2_java/xss_jspwiki-main/src/main/java/org/apache/wiki/tags/VariableTag.java_107": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty for the relevant file, making it impossible to evaluate the data ..."
+  },
+  "codehaus-plexus__plexus-utils_CVE-2017-1000487_3.0.15_java/polynomial-redos_src/main/java/org/codehaus/plexus/util/xml/XmlReader.java_742": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates a potential ReDoS (Regular Expression Denial of Service) vulnerability due to a ..."
+  },
+  "codehaus-plexus__plexus-utils_CVE-2017-1000487_3.0.15_java/zipslip_src/main/java/org/codehaus/plexus/util/Expand.java_116": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Unsanitized archive entry with '..' can lead to directory traversal. CodeQL alert points to file sys..."
+  },
+  "apache__rocketmq_CVE-2019-17572_4.6.0_java/weak-cryptographic-algorithm_common/src/main/java/org/apache/rocketmq/common/consistenthash/ConsistentHashRouter.java_117": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is empty, making it impossible to determine if the use of MD5 at the specified locati..."
+  },
+  "apache__rocketmq_CVE-2019-17572_4.6.0_java/weak-cryptographic-algorithm_srvutil/src/main/java/org/apache/rocketmq/srvutil/FileWatchService.java_43": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert flags MD5 as a weak cryptographic algorithm, but the program slice is empty, and there is ..."
+  },
+  "apache__rocketmq_CVE-2019-17572_4.6.0_java/sql-injection_broker/src/main/java/org/apache/rocketmq/broker/transaction/jdbc/JDBCTransactionStore.java_128": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the sink location is missing, making it impossible to evaluate the data flow and ..."
+  },
+  "codehaus-plexus__plexus-utils_CVE-2022-4244_3.0.23_java/polynomial-redos_src/main/java/org/codehaus/plexus/util/xml/XmlReader.java_742": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert suggests a regular expression that could run slowly on user-provided input starting with '..."
+  },
+  "codehaus-plexus__plexus-utils_CVE-2022-4244_3.0.23_java/zipslip_src/main/java/org/codehaus/plexus/util/Expand.java_116": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates an unsanitized archive entry that may contain '..'. This could lead to directory..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/insecure-cookie_src/main/java/spark/Response.java_235": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates a cookie is added to the response without the 'secure' flag, which is a known se..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/insecure-cookie_src/main/java/spark/Response.java_246": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert states that a cookie is added to the response without the 'secure' flag. This is a common ..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_121": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert is about a cookie not having the 'secure' flag set, but the code slice is empty and irrele..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_137": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to evaluate the alert accurately...."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_152": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert is in test code (ResponseTest.java), which is not part of the production codebase. Setting..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_167": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is empty, making it impossible to verify whether the cookie is being added without th..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_182": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert is in a test file (ResponseTest.java), which is not part of the production code. Setting t..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_197": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty, making it impossible to determine if the cookie is being added without t..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_213": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to evaluate the presence of the 'secure'..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/path-injection_src/main/java/spark/resource/ClassPathResource.java_120": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the sink location is completely empty, making it impossible to accurately asse..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/path-injection_src/main/java/spark/resource/ClassPathResource.java_139": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates that the path depends on user-provided values but does not specify the nature of..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/path-injection_src/main/java/spark/resource/ClassPathResource.java_161": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates user-provided values reaching the sink but lacks specific path constraints. The ..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/path-injection_src/main/java/spark/resource/ExternalResource.java_40": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for ExternalResource.java is completely empty, making it impossible to determine the ..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/path-injection_src/main/java/spark/resource/ExternalResource.java_67": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Program slice for ExternalResource.java could not be read, making it impossible to confirm or deny t..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/path-injection_src/main/java/spark/resource/JarResourceHandler.java_109": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to reconstruct the analyzer claim and check..."
+  },
+  "perwendel__spark_CVE-2016-9177_2.5.1_java/path-injection_src/main/java/spark/utils/ResourceUtils.java_222": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the sink location src/main/java/spark/utils/ResourceUtils.java is completely e..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/insecure-cookie_src/main/java/spark/Response.java_251": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to verify the presence of the 'secure' flag..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/insecure-cookie_src/main/java/spark/Response.java_273": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates a cookie is added to a response without the 'secure' flag. This is a known secur..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_124": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to verify if the 'secure' flag is set on th..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_141": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to determine if the alert is a True Positiv..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_157": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty and irrelevant to the alert, making any educated guess impossible..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_173": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to determine if the cookie is added with..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_189": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The source file is unreadable, and the code slice is completely empty, making it impossible to verif..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_205": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty and irrelevant to the alert, making it impossible to determine..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_221": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert is in a test file (ResponseTest.java), which is unlikely to contain actual production vuln..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/insecure-cookie_src/test/java/spark/ResponseTest.java_237": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert is in a test file (ResponseTest.java), which suggests it's a testing scenario rather than ..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/path-injection_src/main/java/spark/resource/ClassPathResource.java_120": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The data flow involves user-provided values but the sink is in a class loading context (ClassPathRes..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/path-injection_src/main/java/spark/resource/ClassPathResource.java_139": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates a path depending on user-provided values leading to a classpath resource access...."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/path-injection_src/main/java/spark/resource/ClassPathResource.java_161": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to reconstruct the analyzer claim or che..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/path-injection_src/main/java/spark/resource/ExternalResource.java_40": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Code slice for ExternalResource.java is not available, making it impossible to determine if the data..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/path-injection_src/main/java/spark/resource/ExternalResource.java_67": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "Program slice is empty and completely irrelevant to the alert, making it impossible to make an educa..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/path-injection_src/main/java/spark/staticfiles/DirectoryTraversal.java_19": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert suggests a dependency on user-provided values leading to potential directory traversal. Ho..."
+  },
+  "perwendel__spark_CVE-2018-9159_2.7.1_java/path-injection_src/main/java/spark/utils/ResourceUtils.java_222": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for src/main/java/spark/utils/ResourceUtils.java is completely empty, making it impos..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/unsafe-hostname-verification_agent/jvm/src/test/java/org/jolokia/jvmagent/JolokiaServerTest.java_308": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert is in a test file (JolokiaServerTest.java), which is not production code. Test code often ..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/unsafe-hostname-verification_agent/jvm/src/test/java/org/jolokia/jvmagent/JolokiaServerTest.java_467": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert is in a test file (JolokiaServerTest.java), which suggests it is part of a test case rathe..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/weak-cryptographic-algorithm_agent/core/src/main/java/org/jolokia/util/JolokiaCipher.java_141": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert claims AES/CBC/PKCS5Padding is weak. However, without the actual code, we cannot verify if..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/overly-large-range_agent/core/src/main/java/org/jolokia/util/NetworkUtil.java_328": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty and the source file could not be read, making it impossible to determine ..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/insecure-trustmanager_agent/jvm/src/main/java/org/jolokia/jvmagent/security/DelegatingAuthenticator.java_156": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The use of a TrustManager that trusts any certificate indicates a potential vulnerability, as it byp..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/insecure-trustmanager_agent/jvm/src/test/java/org/jolokia/jvmagent/JolokiaServerTest.java_306": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert involves a test class (JolokiaServerTest), which typically does not affect production secu..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/insecure-trustmanager_agent/jvm/src/test/java/org/jolokia/jvmagent/JolokiaServerTest.java_486": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert is about a TrustManager trusting any certificate in a test class. Since it's a test enviro..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/regex-injection_agent/core/src/main/java/org/jolokia/http/HttpRequestHandler.java_358": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty and completely irrelevant to the alert, making it impossible to make an e..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/polynomial-redos_agent/core/src/main/java/org/jolokia/handler/ExecHandler.java_220": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert describes a regex pattern that can be exploited with specific input to cause a slow regex ..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/polynomial-redos_agent/core/src/main/java/org/jolokia/handler/ExecHandler.java_226": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates a potential regex DoS due to user-provided input. The data flow traces show user..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/maven/non-https-url_client/javascript/pom.xml_70": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty, making it impossible to confirm or deny the presence of a vulnerability ..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/maven/non-https-url_client/javascript/test-app/pom.xml_115": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty and irrelevant to the alert, making any educated guess impossi..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/maven/non-https-url_tools/roo-addon/pom.xml_40": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty and irrelevant to the alert, making it impossible to determine if the vul..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/maven/non-https-url_tools/roo-addon/pom.xml_47": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert mentions an insecure protocol (http) for downloading artifacts, but the program slice is u..."
+  },
+  "rhuss__jolokia_CVE-2018-1000129_1.4.0_java/xss_agent/core/src/main/java/org/jolokia/http/AgentServlet.java_503": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to verify the data flow and precondition..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/unvalidated-url-redirection_servlet/src/test/java/io/undertow/servlet/test/request/RedirectServlet.java_16": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the sink location is missing, making it impossible to verify if the data flow ..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/unvalidated-url-redirection_servlet/src/test/java/io/undertow/servlet/test/wrapper/NonStandardResponseWrapper.java_341": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The provided code slice is empty and irrelevant to the alert, making it impossible to make an educat..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/http-response-splitting_servlet/src/main/java/io/undertow/servlet/websockets/ServletWebSocketHttpExchange.java_126": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to make an educated guess about the presenc..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/http-response-splitting_servlet/src/test/java/io/undertow/servlet/test/wrapper/NonStandardResponseWrapper.java_368": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates user-provided values being used in headers, which can lead to response-splitting..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/weak-cryptographic-algorithm_core/src/main/java/io/undertow/security/idm/DigestAlgorithm.java_71": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates MD5 is used, which is weak and should not be used. The data flow traces show MD5..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/weak-cryptographic-algorithm_core/src/main/java/io/undertow/security/impl/SimpleNonceManager.java_142": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to determine if the MD5 usage in this co..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/weak-cryptographic-algorithm_core/src/main/java/io/undertow/websockets/client/WebSocket13ClientHandshake.java_150": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "SHA1 is known to be weak, but in the context of WebSocket handshakes, it's often used for specific h..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/weak-cryptographic-algorithm_core/src/main/java/io/undertow/websockets/core/WebSocketUtils.java_58": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty and irrelevant based on the provided evidence, making it impossib..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/ssrf_servlet/src/test/java/io/undertow/servlet/test/servletcontext/ReadFileServlet.java_22": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert suggests a potential SSRF due to a user-provided value, but the code slice is unavailable...."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/insecure-cookie_servlet/src/test/java/io/undertow/servlet/test/wrapper/NonStandardResponseWrapper.java_263": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to evaluate whether the alert is a True ..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/path-injection_core/src/main/java/io/undertow/server/handlers/resource/FileResourceManager.java_89": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for FileResourceManager.java is missing, making it impossible to determine if the ..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/maven/non-https-url_pom.xml_378": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates downloading artifacts over an insecure protocol (http). Given the source and sin..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/maven/non-https-url_pom.xml_395": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert mentions downloading artifacts over an insecure HTTP protocol from a repository. Given the..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/main/java/io/undertow/servlet/handlers/DefaultServlet.java_155": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to make an educated guess about whether ..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/charset/DefaultCharsetFormParserServlet.java_17": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice could not be read, making it impossible to verify if the data flow constitutes a X..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/charset/EchoServlet.java_29": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to assess the validity of the alert...."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/errorpage/PathServlet.java_16": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The source and sink are in test files, which are not part of the production code. This makes it unli..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/path/PathMappingServlet.java_37": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to evaluate the alert without the actual..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/request/RequestPathServlet.java_43": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice could not be read, making it impossible to evaluate the specific code responsible ..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/request/RequestPathServlet.java_45": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to determine if the given dataflow can b..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/request/RequestPathServlet.java_46": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to evaluate the data flow and preconditions..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/request/RequestPathServlet.java_47": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty and could not be read, making it impossible to evaluate the alert's valid..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/response/contenttype/ContentTypeServlet.java_45": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to evaluate the data flow and check prec..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/security/form/EchoServlet.java_20": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to verify the alert's validity...."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/security/form/RequestParamEchoServlet.java_41": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty, making it impossible to evaluate the data flow and determine if the aler..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/session/ChangeSessionIdServlet.java_22": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert specifies a cross-site scripting (XSS) vulnerability from a user-provided value. However, ..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/streams/BlockingInputStreamServlet.java_45": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice could not be read, making it impossible to verify the data flow and determine if t..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/util/ParameterEchoServlet.java_71": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is empty, making it impossible to evaluate the exact data flow and determine if the a..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/util/PathTestServlet.java_19": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to evaluate the alert accurately...."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/util/PathTestServlet.java_20": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice could not be read, making it impossible to evaluate the data flow and precondition..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/xss_servlet/src/test/java/io/undertow/servlet/test/util/PathTestServlet.java_22": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice could not be read, making it impossible to reconstruct the analyzer claim or verif..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/implicit-cast-in-compound-assignment_core/src/main/java/io/undertow/conduits/ChunkedStreamSourceConduit.java_209": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to evaluate the alert with certainty...."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/implicit-cast-in-compound-assignment_core/src/main/java/io/undertow/io/UndertowOutputStream.java_237": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The provided code slice is empty, making it impossible to determine if the implicit cast from long t..."
+  },
+  "undertow-io__undertow_CVE-2014-7816_1.0.16.Final_java/implicit-cast-in-compound-assignment_core/src/main/java/io/undertow/server/HttpServerExchange.java_1425": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "Implicit cast from long to int without additional context may not lead to a vulnerability. There are..."
+  },
+  "asf__commons-io_CVE-2021-29425_2.6_java/weak-cryptographic-algorithm_src/main/java/org/apache/commons/io/input/MessageDigestCalculatingInputStream.java_88": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates a weak cryptographic algorithm (MD5) is used, but the code slice is unavailable ..."
+  },
+  "asf__commons-io_CVE-2021-29425_2.6_java/polynomial-redos_src/main/java/org/apache/commons/io/input/XmlStreamReader.java_742": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates a potential for slow regex performance due to user-provided input. However, the ..."
+  },
+  "asf__commons-io_CVE-2021-29425_2.6_java/polynomial-redos_src/test/java/org/apache/commons/io/input/compatibility/XmlStreamReader.java_700": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert describes a potential slow regex issue with user-provided input. However, the extracted ev..."
+  },
+  "asf__commons-io_CVE-2021-29425_2.6_java/concatenated-command-line_src/test/java/org/apache/commons/io/FileUtilsTestCase.java_838": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty, making it impossible to determine if the alert is a True Positive or Fal..."
+  },
+  "asf__commons-io_CVE-2021-29425_2.6_java/concatenated-command-line_src/test/java/org/apache/commons/io/FileUtilsTestCase.java_842": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, and there is no relevant code to analyze, making it impossibl..."
+  },
+  "zeroturnaround__zt-zip_CVE-2018-1002201_1.12_java/zipslip_src/main/java/org/zeroturnaround/zip/ZipUtil.java_1150": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty, making it impossible to evaluate the alert based on the provided evidenc..."
+  },
+  "zeroturnaround__zt-zip_CVE-2018-1002201_1.12_java/zipslip_src/main/java/org/zeroturnaround/zip/ZipUtil.java_1196": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to determine if the data flow can be par..."
+  },
+  "zeroturnaround__zt-zip_CVE-2018-1002201_1.12_java/zipslip_src/main/java/org/zeroturnaround/zip/ZipUtil.java_1258": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to verify the dataflow and preconditions, t..."
+  },
+  "zeroturnaround__zt-zip_CVE-2018-1002201_1.12_java/zipslip_src/main/java/org/zeroturnaround/zip/Zips.java_676": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice could not be read, making it impossible to determine if the data flow is vulnerabl..."
+  },
+  "zeroturnaround__zt-zip_CVE-2018-1002201_1.12_java/zipslip_src/test/java/example/UnpackExample.java_29": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to evaluate the data flow and determine ..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/ssrf_tika-core/src/main/java/org/apache/tika/io/TikaInputStream.java_408": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates potential SSRF due to user-provided values passed through multiple method calls ..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/ssrf_tika-translate/src/main/java/org/apache/tika/language/translate/JoshuaNetworkTranslator.java_208": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the sink location is completely empty, making it impossible to evaluate the da..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/redos_tika-core/src/main/java/org/apache/tika/sax/StandardsText.java_56": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to verify the specific regular expression c..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/polynomial-redos_tika-parsers/src/main/java/org/apache/tika/parser/code/SourceCodeParser.java_140": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert reports potential slow regex performance due to strings starting with '@author ' and many ..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/polynomial-redos_tika-parsers/src/main/java/org/apache/tika/parser/mail/MailUtil.java_90": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates that a regex dependent on user-provided values may run slowly on strings with ma..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/polynomial-redos_tika-parsers/src/main/java/org/apache/tika/parser/mbox/MboxParser.java_164": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert describes potential slow regex execution based on user input. However, the provided data f..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/polynomial-redos_tika-parsers/src/main/java/org/apache/tika/parser/mbox/MboxParser.java_178": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates potential ReDoS (Regular Expression Denial of Service) vulnerabilities due to re..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-core/src/main/java/org/apache/tika/io/TemporaryResources.java_81": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The provided code slice for the sink location is completely empty, making it impossible to determine..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-core/src/main/java/org/apache/tika/io/TikaInputStream.java_399": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for TikaInputStream.java is not available, making it impossible to fully evaluate ..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-core/src/main/java/org/apache/tika/io/TikaInputStream.java_480": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the sink location is completely empty, making it impossible to evaluate the exact..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-core/src/main/java/org/apache/tika/io/TikaInputStream.java_589": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the sink location is missing, making it impossible to determine if the data fl..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-core/src/main/java/org/apache/tika/io/TikaInputStream.java_586": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the sink location is not available, making it impossible to determine if the d..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-core/src/main/java/org/apache/tika/parser/digest/InputStreamDigester.java_164": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates data flow from user-provided values to a sink in InputStreamDigester.java, but t..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-core/src/main/java/org/apache/tika/utils/RereadableInputStream.java_194": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert reports multiple paths depending on user-provided values, but the sink at RereadableInputS..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-core/src/main/java/org/apache/tika/utils/RereadableInputStream.java_251": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to evaluate the security implications of th..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-example/src/main/java/org/apache/tika/example/RollbackSoftware.java_114": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the sink location (RollbackSoftware.java:114) could not be read, making it imposs..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-parsers/src/main/java/org/apache/tika/parser/journal/GrobidRESTParser.java_72": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the sink location is not available, making it impossible to evaluate the alert ac..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-parsers/src/main/java/org/apache/tika/parser/journal/GrobidRESTParser.java_75": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty for the relevant sink file (GrobidRESTParser.java), making it imp..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-parsers/src/main/java/org/apache/tika/parser/journal/JournalParser.java_63": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert describes a data flow from a user-provided value to a sink in the JournalParser. However, ..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-parsers/src/main/java/org/apache/tika/parser/mp4/DirectFileReadDataSource.java_45": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the file tika-parsers/src/main/java/org/apache/tika/parser/mp4/DirectFileReadD..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-parsers/src/main/java/org/apache/tika/parser/pot/PooledTimeSeriesParser.java_133": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the sink location is completely empty, making it impossible to evaluate the alert..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/path-injection_tika-parsers/src/main/java/org/apache/tika/parser/pot/PooledTimeSeriesParser.java_135": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the sink location is missing, making it impossible to determine if the data flow ..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xxe_tika-core/src/main/java/org/apache/tika/detect/XmlRootExtractor.java_63": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates user-provided XML parsing without protection against external entity expansion. ..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xxe_tika-core/src/main/java/org/apache/tika/parser/NetworkParser.java_129": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing using user-provided values without guarding against external entity ..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xxe_tika-core/src/test/java/org/apache/tika/parser/mock/MockParser.java_84": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing using user-provided values without guarding against external entity ..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xxe_tika-parsers/src/main/java/org/apache/tika/parser/dif/DIFParser.java_66": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing with user-provided values without preventing external entity expansi..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xxe_tika-parsers/src/main/java/org/apache/tika/parser/epub/EpubContentParser.java_53": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing using user-provided values without protection against external entit..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xxe_tika-parsers/src/main/java/org/apache/tika/parser/image/xmp/JempboxExtractor.java_70": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates user-provided XML parsing without guarding against external entity expansion. Th..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xxe_tika-parsers/src/main/java/org/apache/tika/parser/iwork/IWorkPackageParser.java_207": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The CodeQL alert indicates XML parsing uses user-provided values without guarding against external e..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xxe_tika-parsers/src/main/java/org/apache/tika/parser/microsoft/ooxml/xwpf/ml2006/Word2006MLParser.java_61": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert points to XML parsing using user-provided values without protection against external entit..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xxe_tika-parsers/src/main/java/org/apache/tika/parser/microsoft/xml/AbstractXML2003Parser.java_99": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing using user-provided values without guarding against external entity ..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xxe_tika-parsers/src/main/java/org/apache/tika/parser/odf/OpenDocumentContentParser.java_601": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing using user-provided values without protection against external entit..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xxe_tika-parsers/src/main/java/org/apache/tika/parser/xml/XMLParser.java_73": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "CodeQL alert indicates XML parsing using user-provided values without guarding against external enti..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xxe_tika-parsers/src/test/java/org/apache/tika/XMLTestBase.java_116": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates that XML parsing uses user-provided values without guarding against external ent..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xxe_tika-parsers/src/test/java/org/apache/tika/XMLTestBase.java_141": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing without protection against external entity expansion, a critical sec..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/concatenated-command-line_tika-parsers/src/main/java/org/apache/tika/parser/ocr/TesseractOCRParser.java_219": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice could not be read, making it impossible to verify the dataflow and check the precondi..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/command-line-injection_tika-core/src/main/java/org/apache/tika/parser/external/ExternalParser.java_236": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the sink location (ExternalParser.java:236) is completely empty, making it imposs..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/command-line-injection_tika-core/src/main/java/org/apache/tika/parser/external/ExternalParser.java_238": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is empty and completely irrelevant to the alert, making any educated guess impossible..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/command-line-injection_tika-parsers/src/main/java/org/apache/tika/parser/gdal/GDALParser.java_362": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty, making it impossible to determine if the data flow involves a vulnerabil..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/command-line-injection_tika-parsers/src/main/java/org/apache/tika/parser/gdal/GDALParser.java_364": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates user-provided values being used in a command line, but the data flow traces thro..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/command-line-injection_tika-parsers/src/main/java/org/apache/tika/parser/ocr/TesseractOCRParser.java_528": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to make an educated guess about whether the..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/tainted-numeric-cast_tika-core/src/main/java/org/apache/tika/utils/RereadableInputStream.java_256": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alerts indicate potential truncation due to user-provided values being cast to narrower types. H..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/tainted-numeric-cast_tika-parsers/src/main/java/org/apache/tika/parser/rtf/TextExtractor.java_386": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice could not be read, making it impossible to fully evaluate the alert and determine if ..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/tainted-numeric-cast_tika-parsers/src/main/java/org/apache/tika/parser/rtf/TextExtractor.java_400": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates potential truncation due to casting user-provided values to narrower types. Howe..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/maven/non-https-url_tika-server/pom.xml_35": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates downloading or uploading artifacts over an insecure protocol (http). The source ..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/xss_tika-server/src/main/java/org/apache/tika/server/resource/MetadataResource.java_105": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty and completely irrelevant to the alert, making it impossible to make an e..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/implicit-cast-in-compound-assignment_tika-batch/src/main/java/org/apache/tika/batch/fs/strawman/StrawManTikaAppDriver.java_140": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to evaluate the implicit cast and determine..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/implicit-cast-in-compound-assignment_tika-core/src/main/java/org/apache/tika/detect/MagicDetector.java_365": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to evaluate the alert. Without the actua..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/implicit-cast-in-compound-assignment_tika-core/src/main/java/org/apache/tika/io/LookaheadInputStream.java_120": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is empty and irrelevant to the alert, making it impossible to make an educated guess ..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/implicit-cast-in-compound-assignment_tika-parsers/src/main/java/org/apache/tika/parser/chm/lzx/ChmLzxBlock.java_333": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty, making it impossible to evaluate whether the implicit cast of int to sho..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/implicit-cast-in-compound-assignment_tika-parsers/src/main/java/org/apache/tika/parser/chm/lzx/ChmLzxBlock.java_368": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to evaluate the alert with certainty...."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/implicit-cast-in-compound-assignment_tika-parsers/src/main/java/org/apache/tika/parser/chm/lzx/ChmLzxBlock.java_403": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is empty, making it impossible to determine if the implicit cast from long to int can..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/implicit-cast-in-compound-assignment_tika-parsers/src/main/java/org/apache/tika/parser/chm/lzx/ChmLzxBlock.java_477": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to evaluate the alert...."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/implicit-cast-in-compound-assignment_tika-parsers/src/main/java/org/apache/tika/parser/chm/lzx/ChmLzxBlock.java_775": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to evaluate the implicit cast and determine..."
+  },
+  "apache__tika_CVE-2018-11762_1.18_java/implicit-cast-in-compound-assignment_tika-parsers/src/main/java/org/apache/tika/parser/chm/lzx/ChmLzxBlock.java_827": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty and irrelevant to the alert, making it impossible to determine if the imp..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/unsafe-hostname-verification_testsuite/integration/web/src/test/java/org/jboss/as/test/integration/web/handlers/RequestDumpingHandlerTestImpl.java_353": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates a hostname verifier that always accepts any certificate, which is a security iss..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/stack-trace-exposure_testsuite/shared/src/main/java/org/jboss/as/test/integration/management/util/SimpleServlet.java_59": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to evaluate the data flow and determine ..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/stack-trace-exposure_testsuite/shared/src/main/java/org/jboss/as/test/integration/security/common/servlets/DataSourceTestServlet.java_95": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to evaluate the alert accurately...."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/stack-trace-exposure_testsuite/shared/src/main/java/org/jboss/as/test/integration/security/common/servlets/DataSourceTestServlet.java_97": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to assess whether the alert is a true or fa..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/stack-trace-exposure_testsuite/shared/src/main/java/org/wildfly/test/security/servlets/CheckIdentityPermissionServlet.java_89": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is empty and irrelevant to the alert, making it impossible to determine if the alert ..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/insufficient-key-size_testsuite/shared/src/main/java/org/jboss/as/test/integration/security/common/VaultHandler.java_127": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert is about a key size less than 128 bits being used. However, the evidence points to a test ..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/weak-cryptographic-algorithm_jdr/jboss-as-jdr/src/main/java/org/jboss/as/jdr/commands/JarCheck.java_60": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty and the source file could not be read, making it impossible to verify the..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/weak-cryptographic-algorithm_security/subsystem/src/main/java/org/jboss/as/security/vault/VaultSession.java_171": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "CodeQL alerts that PBEwithMD5andDES is weak. Given the data flow traces pointing to the same lines i..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/weak-cryptographic-algorithm_testsuite/shared/src/main/java/org/jboss/as/test/integration/security/common/Utils.java_163": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to determine if the MD5 usage is part of..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/insecure-cookie_testsuite/integration/web/src/test/java/org/jboss/as/test/integration/web/cookie/CookieReadServlet.java_72": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert is about a cookie being added without the 'secure' flag, but the code slice is empty and i..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/insecure-cookie_testsuite/integration/web/src/test/java/org/jboss/as/test/integration/web/cookie/CookieReadServlet.java_73": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty and cannot be read, making it impossible to determine if the cookie is be..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/insecure-cookie_testsuite/integration/web/src/test/java/org/jboss/as/test/integration/web/cookie/CookieServlet.java_58": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to determine if the alert is a true or f..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/insecure-cookie_testsuite/integration/web/src/test/java/org/jboss/as/test/integration/web/cookie/CookieServlet.java_62": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty, making it impossible to determine if the cookie is added without the 'se..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/insecure-cookie_testsuite/integration/web/src/test/java/org/jboss/as/test/integration/web/cookie/CookieServlet.java_76": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to evaluate the specific code that trigg..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/insecure-cookie_testsuite/integration/web/src/test/java/org/jboss/as/test/integration/web/cookie/CookieServlet.java_79": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to determine if the alert is a True Positiv..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/insecure-cookie_testsuite/integration/web/src/test/java/org/jboss/as/test/integration/web/cookie/CookieServlet.java_83": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice could not be read, making it impossible to verify the claim about the 'secure' fla..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/jndi-injection_testsuite/shared/src/main/java/org/jboss/as/test/integration/common/JndiServlet.java_63": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty, making it impossible to evaluate the data flow and preconditions for the..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/jndi-injection_testsuite/shared/src/main/java/org/jboss/as/test/integration/management/util/SimpleServlet.java_56": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice could not be read, making it impossible to evaluate the data flow and determine if th..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/jndi-injection_testsuite/shared/src/main/java/org/jboss/as/test/integration/security/common/servlets/DataSourceTestServlet.java_84": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice provided is empty and irrelevant, making it impossible to determine if the data flow ..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/insecure-trustmanager_testsuite/integration/web/src/test/java/org/jboss/as/test/integration/web/handlers/RequestDumpingHandlerTestImpl.java_346": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert involves a TrustManager trusting any certificate in a test code. This is a known security ..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/insecure-trustmanager_testsuite/shared/src/main/java/org/jboss/as/test/http/util/TestHttpClientUtils.java_91": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert is about a TrustManager that trusts any certificate, which is a known security risk. Howev..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/insecure-trustmanager_testsuite/shared/src/main/java/org/jboss/as/test/http/util/TestHttpClientUtils.java_93": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates that TestHttpClientUtils uses a TrustManager that trusts any certificate, which ..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/maven/non-https-url_pom.xml_6249": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates downloading artifacts over an insecure protocol (http) from a public repository...."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/maven/non-https-url_pom.xml_6266": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates downloading or uploading artifacts over an insecure protocol (http). Given the s..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/maven/non-https-url_testsuite/pom.xml_660": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates downloading or uploading over an insecure protocol (http). Given the source and ..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/xss_testsuite/integration/web/src/test/java/org/jboss/as/test/integration/web/cookie/CookieReadServlet.java_56": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to evaluate whether the reported cross-site..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/xss_testsuite/integration/web/src/test/java/org/jboss/as/test/integration/web/formauth/SecuredPostServlet.java_59": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty and irrelevant, making it impossible to evaluate the taint flo..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/xss_testsuite/integration/web/src/test/java/org/jboss/as/test/integration/web/formauth/SecuredPostServlet.java_60": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to evaluate the data flow and determine ..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/xss_testsuite/integration/web/src/test/java/org/jboss/as/test/integration/web/security/SecuredServlet.java_50": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, and there is no relevant code to analyze, making it impossibl..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/xss_testsuite/integration/web/src/test/java/org/jboss/as/test/smoke/web/SimpleLegacyServlet.java_47": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to determine the nature of the data flow..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/xss_testsuite/integration/web/src/test/java/org/jboss/as/test/smoke/web/SimpleServlet.java_56": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to determine if the data flow constitute..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/xss_testsuite/shared/src/main/java/org/jboss/as/test/integration/security/common/servlets/RolePrintingServlet.java_75": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The provided code slice is completely empty, making it impossible to reconstruct the analyzer claim ..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/xss_testsuite/shared/src/main/java/org/wildfly/test/security/servlets/ReadCredentialServlet.java_109": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to evaluate the alert based on the provided..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/xss_testsuite/shared/src/main/java/org/wildfly/test/security/servlets/ReadCredentialServlet.java_118": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to determine the nature of the data flow..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/xss_testsuite/shared/src/main/java/org/wildfly/test/security/servlets/ReadCredentialServlet.java_127": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to determine if the data flow is vulnerable..."
+  },
+  "wildfly__wildfly_CVE-2018-1047_11.0.0.Final_java/xss_testsuite/shared/src/main/java/org/wildfly/test/security/servlets/ReadCredentialServlet.java_149": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The provided code slice is empty and irrelevant to the alert, making it impossible to make an educat..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/stack-trace-exposure_api/src/main/java/javax/faces/webapp/_PageContextOutWriter.java_73": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice could not be read, making it impossible to evaluate the data flow and determine if..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/stack-trace-exposure_impl/src/main/java/org/apache/myfaces/application/ViewHandlerImpl.java_460": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to evaluate the data flow and determine ..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/stack-trace-exposure_impl/src/main/java/org/apache/myfaces/application/jsp/JspViewHandlerImpl.java_269": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty and completely irrelevant to the alert, making it impossible to make an e..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/stack-trace-exposure_impl/src/main/java/org/apache/myfaces/context/PartialResponseWriterImpl.java_467": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty and irrelevant to the alert, making any educated guess impossible..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/stack-trace-exposure_impl/src/main/java/org/apache/myfaces/context/servlet/ServletExternalContextImpl.java_507": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to reconstruct the analyzer claim or enu..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/stack-trace-exposure_impl/src/main/java/org/apache/myfaces/renderkit/ErrorPageWriter.java_320": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is empty and the source file could not be read, making it impossible to determine ..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/stack-trace-exposure_impl/src/main/java/org/apache/myfaces/renderkit/ErrorPageWriter.java_712": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to evaluate the data flow and determine if ..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/stack-trace-exposure_impl/src/main/java/org/apache/myfaces/renderkit/ErrorPageWriter.java_745": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to evaluate whether the dataflow can be par..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/stack-trace-exposure_impl/src/main/java/org/apache/myfaces/view/jsp/JspViewDeclarationLanguage.java_227": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The provided code slice is completely empty, making it impossible to evaluate the alert for a true o..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/stack-trace-exposure_impl/src/test/java/org/apache/myfaces/mc/test/core/MockDefaultViewDeclarationLanguage.java_145": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is empty and irrelevant to the alert, making it impossible to make an educated guess ..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/stack-trace-exposure_shared/src/main/java/org/apache/myfaces/shared/context/AjaxExceptionHandlerImpl.java_284": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty and irrelevant to the alert, making it impossible to make an educ..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/unvalidated-url-redirection_impl/src/main/java/org/apache/myfaces/context/servlet/ServletExternalContextImpl.java_465": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Untrusted URL redirection based on user-provided values can lead to open redirect vulnerabilities. T..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/http-response-splitting_shared/src/main/java/org/apache/myfaces/shared/context/flash/FlashImpl.java_637": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the sink location is completely empty, making it impossible to verify the data fl..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/weak-cryptographic-algorithm_shared/src/main/java/org/apache/myfaces/shared/util/StateUtils.java_308": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert mentions the use of weak cryptographic algorithms (DES and ECB/PKCS5Padding). Given that t..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/weak-cryptographic-algorithm_shared/src/main/java/org/apache/myfaces/shared/util/StateUtils.java_451": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "DES and ECB/PKCS5Padding are known weak cryptographic algorithms. The alert points to their usage in..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/weak-cryptographic-algorithm_shared/src/main/java/org/apache/myfaces/shared/util/StateUtils.java_735": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert points to the use of DES, a weak cryptographic algorithm. However, without the actual code..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/weak-cryptographic-algorithm_shared/src/main/java/org/apache/myfaces/shared/util/StateUtils.java_752": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "CodeQL alert indicates use of weak cryptographic algorithm HmacSHA1. Given the source and sink locat..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/weak-cryptographic-algorithm_shared/src/main/java/org/apache/myfaces/shared/util/StateUtils.java_786": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "DES is a weak cryptographic algorithm known for vulnerabilities. The alert points to its usage in th..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/weak-cryptographic-algorithm_shared/src/main/java/org/apache/myfaces/shared/util/StateUtils.java_834": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates use of DES, a known weak cryptographic algorithm. Given the data flow traces inv..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/weak-cryptographic-algorithm_shared/src/main/java/org/apache/myfaces/shared/util/StateUtils.java_931": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "CodeQL flagged HmacSHA1 as weak. The data flow traces show usage of HmacSHA1 from multiple locations..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/weak-cryptographic-algorithm_shared/src/main/java/org/apache/myfaces/shared/util/StateUtils.java_979": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "HmacSHA1 is known to be weak and vulnerable to collision attacks. The alert points to its usage in m..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/ssrf_impl/src/main/java/org/apache/myfaces/view/facelets/compiler/SAXCompiler.java_670": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to verify the exact data flow and condit..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/ssrf_impl/src/main/java/org/apache/myfaces/view/facelets/compiler/SAXCompiler.java_707": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty for the sink location, making it impossible to determine wheth..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/ssrf_impl/src/test/java/org/apache/myfaces/view/facelets/mock/MockServletContext.java_104": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The sink location is in a test class, which suggests that the data flow may be part of a test scenar..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/insecure-cookie_impl/src/main/java/org/apache/myfaces/context/servlet/ServletExternalContextImpl.java_710": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty, making it impossible to determine if the alert is a True Posi..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/insecure-cookie_shared/src/main/java/org/apache/myfaces/shared/context/flash/FlashImpl.java_594": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice is completely empty, making it impossible to evaluate the specific context and determ..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/insecure-cookie_shared/src/main/java/org/apache/myfaces/shared/context/flash/FlashImpl.java_637": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice could not be read, making it impossible to verify if the 'secure' flag is set on t..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/insecure-cookie_shared/src/main/java/org/apache/myfaces/shared/context/flash/FlashImpl.java_740": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert claims a cookie is added without the 'secure' flag. However, the program slice is empty, a..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/unsafe-deserialization_shared/src/main/java/org/apache/myfaces/shared/util/StateUtils.java_538": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates unsafe deserialization based on user-provided values. The data flow traces show ..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/unsafe-deserialization_shared/src/main/java/org/apache/myfaces/shared/util/StateUtils.java_552": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "Unsafe deserialization of a user-provided value in StateUtils.java:552 is a clear security risk. Des..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/path-injection_impl/src/main/java/org/apache/myfaces/view/facelets/util/Resource.java_100": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates user-provided values being passed through multiple layers of the code without ex..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/path-injection_impl/src/test/java/org/apache/myfaces/view/facelets/mock/MockServletContext.java_64": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the sink location is completely empty, making it impossible to determine if the d..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/path-injection_impl/src/test/java/org/apache/myfaces/view/facelets/mock/MockServletContext.java_85": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates that user-provided values are being used in various parts of the code, but the s..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/path-injection_impl/src/test/java/org/apache/myfaces/view/facelets/mock/MockServletContext.java_101": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice is completely empty for the relevant sink file, making it impossible to assess the..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/path-injection_impl/src/test/java/org/apache/myfaces/view/facelets/mock/MockServletContext.java_126": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The data flow traces involve multiple components, including test mock files. The sink is in a test f..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/path-injection_impl/src/test/java/org/apache/myfaces/view/facelets/mock/MockServletContext.java_149": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The data flow involves user-provided values but the sink is in a mock test class (MockServletContext..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xxe_impl/src/main/java/org/apache/myfaces/config/ConfigFilesXmlValidationUtils.java_223": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing uses user-provided values without preventing external entity expansi..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xxe_impl/src/main/java/org/apache/myfaces/config/ConfigFilesXmlValidationUtils.java_271": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing using a user-provided value without preventing external entity expan..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xxe_impl/src/main/java/org/apache/myfaces/config/ConfigFilesXmlValidationUtils.java_372": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing using a user-provided value without guarding against external entity..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xxe_impl/src/main/java/org/apache/myfaces/config/ConfigFilesXmlValidationUtils.java_430": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates XML parsing with a user-provided value without guarding against external entity ..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xxe_impl/src/main/java/org/apache/myfaces/config/impl/digester/DigesterFacesConfigUnmarshallerImpl.java_289": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "XML parsing uses a user-provided value without guarding against external entity expansion, which can..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xxe_impl/src/main/java/org/apache/myfaces/view/facelets/compiler/TagLibraryConfig.java_640": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "CodeQL alert indicates XML parsing with user-provided value without guarding against external entity..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/maven/non-https-url_api/pom.xml_540": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "CodeQL flagged downloading artifacts over an insecure protocol (http). Given the source and sink loc..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/maven/non-https-url_impl/pom.xml_920": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates downloading artifacts over an insecure HTTP protocol from http://download.java.n..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/maven/non-https-url_pom.xml_583": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates downloading artifacts over an insecure protocol (http). Given the source and sin..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xss_api/src/main/java/javax/faces/webapp/_PageContextOutWriter.java_73": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert reports multiple cross-site scripting vulnerabilities due to user-provided values, but the..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xss_impl/src/main/java/org/apache/myfaces/context/PartialResponseWriterImpl.java_467": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates multiple XSS vulnerabilities due to user-provided values. However, the provided ..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xss_impl/src/main/java/org/apache/myfaces/renderkit/ErrorPageWriter.java_281": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the sink location is missing, making it impossible to determine if the data flow ..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xss_impl/src/main/java/org/apache/myfaces/renderkit/ErrorPageWriter.java_295": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the sink location is completely empty, making it impossible to verify the claim o..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xss_impl/src/main/java/org/apache/myfaces/renderkit/ErrorPageWriter.java_796": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the sink location is completely empty, making it impossible to evaluate the da..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xss_impl/src/main/java/org/apache/myfaces/renderkit/html/HtmlLabelRenderer.java_168": {
+    "prediction": "TP",
+    "confidence": "1.00",
+    "rationale": "The alert indicates potential XSS vulnerabilities due to user-provided values. The data flow traces ..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xss_impl/src/main/java/org/apache/myfaces/view/facelets/el/ELText.java_201": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the source file impl/src/main/java/org/apache/myfaces/view/facelets/el/ELText...."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xss_impl/src/main/java/org/apache/myfaces/view/facelets/el/ELText.java_303": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the sink location is unavailable, making it impossible to verify the presence ..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xss_impl/src/main/java/org/apache/myfaces/view/facelets/tag/ui/UIDebug.java_135": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The program slice for the sink location is not available, making it impossible to determine if the d..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xss_shared/src/main/java/org/apache/myfaces/shared/renderkit/html/HtmlRendererUtils.java_1155": {
+    "prediction": "FP",
+    "confidence": "1.00",
+    "rationale": "The data flow traces show that the user-provided values are passed through multiple components but u..."
+  },
+  "apache__myfaces_CVE-2011-4367_2.0.11_java/xss_shared/src/main/java/org/apache/myfaces/shared/renderkit/html/HtmlTextRendererBase.java_160": {
+    "prediction": "ABSTAIN",
+    "confidence": "1.00",
+    "rationale": "The code slice for the sink location is completely empty, making it impossible to evaluate the data ..."
+  }
+}
