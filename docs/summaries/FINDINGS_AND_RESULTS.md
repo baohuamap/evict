@@ -17,6 +17,8 @@
 | E11 | CWE-Bench-Java | 2026-06-21 | GLM-4-9B-Chat (vLLM) | 1 | 549 | DONE | `artifacts/exports/cwe_bench_evict_results_glm_4_9b_chat.csv` |
 | E12 | Juliet PoC (conformal) | 2026-06-21 | DeepSeek-R1-Distill-Qwen-14B (vLLM) | 5 | 247 | DONE | `artifacts/exports/v2/juliet_conformal_poc_r1_distill_14b.csv` |
 | E13 | CWE-Bench-Java | 2026-06-21 | DeepSeek-R1-Distill-Qwen-14B (vLLM) | 1 | 549 | DONE | `artifacts/exports/cwe_bench_evict_results_r1_distill_14b.csv` |
+| E14 | Juliet PoC (conformal) | 2026-06-21 | DeepSeek-Coder-V2-Lite-Instruct (vLLM) | 5 | 247 | DONE | `artifacts/exports/v2/juliet_conformal_poc_ds_coder_v2_lite.csv` |
+| E15 | CWE-Bench-Java | 2026-06-21 | DeepSeek-Coder-V2-Lite-Instruct (vLLM) | 1 | 549 | DONE | `artifacts/exports/cwe_bench_evict_results_ds_coder_v2_lite.csv` |
 | E3 | Juliet multi-model baseline (Claude Haiku 4.5) | 2026-05-02 | Claude Haiku 4.5 | 1 | 3,061 | DONE | `artifacts/exports/v2/juliet_sampled_results_claude_haiku_4_5.csv` |
 | E4 | Juliet multi-model baseline (GPT-4o Mini) | 2026-05-01 | GPT-4o Mini | 1 | 3,107 | DONE | `artifacts/exports/v2/juliet_sampled_results_gpt_4o_mini.csv` |
 | E5 | Juliet multi-model baseline (Gemini 2.5 Flash Lite) | 2026-05-02 | Gemini 2.5 Flash Lite | 1 | 3,222 | DONE | `artifacts/exports/v2/juliet_sampled_results_gemini_2_5_flash_lite.csv` |
@@ -298,6 +300,62 @@ doesn't refuse more often despite being more "thoughtful."
 
 ---
 
+## 3h. Key Results: DeepSeek-Coder-V2-Lite-Instruct PoC (E14)
+
+### Setup
+- **Model:** deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct (MoE code model, 16B total/2.4B active), served via vLLM 0.7.3 on H100 80GB (8k context, BF16)
+- **Same protocol:** 247 alerts, CWE-89/78/190, k=5, 5-fold CV, alpha=0.1
+
+### Results (mean ± std over 5 folds)
+
+| Method | Precision | Recall | F1 | Coverage | ECE | R_sel |
+|--------|-----------|--------|----|----------|-----|-------|
+| Evidence-Free | 37.6 ± 3.1% | 100.0% | 54.5 ± 3.3% | 100% | 0.620 ± 0.031 | 0.624 ± 0.031 |
+| EVICT (No Symb.) | 37.9 ± 2.7% | 100.0% | 54.9 ± 2.9% | 98.0% | 0.621 ± 0.027 | 0.621 ± 0.027 |
+| EVICT (Full) | 37.4 ± 2.6% | 99.0 ± 2.0% | 54.3 ± 2.6% | 100% | 0.622 ± 0.023 | 0.624 ± 0.021 |
+
+### LLM Decision Distribution
+- **Labels:** TP=247 (100%), FP=0, ABSTAIN=0 — predicts TP for EVERY alert
+- **Confidence:** 1.0 → 242 (98.0%), 0.8 → 5 (2.0%)
+- **Unanimous 5/5:** 98.0% — **the most degenerate confidence distribution** (worst)
+
+### Key Observation
+DeepSeek-Coder-V2-Lite has the most extreme TP-bias: it predicts TP for all 247
+alerts. This produces 100% recall but only 37.6% precision. The 98% unanimous
+vote-share is the worst degeneracy observed, making conformal calibration
+completely ineffective (ECE 0.620, the worst). Despite being code-specialized,
+this model is the least suitable for alert triage.
+
+---
+
+## 3i. Key Results: DeepSeek-Coder-V2-Lite-Instruct CWE-Bench-Java (E15)
+
+### Setup
+- **Model:** DS-Coder-V2-Lite via vLLM, k=1, 549 CodeQL alerts, 45 projects
+
+### Results
+
+| Metric | Gemini Flash | Qwen-Coder-32B | GLM-4-9B | R1-Distill-14B | DS-Coder-V2-Lite |
+|--------|-------------|----------------|----------|----------------|------------------|
+| Precision | 3.3% | 1.5% | 1.9% | 3.0% | **4.0%** |
+| Recall | 93.3% | 40.0% | 62.5% | **100%** | 82.4% |
+| F1 | 0.063 | 0.030 | 0.040 | 0.060 | **0.080** |
+| TP | 14 | 2 | 5 | 13 | **14** |
+| FP | 414 | 128 | 259 | 427 | 338 |
+| TN | 47 | 76 | 97 | 32 | **184** |
+| FN | 1 | 3 | 3 | 0 | 3 |
+| ABSTAIN | 73 (13%) | 340 (62%) | 185 (34%) | 77 (14%) | 10 (2%) |
+
+### Key Observation
+Despite having the most degenerate confidence on Juliet (98% unanimous, all TP),
+DS-Coder-V2-Lite achieves the **best precision (4.0%) and best F1 (0.080)** on
+CWE-Bench-Java. It has the highest TN (184) — correctly rejecting far more FPs
+than any other model. Only 10 abstentions (2%). This suggests the code-specialized
+MoE model is better at distinguishing real vulnerabilities from FPs in real-world
+code, even though its self-consistency confidence is uninformative.
+
+---
+
 ## 4. Key Results: Multi-Model Baseline (E3-E7, Table 1)
 
 These are the **existing real results** that were already in the paper's Table 1. They are verified against the CSV files.
@@ -311,6 +369,56 @@ These are the **existing real results** that were already in the paper's Table 1
 | GPT-4o Mini | 3,107 | 98.8% | 42.2% | 90.8% | 0.547 |
 
 **Note:** These used k=1 (not k=5), so confidence is always 1.0 — calibration was never applied. The ECE values are computed from the raw label correctness vs. the (degenerate) confidence.
+
+---
+
+## 4b. Comprehensive 5-Model Comparison (Conformal PoC, Juliet)
+
+All models tested on the same 247 Juliet alerts (CWE-89/78/190), k=5, 5-fold CV, alpha=0.1.
+
+### Performance Summary
+
+| Model | Params | Precision | Recall | F1 | Coverage | ECE | R_sel | Unanimous |
+|-------|--------|-----------|--------|----|----------|-----|-------|-----------|
+| Gemini 2.5 Flash Lite | ~? | 38.9% | 95.5% | 55.1% | 100% | 0.555 | 0.584 | 84.6% |
+| Qwen-Coder-32B | 32B | 37.0% | 81.5% | 50.7% | 100% | 0.565 | 0.596 | 85.8% |
+| GLM-4-9B-Chat | 9B | 38.0% | 95.9% | 54.3% | 100% | 0.513 | 0.604 | 60.7% |
+| **R1-Distill-14B** | **14B** | **40.0%** | 71.9% | 51.2% | 98.4% | **0.335** | 0.514 | **36.0%** |
+| DS-Coder-V2-Lite | 16B MoE | 37.6% | **100%** | 54.5% | 100% | 0.620 | 0.624 | 98.0% |
+
+### CWE-Bench-Java Comparison (549 alerts, k=1)
+
+| Model | Precision | Recall | F1 | TP | FP | TN | FN | ABSTAIN |
+|-------|-----------|--------|----|----|----|----|----|---------|
+| Gemini Flash Lite | 3.3% | 93.3% | 0.063 | 14 | 414 | 47 | 1 | 73 (13%) |
+| Qwen-Coder-32B | 1.5% | 40.0% | 0.030 | 2 | 128 | 76 | 3 | 340 (62%) |
+| GLM-4-9B-Chat | 1.9% | 62.5% | 0.040 | 5 | 259 | 97 | 3 | 185 (34%) |
+| R1-Distill-14B | 3.0% | **100%** | 0.060 | 13 | 427 | 32 | **0** | 77 (14%) |
+| **DS-Coder-V2-Lite** | **4.0%** | 82.4% | **0.080** | **14** | 338 | **184** | 3 | 10 (2%) |
+
+### Key Takeaways for the Paper
+
+1. **Best calibrated model:** R1-Distill-14B (ECE 0.335, 36% unanimous) — reasoning models produce diverse confidence
+2. **Best CWE-Bench precision:** DS-Coder-V2-Lite (4.0%, TN=184) — code-specialized MoE is better at FP rejection
+3. **Best CWE-Bench recall:** R1-Distill-14B (100%, FN=0) — reasoning model catches all TPs
+4. **Worst calibrated:** DS-Coder-V2-Lite (ECE 0.620, 98% unanimous) — extreme TP-bias
+5. **Most conservative:** Qwen-Coder-32B (62% abstain on CWE-Bench) — refuses most alerts
+6. **Most aggressive:** DS-Coder-V2-Lite (2% abstain, 100% TP predictions on Juliet)
+
+### The Confidence-Quality Hierarchy
+
+```
+Reasoning models (R1-Distill):  36% unanimous → ECE 0.335 → calibration works (modestly)
+Small instruction-tuned (GLM):  61% unanimous → ECE 0.513 → calibration barely helps
+Lite commercial (Gemini):       85% unanimous → ECE 0.555 → calibration ineffective
+Code-specialized 32B (Qwen):    86% unanimous → ECE 0.565 → calibration ineffective
+Code MoE (DS-Coder-V2-Lite):    98% unanimous → ECE 0.620 → calibration completely broken
+```
+
+**The key insight:** Model architecture and training objective matter more for
+confidence calibration than model size. Reasoning models (R1 distill) produce
+genuinely uncertain votes when they're unsure, while instruction-tuned and
+code-specialized models default to high confidence regardless of correctness.
 
 ---
 
