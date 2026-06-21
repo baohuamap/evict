@@ -13,6 +13,8 @@
 | E2 | CWE-Bench-Java | 2026-06-20 | Gemini 2.5 Flash Lite | 1 | 549 | DONE | `artifacts/exports/cwe_bench_evict_results_gemini.csv` |
 | E8 | Juliet PoC (conformal) | 2026-06-20 | Qwen-Coder-32B (vLLM) | 5 | 247 | DONE | `artifacts/exports/v2/juliet_conformal_poc_qwen_coder_32b.csv` |
 | E9 | CWE-Bench-Java | 2026-06-20 | Qwen-Coder-32B (vLLM) | 1 | 549 | DONE | `artifacts/exports/cwe_bench_evict_results_qwen_coder_32b.csv` |
+| E10 | Juliet PoC (conformal) | 2026-06-21 | GLM-4-9B-Chat (vLLM) | 5 | 247 | DONE | `artifacts/exports/v2/juliet_conformal_poc_glm_4_9b_chat.csv` |
+| E11 | CWE-Bench-Java | 2026-06-21 | GLM-4-9B-Chat (vLLM) | 1 | 549 | DONE | `artifacts/exports/cwe_bench_evict_results_glm_4_9b_chat.csv` |
 | E3 | Juliet multi-model baseline (Claude Haiku 4.5) | 2026-05-02 | Claude Haiku 4.5 | 1 | 3,061 | DONE | `artifacts/exports/v2/juliet_sampled_results_claude_haiku_4_5.csv` |
 | E4 | Juliet multi-model baseline (GPT-4o Mini) | 2026-05-01 | GPT-4o Mini | 1 | 3,107 | DONE | `artifacts/exports/v2/juliet_sampled_results_gpt_4o_mini.csv` |
 | E5 | Juliet multi-model baseline (Gemini 2.5 Flash Lite) | 2026-05-02 | Gemini 2.5 Flash Lite | 1 | 3,222 | DONE | `artifacts/exports/v2/juliet_sampled_results_gemini_2_5_flash_lite.csv` |
@@ -161,6 +163,64 @@ Qwen-Coder-32B is **dramatically more conservative** than Gemini on real-world a
 - Higher TN (76 vs 47) — better at correctly identifying FPs when it does classify
 - But lower recall (40% vs 93%) — misses most real vulnerabilities
 - The high abstention suggests Qwen "knows what it doesn't know" better than Gemini, but the abstention comes from LLM refusals (empty/conflicted JSON), not from conformal calibration
+
+---
+
+## 3d. Key Results: GLM-4-9B-Chat PoC (E10)
+
+### Setup
+- **Model:** zai-org/glm-4-9b-chat, served via vLLM 0.7.3 on H100 80GB (8k context, BF16)
+- **Same protocol as E1/E8:** 247 alerts, CWE-89/78/190, k=5, 5-fold CV, alpha=0.1
+
+### Results (mean ± std over 5 folds)
+
+| Method | Precision | Recall | F1 | Coverage | ECE | R_sel |
+|--------|-----------|--------|----|----------|-----|-------|
+| Evidence-Free | 38.0 ± 3.3% | 95.9 ± 3.8% | 54.3 ± 3.1% | 100% | 0.513 ± 0.050 | 0.604 ± 0.042 |
+| EVICT (No Symb.) | 39.1 ± 4.6% | 97.9 ± 2.6% | 55.7 ± 4.8% | 96.3% | 0.516 ± 0.046 | 0.595 ± 0.052 |
+| EVICT (Full) | 38.0 ± 3.3% | 95.9 ± 3.8% | 54.3 ± 3.1% | 100% | 0.513 ± 0.050 | 0.604 ± 0.042 |
+
+### LLM Decision Distribution
+- **Labels:** TP=234 (94.7%), FP=13 (5.3%), ABSTAIN=0
+- **Confidence:** 1.0 → 150 (60.7%), 0.8 → 69 (27.9%), 0.6 → 28 (11.3%)
+- **Unanimous 5/5:** 60.7% — **the most diverse confidence distribution so far** (vs 84.6% Gemini, 85.8% Qwen)
+- **Best ECE:** 0.513 (vs 0.555 Gemini, 0.565 Qwen) — the more diverse confidence directly improves calibration
+
+### Key Observation
+GLM-4-9B-Chat produces significantly more diverse vote-share confidence (only 60.7%
+unanimous vs 85%+ for the other models). This translates to a marginally better ECE
+(0.513) and a small calibration benefit: EVICT (No Symb.) achieves 39.1% precision
+(+1.1pp over evidence-free) at 96.3% coverage. However, the improvement is still
+modest because the confidence signal, while more diverse, does not strongly
+correlate with correctness — overconfident wrong answers still dominate.
+
+---
+
+## 3e. Key Results: GLM-4-9B-Chat CWE-Bench-Java (E11)
+
+### Setup
+- **Model:** GLM-4-9B-Chat via vLLM, k=1, 549 CodeQL alerts, 45 projects
+
+### Results
+
+| Metric | Gemini 2.5 Flash Lite | Qwen-Coder-32B | GLM-4-9B-Chat |
+|--------|----------------------|----------------|---------------|
+| Precision | 3.3% | 1.5% | 1.9% |
+| Recall | 93.3% | 40.0% | 62.5% |
+| F1 | 0.063 | 0.030 | 0.040 |
+| TP | 14 | 2 | 5 |
+| FP | 414 | 128 | 259 |
+| TN | 47 | 76 | 97 |
+| FN | 1 | 3 | 3 |
+| ABSTAIN | 73 (13.3%) | 340 (62.0%) | 185 (33.7%) |
+| TP predictions | 428 (78%) | 130 (24%) | 264 (48%) |
+| FP predictions | 48 (9%) | 79 (14%) | 100 (18%) |
+
+### Key Observation
+GLM-4-9B-Chat sits between Gemini (aggressive, 13% abstain) and Qwen (conservative,
+62% abstain) with 33.7% abstention. It has the highest TN count (97) of the three,
+meaning it correctly rejects more false positives. However, precision remains very
+low (1.9%) because the base rate of TPs in CWE-Bench is only 3.1%.
 
 ---
 
