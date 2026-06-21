@@ -19,8 +19,9 @@ after each model completes.
 |---|-------|------|--------|---------------|
 | 1 | Qwen2.5-Coder-32B-Instruct | 65.5 GB | DONE | Yes (E8, E9) |
 | 2 | glm-4-9b-chat | 18.8 GB | DONE | Yes (E10, E11) |
-| 3 | DeepSeek-R1-Distill-Qwen-32B | 65.5 GB | PENDING | - |
-| 4 | DeepSeek-Coder-V2-Lite-Instruct | 31.4 GB | PENDING | - |
+| 3 | DeepSeek-R1-Distill-Qwen-14B | 29.5 GB | DONE | Yes (E12, E13) |
+| 4 | DeepSeek-R1-Distill-Qwen-32B | 65.5 GB | PENDING (downloaded) | - |
+| 5 | DeepSeek-Coder-V2-Lite-Instruct | 31.4 GB | PENDING | - |
 
 ## Completed Models
 
