@@ -1,0 +1,72 @@
+{
+  "DLS_DEAD_LOCAL_STORE_OF_NULL_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_executeBatch_22b.java_238": {
+    "alert_id": "DLS_DEAD_LOCAL_STORE_OF_NULL",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__Property_executeBatch_06.java_208": {
+    "alert_id": "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeBatch_06.java_484": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "FP",
+    "confidence": 0.6,
+    "rationale": "Q1: unknown - The code reads from a file, but it's not explicitly shown if the file content is attacker-controlled. Q2: yes - The code performs database operations with SQL statements, which can be a sink. Q3: unknown - It's not clear if any sanitization occurs before the potential SQL execution, as the provided snippet is incomplete. Q4: unknown - The exact control flow to the sink is not fully visible in the provided snippet. Q5: yes - The method name 'goodB2G2' strongly suggests this is a tes",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__Environment_execute_02.java_192": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__Environment_executeQuery_14.java_131": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code reads data from an environment variable which can be controlled by an attacker. Q2: yes - The code executes an SQL query using `executeQuery`. Q3: no - The data read from the environment variable is directly concatenated into the SQL query without any sanitization or escaping. Q4: yes - The code path from reading the environment variable to executing the SQL query is feasible as it's within the same `if (IO.staticFive==5)` block. Q5: yes - This appears to be test/demo code (Ju",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_prepareStatement_06.java_242": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads user input from the console using `readerBuffered.readLine()`. Q2: yes - The code constructs a SQL query by concatenating user input into a `prepareStatement` call. Q3: no - There is no input validation, escaping, or safe API usage between the source (console input) and the sink (SQL query construction). Q4: yes - The `bad()` method directly reads from the console and then uses that input in a `prepareStatement` call within a conditional block that is guaranteed to execu",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_executeQuery_12.java_102": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__listen_tcp_executeUpdate_10.java_133": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code reads data from a TCP socket, which can be controlled by an attacker. Q2: yes - The code executes an SQL `executeUpdate` statement. Q3: no - The input data read from the TCP socket is directly concatenated into the SQL query without any sanitization or parameterization. Q4: yes - The `if (IO.staticTrue)` guards before both the source and the sink are set to true, allowing execution to flow from the source to the sink. Q5: yes - This appears to be a test or demo case from the J",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__Property_executeBatch_04.java_67": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The code reads data from a system property ('user.home'), which can be influenced by environment configurations and potentially attacker-controlled if the environment is compromised. Q2: yes - The code uses `sqlStatement.addBatch` with a dynamically constructed SQL query, which is a dangerous SQL operation. Q3: no - The data read from the system property is directly concatenated into the SQL query without any sanitization or escaping. Q4: yes - The code path is directly executed within",
+    "stage": "LLM"
+  },
+  "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_executeBatch_09.java_172": {
+    "alert_id": "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  }
+}
