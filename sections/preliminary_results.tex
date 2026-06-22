@@ -106,6 +106,35 @@ Table~\ref{tab:cwebench} confirms the TP-bias pattern on real-world alerts and r
 
 A $k=5$ sample of 100 CWE-Bench-Java alerts with R1-Distill-14B confirms that the reasoning model maintains diverse confidence on real-world alerts (46\% unanimous, confidence distribution $\{0.4{:}1, 0.6{:}24, 0.8{:}29, 1.0{:}46\}$), with 10\% abstention---demonstrating that the calibration potential transfers from synthetic to real-world settings.
 
+\subsection{Prompt Strategy: Fixing Confidence Degeneracy}
+\label{sec:prompt_strategy}
+
+The multi-model study (Table~\ref{tab:conformal_multimodel}) identified confidence signal degeneracy as the primary bottleneck for conformal calibration: standard instruction-tuned models produce 85--98\% unanimous vote-share, making the nonconformity score uninformative. We hypothesized that this degeneracy stems from the prompt design rather than the model architecture: the default prompt asks the model to reason in one direction (``predict TP or FP''), which produces high agreement across $k=5$ samples even when the model is wrong.
+
+We designed a \textbf{contrastive prompt} that forces the model to construct the strongest argument for \emph{both} labels before deciding: (1) describe how the alert could be a true positive (taint source $\to$ sink without sanitization), (2) describe why it might be a false positive (sanitizer present, infeasible path, non-attacker input), (3) explicitly check for sanitization patterns, and (4) weigh both sides before deciding. We tested this prompt on the same Gemini 2.5 Flash Lite model and same 247 alerts as the default-prompt PoC.
+
+\begin{table}[t]
+\centering
+\caption{Prompt strategy comparison on Gemini 2.5 Flash Lite ($k{=}5$, 247 Juliet alerts, 5-fold CV, $\alpha{=}0.1$). The contrastive prompt reduces ECE by 39\% and unanimity by 68pp without changing the model, enabling meaningful conformal abstention.}
+\label{tab:prompt_strategy}
+\small
+\setlength{\tabcolsep}{3.5pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+\textbf{Prompt} & \textbf{Unanimous} & \textbf{ECE} & \textbf{$q\text{-hat}$} & \textbf{Coverage} & \textbf{ABSTAIN} & \textbf{Precision} \\
+\midrule
+Default & 84.6\% & 0.555 & 0.20 & 97.6\% & 0\% & 38.9\% \\
+\textbf{Contrastive} & \textbf{16.2\%} & \textbf{0.337} & \textbf{0.60} & 70.6\% & 29.1\% & 37.9\% \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+Table~\ref{tab:prompt_strategy} reveals that the contrastive prompt dramatically improves confidence quality without changing the model: unanimity drops from 84.6\% to 16.2\%, ECE from 0.555 to 0.337, and the conformal threshold $q\text{-hat}$ rises from 0.20 to 0.60---enabling calibration to meaningfully abstain on 29.4\% of alerts (vs.\ 2.4\% with the default prompt). Crucially, the contrastive prompt on a standard lite model produces \textbf{more diverse confidence than a 14B reasoning model with the default prompt} (16.2\% vs.\ 36\% unanimous), demonstrating that \emph{prompt design can substitute for model-scale in producing calibrated self-consistency signals}.
+
+The trade-off is over-conservatism: the contrastive prompt induces 29.1\% LLM-level abstention, and the additional conformal abstention reduces coverage to 70.6\%. Precision on the accepted set is slightly lower (37.9\% vs.\ 38.9\% uncalibrated), suggesting the model abstains on some correctly-classifiable alerts. Future work should tune the contrastive prompt's decision rule to reduce unnecessary abstention while preserving confidence diversity.
+
 \subsection{Frontier Model Projections}
 \label{sec:frontier_projections}
 
@@ -135,4 +164,4 @@ GLM-5 & 50--60\% & 0.25--0.40 & 30--50\% & Moderate & If reasoning-trained \\
 The projections suggest that \textbf{frontier reasoning models} (GPT-4.5, Claude Sonnet 4 with extended thinking) are the first model class where conformal calibration would produce a practically significant precision improvement ($+3$--$10$pp), because they combine high base precision ($55$--$70\%$) with diverse confidence ($30$--$50\%$ unanimous). Claude Opus 4, despite likely achieving the highest base precision, may benefit less from calibration due to degenerate vote-share (a pattern observed in Claude Haiku 4.5's 90\% unanimity). The ideal model for EVICT is therefore a frontier \emph{reasoning} model that combines both paths to good calibration: high base accuracy AND diverse self-consistency confidence.
 
 \paragraph{Summary.}
-Tables~\ref{tab:multimodel}--\ref{tab:frontier_proj} make the key empirical claim of this paper: \textbf{conformal calibration for LLM-based alert triage is mechanically correct but limited by the quality of the self-consistency confidence signal, which depends on training objective more than model size}. Reasoning models produce the only usable confidence signal (36--46\% unanimous, ECE 0.335), while instruction-tuned and code-specialized models produce degenerate confidence (85--98\% unanimous, ECE 0.51--0.62). Frontier reasoning models are projected to combine high precision with diverse confidence, making calibrated selective prediction practically viable for the first time. Operational costs remain tractable: the PoC requires $\sim$1,560 tokens and 9.5s latency per alert ($\sim$30s for reasoning models), well below the 10--20 minutes of manual triage.
+Tables~\ref{tab:multimodel}--\ref{tab:prompt_strategy} make the key empirical claim of this paper: \textbf{conformal calibration for LLM-based alert triage is limited by the quality of the self-consistency confidence signal, which can be improved through prompt design rather than model scaling}. The contrastive prompt reduces ECE by 39\% and enables meaningful conformal abstention on a standard lite model, producing more diverse confidence than a 14B reasoning model. Combined with frontier reasoning models projected to achieve high base precision and diverse confidence, this establishes a practical roadmap for deployable LLM-based alert triage with calibrated selective prediction.

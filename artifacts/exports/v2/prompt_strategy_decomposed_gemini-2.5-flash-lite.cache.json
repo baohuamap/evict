@@ -68,5 +68,47 @@
     "confidence": 0.8,
     "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
     "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getQueryString_Servlet_executeBatch_71b.java_110": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__getCookies_Servlet_executeUpdate_02.java_186": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_executeQuery_04.java_126": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: unknown - The provided code snippet does not explicitly show the origin of the 'data' variable, so it's unknown if it's attacker-controlled. Q2: yes - The code executes a SQL query using 'sqlStatement.executeQuery(\"select * from users where name='\"+data+\"'\")', which is a dangerous operation. Q3: no - The 'data' variable is directly concatenated into the SQL query without any apparent sanitization or escaping. Q4: yes - The code path leading to the SQL execution is guarded by 'if (PRIVATE_STA",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_executeBatch_73b.java_47": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: Extra data: line 5 column 1 (char 746)\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_executeBatch_42.java_167": {
+    "alert_id": "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The `badSource` method reads directly from `System.in`, which can be controlled by an attacker. Q2: yes - The code concatenates user input into an SQL query executed via `executeBatch`, which is a known SQL injection vulnerability. Q3: no - There is no sanitization or validation performed on the user input before it is used in the SQL query. Q4: yes - The `badSource` method is called, and its return value is checked for null before proceeding to the vulnerable sink. Q5: yes - This code",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__Environment_executeQuery_02.java_131": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
   }
 }

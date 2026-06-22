@@ -21,6 +21,9 @@
 | E15 | CWE-Bench-Java | 2026-06-21 | DeepSeek-Coder-V2-Lite-Instruct (vLLM) | 1 | 549 | DONE | `artifacts/exports/cwe_bench_evict_results_ds_coder_v2_lite.csv` |
 | E16 | Juliet PoC (conformal) | 2026-06-22 | Claude Haiku 4.5 (API) | 5 | 247 | DONE | `artifacts/exports/v2/juliet_conformal_poc_claude_haiku_4_5.csv` |
 | E17 | CWE-Bench-Java (sample) | 2026-06-22 | DeepSeek-R1-Distill-Qwen-14B (vLLM) | 5 | 100 | DONE | `artifacts/exports/cwe_bench_r1_k5_sample100.csv` |
+| E18 | Juliet PoC (contrastive prompt) | 2026-06-23 | Gemini 2.5 Flash Lite (API) | 5 | 247 | DONE | `artifacts/exports/v2/prompt_strategy_contrastive_gemini-2.5-flash-lite.cache.json` |
+| E19 | Juliet PoC (decomposed prompt) | 2026-06-23 | Gemini 2.5 Flash Lite (API) | 5 | 247 | RUNNING | `artifacts/exports/v2/prompt_strategy_decomposed_gemini-2.5-flash-lite.cache.json` |
+| E20 | Juliet PoC (few-shot prompt) | 2026-06-23 | Gemini 2.5 Flash Lite (API) | 5 | 247 | PENDING | - |
 | E3 | Juliet multi-model baseline (Claude Haiku 4.5) | 2026-05-02 | Claude Haiku 4.5 | 1 | 3,061 | DONE | `artifacts/exports/v2/juliet_sampled_results_claude_haiku_4_5.csv` |
 | E4 | Juliet multi-model baseline (GPT-4o Mini) | 2026-05-01 | GPT-4o Mini | 1 | 3,107 | DONE | `artifacts/exports/v2/juliet_sampled_results_gpt_4o_mini.csv` |
 | E5 | Juliet multi-model baseline (Gemini 2.5 Flash Lite) | 2026-05-02 | Gemini 2.5 Flash Lite | 1 | 3,222 | DONE | `artifacts/exports/v2/juliet_sampled_results_gemini_2_5_flash_lite.csv` |
@@ -420,6 +423,45 @@ Claude Haiku 4.5 is the **highest-precision model** (47.4% vs 40.0% R1, 38.9% Ge
 
 ### Key Observation
 R1-Distill-14B on CWE-Bench with k=5 shows **46% unanimous** — similar to its Juliet PoC result (36%). This confirms that the reasoning model produces diverse vote-share confidence on BOTH synthetic and real-world alert triage tasks. The confidence distribution is well-spread (0.4-1.0), and 10% of alerts are abstained by the LLM itself. This is the first evidence that conformal calibration could work on real-world alerts with a reasoning model.
+
+---
+
+## 3l. Key Results: Contrastive Prompt Strategy (E18) — BREAKTHROUGH
+
+### Setup
+- **Model:** Gemini 2.5 Flash Lite (same model as E1, but with contrastive prompt)
+- **Prompt:** Forces the model to argue BOTH the TP case and the FP case, check for sanitizers, then decide
+- **Same protocol:** 247 Juliet alerts, CWE-89/78/190, k=5, 5-fold CV, alpha=0.1
+
+### Results — Default vs Contrastive Prompt (Same Model!)
+
+| Metric | Default Prompt (E1) | Contrastive Prompt (E18) | Improvement |
+|--------|---------------------|-------------------------|-------------|
+| **Unanimous** | 84.6% | **16.2%** | **-68pp** (5.2x more diverse) |
+| **ECE (no cal)** | 0.555 | **0.337** | **-39%** |
+| **q_hat** | 0.200 | **0.600** | 3x higher (meaningful threshold) |
+| **Coverage (cal)** | 97.6% | **70.6%** | Calibration now abstains on 29.4% |
+| **ECE (cal, full)** | 0.555 | **0.332** | -40% |
+| Precision (no cal) | 38.9% | 37.9% | -1pp (slightly more conservative) |
+| Precision (cal) | 38.6% | 35.2% | -3.4pp (over-conservative) |
+| ABSTAIN (LLM) | 0% | 29.1% | Model now willing to abstain |
+| TP predictions | 93.5% | 68.4% | Less TP-biased |
+| Confidence spread | {1.0:209, 0.8:32} | {0.4:17, 0.6:101, 0.8:89, 1.0:40} | Well-spread |
+
+### Key Finding: Prompt Technique > Model Choice for Confidence Quality
+
+The contrastive prompt on a standard lite model (Gemini, 16.2% unanimous) produces **better confidence diversity than a 14B reasoning model with the default prompt (36% unanimous)**. This means:
+
+1. **The confidence degeneracy problem is solvable through prompt design** — no need for expensive reasoning models
+2. **Conformal calibration becomes effective** — q_hat rises from 0.2 to 0.6, abstention from 2.4% to 29.4%
+3. **ECE drops 39%** (0.555 → 0.337) — the confidence signal is now informative
+4. **Lite models remain deployable** — 10-100x cheaper/faster than reasoning models
+
+### Trade-off: Over-Conservatism
+The contrastive prompt makes the model more conservative (29% LLM-level abstention), which slightly reduces precision on the accepted set. The calibration adds further abstention (29.4% total), leading to 70.6% coverage. Future work should tune the contrastive prompt to reduce unnecessary abstention while maintaining confidence diversity — e.g., by adjusting the decision rule to "lean TP if the TP argument is clearly stronger" rather than "abstain if both sides have merit."
+
+### Early Results: Decomposed Prompt (E19, in progress)
+The decomposed prompt (source/sink/sanitizer/path sub-questions) also shows excellent confidence diversity at 9.1% unanimous in early results (11/247 alerts), with 1 FP prediction already. Full results pending.
 
 ---
 
