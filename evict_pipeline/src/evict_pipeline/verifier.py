@@ -130,6 +130,10 @@ class Verifier:
             return self._build_prompt_decomposed(alert)
         elif self.prompt_strategy == "few_shot":
             return self._build_prompt_few_shot(alert)
+        elif self.prompt_strategy == "fp_hunter":
+            return self._build_prompt_fp_hunter(alert)
+        elif self.prompt_strategy == "decomposed_few_shot":
+            return self._build_prompt_decomposed_few_shot(alert)
         else:
             return self._build_prompt_default(alert)
 
@@ -374,6 +378,138 @@ Output your decision as JSON:
 {{
   "decision": "TP" | "FP" | "ABSTAIN",
   "rationale": "Your reasoning, referencing the evidence like the examples above."
+}}
+"""
+        return prompt
+
+    def _build_prompt_fp_hunter(self, alert: Alert) -> str:
+        """FP-hunter: explicitly bias toward FP detection.
+
+        The default prompt's TP-bias (93%+ TP predictions) is the main precision
+        killer. This prompt inverts the prior: start by assuming FP, then look
+        for strong evidence of a real vulnerability. Only predict TP if all
+        preconditions are clearly met.
+        """
+        ep = alert.evidence_pack
+
+        flow_text = (
+            "\n".join([f"  - {step}" for step in ep.flow_path])
+            if ep.flow_path
+            else "  - No flow path available"
+        )
+
+        prompt = f"""You are a strict security auditor reviewing static analysis alerts. Your default assumption is that each alert is a FALSE POSITIVE unless you find clear evidence of a real vulnerability.
+
+### Alert
+Type: {alert.cwe_id}
+Description: {alert.description}
+Analyzer: {alert.analyzer_name}
+
+### Code
+```java
+{ep.program_slice}
+```
+
+### Data Flow
+{flow_text}
+
+### Audit Checklist (check each before classifying as TP)
+1. ATTACKER INPUT: Is there input from an external/attacker-controlled source (HTTP params, user input, file read, env vars)? If the "source" is a constant or internal variable, classify FP.
+2. DANGEROUS SINK: Is there a genuinely dangerous operation (SQL exec, command exec, path traversal, deserialization, XSS)? If the sink is safe or wrapped, classify FP.
+3. SANITIZATION: Is there any sanitization between source and sink (PreparedStatement, escaping, validation, type casting, allowlisting)? If yes, classify FP.
+4. COMPLETE PATH: Can data actually flow from source to sink? If there's a guard, exception, or early return that blocks the path, classify FP.
+5. TEST CODE: Is this Juliet test code with bad()/good() methods? In Juliet, bad() = TP, good() = FP. Check which method the alert is in.
+
+### Decision Rule
+- Classify TP ONLY IF: attacker input AND dangerous sink AND no sanitizer AND feasible path
+- Classify FP IF ANY: no attacker input, sanitizer present, infeasible path, safe sink, or test code good() method
+- Classify ABSTAIN ONLY IF: the code is empty or the alert is completely unrelated to the code shown
+
+Output your decision as JSON:
+{{
+  "decision": "TP" | "FP" | "ABSTAIN",
+  "rationale": "Checklist: 1.attacker_input=... 2.dangerous_sink=... 3.sanitizer=... 4.path=... 5.test_code=... Decision: ..."
+}}
+"""
+        return prompt
+
+    def _build_prompt_decomposed_few_shot(self, alert: Alert) -> str:
+        """Combined: few-shot examples + decomposed sub-questions + FP-bias.
+
+        Merges the best elements: calibrated examples (from few-shot), structured
+        reasoning (from decomposed), and FP-first bias (from fp_hunter).
+        """
+        ep = alert.evidence_pack
+
+        flow_text = (
+            "\n".join([f"  - {step}" for step in ep.flow_path])
+            if ep.flow_path
+            else "  - No flow path available"
+        )
+
+        examples = """### Example 1: TRUE POSITIVE (attacker input → unsanitized SQL)
+```java
+String name = request.getParameter("user");  // Q1: attacker input = YES
+String query = "SELECT * FROM users WHERE name='" + name + "'";  // Q2: dangerous SQL = YES
+stmt.execute(query);  // Q3: no PreparedStatement = NO sanitizer
+```
+Q1=yes Q2=yes Q3=no Q4=yes → TP
+
+### Example 2: FALSE POSITIVE (parameterized query = sanitizer)
+```java
+String name = request.getParameter("user");  // Q1: attacker input = YES
+PreparedStatement ps = conn.prepareStatement("SELECT * FROM users WHERE name=?");
+ps.setString(1, name);  // Q3: parameterized = SANITIZER
+```
+Q1=yes Q2=yes Q3=yes → FP
+
+### Example 3: FALSE POSITIVE (no attacker input)
+```java
+String name = "admin";  // Q1: NOT attacker-controlled (hardcoded constant)
+String query = "SELECT * FROM users WHERE name='" + name + "'";
+stmt.execute(query);
+```
+Q1=no → FP
+
+### Example 4: FALSE POSITIVE (Juliet good() method)
+```java
+public void good(String data) {
+    // safe implementation without the vulnerability
+    String cleanData = data.trim();
+    System.out.println(cleanData);
+}
+```
+Q5: good() method → FP"""
+
+        prompt = f"""You are a strict security auditor. Default assumption: FALSE POSITIVE. Classify as TP only if ALL preconditions are met.
+
+{examples}
+
+### Now audit this alert:
+Type: {alert.cwe_id}
+Description: {alert.description}
+
+### Code
+```java
+{ep.program_slice}
+```
+
+### Data Flow
+{flow_text}
+
+### Answer each question (yes/no + evidence):
+Q1. ATTACKER INPUT: Is the source attacker-controlled?
+Q2. DANGEROUS SINK: Is the sink genuinely dangerous?
+Q3. SANITIZER: Any sanitization between source and sink?
+Q4. PATH: Can data reach the sink without blocking guard?
+Q5. TEST CODE: Is this a Juliet bad() method (TP) or good() method (FP)?
+
+### Rule: TP only if Q1=yes AND Q2=yes AND Q3=no AND Q4=yes. Otherwise FP.
+
+Output as JSON:
+{{
+  "decision": "TP" | "FP" | "ABSTAIN",
+  "rationale": "Q1:... Q2:... Q3:... Q4:... Q5:... Therefore: ..."
 }}
 """
         return prompt

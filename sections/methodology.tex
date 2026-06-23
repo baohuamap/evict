@@ -1,138 +1,78 @@
-\section{EVICT Methodology}
+\section{Approach}
 \label{sec:methodology}
 
 \subsection{Problem Formulation}
 
-Each alert $x \in \mathcal{X}$ has a binary label $y \in \mathcal{Y}=\{\mathrm{TP},\mathrm{FP}\}$.
-EVICT learns both a predictor $h: \mathcal{X}\rightarrow\mathcal{Y}$ and a rejector $g: \mathcal{X}\rightarrow\{0,1\}$, where $g(x)=0$ denotes abstention and deferral to a developer.
+Each alert $x\in\mathcal{X}$ has a label $y\in\{\mathrm{TP},\mathrm{FP}\}$. EVICT learns a predictor $h:\mathcal{X}\rightarrow\{\mathrm{TP},\mathrm{FP}\}$ and a rejector $g:\mathcal{X}\rightarrow\{0,1\}$, where $g(x)=1$ commits to $h(x)$ and $g(x)=0$ abstains. Coverage is $\Pr[g(x)=1]$, i.e., the fraction of all alerts accepted before optional symbolic escalation.
+
 The objective is the cost-sensitive selective risk
 \begin{equation}
-R(h,g)=\alpha R_{\mathrm{FN}}(h,g)+\beta R_{\mathrm{FP}}(h,g)+\gamma R_{\mathrm{abstain}}(g),
+R(h,g)=\alpha_{\mathrm{cost}} R_{\mathrm{FN}}(h,g)+\beta_{\mathrm{cost}} R_{\mathrm{FP}}(h,g)+\gamma_{\mathrm{abs}} R_{\mathrm{abstain}}(g),
 \end{equation}
-where $\alpha>\beta$ in security-sensitive settings because a missed vulnerability triggers downstream incident costs that typically exceed the cost of a developer reviewing one unnecessary alert. For example, a missed SQL injection in a payment service may incur regulatory, remediation, and reputational costs orders of magnitude greater than the ten minutes spent reviewing a spurious SpotBugs alert. The asymmetry $\alpha>\beta$ is the fundamental motivation for EVICT's design: a system that minimizes this risk should be more conservative about excluding the TP label than the FP label, which is precisely what the label-conditional conformal extension in Section~\ref{sec:theory} formalizes.
-
-Throughout the paper, precision, recall, F1, and ECE are reported on the accepted set (alerts for which $g(x)=1$); coverage and $R_{\mathrm{sel}}$ are reported over the full alert population. In tables, $R_{\mathrm{sel}}$ denotes the empirical version of $R(h,g)$ on the evaluation split.
+with $\alpha_{\mathrm{cost}}>\beta_{\mathrm{cost}}$ in security settings. We reserve $\alpha_{\mathrm{TP}}$ and $\alpha_{\mathrm{FP}}$ for conformal miscoverage rates in Section~\ref{sec:theory}; this avoids overloading cost weights with conformal error probabilities. We write $k_{\mathrm{sc}}$ for the number of self-consistency samples per alert and $F$ for cross-validation folds.
 
 \subsection{System Overview}
 
-EVICT comprises four stages, illustrated in Figure~\ref{fig:architecture}.
-First, an evidence extractor converts analyzer output into a compact \emph{EvidencePack} containing a program slice, a data-flow summary, path constraints, and metadata.
-Second, a single-agent LLM verifier applies a fixed reasoning schema that reconstructs the analyzer claim, enumerates the relevant bug preconditions, and checks them against the extracted evidence.
-Third, a calibration layer transforms raw model confidence into a thresholdable decision variable and produces an accept/abstain decision.
-Finally, a symbolic escalator is invoked selectively when the calibrated stage abstains or when a potentially risky dismissal requires additional scrutiny.
-The conformal guarantee applies to the output of Stage 3; symbolic verification in Stage 4 is a post-calibration audit whose outputs are reported separately.
+Figure~\ref{fig:architecture} summarizes the four-stage pipeline. The key sequencing rule is that conformal calibration produces the pre-escalation accept/abstain decision. Symbolic verification is a separate audit layer and never retroactively changes the coverage guarantee without recalibration.
 
 \begin{figure}[t]
 \centering
-\resizebox{0.95\textwidth}{!}{
+\resizebox{0.95\linewidth}{!}{%
 \begin{tikzpicture}[
-  node distance=0.6cm and 1.2cm,
-  box/.style={draw, thick, rounded corners, align=center, font=\sffamily, text width=9.5cm, minimum height=1cm, inner xsep=4pt, inner ysep=6pt},
-  sidebox/.style={draw, thick, rounded corners, align=center, font=\sffamily, text width=6.5cm, minimum height=1cm, inner xsep=4pt, inner ysep=6pt},
-  arrow/.style={-stealth, thick},
-  dashed arrow/.style={-stealth, thick, dashed}
+  node distance=0.55cm,
+  box/.style={draw, rounded corners, align=center, font=\sffamily, text width=7.9cm, minimum height=0.85cm},
+  side/.style={draw, rounded corners, align=center, font=\sffamily, text width=4.4cm, minimum height=0.85cm},
+  arrow/.style={-{Stealth[length=2mm]}, thick},
+  dashedarrow/.style={-{Stealth[length=2mm]}, thick, dashed}
 ]
-
-% Styles matching the color logic
-\tikzstyle{input}=[box, fill=blue!10, draw=blue!60!black]
-\tikzstyle{evidence}=[box, fill=green!10, draw=green!60!black]
-\tikzstyle{llm}=[box, fill=purple!10, draw=purple!60!black]
-\tikzstyle{calib}=[box, fill=orange!10, draw=orange!60!black]
-\tikzstyle{decision}=[box, fill=yellow!20, draw=yellow!60!black]
-\tikzstyle{output}=[box, fill=green!10, draw=green!60!black]
-\tikzstyle{symbolic}=[sidebox, fill=red!10, draw=red!60!black]
-
-% Nodes
-\node[input] (in) {
-    \textbf{INPUT} \\
-    \small Static Analyzer Alerts with Code Context
-};
-
-\node[evidence, below=of in] (ev) {
-    \textbf{EVIDENCEPACK CONSTRUCTION} \\[0.2cm]
-    \setlength{\tabcolsep}{6pt}
-    \begin{tabular}{ccc}
-        \fcolorbox{black}{white}{\footnotesize \begin{tabular}{c}\texttt{</>} Extract\\Code Slices\end{tabular}} &
-        \fcolorbox{black}{white}{\footnotesize \begin{tabular}{c}$\circ\!\rightarrow\!\circ$ Data-Flow\\Traces\end{tabular}} &
-        \fcolorbox{black}{white}{\footnotesize \begin{tabular}{c}\(\wedge \vee\) Path\\\(\neg \rightarrow\) Constraints\end{tabular}}
-    \end{tabular}
-};
-
-\node[llm, below=of ev] (llm) {
-    \textbf{LLM REASONING MODULE} \\
-    \small Schema-Guided Prompting with Evidence
-};
-
-\node[calib, below=of llm] (cal) {
-    \textbf{CALIBRATION MODULE} \\[0.2cm]
-    \setlength{\tabcolsep}{10pt}
-    \begin{tabular}{cc}
-        \fcolorbox{black}{white}{\footnotesize \begin{tabular}{c}Conformal\\Prediction\end{tabular}} &
-        \fcolorbox{black}{white}{\footnotesize \begin{tabular}{c}Temperature\\Scaling\end{tabular}}
-    \end{tabular}
-};
-
-\node[decision, below=of cal] (dec) {
-    \textbf{SELECTIVE DECISION} \\
-    \small Output: TP/FP/ABSTAIN with Confidence Scores
-};
-
-\node[symbolic, right=of dec] (sym) {
-    \textbf{CONDITIONAL SYMBOLIC VERIFICATION} \\
-    \footnotesize (e.g., JPF/KLEE) \\[0.2cm]
-    \setlength{\tabcolsep}{10pt}
-    \begin{tabular}{cc}
-        \fcolorbox{black}{white}{\footnotesize \begin{tabular}{c}SMT\\Solving\end{tabular}} &
-        \fcolorbox{black}{white}{\footnotesize \begin{tabular}{c}Symbolic\\Execution\end{tabular}}
-    \end{tabular} \\[0.2cm]
-    \scriptsize (Invoked when uncertain)
-};
-
-\node[output, below=of dec] (out) {
-    \textbf{OUTPUT} \\
-    \small Triaged Alerts with Rationale
-};
-
-% Standard sequential flow arrows
-\draw[arrow] (in) -- (ev);
-\draw[arrow] (ev) -- (llm);
-\draw[arrow] (llm) -- (cal);
-\draw[arrow] (cal) -- (dec);
-
-% Straight decision arrows with explicit conditions
-\draw[arrow] (dec) -- node[left, font=\sffamily\scriptsize, align=right] {if confidence\\> threshold} (out);
-\draw[dashed arrow] (dec) -- node[above, font=\sffamily\scriptsize, align=center] {if confidence\\< threshold} (sym);
-
-% Merge arrow from symbolic back to main flow
-\draw[arrow] (sym) |- (out);
-
-\end{tikzpicture}
-}
-\caption{EVICT system architecture. Analyzer outputs are transformed into structured evidence, verified by a single-agent LLM with calibrated confidence, and escalated to conditional symbolic tools when the model is uncertain.}
+\node[box, fill=blue!8] (a) {Static-analyzer alerts\\\small SARIF, rule, severity, source/sink locations};
+\node[box, fill=green!8, below=of a] (b) {EvidencePack construction\\\small slice, data-flow summary, path constraints, incompleteness flags};
+\node[box, fill=purple!8, below=of b] (c) {LLM verifier\\\small schema-guided or contrastive prompt; TP/FP/ABSTAIN rationale};
+\node[box, fill=orange!10, below=of c] (d) {Conformal calibrator\\\small nonconformity score $A(x,y)$; singleton-reject prediction set};
+\node[box, fill=yellow!15, below=of d] (e) {Pre-escalation decision\\\small singleton $\Rightarrow$ accept TP/FP; empty or multi-label $\Rightarrow$ abstain};
+\node[side, fill=red!8, right=0.7cm of e] (f) {Conditional symbolic escalation\\\small Z3, JPF, KLEE; UNKNOWN/timeout $\Rightarrow$ abstain};
+\node[box, fill=green!8, below=of e] (g) {Triaged alert with evidence-linked rationale};
+\draw[arrow] (a) -- (b);
+\draw[arrow] (b) -- (c);
+\draw[arrow] (c) -- (d);
+\draw[arrow] (d) -- (e);
+\draw[arrow] (e) -- node[left, font=\scriptsize] {accepted} (g);
+\draw[dashedarrow] (e) -- node[above, font=\scriptsize] {abstain/audit} (f);
+\draw[arrow] (f) |- (g);
+\end{tikzpicture}}
+\Description{Pipeline diagram showing static-analysis alerts converted to EvidencePacks, checked by an LLM verifier, calibrated by conformal prediction, optionally escalated to symbolic verification, and emitted as triaged alerts.}
+\caption{EVICT architecture. The conformal guarantee covers the pre-escalation singleton-reject decision. Symbolic escalation is a post-calibration audit layer.}
 \label{fig:architecture}
 \end{figure}
 
-\subsection{Evidence Extraction and Prompting}
+\subsection{Evidence Extraction}
 
-The evidence extractor parses SARIF-style analyzer output and retains the information most relevant to triage: source and sink locations, the reported flow path, a bounded backward/forward slice (capped at 50 lines), and normalized branch conditions along that path. For Java we use JDT-based AST traversal; for C/C++ we use Clang-based parsing. When the analyzer exposes no path, we fall back to PDG slicing.
+The evidence extractor parses SARIF output~\cite{sarif2020} and constructs an \emph{EvidencePack}: alert metadata, source and sink locations, the analyzer-reported flow path when present, a bounded backward/forward program slice~\cite{weiser1984}, normalized branch/path constraints, and completeness flags. Java extraction uses JDT-style AST traversal; C/C++ extraction uses Clang-style parsing. Incomplete evidence is preserved explicitly through flags such as \texttt{flow\_partial} and \texttt{constraints\_missing}. These flags instruct the verifier to treat affected preconditions as ambiguous rather than hallucinating missing facts.
 
-When evidence is incomplete---because of reflection-heavy code, unresolved native calls, or missing interprocedural paths---the EvidencePack preserves that incompleteness rather than hiding it. Explicit flags (\texttt{flow\_partial} and \texttt{constraints\_missing}) instruct the model to treat affected preconditions as ambiguous, not to fill them by hallucination.
+\subsection{Schema-Guided and Contrastive Verification}
 
-The verifier prompt is schema-guided rather than free-form: it restates the analyzer claim, enumerates the bug preconditions, checks them against the evidence, and emits TP, FP, or ABSTAIN with a rationale. This structure makes reasoning inspectable and ties confidence to evidential support rather than rhetorical fluency. Full prompt templates are in Appendix~\ref{app:prompts}.
+The base verifier prompt follows four steps: restate the analyzer claim, enumerate the preconditions required for the alert to be real, check each precondition against the EvidencePack, and emit TP, FP, or ABSTAIN with confidence and rationale. The goal is not unconstrained chain-of-thought, but evidence-linked reasoning that a developer can audit.
 
-\subsection{Confidence Calibration and Selective Triage}
+The contrastive prompt is a first-class contribution. It changes the verifier from one-directional classification to adversarial evidence weighing: (1) construct the strongest TP argument, (2) construct the strongest FP argument, (3) explicitly inspect sanitizer, infeasible-path, and non-attacker-input evidence, and (4) weigh both sides before deciding. Study~4 shows that this intervention causes meaningful self-consistency disagreement without changing the model.
 
-EVICT estimates confidence differently depending on model access. For open-weight models with logit access, we use the label margin derived from normalized TP/FP logits. For API-only models, we use the vote share of the majority label under $k = 5$ repeated self-consistent samples (temperature 0.7); $k=5$ yields six discrete vote-share levels (0, 0.2, \ldots, 1.0), which is sufficient as a nonconformity score but coarser than logit-derived scores. Appendix~\ref{app:experiment_details} reports sensitivity over $k \in \{3, 5, 10, 20\}$: ECE changes by at most $\pm 0.01$ while token cost scales linearly in $k$, making $k=5$ the recommended default. The nonconformity score is $A(x,y) = 1 - p_\theta(y \mid x)$ for logit-access models and $A(x,y) = 1 - v(y \mid x)$ for vote shares, where a larger score indicates that the evidence less strongly supports label $y$.
+\subsection{Confidence and Conformal Calibration}
 
-\paragraph{Temperature scaling and conformal calibration.}
-For logit-access models, optional temperature scaling can improve conformity score quality prior to calibration. Conformal validity (Theorem~\ref{thm:conformal}) holds for any score function, so the guarantee is not contingent on temperature scaling.
+For logit-access models, EVICT uses normalized label probabilities over $\{\mathrm{TP},\mathrm{FP}\}$ and the nonconformity score
+\begin{equation}
+A(x,y)=1-p_\theta(y\mid x).
+\end{equation}
+For API-only models, EVICT samples $k_{\mathrm{sc}}=5$ completions at temperature 0.7 and uses vote share $v(y\mid x)$:
+\begin{equation}
+A(x,y)=1-v(y\mid x).
+\end{equation}
+Vote share and logit margin are preferred to entropy because the binary label space makes entropy too coarse to distinguish many operationally different TP/FP configurations.
 
-\paragraph{Conformal calibration and accept/abstain.}
-Raw nonconformity scores are calibrated on a held-out split using \textbf{Split-Conformal Prediction (Algorithm~\ref{alg:conformal})}. At inference time, an alert is accepted as TP or FP only when the conformal prediction set is a singleton; empty or multi-label prediction sets trigger abstention and escalation. Section~\ref{sec:theory} analyzes an asymmetric label-conditional variant; the preliminary experiments evaluate the symmetric split-conformal procedure.
+Split-conformal calibration computes a threshold $\hat q$ on held-out calibration alerts. At inference time, EVICT forms
+\begin{equation}
+\hat C(x)=\{y\in\{\mathrm{TP},\mathrm{FP}\}: A(x,y)\le \hat q\}.
+\end{equation}
+If $|\hat C(x)|=1$, the system accepts the singleton label. If $\hat C(x)$ is empty or contains both labels, the system abstains. Algorithm~\ref{alg:conformal} gives the full procedure.
 
-\paragraph{Symbolic escalation and UNKNOWN handling.}
-The symbolic escalator employs \textbf{Java PathFinder (JPF)} for Java and \textbf{KLEE} for C/C++. It is applied exclusively within the abstention set or to high-severity dismissals flagged for mandatory audit. SAT outcomes are treated as evidence for TP; UNSAT outcomes as evidence for FP. All SMT \texttt{UNKNOWN} outcomes, tool timeouts (8.1\% rate in our dataset; Z3 timeout: 2s, JPF/KLEE timeout: 10s per alert), and alerts with missing constraints are strictly treated as continued abstentions. The finite-sample conformal guarantee applies only to the pre-escalation stage.
+\subsection{Conditional Symbolic Escalation}
 
-\subsection{Developer Feedback and Robustness}
-
-Abstained alerts are reviewed by developers, and those reviews can be fed back into later model updates. This loop is particularly useful when observed labels only weakly reflect bug validity, as in weakly supervised corpora. Interface and algorithmic details are deferred to Appendix~\ref{app:ui} and~\ref{app:algorithm_details}.
+Abstained alerts may be escalated to symbolic tools: Z3 for path feasibility, Java PathFinder for Java, and KLEE for C/C++~\cite{jpf2003,spf2013,klee2008}. SAT or counterexample results support TP; UNSAT or exhaustive infeasibility supports FP. SMT \texttt{UNKNOWN}, tool timeouts, and missing constraints are treated strictly as continued abstentions. In the symbolic characterization study, the Z3 timeout is 2s, the JPF/KLEE timeout is 10s, and 15/184 symbolic invocations (8.1\%) return \texttt{UNKNOWN}; all are retained as abstentions.

@@ -1,0 +1,14 @@
+\section{Threats to Validity}
+\label{sec:threats}
+
+\paragraph{Internal validity.}
+Self-consistency estimates are stochastic. We mitigate this in Study~2 and Study~4 with $k_{\mathrm{sc}}=5$ samples and $F=5$ cross-validation folds, but different random seeds may change individual vote shares. Ground truth in Juliet comes from benchmark manifests; ground truth in CWE-Bench-Java is derived from fix-location matching, which can miss semantically equivalent vulnerable lines outside the recorded ranges.
+
+\paragraph{External validity.}
+Juliet is synthetic and favorable to evidence extraction: the earlier SpotBugs study reports 98.7\% complete SARIF paths and a balanced TP/FP construction. The conformal proof-of-concept covers only CWE-89, CWE-78, and CWE-190. CWE-Bench-Java provides real alerts but is Java-only, and Study~3 covers 45 projects. Results may differ for C/C++, concurrency bugs, framework-heavy applications, or analyzers with weaker path evidence.
+
+\paragraph{Construct validity.}
+Vote-share confidence is coarse: with $k_{\mathrm{sc}}=5$, it has only six possible levels. ECE is computed on accepted predictions and may differ from ECE over the full population, especially when abstention is high. Coverage is defined as the pre-escalation acceptance probability $\Pr[g(x)=1]$; post-escalation coverage must be reported separately because symbolic tools change the operational decision process.
+
+\paragraph{Conclusion validity.}
+The six-model Study~2 sample is too small for a statistical test over training paradigms, so we report effect sizes and mechanistic consistency rather than significance claims. Study~4 is a stronger within-model intervention, but it uses one model and one 247-alert subset. RQ5 is explicitly projected and not independently validated.

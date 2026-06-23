@@ -1,75 +1,73 @@
-\section{Theoretical Analysis}
+\section{Theoretical Guarantees}
 \label{sec:theory}
 
-\newtheorem{theorem}{Theorem}
-
-All guarantees in this section concern the \emph{pre-escalation} selective predictor, i.e., the conformal accept/abstain stage before symbolic verification. They assume exchangeability between calibration and test alerts; the consequences of weakening this assumption under project shift are discussed at the end of the section. The current empirical section instantiates only the symmetric split-conformal special case; the asymmetric results below provide the decision-theoretic foundation that motivates the full evaluation rather than describing a procedure already validated by the pilot study. Full derivations appear in Appendix~\ref{app:proofs}.
+The formal results make EVICT safe to deploy as a selective triage aid. They are not the empirical novelty of the paper; they define what is guaranteed when the system accepts an alert. All guarantees below apply to the \emph{pre-escalation} conformal predictor under exchangeability. Symbolic escalation is a post-calibration audit stage.
 
 \begin{theorem}[Cost-aware finite-sample excess risk]
 \label{thm:risk}
-Partition the calibration data into an independent grid-construction split $D^{(G)}$ and evaluation split $D^{(E)}$. Let $\mathcal Q_G$ be the finite set of feasible asymmetric TP/FP threshold pairs induced by $D^{(G)}$, let
-\[
-\hat q\in\arg\min_{q\in\mathcal Q_G}\hat R_E(q),
-\qquad
-q_G^\star\in\arg\min_{q\in\mathcal Q_G}R(q),
-\]
-and define $C_{\mathrm{TP}}=\max(\alpha,\gamma)$, $C_{\mathrm{FP}}=\max(\beta,\gamma)$. If $m^{(E)}_{\mathrm{TP}}$ and $m^{(E)}_{\mathrm{FP}}$ are the TP and FP counts in $D^{(E)}$, then, conditional on $D^{(G)}$, with probability at least $1-\delta$ over $D^{(E)}$,
+Partition calibration data into an independent grid-construction split $D^{(G)}$ and evaluation split $D^{(E)}$. Let $\mathcal Q_G$ be the finite set of feasible TP/FP threshold pairs induced by $D^{(G)}$, $\hat q\in\arg\min_{q\in\mathcal Q_G}\hat R_E(q)$, and $q_G^\star\in\arg\min_{q\in\mathcal Q_G}R(q)$. Define $C_{\mathrm{TP}}=\max(\alpha_{\mathrm{cost}},\gamma_{\mathrm{abs}})$ and $C_{\mathrm{FP}}=\max(\beta_{\mathrm{cost}},\gamma_{\mathrm{abs}})$. If $m^{(E)}_{\mathrm{TP}}$ and $m^{(E)}_{\mathrm{FP}}$ are the TP and FP counts in $D^{(E)}$, then, conditional on $D^{(G)}$, with probability at least $1-\delta$,
 \begin{equation}
-R(\hat q)-R(q_G^\star)
-\le
-2\pi_{\mathrm{TP}} C_{\mathrm{TP}}
-\sqrt{\frac{\log(4|\mathcal Q_G|/\delta)}{2m^{(E)}_{\mathrm{TP}}}}
-+
-2\pi_{\mathrm{FP}} C_{\mathrm{FP}}
-\sqrt{\frac{\log(4|\mathcal Q_G|/\delta)}{2m^{(E)}_{\mathrm{FP}}}}.
+R(\hat q)-R(q_G^\star)\le
+2\pi_{\mathrm{TP}}C_{\mathrm{TP}}\sqrt{\frac{\log(4|\mathcal Q_G|/\delta)}{2m^{(E)}_{\mathrm{TP}}}}
++2\pi_{\mathrm{FP}}C_{\mathrm{FP}}\sqrt{\frac{\log(4|\mathcal Q_G|/\delta)}{2m^{(E)}_{\mathrm{FP}}}}.
 \end{equation}
 \end{theorem}
 
-Theorem~\ref{thm:risk} gives the statistically appropriate guarantee for EVICT because it analyzes the finite threshold family that is actually selected on the calibration split. The excess-risk bound decomposes by label: generalization is controlled by the effective loss magnitude and sample size of each stratum, rather than a single pooled count. In asymmetric security regimes where $\alpha \gg \beta$, the TP term can dominate even when total sample size is large. The $1/\sqrt{m_y}$ dependence is tight up to constants (Appendix~\ref{app:proofs}).
+Theorem~\ref{thm:risk} is a structural justification for label-conditional threshold optimization. It avoids treating the LLM as a finite-VC classifier; the optimized object is a low-dimensional threshold rule over calibrated scores. The bound decomposes by label, so the scarce or expensive stratum controls risk in asymmetric security settings.
 
-\begin{theorem}[Conformal validity]
+\begin{theorem}[Split-conformal validity]
 \label{thm:conformal}
-If the calibration set and test alert are exchangeable, the conformal prediction set $\hat C(x)$ satisfies
+For any nonconformity score $A(x,y)$, if the calibration alerts and test alert are exchangeable, the split-conformal prediction set satisfies
 \begin{equation}
-\mathbb{P}[y\in \hat C(x)]\ge 1-\alpha
+\Pr[Y\in\hat C(X)]\ge 1-\alpha_{\mathrm{conf}}.
 \end{equation}
-for any score function.
 \end{theorem}
 
-EVICT converts this set-valued guarantee into a reject option by predicting only on singleton sets: a singleton gives a committed TP or FP label, while an empty or multi-label set triggers abstention. The singleton frequency is therefore the primary operational diagnostic for the calibrated automation stage.
+This is the standard conformal guarantee~\cite{vovk2005}. EVICT's contribution is the software-engineering decision rule layered on top: singleton sets produce committed TP/FP decisions, while empty and multi-label sets become abstentions.
 
 \begin{theorem}[Label-conditional asymmetric conformal validity]
 \label{thm:label_conditional}
-Let $\hat q_{\mathrm{TP}}$ and $\hat q_{\mathrm{FP}}$ be label-specific conformal quantiles computed from the TP and FP calibration subsets with target miscoverage rates $\alpha_{\mathrm{TP}}$ and $\alpha_{\mathrm{FP}}$. Define
+Let $\hat q_{\mathrm{TP}}$ and $\hat q_{\mathrm{FP}}$ be label-specific conformal quantiles computed from TP and FP calibration strata with target miscoverage rates $\alpha_{\mathrm{TP}}$ and $\alpha_{\mathrm{FP}}$. Define
 \[
 \hat C_{\mathrm{asym}}(x)=\{y\in\{\mathrm{TP},\mathrm{FP}\}: A(x,y)\le \hat q_y\}.
 \]
-If calibration and test alerts are exchangeable, then
+Under exchangeability within label strata,
 \begin{align}
-\mathbb{P}[Y\in \hat C_{\mathrm{asym}}(X)\mid Y=\mathrm{TP}] &\ge 1-\alpha_{\mathrm{TP}},\\
-\mathbb{P}[Y\in \hat C_{\mathrm{asym}}(X)\mid Y=\mathrm{FP}] &\ge 1-\alpha_{\mathrm{FP}}.
+\Pr[Y\in\hat C_{\mathrm{asym}}(X)\mid Y=\mathrm{TP}]&\ge 1-\alpha_{\mathrm{TP}},\\
+\Pr[Y\in\hat C_{\mathrm{asym}}(X)\mid Y=\mathrm{FP}]&\ge 1-\alpha_{\mathrm{FP}}.
 \end{align}
 \end{theorem}
 
-Theorem~\ref{thm:label_conditional} is the main calibration result for the asymmetric regime. Choosing $\alpha_{\mathrm{TP}} < \alpha_{\mathrm{FP}}$ makes the system strictly more conservative about excluding the TP label than the FP label, directly encoding the cost asymmetry $\alpha > \beta$ at the calibration layer itself. Unlike the symmetric Theorem~\ref{thm:conformal}, which provides only a single pooled marginal guarantee, the label-conditional variant provides separate finite-sample coverage for each class---operationally, this means the auto-dismissal false-negative rate is provably bounded at level $\alpha_{\mathrm{TP}}$.
+Choosing $\alpha_{\mathrm{TP}}<\alpha_{\mathrm{FP}}$ directly encodes the cost asymmetry of missed vulnerabilities: the system is more conservative about excluding TP than FP. Operationally, this bounds the auto-dismissal false-negative rate at the calibration layer.
 
-\begin{theorem}[Exact finite-sample optimal asymmetric thresholds]
+\begin{theorem}[Exact finite-sample optimal thresholds]
 \label{thm:exact_opt}
-Let $S^{\mathrm{TP}}_{(1)}\le\cdots\le S^{\mathrm{TP}}_{(m_{\mathrm{TP}})}$ and $S^{\mathrm{FP}}_{(1)}\le\cdots\le S^{\mathrm{FP}}_{(m_{\mathrm{FP}})}$ be the ordered TP and FP nonconformity scores, with $S^{y}_{(m_y+1)}:=\infty$. Parameterize the asymmetric thresholds by indices
-\[
-k_{\mathrm{TP}}\in\{k_{\mathrm{TP}}^{\min},\dots,m_{\mathrm{TP}}+1\},
-\qquad
-k_{\mathrm{FP}}\in\{k_{\mathrm{FP}}^{\min},\dots,m_{\mathrm{FP}}+1\},
-\]
-and let $\hat R(k_{\mathrm{TP}},k_{\mathrm{FP}})$ be the induced empirical selective risk. Then:
-\begin{enumerate}
-\item a global minimizer of $\hat R$ over the feasible grid exists;
-\item the one-step change in $\hat R$ obtained by increasing either threshold by one order statistic admits an exact decomposition into transitions among correct singleton prediction, wrong singleton prediction, double-label abstention, and empty-set abstention;
-\item after sorting the calibration scores once, the global minimizer can be found exactly by exhaustive search over at most $(m_{\mathrm{TP}}+1)(m_{\mathrm{FP}}+1)$ threshold pairs, in total time $O(m^2)$.
-\end{enumerate}
+Given ordered TP and FP nonconformity scores, the globally optimal asymmetric threshold pair over the empirical selective-risk objective can be found by exhaustive search over at most $(m_{\mathrm{TP}}+1)(m_{\mathrm{FP}}+1)$ candidate pairs after sorting, in $O(m^2)$ time.
 \end{theorem}
 
-Theorem~\ref{thm:exact_opt} is the constructive analogue of Theorem~\ref{thm:risk}: once calibration is made label-conditional, the optimal asymmetric thresholds are not determined by heuristic operating-point tuning but by the unique solution of a finite-sample optimization problem on the calibration split. The same asymmetric cost model that motivates abstention in the objective function directly determines the TP/FP threshold pair.
+Theorem~\ref{thm:exact_opt} means asymmetric threshold selection is not heuristic tuning. Once the cost model is fixed, the calibration split induces a finite optimization problem with an exact solution.
 
-\paragraph{Coverage under project shift.}
-The guarantees above are exact only under exchangeability. Cross-project transfer weakens this condition because alerts cluster by project, framework, and analyzer version. Three mitigations improve robustness in practice: within-project calibration, Mondrian-style conditioning on project or analyzer group~\cite{romano2020}, and rolling recalibration windows. None restores exact validity under arbitrary shift, but all preserve the intended semantics of abstention: when calibration assumptions weaken, EVICT should predict less often rather than more aggressively.
+\paragraph{Empirical coverage diagnostic.}
+Because reviewers correctly noted that generic complexity bounds are less informative for LLM systems, we report the operational prediction-set frequencies in Table~\ref{tab:coverage_diagnostic}. The 1-D rejector behavior is directly visible: most accepted decisions are singleton sets, while uncertainty appears as multi-label or empty sets.
+
+\begin{table}[t]
+\centering
+\caption{Empirical conformal prediction-set diagnostic from the earlier 1,000-alert SpotBugs Juliet study, reported to characterize rejector behavior rather than the multi-model results. Overall singleton frequency is 87.3\%, multi-label frequency is 11.6\%, and empty-set frequency is 1.1\%. Per-CWE empty/multi-label values were not provided in the study export.}
+\label{tab:coverage_diagnostic}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Subset / access mode} & \textbf{Singleton} & \textbf{Multi-label} & \textbf{Empty} \\
+\midrule
+Overall & 87.3\% & 11.6\% & 1.1\% \\
+CWE-89 & 91.4\% & [VERIFY: per-CWE multi-label] & [VERIFY: per-CWE empty] \\
+CWE-78 & 89.1\% & [VERIFY: per-CWE multi-label] & [VERIFY: per-CWE empty] \\
+CWE-190 & 81.2\% & [VERIFY: per-CWE multi-label] & [VERIFY: per-CWE empty] \\
+Vote-share access & [VERIFY: mode-specific singleton] & [VERIFY: mode-specific multi-label] & [VERIFY: mode-specific empty] \\
+Logit access & [VERIFY: mode-specific singleton] & [VERIFY: mode-specific multi-label] & [VERIFY: mode-specific empty] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Project shift and sequencing.}
+The conformal guarantee is exact under exchangeability. Cross-project transfer weakens this assumption because alerts cluster by project, framework, analyzer, and rule. Practical mitigations include within-project calibration, Mondrian-style conditioning on analyzer or project group~\cite{romano2020}, and rolling recalibration. None restores exact validity under arbitrary shift, but all preserve the intended behavior: when calibration assumptions are less trustworthy, EVICT should predict less often rather than more aggressively. If a deployment wants calibrated confidence after symbolic escalation, it must recalibrate on post-escalation outputs.

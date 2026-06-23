@@ -110,5 +110,1622 @@
     "confidence": 0.8,
     "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
     "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__Environment_executeUpdate_04.java_185": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code reads data from an environment variable `ADD`, which can be controlled by an attacker. Q2: yes - The code uses `sqlStatement.executeUpdate()` with a string that is constructed by concatenating user input, which is a dangerous SQL operation. Q3: no - The data read from the environment variable is directly concatenated into the SQL query without any sanitization or escaping. Q4: yes - The code path is feasible as the `if (PRIVATE_STATIC_FINAL_TRUE)` guards are always true in the",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__PropertiesFile_executeBatch_74b.java_111": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The code is part of a test case designed to demonstrate a vulnerability originating from a properties file, implying attacker-controlled input can be supplied. Q2: yes - The code executes SQL statements using `addBatch` and `executeBatch` on a `Statement` object, which is a dangerous operation when the input is not properly sanitized. Q3: no - The input `data` is split by '-' and directly concatenated into the SQL query without any form of sanitization or escaping. Q4: yes - The `badSi",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getQueryString_Servlet_executeQuery_54e.java_105": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The code is part of a test case designed to simulate attacker-controlled input from a query string. Q2: yes - The code directly concatenates the input `data` into an SQL query executed via `sqlStatement.executeQuery()`. Q3: no - The input `data` is directly used in the SQL query without any sanitization or escaping. Q4: yes - The `badSink` method is called, and the data flow is direct from a simulated source to this sink. Q5: yes - This code is explicitly identified as a TEMPLATE GENER",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_executeBatch_45.java_200": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code reads data from a TCP socket, which can be controlled by an attacker. Q2: yes - The code uses `executeBatch` on an SQL statement, which is a dangerous operation for SQL injection. Q3: no - The data read from the socket is directly concatenated into the SQL query without any sanitization or validation. Q4: yes - The code path from reading the socket to executing the SQL query is straightforward and has no impossible guards. Q5: yes - This appears to be a test case from the Juli",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getParameter_Servlet_prepareStatement_07.java_196": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The code reads user input from `request.getParameter(\"name\")`. Q2: yes - The code constructs and executes an SQL query using `dbConnection.prepareStatement()`. Q3: no - The user-controlled input `data` is directly concatenated into the SQL query string without any sanitization or validation. Q4: yes - The code path is feasible as the `if (privateFive==5)` conditions are met in the `bad()` method, allowing execution to reach the vulnerable sink. Q5: yes - This appears to be test or demo",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__database_execute_22b.java_31": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The data originates from `database` in the context of a test case designed to simulate external input. Q2: yes - The code concatenates the `data` variable directly into an SQL `execute()` statement, which is a classic SQL injection vulnerability. Q3: no - There is no input validation, escaping, or use of a safe API like `PreparedStatement` in the `badSink` method. Q4: yes - The `badSink` method is called when `CWE89_SQL_Injection__database_execute_22a.badPublicStatic` is true, and ther",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__PropertiesFile_execute_10.java_159": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from a properties file which can be controlled by an attacker. Q2: yes - The code executes a SQL query using the `execute` method on a `Statement` object. Q3: no - The data read from the properties file is directly concatenated into the SQL query without any sanitization or validation. Q4: yes - The `bad()` method has a conditional `if (IO.staticTrue)` which is true in the `bad()` method, leading to the sink. Q5: yes - This appears to be a test case demonstrating a ",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__listen_tcp_executeBatch_10.java_295": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code path is within a test case designed to demonstrate a vulnerability, and while not directly taking user input, it's structured to simulate attacker control through the `IO.staticTrue` flag and the `data` variable which is intended to be controlled. Q2: yes - The code uses `sqlStatement.addBatch()` with string concatenation, which is a dangerous operation for SQL queries. Q3: no - There is no input validation, escaping, or sanitization applied to the `data` variable before it is",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__listen_tcp_prepareStatement_06.java_137": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: Yes, the `data` variable is influenced by network input through the `socket` which is a potential source of attacker-controlled data. Q2: Yes, a SQL query is constructed and executed using `dbConnection.prepareStatement`. Q3: No, the `data` variable is directly concatenated into the SQL query without any sanitization or escaping. Q4: Yes, the code path leading to the `prepareStatement` call is reachable as it's within an `if` block that appears to be conditionally executed. Q5: Yes, the meth",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getParameter_Servlet_executeUpdate_75b.java_53": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code deserializes data which originates from a `getParameter_Servlet` source in a higher-level test case, implying potential attacker control. Q2: yes - The code uses `sqlStatement.executeUpdate()` with concatenated user input, which is a dangerous SQL operation. Q3: no - The `data` string is directly concatenated into the SQL query without any sanitization or escaping. Q4: yes - The flow from deserialization to the `executeUpdate` method is direct and feasible. Q5: yes - The code ",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__getCookies_Servlet_executeQuery_68a.java_66": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__Environment_executeQuery_07.java_60": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__getCookies_Servlet_prepareStatement_04.java_138": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from HTTP cookies, which can be controlled by an attacker. Q2: yes - The code constructs and executes an SQL query using `dbConnection.prepareStatement()` and concatenates user input directly into the query string. Q3: no - The input `data` is directly concatenated into the SQL query string without any sanitization or validation. Q4: yes - The `data` variable is read from cookies and then used in the `prepareStatement` call within the same code block, with no imposs",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getQueryString_Servlet_executeBatch_67b.java_46": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code is designed to parse input from the URL query string. Q2: yes - The code uses `Statement.addBatch()` and `Statement.executeBatch()` with concatenated strings, which is a dangerous SQL operation. Q3: no - There is no input validation or sanitization performed on the `data` before it's used in the SQL query. Q4: yes - The code path from the source (query string parsing) to the sink (SQL execution) is feasible. Q5: yes - This appears to be test/demo code based on the file naming ",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeBatch_09.java_281": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: Yes, the `data` variable is assigned a hardcoded string \"foo\" in the `goodG2B2` method, but the overall structure and naming convention suggests this method is designed to test a vulnerability, and in a real-world scenario, `data` could originate from an attacker-controlled source. Q2: Yes, the code uses `sqlStatement.addBatch()` and `sqlStatement.executeBatch()` to execute SQL statements, which is a dangerous operation susceptible to SQL injection. Q3: No, the string `names[i]` is directly ",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__URLConnection_executeBatch_06.java_195": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__URLConnection_prepareStatement_41.java_46": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__Environment_executeBatch_14.java_60": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The code reads data from the environment variable 'ADD', which can be controlled by an attacker. Q2: yes - The code uses the `executeBatch` method on a `Statement` object, which executes SQL queries. Q3: no - The `data` variable is directly concatenated into the SQL query string without any sanitization or escaping. Q4: yes - The code path is feasible as it involves an `if (IO.staticFive==5)` block that is executed, and the subsequent code leading to the sink is not guarded by impossib",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__Property_executeQuery_13.java_205": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from the system property 'user.home', which can be influenced by an attacker. Q2: yes - The code uses `sqlStatement.executeQuery` with a dynamically constructed SQL query, which is a dangerous SQL operation. Q3: no - The data read from the system property is directly concatenated into the SQL query without any sanitization or escaping. Q4: yes - The code path that reads the system property and executes the vulnerable query is reachable under the condition `IO.STATIC",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__Property_prepareStatement_74b.java_99": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code receives data from a HashMap which is populated from a system property in another part of the test case, implying potential attacker control. Q2: yes - The code uses `dbConnection.prepareStatement` to execute a SQL query, which is a dangerous operation susceptible to SQL injection. Q3: no - The data is directly concatenated into the SQL query string without any sanitization or escaping. Q4: yes - The data flow from the HashMap to the `prepareStatement` call is direct and witho",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__database_executeBatch_22b.java_245": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__listen_tcp_execute_71b.java_42": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The code is designed to read data from a listening TCP connection, which is a common source of attacker-controlled input. Q2: yes - The code uses `sqlStatement.execute()` which executes an SQL query, a known dangerous operation for SQL injection. Q3: no - The `data` variable is directly concatenated into the SQL query without any sanitization or escaping. Q4: yes - The `badSink` method is directly called and the flow from the `dataObject` to the `sqlStatement.execute()` is straightforw",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__getCookies_Servlet_executeUpdate_04.java_193": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The code reads data from cookies using request.getCookies(), which can be controlled by an attacker. Q2: yes - The code executes an SQL statement using executeUpdate() with a concatenated string, which is a dangerous SQL operation. Q3: no - The data read from the cookie is directly concatenated into the SQL query without any sanitization or validation. Q4: yes - The code path from the cookie source to the SQL sink is directly executed within the 'bad' method, and the surrounding 'if' c",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeUpdate_67a.java_137": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from a file which could be controlled by an attacker. Q2: yes - The code calls a sink method `badSink` which is likely to perform a dangerous operation based on the CWE name. Q3: no - There is no explicit sanitization or validation of the data read from the file before it is passed to the sink. Q4: yes - The data flow is direct from reading the file to passing it to the `badSink` method. Q5: yes - This is part of the Juliet test cases, indicated by the package name ",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeBatch_09.java_125": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: unknown - The source of 'data' is not explicitly shown in the provided snippet, making it unknown if it's attacker-controlled. Q2: yes - The code uses `sqlStatement.addBatch()` which is a dangerous operation for SQL queries. Q3: no - There is no input validation or sanitization applied to the 'names' array elements before they are concatenated into the SQL statement. Q4: yes - The code path leading to the `executeBatch()` method is guarded by `IO.STATIC_FINAL_TRUE` and a `data != null` check",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__database_executeBatch_10.java_279": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: unknown - The code uses IO.staticTrue which is a flag, and the source of 'data' is not fully visible in the provided snippet, making it impossible to definitively determine if it's attacker-controlled. Q2: yes - The code uses `sqlStatement.addBatch()` which is a sink for SQL injection vulnerabilities. Q3: no - The code directly concatenates the 'names[i]' variable into the SQL query without any sanitization or escaping. Q4: yes - The code path involves `IO.staticTrue` being true, and the `da",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__database_prepareStatement_61a.java_40": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__Property_executeQuery_51b.java_105": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The `badSink` method receives a `String data` argument which is described as coming from a system property in the template. Q2: yes - The code concatenates the `data` variable directly into an SQL query executed by `sqlStatement.executeQuery()`. Q3: no - There is no input validation, escaping, or use of a safe API like prepared statements on the `data` variable before it's used in the SQL query. Q4: yes - The `badSink` method is directly called, and the `executeQuery` method is called ",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeUpdate_42.java_181": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The `badSource` method reads data from a file, which can be controlled by an attacker. Q2: yes - The code uses `sqlStatement.executeUpdate` to execute a dynamically constructed SQL query. Q3: no - The `data` read from the file is directly concatenated into the SQL query without any sanitization or validation. Q4: yes - The `badSource` method is called directly in the `bad` method, and the resulting data is used in the `executeUpdate` call without any intervening conditional logic that ",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_executeQuery_11.java_252": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes, the code reads user input from the console using `readLine()`, which can be controlled by an attacker. Q2: yes, the code executes an SQL query using `executeQuery()` with user-supplied input. Q3: no, the user input `data` is directly concatenated into the SQL query without any sanitization or escaping. Q4: yes, the `if (IO.staticReturnsTrue())` blocks are designed to allow the flow from the source (console input) to the sink (SQL execution). Q5: yes, this appears to be a test/demo code ",
+    "stage": "LLM"
+  },
+  "DLS_DEAD_LOCAL_STORE_OF_NULL_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_executeBatch_22b.java_308": {
+    "alert_id": "DLS_DEAD_LOCAL_STORE_OF_NULL",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes. The code is designed to accept console input. Q2: yes. The code executes a SQL query with concatenated user input. Q3: no. There is no sanitization or validation of the input before it's used in the SQL query. Q4: yes. The control flow allows the vulnerable sink to be reached. Q5: yes. This is identified as a test case from the Juliet Test Suite. Therefore: The alert indicates a true positive as attacker-controlled input is used unsafely in a SQL query within a test case scenario.\n---\nQ",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_prepareStatement_17.java_117": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_executeBatch_68b.java_46": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_execute_22b.java_40": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The `data` variable is read from a file in the `bad()` method of the associated `22a` class (not shown here), which is a typical source of external, potentially attacker-controlled input. Q2: yes - The code uses `sqlStatement.execute(\"insert into users (status) values ('updated') where name='\"+data+\"'\")`, which directly concatenates the `data` variable into an SQL query. Q3: no - There is no input validation, escaping, or use of parameterized queries to sanitize the `data` before it's ",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__URLConnection_executeUpdate_75b.java_53": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The code deserializes a byte array which originates from a URLConnection, a potential source of attacker-controlled input. Q2: yes - The code executes an SQL query using `sqlStatement.executeUpdate` where user input is directly concatenated. Q3: no - The `data` variable, which originates from the deserialized input, is directly concatenated into the SQL query without any validation or sanitization. Q4: yes - The flow is from the deserialization of `dataSerialized` to the `executeUpdate",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeUpdate_75b.java_53": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The data is read from a serialized object, which could originate from an attacker. Q2: yes - The code directly concatenates the 'data' variable into an SQL statement used in `executeUpdate()`. Q3: no - The 'data' variable is not validated or escaped before being used in the SQL query. Q4: yes - The code path is directly from deserialization to the SQL execution, with no impossible guards. Q5: yes - The filename and method names indicate this is Juliet test case code designed to demonst",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getQueryString_Servlet_executeQuery_71b.java_43": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__Environment_prepareStatement_22b.java_159": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__URLConnection_executeBatch_02.java_111": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_executeQuery_75b.java_54": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code deserializes data from a byte array, and the original source of this data is described as reading from a TCP connection, which can be controlled by an attacker. Q2: yes - The code executes an SQL query using `sqlStatement.executeQuery()`. Q3: no - The data is directly concatenated into the SQL query string without any sanitization or escaping. Q4: yes - The data flow is clearly from the deserialization point to the SQL execution point within the `badSink` method, and there are",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__PropertiesFile_prepareStatement_12.java_197": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__getCookies_Servlet_prepareStatement_68a.java_66": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from cookies, which can be controlled by an attacker. Q2: yes - The code calls a sink method (implicitly within CWE89_SQL_Injection__getCookies_Servlet_prepareStatement_68b) that is designed to perform a dangerous SQL operation. Q3: no - There is no input validation or sanitization of the cookie data before it is passed to the sink. Q4: yes - The data flow is directly from the `bad` method to the `badSink` method in `CWE89_SQL_Injection__getCookies_Servlet_prepareSt",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getParameter_Servlet_executeUpdate_12.java_55": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code directly reads user input from a request parameter 'name'. Q2: yes - The code uses `Statement.executeUpdate()` to execute a dynamically constructed SQL query. Q3: no - The input `data` is directly concatenated into the SQL query string without any sanitization or escaping, making it vulnerable to SQL injection. Q4: yes - The code follows a clear control flow path where user input is taken and then used in the SQL execution. Q5: yes - This code is part of the Juliet test suite,",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_execute_02.java_100": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads user input from the console using `BufferedReader.readLine()`. Q2: yes - The code executes a SQL query using `Statement.execute()` with a concatenated string. Q3: no - The user-supplied input (`data`) is directly concatenated into the SQL query without any sanitization or escaping. Q4: yes - The `if (true)` blocks ensure that the source (reading from console) and the sink (executing SQL) are both reachable. Q5: yes - This code is identified as a Juliet test case, indicat",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_prepareStatement_15.java_45": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from a file ('C:\\data.txt'), which an attacker could potentially control. Q2: yes - The code uses `prepareStatement`, which is a sink for SQL injection vulnerabilities, and the data read from the file is concatenated into the SQL query. Q3: no - There is no input validation, escaping, or safe API usage demonstrated between reading the data from the file and its use in the SQL query. Q4: yes - The code path is straightforward, reading from a file and then proceeding ",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_prepareStatement_45.java_50": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes, the code reads data from a TCP socket connection, which can be controlled by an attacker. Q2: yes, the code constructs and executes an SQL query using `dbConnection.prepareStatement()`, which is a known sink for SQL injection vulnerabilities. Q3: no, the data read from the TCP socket is directly concatenated into the SQL query string without any validation, sanitization, or escaping. Q4: yes, the `bad()` method calls `badSink()` directly, and there are no conditional statements or guard",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeBatch_68b.java_31": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code reads data from a file, which can be controlled by an attacker. Q2: yes - The code concatenates user input directly into an SQL query executed via `executeBatch()`, which is a dangerous operation susceptible to SQL injection. Q3: no - There is no input validation or sanitization performed on the `data` variable before it is used in the SQL query. Q4: yes - The code path is straightforward, with the data being read and then directly used in the sink without any impossible guard",
+    "stage": "LLM"
+  },
+  "DLS_DEAD_LOCAL_STORE_OF_NULL_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__URLConnection_executeQuery_22b.java_232": {
+    "alert_id": "DLS_DEAD_LOCAL_STORE_OF_NULL",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code is part of a test case designed to demonstrate a vulnerability, implying attacker-controlled input is used to trigger it. Q2: yes - The code contains a SQL query that directly concatenates user input, which is a known SQL injection vulnerability. Q3: no - The data is directly concatenated into the SQL query without any sanitization or parameterization. Q4: yes - The code path leading to the sink is within a conditional block that is intended to be executed in the 'bad' scenari",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getQueryString_Servlet_execute_54e.java_98": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code is part of a test case designed to parse input from a query string, which is a common source of attacker-controlled data. Q2: yes - The code directly uses the `execute` method on a `Statement` object with a dynamically constructed SQL query, which is a dangerous SQL operation. Q3: no - The variable `data` is directly concatenated into the SQL query string without any sanitization or escaping. Q4: yes - The code path is designed to pass data from a source to this sink, and ther",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getQueryString_Servlet_execute_01.java_60": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nCould not find JSON in response: Q1. yes: The code directly parses the `request.getQueryString()` which is controlled by the user via...",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__URLConnection_prepareStatement_03.java_174": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code reads data from a URLConnection, which can be controlled by an attacker. Q2: yes - The code constructs a SQL query using `prepareStatement` and concatenates user-controlled data directly into the query string. Q3: no - The data read from the URLConnection is directly concatenated into the SQL query without any sanitization or validation. Q4: yes - The code path is reachable as the `if (5==5)` conditions are always true, leading directly from the data source to the vulnerable S",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_execute_52a.java_39": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getQueryString_Servlet_executeBatch_07.java_157": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The code parses input from the URL query string via `request.getQueryString()`, which can be controlled by an attacker. Q2: yes - The code uses `sqlStatement.addBatch()` and `sqlStatement.executeBatch()` with a dynamically constructed SQL query, which is a dangerous SQL operation. Q3: no - The `data` variable, which originates from the query string, is directly concatenated into the SQL statement without any sanitization or escaping. Q4: yes - The code clearly flows from the source (`r",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__database_execute_01.java_180": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The `data` variable is populated from a database query result, which can be influenced by external inputs. Q2: yes - The code uses `sqlStatement.execute()` with a dynamically constructed SQL query, which is a dangerous operation susceptible to SQL injection. Q3: no - There is no input validation, escaping, or use of a safe API like prepared statements with parameterized queries in the `bad()` method's sink. Q4: yes - The code flows directly from reading data from the database to execut",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__listen_tcp_prepareStatement_14.java_270": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "ABSTAIN",
+    "confidence": 0.4,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_execute_75b.java_53": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code deserializes a byte array which could contain attacker-controlled input from a network connection. Q2: yes - The code executes a SQL query using a statement where user input is directly concatenated into the query string. Q3: no - There is no input validation, escaping, or use of a safe API like prepared statements to sanitize the data before it's used in the SQL query. Q4: yes - The code path is a direct flow from deserialization to the SQL execution, with no impossible guard",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_executeUpdate_06.java_247": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__listen_tcp_executeQuery_03.java_284": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__Environment_executeQuery_52c.java_105": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code is designed to read data from an environment variable, which can be controlled by an attacker. Q2: yes - The code uses `sqlStatement.executeQuery` to execute a dynamically constructed SQL query. Q3: no - The `data` variable is directly concatenated into the SQL query string without any sanitization or escaping. Q4: yes - The flow is direct and the sink is reachable from the source within the `badSink` method. Q5: yes - This is part of the Juliet test suite, indicating it's des",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__Property_executeUpdate_17.java_51": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from a system property ('user.home'), which can be influenced by the environment and potentially by an attacker. Q2: yes - The code executes an SQL query using `sqlStatement.executeUpdate()`, which is a known sink for SQL injection vulnerabilities. Q3: no - The data read from the system property is directly concatenated into the SQL query without any sanitization or escaping. Q4: yes - The code path is straightforward, with the data read from the system property bei",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeBatch_51a.java_128": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code reads data from a file ('C:\\data.txt'), which can be controlled by an attacker. Q2: yes - The code passes the data to a sink method 'badSink' which is described as potentially leading to SQL Injection. Q3: no - There is no apparent sanitization or validation of the data read from the file before it is passed to the sink. Q4: yes - The data flow is directly from reading the file to calling the sink method without any conditional logic that would prevent reaching the sink. Q5: y",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_prepareStatement_54e.java_39": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The `data` parameter is passed from a previous method which, according to the template's description, originates from a network connection, implying potential attacker control. Q2: yes - The code directly concatenates the `data` variable into a SQL query string used in `dbConnection.prepareStatement()`, which is a vulnerable operation. Q3: no - The `data` is directly concatenated into the SQL string without any sanitization or validation. Q4: yes - The `data` flows directly into the `b",
+    "stage": "LLM"
+  },
+  "DLS_DEAD_LOCAL_STORE_OF_NULL_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__URLConnection_execute_22b.java_85": {
+    "alert_id": "DLS_DEAD_LOCAL_STORE_OF_NULL",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The code is designed to read data from a URLConnection, which can be controlled by an attacker. Q2: yes - The code executes a SQL query with user-supplied data concatenated into it. Q3: no - The data is directly concatenated into the SQL query without any sanitization or escaping. Q4: yes - The code path is controlled by a public static variable, and the sink is reachable when this variable is set to true, which is a feasible scenario. Q5: yes - This code is part of a Juliet test case,",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__Environment_executeUpdate_05.java_124": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__URLConnection_prepareStatement_16.java_165": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code reads data from a URLConnection, which can be controlled by an attacker. Q2: yes - The code constructs a SQL query using `prepareStatement` and concatenates user-controlled data into it. Q3: no - The data read from the URLConnection is directly concatenated into the SQL query without any sanitization or validation. Q4: yes - The `bad()` method, which contains the vulnerable code, is directly executed and the control flow to the sink is straightforward. Q5: yes - This code is p",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_executeQuery_08.java_190": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads user input from the console using `readLine()`, which is considered attacker-controlled. Q2: yes - The code executes an SQL query using `executeQuery()` with a dynamically constructed string. Q3: no - The input read from the console is directly concatenated into the SQL query without any sanitization or escaping. Q4: yes - The `bad()` method contains an `if (privateReturnsTrue())` block that leads to the sink, and the `privateReturnsTrue()` method always returns true, ma",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_prepareStatement_17.java_177": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeBatch_09.java_204": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: unknown - The code itself doesn't show direct user input, but this is a test case designed to demonstrate a vulnerability, so it's likely intended to simulate attacker input. Q2: yes - The code uses `sqlStatement.addBatch()` and `sqlStatement.executeBatch()`, which are dangerous operations for SQL queries. Q3: no - The input string `names[i]` is directly concatenated into the SQL query without any sanitization or escaping. Q4: yes - The code path that leads to the sink is reachable through t",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__getCookies_Servlet_prepareStatement_16.java_57": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from cookies using `request.getCookies()`, which can be controlled by an attacker. Q2: yes - The code constructs a SQL query by concatenating user input into a `prepareStatement` call, which is a dangerous operation. Q3: no - There is no input validation, escaping, or sanitization applied to the `data` variable before it is used in the SQL query. Q4: yes - The code follows a straightforward control flow where the cookie data is read and then directly used in the SQL",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getQueryString_Servlet_prepareStatement_12.java_175": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__PropertiesFile_68b.java_52": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The `data` variable is read from a properties file, which could be controlled by an attacker. Q2: yes - The code uses `Runtime.getRuntime().exec()` which is a dangerous operation for command execution. Q3: no - There is no input validation or sanitization applied to the `data` variable before it is used in the command. Q4: yes - The `data` variable is directly passed from the `68a` class to the sink method, and there are no impossible guards preventing execution. Q5: yes - The file nam",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__database_01.java_102": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The 'data' variable is read from a database query result which could potentially be controlled by an attacker. Q2: yes - The code uses Runtime.getRuntime().exec(), which is a dangerous operation for command execution. Q3: no - There is no sanitization or validation of the 'data' variable before it is used in the command execution. Q4: yes - The execution flows directly from the database read to the command execution without any impossible guards. Q5: yes - This appears to be a test cas",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__console_readLine_51b.java_50": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__Property_67b.java_30": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The 'data' variable is read from a system property in the associated 'a' class, which can be influenced by an attacker. Q2: yes - The code uses Runtime.getRuntime().exec() to execute a command, which is a dangerous operation. Q3: no - There is no input validation or sanitization performed on the 'data' variable before it is used in the command execution. Q4: yes - The code flows directly from the data container to the sink without any conditional logic that would prevent execution. Q5:",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_74b.java_31": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code is designed to receive input from a URLConnection, which can be controlled by an attacker. Q2: yes - The code uses Runtime.getRuntime().exec() which is a dangerous operation for command execution. Q3: no - There is no input validation or sanitization applied to the 'data' variable before it is used in the command execution. Q4: yes - The data flows from the HashMap into the `exec` method without any impossible guards. Q5: yes - This code is part of a Juliet test case, specific",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__File_12.java_134": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The `data` variable can be populated from a file, which could be attacker-controlled. Q2: yes - The `Runtime.getRuntime().exec()` method is a sink for OS command execution. Q3: no - There is no sanitization or validation of the `data` variable before it is concatenated into the command string. Q4: yes - The `if (IO.staticReturnsTrueOrFalse())` block allows execution to reach the sink from the source. Q5: yes - This is a test case from the Juliet test suite, indicated by the package and",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__listen_tcp_54e.java_29": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The `data` parameter in `badSink` originates from a network source in the upstream test case, which is typically controlled by an attacker. Q2: yes - The code uses `Runtime.getRuntime().exec()` to execute a command, which is a dangerous operation. Q3: no - There is no input validation, escaping, or sanitization applied to the `data` variable before it is concatenated into the command string. Q4: yes - The `badSink` method is called directly in the test case, and there are no conditiona",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__Property_02.java_112": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The `user.home` system property can potentially be influenced by an attacker in certain environments, although it's typically not directly user-controlled. Q2: yes - The code uses `Runtime.getRuntime().exec()`, which is a dangerous operation for executing OS commands. Q3: no - There is no input validation or sanitization applied to the `data` variable before it's concatenated into the OS command. Q4: yes - The `if (true)` block ensures that the `data` is read from the system property a",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getQueryString_Servlet_10.java_55": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code directly parses the URL query string, which is attacker-controlled. Q2: yes - The code uses `Runtime.getRuntime().exec()`, which is a dangerous operation for command execution. Q3: no - There is no input sanitization or validation performed on the `data` variable before it is used in the command execution. Q4: yes - The `if (IO.staticTrue)` block is designed to be reachable and leads directly to the sink. Q5: yes - This is identified as a Juliet test case, specifically a 'bad'",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_22a.java_74": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The `badSource()` method in `CWE78_OS_Command_Injection__URLConnection_22b` (not shown but implied by the test case structure) is designed to read data from a `URLConnection`, which can be attacker-controlled. Q2: yes - `Runtime.getRuntime().exec()` is a dangerous operation that can lead to OS command injection. Q3: no - There is no apparent input validation, escaping, or sanitization of the `data` variable before it is concatenated with `osCommand`. Q4: yes - The code directly calls `",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__PropertiesFile_71b.java_30": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from a .properties file, which can be controlled by an attacker. Q2: yes - The code uses Runtime.getRuntime().exec() to execute a command, which is a dangerous operation. Q3: no - There is no input validation or sanitization applied to the data before it is used in the command execution. Q4: yes - The execution flow from the data source to the sink is direct and feasible. Q5: yes - This code is part of a test case (Juliet test suite) designed to demonstrate a vulner",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__database_07.java_182": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The `data` variable is populated from a database query result, which can be influenced by external data. Q2: yes - The code uses `Runtime.getRuntime().exec()` to execute an OS command, which is a dangerous operation susceptible to command injection. Q3: no - There is no sanitization or validation applied to the `data` read from the database before it is used in the OS command. Q4: yes - The code follows a direct path from reading the database to executing the command, with no impossibl",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__connect_tcp_01.java_104": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from a network socket, which can be controlled by an attacker. Q2: yes - The code uses Runtime.getRuntime().exec() which is a dangerous operation for executing OS commands. Q3: no - There is no input validation or sanitization applied to the data read from the socket before it is used in the command. Q4: yes - The code directly concatenates the potentially untrusted data into the command string before executing it. Q5: yes - This appears to be test or demo code base",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getQueryString_Servlet_52c.java_29": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_01.java_89": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__console_readLine_04.java_132": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__File_04.java_47": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_08.java_108": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from a URLConnection, which can be controlled by an attacker. Q2: yes - The code uses Runtime.getRuntime().exec() which is a dangerous operation for command execution. Q3: no - There is no input validation or sanitization applied to the data read from the URLConnection before it's used in the command. Q4: yes - The code path is controlled by `privateReturnsTrue()` which is always true in this execution path, leading to the sink. Q5: yes - This is test/demo code from",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__Environment_41.java_28": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code reads data from the environment variable 'ADD', which can be controlled by an attacker. Q2: yes - The code uses `Runtime.getRuntime().exec()` which is a dangerous operation for executing OS commands. Q3: no - There is no input validation or sanitization performed on the data read from the environment variable before it is used in the command execution. Q4: yes - The `badSink` method is called directly from the `bad` method, and there are no impossible guards preventing executi",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__connect_tcp_72b.java_54": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__database_31.java_110": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_75b.java_42": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code deserializes data, which can originate from an attacker, and this data is then used in a command execution. Q2: yes - The code uses `Runtime.getRuntime().exec()` which is a dangerous operation for command execution. Q3: no - There is no input validation or sanitization performed on the deserialized data before it is concatenated with the OS command. Q4: yes - The code path is directly from the deserialization of the input data to the `exec()` call, with no intervening checks. ",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__File_09.java_108": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The `data` variable is read from a file (`C:\\data.txt`), which can be influenced by an attacker. Q2: yes - The code uses `Runtime.getRuntime().exec()` which is a sink for OS command execution. Q3: no - There is no input validation, escaping, or sanitization applied to the `data` read from the file before it is concatenated with `osCommand`. Q4: yes - The `if (IO.STATIC_FINAL_TRUE)` block leads to the file reading, and the subsequent `Runtime.getRuntime().exec()` call is reachable. Q5: ",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__Property_68a.java_31": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getQueryString_Servlet_72b.java_54": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code receives data from a Vector, which originates from a web request's query string in a separate source file. Q2: yes - The code uses Runtime.getRuntime().exec() which is a dangerous operation for command execution. Q3: no - There is no sanitization or validation applied to the input data before it is concatenated with the OS command. Q4: yes - The code path is designed to pass data from a source to this sink method. Q5: yes - This code is part of the Juliet test suite, indicatin",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__connect_tcp_71b.java_53": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__Property_68b.java_29": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from a system property, which can be influenced by the environment and potentially controlled by an attacker. Q2: yes - The `Runtime.getRuntime().exec()` method is used to execute operating system commands, which is a dangerous operation. Q3: no - There is no input validation, escaping, or sanitization applied to the `data` variable before it's concatenated with the command. Q4: yes - The `data` variable is directly passed from a member variable of another class (`C",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__database_22a.java_74": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The `badSource()` method, which is called in this code path, is designed to read data from a database, which can be influenced by an attacker. Q2: yes - The code uses `Runtime.getRuntime().exec()` which is a dangerous operation for executing OS commands. Q3: no - There is no input validation, escaping, or sanitization applied to the data before it is used in the `exec()` call. Q4: yes - The control flow is set up such that the `badSource()` method is called and its result is directly u",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getCookies_Servlet_54e.java_51": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from cookies, which can be controlled by an attacker. Q2: yes - The code uses Runtime.getRuntime().exec(), which is a dangerous operation for command execution. Q3: no - There is no input validation or sanitization applied to the data before it is used in the command. Q4: yes - The data flows directly from the cookie reading to the command execution without any intervening impossible guards. Q5: yes - This is a Juliet test case, which is designed to demonstrate vuln",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__PropertiesFile_21.java_128": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The `data` variable is populated from a properties file, which can be influenced by an attacker. Q2: yes - The `Runtime.getRuntime().exec()` method is used to execute operating system commands. Q3: no - There is no input validation or sanitization performed on the `data` before it is concatenated into the command string. Q4: yes - The `bad()` method directly calls `bad_source()` and then executes the command, with no impossible guards preventing execution. Q5: yes - The code is part of",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_72b.java_31": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code is part of a test case designed to demonstrate OS command injection, implying attacker-controlled input is simulated. Q2: yes - The code uses `Runtime.getRuntime().exec()`, which is a dangerous operation for command execution. Q3: no - There is no apparent input validation or sanitization applied to the `data` variable before it is concatenated with the OS command. Q4: yes - The code is structured to pass data through methods, and the sink is directly reachable from the simula",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__PropertiesFile_15.java_116": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The data originates from a .properties file, which can be controlled by an attacker. Q2: yes - The code uses `Runtime.getRuntime().exec()` which is a dangerous operation for command execution. Q3: no - There is no sanitization or validation performed on the data read from the properties file before it is used in the command. Q4: yes - The code directly concatenates the potentially untrusted data into the command string, and the control flow allows this path to be reached. Q5: yes - Thi",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getQueryString_Servlet_66b.java_53": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code receives data from `dataArray[2]`, which originates from `getQueryString_Servlet` in the preceding file, indicating attacker-controlled input. Q2: yes - The code uses `Runtime.getRuntime().exec()`, which is a dangerous operation for executing OS commands. Q3: no - There is no input validation, escaping, or sanitization performed on the `data` variable before it is used in the command execution. Q4: yes - The `data` variable is directly passed from the `dataArray` to the sink w",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getQueryString_Servlet_13.java_91": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The `request.getQueryString()` method directly accesses user-supplied input from the URL. Q2: yes - `Runtime.getRuntime().exec()` is a dangerous operation that can lead to OS command injection. Q3: no - There is no sanitization or validation of the `data` variable before it is concatenated into the command string. Q4: yes - The code is structured such that the `data` variable, derived from the query string, is directly used in the `Runtime.getRuntime().exec()` call within the `bad` met",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_68b.java_29": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The `data` variable originates from `CWE78_OS_Command_Injection__URLConnection_68a.data`, which is intended to simulate attacker-controlled input from a `URLConnection`. Q2: yes - The code uses `Runtime.getRuntime().exec()` which is a dangerous operation for executing OS commands. Q3: no - There is no input validation, escaping, or sanitization applied to the `data` variable before it is concatenated with the OS command. Q4: yes - The `data` variable is directly passed to the `badSink`",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__listen_tcp_10.java_158": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getCookies_Servlet_06.java_126": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from a cookie, which can be controlled by an attacker. Q2: yes - The code uses `Runtime.getRuntime().exec()`, which is a dangerous operation for command execution. Q3: no - There is no input validation or sanitization of the cookie data before it is used in the command. Q4: yes - The code path leading from reading the cookie to executing the command is feasible and not guarded by impossible conditions. Q5: yes - This code is part of the Juliet test suite, which is d",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__listen_tcp_09.java_192": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from a TCP socket, which can be controlled by an attacker. Q2: yes - The code uses Runtime.getRuntime().exec() to execute a command, which is a dangerous operation. Q3: no - There is no input validation or sanitization applied to the data read from the TCP socket before it is used in the command execution. Q4: yes - The code path involves reading data from a TCP socket and then executing a command with that data, and the control flow does not prevent this execution.",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__console_readLine_68a.java_35": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The `console_readLine` method reads directly from `System.in`, which can be controlled by the user. Q2: yes - The `Runtime.getRuntime().exec()` method is a dangerous operation that can lead to OS command injection. Q3: no - There is no input validation or sanitization performed on the data read from the console before it is passed to the sink. Q4: yes - The data flows directly from the `console_readLine` source to the `exec` sink via the `data` member variable. Q5: yes - This code is p",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__PropertiesFile_14.java_148": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getParameter_Servlet_61a.java_30": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getParameter_Servlet_17.java_36": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes, the code reads user input from a request parameter. Q2: yes, the code executes an OS command using Runtime.getRuntime().exec(). Q3: no, there is no sanitization or validation of the input before it is used in the OS command. Q4: yes, the code path is straightforward with a loop that executes once. Q5: yes, this appears to be test/demo code based on the package name and file structure (Juliet test cases). Therefore: The alert is a True Positive because attacker-controlled input is direct",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__File_31.java_110": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from a file which can be controlled by an attacker. Q2: yes - The code uses Runtime.getRuntime().exec() which is a dangerous operation for OS command execution. Q3: no - There is no input validation or sanitization applied to the data read from the file before it is used in the command execution. Q4: yes - The data flows directly from the file read to the exec() method without any impossible guards. Q5: yes - This appears to be a test case from the Juliet test suite",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__Environment_73b.java_54": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The data originates from an environment variable which can be controlled by an attacker. Q2: yes - The code uses `Runtime.getRuntime().exec()` which is a dangerous operation for command execution. Q3: no - There is no input validation or sanitization applied to the `data` variable before it is concatenated with the command string. Q4: yes - The data flows from the `badSink` method, which receives the `dataLinkedList`, directly to the `exec` call. Q5: yes - This code is part of the Juli",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__File_68b.java_52": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The `data` variable is read from a file in `CWE78_OS_Command_Injection__File_68a.java` and passed to this class, which is a common source for attacker-controlled input in test cases. Q2: yes - The code uses `Runtime.getRuntime().exec()` which is a dangerous operation for executing OS commands. Q3: no - There is no input validation, escaping, or sanitization performed on the `data` variable before it is concatenated with the OS command. Q4: yes - The data flows directly from the source ",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__PropertiesFile_45.java_112": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from a .properties file which can be controlled by an attacker. Q2: yes - The code uses `Runtime.getRuntime().exec()` which is a dangerous operation for command execution. Q3: no - There is no input validation or sanitization applied to the data read from the properties file before it is used in the command. Q4: yes - The `badSink()` method is called directly after `bad()` which sets the `dataBad` member variable, making the flow feasible. Q5: yes - This is a test c",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__PropertiesFile_67b.java_53": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from a properties file, which can be controlled by an attacker. Q2: yes - The code uses `Runtime.getRuntime().exec()` which is a dangerous operation for command execution. Q3: no - There is no input validation or sanitization applied to the `data` variable before it is used in the command. Q4: yes - The `data` variable is passed directly from the `Container` object to the `exec` method, allowing for a direct flow. Q5: yes - This is a test case file from the Juliet T",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getCookies_Servlet_02.java_86": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from cookies, which can be attacker-controlled. Q2: yes - The code uses Runtime.getRuntime().exec() for dynamic command execution. Q3: no - There is no input validation or sanitization applied to the cookie data before it's used in the command. Q4: yes - The code path from reading the cookie to executing the command is reachable. Q5: yes - This code is part of the Juliet test cases, specifically labeled as a 'bad' method, indicating it's a demonstration of a vulnera",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__listen_tcp_22a.java_37": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The `badSource()` method is called, which is designed to read data from a listening TCP connection, implying potential attacker control. Q2: yes - `Runtime.getRuntime().exec()` is used to execute an operating system command, which is a dangerous operation. Q3: no - There is no explicit sanitization or validation of the `data` variable before it is concatenated with the `osCommand`. Q4: yes - The code flow directly leads from the source to the sink without any impossible guards. Q5: yes",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__File_08.java_54": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from a file that could potentially be controlled by an attacker. Q2: yes - The code uses `Runtime.getRuntime().exec()` which is a dangerous operation for command execution. Q3: no - There is no input validation or sanitization applied to the data read from the file before it is used in the command execution. Q4: yes - The `privateReturnsTrue()` method is called, which always returns true, ensuring that the file reading code path is executed and leads to the sink. Q5",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__database_11.java_142": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__database_09.java_106": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__listen_tcp_21.java_219": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getCookies_Servlet_74b.java_31": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code retrieves data from a HashMap which is populated by a cookie, a potential source of attacker-controlled input. Q2: yes - The code uses `Runtime.getRuntime().exec()` which is a dangerous operation for command execution. Q3: no - There is no input validation or sanitization applied to the data before it is used in the command execution. Q4: yes - The data is passed directly from the HashMap to the `exec` method without any intervening logic that would prevent execution. Q5: yes ",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getQueryString_Servlet_06.java_131": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The `getQueryString()` method directly retrieves input from the HTTP request, which can be controlled by an attacker. Q2: yes - `Runtime.getRuntime().exec()` is used to execute operating system commands, which is a dangerous operation. Q3: no - The input from `getQueryString()` is directly concatenated into the command string without any sanitization or validation. Q4: yes - The code path is within the `bad()` method, and the `if (PRIVATE_STATIC_FINAL_FIVE == 5)` condition is met, lead",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_41.java_36": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The input is read from a URLConnection, which can be controlled by an attacker. Q2: yes - The code uses Runtime.getRuntime().exec() for dynamic command execution, which is a dangerous operation. Q3: no - There is no input validation or sanitization performed on the data read from the URLConnection before it is used in the command. Q4: yes - The data flows directly from the URLConnection read to the exec() method without any intervening guards. Q5: yes - This code is part of the Juliet ",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getQueryString_Servlet_41.java_79": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__Environment_09.java_42": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code reads data from the environment variable 'ADD', which can be controlled by an attacker. Q2: yes - The code uses `Runtime.getRuntime().exec()` which is a dangerous operation for command execution. Q3: no - There is no input validation or sanitization applied to the data read from the environment variable before it is concatenated into the command string. Q4: yes - The code path is feasible as it is within the `bad()` method and the `if (IO.STATIC_FINAL_TRUE)` condition is met. ",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__File_74a.java_40": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code reads data from a file, and the contents of this file could be controlled by an attacker. Q2: yes - The code uses `Runtime.getRuntime().exec()`, which is a sink for OS command injection. Q3: no - There is no input validation or sanitization applied to the data read from the file before it is potentially used in a command execution. Q4: yes - The data flow is from reading the file to passing it through a HashMap to a sink method, with no impossible guards. Q5: yes - The code is",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getQueryString_Servlet_12.java_81": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code directly uses `request.getQueryString()` which is attacker-controlled input. Q2: yes - The code uses `Runtime.getRuntime().exec()` which is a dangerous command execution sink. Q3: no - There is no explicit sanitization or validation of the `data` variable before it is concatenated into the command string. Q4: yes - The `if (IO.staticReturnsTrueOrFalse())` condition does not prevent the flow from the source to the sink, as both branches of the `if` statement lead to the sink. Q",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__console_readLine_15.java_91": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from System.in using readLine(), which is considered attacker-controlled input. Q2: yes - The code uses Runtime.getRuntime().exec() to execute an OS command, which is a dangerous operation. Q3: no - There is no input validation or sanitization applied to the data read from the console before it is used in the OS command. Q4: yes - The code structure allows for the data read from the console to be directly concatenated with the base OS command and passed to Runtime.g",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__File_72a.java_40": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__connect_tcp_21.java_157": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from a TCP socket, which can be controlled by an attacker. Q2: yes - The code uses Runtime.getRuntime().exec() to execute an operating system command. Q3: no - There is no input validation or sanitization applied to the data read from the socket before it is used in the command execution. Q4: yes - The data flows from the `bad_source()` method to the `Runtime.getRuntime().exec()` call within the `bad()` method, and the control flow is set up to allow this path. Q5: ",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getCookies_Servlet_11.java_50": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The code reads data from cookies, which can be attacker-controlled. Q2: yes - The code uses `Runtime.getRuntime().exec()` which is a dangerous operation for command execution. Q3: no - There is no input validation or sanitization applied to the cookie data before it is used in the command execution. Q4: yes - The `if (IO.staticReturnsTrue())` block, which contains the source, is directly connected to the sink via the `data` variable, and the sink is reachable. Q5: yes - This appears to",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__PropertiesFile_61a.java_58": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The `bad()` method calls `badSource()` which reads from a properties file, and the description indicates this is intended to be attacker-controlled input. Q2: yes - The code uses `Runtime.getRuntime().exec()` which is a dangerous operation for command execution. Q3: no - There is no explicit sanitization or validation of the `data` variable before it is concatenated into the command string. Q4: yes - The `data` variable is directly used in the `exec` call without any conditional logic ",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getCookies_Servlet_42.java_83": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The 'data' variable is populated from a cookie value obtained via `request.getCookies()`, which can be controlled by an attacker. Q2: yes - The code uses `Runtime.getRuntime().exec()` which is a sink for OS command injection. Q3: no - There is no sanitization or validation performed on the 'data' variable before it is concatenated with the OS command string. Q4: yes - The 'data' variable flows directly from the `badSource` method to the `exec` call within the `bad` method without any i",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__Environment_03.java_78": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from the environment variable \"ADD\", which can be controlled by an attacker. Q2: yes - The code uses `Runtime.getRuntime().exec()` which is a dangerous operation for command execution. Q3: no - There is no sanitization or validation of the environment variable data before it is concatenated into the command string. Q4: yes - The code is within an `if (5 == 5)` block, which is always true, meaning the sink is reachable from the source. Q5: yes - This code is part of ",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_68b.java_52": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The data originates from a URLConnection in another class (CWE78_OS_Command_Injection__URLConnection_68a.java), which can be controlled by an attacker. Q2: yes - The code uses Runtime.getRuntime().exec() to execute a command, which is a dangerous operation. Q3: no - There is no sanitization or validation of the 'data' variable before it's used in the command execution. Q4: yes - The 'data' variable is directly passed from the member variable of class CWE78_OS_Command_Injection__URLConn",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getParameter_Servlet_22a.java_70": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__int_connect_tcp_square_09.java_271": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: unknown. The code reads data from a TCP connection, which could be attacker-controlled, but the specific host and port suggest this might be a simulated or controlled environment for testing. Q2: yes. The code performs a multiplication operation `data * data` and casts the result to an `int`, which can lead to an integer overflow if `data` is too large. Q3: no. The code attempts to parse the input string into an integer but does not perform any validation or sanitization to prevent values th",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_listen_tcp_square_13.java_298": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from a TCP socket, which can be controlled by an attacker. Q2: yes - The code performs a multiplication of the input data by itself (squaring) which can lead to an integer overflow. Q3: no - There is no input validation or sanitization performed on the data read from the TCP socket before it is used in the multiplication. Q4: yes - The code path includes a conditional check `if (IO.STATIC_FINAL_FIVE==5)` which is likely to be true in a test environment, allowing exe",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_multiply_54a.java_58": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "FP",
+    "confidence": 0.8,
+    "rationale": "Q1: unknown - The source uses `java.security.SecureRandom()`, which is not directly attacker-controlled. Q2: yes - The code passes data to `badSink` which is likely to perform a multiplication that could lead to an integer overflow. Q3: no - There is no explicit sanitization or validation of the random input before it is passed to the sink. Q4: yes - The data flow is straightforward, passing the `data` variable from `bad` method to `badSink` without any conditional branches that would prevent ex",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_multiply_10.java_155": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The code uses `new java.security.SecureRandom().nextInt()` which can be influenced by environmental factors, and in a security context, such randomness should be treated as potentially attacker-controlled. Q2: yes - The code performs a multiplication `data * 2` which can lead to an integer overflow, a dangerous operation. Q3: no - There is no input validation or sanitization between the random data generation and the multiplication operation. Q4: yes - The `bad()` method contains `if (",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_add_08.java_118": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code uses `new java.security.SecureRandom().nextInt(...)` which can be influenced by system entropy, and in some contexts, this can be considered attacker-influenced. Q2: yes - The code performs an addition operation `data + 1` on a short integer, which can lead to an integer overflow. Q3: no - There is no input validation or sanitization between the random number generation and the addition operation. Q4: yes - The `if (privateReturnsTrue())` guards both the source and the sink, a",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_square_13.java_146": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_File_multiply_71a.java_141": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code reads data from a file named \"c:\\data.txt\", which could be controlled by an attacker. Q2: yes - The code calls a sink method that performs multiplication, potentially leading to an integer overflow. Q3: no - There is no input validation or sanitization performed on the data read from the file before it is passed to the sink. Q4: yes - The code path from reading the file to calling the sink method is directly executable. Q5: yes - This appears to be test or demo code from the J",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_max_square_09.java_124": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 0.4,
+    "rationale": "Q1: no - The `data` variable is initialized to `Short.MAX_VALUE` which is a constant, not attacker-controlled input. Q2: yes - The code performs a multiplication `data * data` which can lead to an integer overflow if `data` is large. Q3: no - There is no input validation or sanitization between the initialization of `data` and the multiplication. Q4: yes - The `bad()` method is called directly in the `good()` method, and the control flow for the sink is always taken due to `IO.STATIC_FINAL_TRUE`",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_square_52a.java_32": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The `SecureRandom().nextInt()` method generates a pseudo-random integer, which can be influenced by external factors or seeds, thus it's considered a potential source of attacker-influenced data in a security context. Q2: yes - The code passes the `data` variable to a sink method which is designed to perform a squaring operation, a known potential area for integer overflow. Q3: no - There is no input validation or sanitization performed on the `data` variable before it is used in the s",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_multiply_75a.java_37": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The `SecureRandom().nextInt()` call generates a random integer, which can be influenced by an attacker if the random number generator is predictable or compromised. Q2: yes - The code serializes an integer and passes it to a method in another class (`CWE190_Integer_Overflow__int_random_multiply_75b`). The description and context of CWE190 indicate that the sink operation involves multiplication which can lead to integer overflow. Q3: no - There is no explicit input validation or saniti",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_SIGNED_BYTE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_square_41.java_77": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_SIGNED_BYTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code uses `java.security.SecureRandom().nextInt()` which can be influenced by an attacker to generate a wide range of byte values. Q2: yes - The code performs a multiplication operation (`data * data`) which is a dangerous operation as it can lead to integer overflow. Q3: no - There is no input validation or sanitization between the random byte generation and the squaring operation. Q4: yes - The `badSink` method is directly called by the `bad` method, and there are no conditional ",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_getCookies_Servlet_square_08.java_172": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code reads data from HTTP cookies, which can be controlled by an attacker. Q2: yes - The code performs a squaring operation on the integer data, which can lead to an integer overflow. Q3: no - There is no input validation or sanitization performed on the data read from the cookie before it is used in the squaring operation. Q4: yes - The `bad` method is called directly, and the control flow within the `bad` method (specifically the `if (privateReturnsTrue())` block) ensures that th",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_square_07.java_110": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The `java.security.SecureRandom().nextLong()` is used as a source of randomness, which could be influenced by an attacker in certain environments or through side-channel attacks, making it potentially attacker-controlled. Q2: yes - The code performs a squaring operation (`data * data`) which can lead to an integer overflow, a dangerous operation. Q3: no - There is no input validation or sanitization between the random number generation and the squaring operation. Q4: yes - The code is ",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_square_68b.java_55": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The data is obtained from `rand()` in a previous class, which can be influenced by an attacker. Q2: yes - The code performs a squaring operation on a `byte` which can lead to an integer overflow. Q3: no - There is no input validation or sanitization before the squaring operation in the `badSink` method. Q4: yes - The `badSink` method is directly called and there are no impossible guards preventing execution. Q5: yes - This code is part of a test case file designed to demonstrate vulner",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_max_square_04.java_131": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The `data` variable is initialized to `Integer.MAX_VALUE` in the `bad()` method, which is a hardcoded value but represents a potential boundary condition that could be influenced by external factors in a real-world scenario. Q2: yes - The code performs a multiplication (`data * data`) which is then cast back to an `int`, a classic integer overflow sink. Q3: no - There is no input validation or sanitization performed before the multiplication. Q4: yes - The `bad()` method contains a dir",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_square_31.java_93": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_square_54a.java_58": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_square_03.java_124": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_VACUOUS_COMPARISON_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_max_multiply_06.java_174": {
+    "alert_id": "INT_VACUOUS_COMPARISON",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_multiply_81a.java_30": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code uses `java.security.SecureRandom().nextInt()` which is a source of randomness that could potentially be influenced by an attacker in certain environments, although less directly than typical user input. Q2: yes - The code passes the `data` variable to an abstract method `action` in `CWE190_Integer_Overflow__short_rand_multiply_81_base`, which is intended to represent a sink where operations like multiplication can lead to integer overflow. Q3: no - There is no explicit input v",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_console_readLine_add_12.java_141": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads input from `System.in` via `BufferedReader.readLine()`, which can be controlled by an attacker. Q2: yes - The code performs an addition operation (`data + 1`) on a `byte` which can lead to an integer overflow if `data` is `Byte.MAX_VALUE`. Q3: no - There is no input validation or sanitization performed on the data read from the console before it is used in the addition operation. Q4: yes - The code uses `IO.staticReturnsTrueOrFalse()` which can return true or false, allo",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_multiply_22a.java_38": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The `SecureRandom().nextInt()` generates a random integer, which can be influenced by an attacker in certain testing environments or if the random number generator's seed is compromised. Q2: yes - The code calls `badSink(data)` which is likely to contain a dangerous operation (integer multiplication that can lead to overflow) as indicated by the CWE and class name. Q3: no - There is no input validation or sanitization between the random number generation and the sink call. Q4: yes - Th",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_getQueryString_Servlet_square_54e.java_52": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The data originates from `getQueryString_Servlet` which is attacker-controlled. Q2: yes - The code squares an integer, which can lead to an overflow. Q3: no - There is no sanitization or validation of the input before the squaring operation in the `badSink` method. Q4: yes - The `badSink` method is directly called and can be reached. Q5: yes - The filename and package structure indicate this is Juliet test case code.\n---\nQ1: yes - The data originates from `getQueryString_Servlet` which",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_console_readLine_square_12.java_279": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code reads input from System.in via `BufferedReader.readLine()`, which can be influenced by attacker input. Q2: yes - The code performs a multiplication `data * data` and then casts it to a `byte`, which can lead to integer overflow if the result exceeds the `byte` range. Q3: no - There is no explicit sanitization or validation of the input `data` before it is used in the multiplication. Q4: yes - The code path with the potential overflow is reachable through the `if(IO.staticRetur",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_multiply_21.java_33": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The code uses `new java.security.SecureRandom().nextInt()` which is a source of unpredictable, potentially attacker-influenced values in a security context, although not directly from external input. Q2: yes - The code performs a multiplication (`data * 2`) which is identified as a sink due to potential integer overflow. Q3: no - There is no input validation or sanitization performed on the `data` variable before it is used in the multiplication. Q4: yes - The `badPrivate` flag is set ",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_square_07.java_149": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_add_22a.java_59": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_max_multiply_22b.java_76": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__short_console_readLine_square_14.java_230": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The code reads input from `System.in` using `BufferedReader.readLine()`, which can be controlled by an attacker. Q2: yes - The code performs a multiplication `data * data` and casts it to a `short`, which can lead to integer overflow, a dangerous operation. Q3: no - There is no input validation or sanitization between reading the input and performing the multiplication. Q4: yes - The `bad()` method contains a conditional block `if (IO.staticFive==5)` that directly leads to the sink ope",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_File_square_06.java_277": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code reads data from a file ('C:\\data.txt'), which can be influenced by an attacker. Q2: yes - The code performs a multiplication (`data * data`) which can lead to an integer overflow, a dangerous operation. Q3: no - There is no explicit sanitization or validation of the integer read from the file before it is used in the multiplication. Q4: yes - The code path is feasible as it involves standard file reading and arithmetic operations within conditional blocks that are designed to ",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_Environment_square_16.java_115": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The code reads data from an environment variable, which can be controlled by an attacker. Q2: yes - The code performs a multiplication operation (data * data) which can lead to an integer overflow. Q3: no - There is no input validation or sanitization performed on the data read from the environment variable before it is used in the multiplication. Q4: yes - The code is within a while(true) loop that breaks immediately, meaning the sink is reachable from the source. Q5: yes - This appea",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_SIGNED_BYTE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_max_square_41.java_77": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_SIGNED_BYTE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The `bad()` method assigns `Byte.MAX_VALUE` to `data`, which represents a maximum possible value that could be influenced by external factors in a real-world scenario, although not directly user input in this specific test case. Q2: yes - The `badSink` method performs a multiplication (`data * data`) which can lead to an integer overflow when `data` is `Byte.MAX_VALUE`. Q3: no - There is no input validation, sanitization, or safe API usage between the assignment of `Byte.MAX_VALUE` to ",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_add_21.java_67": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code uses `new java.security.SecureRandom().nextInt()` which generates a pseudo-random number, and in a security context, this can be considered an uncontrolled source of data that an attacker could potentially influence or predict. Q2: yes - The code performs an addition operation `data + 1` which can lead to an integer overflow if `data` is `Short.MAX_VALUE`. Q3: no - There is no input validation, escaping, type narrowing, or safe API usage between the random number generation an",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_add_15.java_131": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code uses `SecureRandom().nextInt()` which can be considered a source of potentially attacker-influenced input. Q2: yes - The code performs an integer addition (`data + 1`) which is a dangerous operation for integer overflow vulnerabilities. Q3: no - There is no sanitization or validation of the `data` variable before the addition. Q4: yes - The sink is reachable from the source. Q5: yes - This is a test case file. Therefore: The alert is a True Positive because attacker-controlled",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_square_21.java_67": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code uses `new java.security.SecureRandom().nextInt(...)` which generates a random value, and in the context of security testing, random values can be considered as potentially attacker-controlled if not properly seeded or if the source of randomness is compromised. Q2: yes - The code performs a squaring operation (`data * data`) which is a dangerous operation as it can lead to integer overflow. Q3: no - There is no input validation, escaping, type narrowing, or safe API usage betw",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_add_16.java_32": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code uses `new java.security.SecureRandom().nextInt(...)` which generates a pseudo-random number that could be influenced by an attacker in certain environments, although it's not directly user input. Q2: yes - The code performs an addition operation (`data + 1`) on a `byte` which can lead to integer overflow if `data` is `Byte.MAX_VALUE`. Q3: no - There is no input validation or sanitization performed on the `data` variable before the addition. Q4: yes - The code is structured wit",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_add_31.java_32": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_multiply_02.java_31": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code uses `new java.security.SecureRandom().nextLong()` which is a source of non-deterministic, potentially attacker-influenced data (if the random number generator is predictable). Q2: yes - The code performs a multiplication operation (`data * 2`) which is identified as a potential integer overflow sink. Q3: no - There is no input validation or sanitization between the random number generation and the multiplication. Q4: yes - The `if (true)` statements ensure that both the sourc",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_getQueryString_Servlet_square_22a.java_61": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code parses input from the URL query string, which is attacker-controlled. Q2: yes - The code calls a sink function `badSink` which is intended to perform a squaring operation that can lead to an integer overflow. Q3: no - There is no input validation or sanitization performed on the parsed integer before it is passed to the sink. Q4: yes - The code is structured such that the `badSink` is called directly after the data is read from the query string, and the control flow is set up ",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__short_console_readLine_square_51b.java_52": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code comments indicate that the `data` is read from the console, which can be attacker-controlled. Q2: yes - The sink involves squaring an integer (`data * data`), which can lead to an integer overflow. Q3: no - There is no input validation or sanitization performed on the `data` before it is used in the squaring operation in the `badSink` method. Q4: yes - The `badSink` method is directly called, and the operation within it is straightforward, making it feasible to reach the sink ",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_SIGNED_BYTE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_add_06.java_128": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_SIGNED_BYTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The code uses `new java.security.SecureRandom().nextInt()` which can be influenced by external factors, making it a potential source of attacker-controlled input. Q2: yes - The code performs an addition operation (`data + 1`) on a byte, which can lead to integer overflow. Q3: no - There is no input validation or sanitization performed on the `data` variable before the addition operation. Q4: yes - The `if (PRIVATE_STATIC_FINAL_FIVE==5)` guard is true, allowing execution to reach the si",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_square_04.java_151": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The code uses `java.security.SecureRandom().nextLong()` which can be influenced by external factors, and in a security context, truly random numbers are often treated as potentially attacker-influenced. Q2: yes - The code performs a squaring operation (`data * data`) which is a known sink for integer overflow vulnerabilities. Q3: no - There is no input validation or sanitization between the random number generation and the squaring operation. Q4: yes - The `PRIVATE_STATIC_FINAL_TRUE` b",
+    "stage": "LLM"
+  },
+  "INT_VACUOUS_COMPARISON_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_max_multiply_12.java_133": {
+    "alert_id": "INT_VACUOUS_COMPARISON",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The `bad()` method is designed to use `Integer.MAX_VALUE` which is a hardcoded value, but the `IO.staticReturnsTrueOrFalse()` method introduces a control flow that can be influenced by external factors in a testing environment, making the data's origin potentially controllable in a broader context. Q2: yes - The code performs an integer multiplication `data * 2` which can lead to an integer overflow if `data` is sufficiently large. Q3: no - There is no explicit input validation or sani",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_square_11.java_145": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code uses `new java.security.SecureRandom().nextLong()` which is a source of randomness and can be influenced by an attacker to generate specific values. Q2: yes - The code performs a squaring operation (`data * data`) which is a sink for integer overflow vulnerabilities. Q3: no - There is no input validation or sanitization between the random number generation and the squaring operation. Q4: yes - The code path is feasible as it involves standard Java operations and control flow t",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_multiply_81a.java_30": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "FP",
+    "confidence": 0.6,
+    "rationale": "Q1: no - The input is generated by `java.security.SecureRandom`, which is not directly attacker-controlled. Q2: yes - The code passes the `data` to an abstract method `action`, which is implemented in subclasses that likely contain a dangerous operation related to integer overflow. Q3: no - There is no input validation or sanitization between the random number generation and its use in the sink. Q4: yes - The code path is straightforward, passing the data directly to the abstract method. Q5: yes",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_square_03.java_31": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The code uses `java.security.SecureRandom().nextInt()` which can be influenced by system entropy and thus considered attacker-influenced in a security context. Q2: yes - The code performs a multiplication `data * data` which is a sink for integer overflow. Q3: no - There is no validation or sanitization of the `data` variable before it is used in the multiplication. Q4: yes - The `if (5==5)` guards are always true, allowing execution to flow from the random number generation to the mul",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__int_URLConnection_square_04.java_251": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from a URLConnection, which can be controlled by an attacker. Q2: yes - The code performs a squaring operation (data * data) which can lead to integer overflow. Q3: no - There is no explicit sanitization or validation of the integer read from the URLConnection before it is used in the squaring operation. Q4: yes - The code is structured such that the 'bad' method is called, and the `PRIVATE_STATIC_FINAL_TRUE` condition ensures the data is read and then squared. Q5: ",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_getQueryString_Servlet_square_01.java_116": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code parses user input from the query string using `request.getQueryString()`, which is attacker-controlled. Q2: yes - The code performs a multiplication (`data * data`) which can lead to an integer overflow, a dangerous operation. Q3: no - There is no input validation or sanitization performed on the parsed integer before it is used in the multiplication. Q4: yes - The code directly uses the parsed integer in the multiplication, and there are no impossible guards preventing execut",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_max_square_22a.java_73": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "FP",
+    "confidence": 0.6,
+    "rationale": "Q1: no - The code explicitly sets `data` to `Integer.MAX_VALUE`, which is not attacker-controlled input. Q2: yes - The `square` operation in the sink can lead to an integer overflow. Q3: no - There is no input validation or sanitization between the source and the sink. Q4: yes - The data flow is direct from the source to the sink. Q5: yes - This appears to be a test case from the Juliet test suite, designed to demonstrate a vulnerability, not production code. Therefore: The alert is a false posi",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_SIGNED_BYTE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_square_75b.java_154": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_SIGNED_BYTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The `rand()` function is used as a source in the associated `CWE190_Integer_Overflow__byte_rand_square_75a` class, which is intended to simulate attacker-controlled input. Q2: yes - The code performs a multiplication (`data * data`) which is a dangerous operation as it can lead to integer overflow. Q3: no - There is no input validation or sanitization between the source (simulated by `rand()`) and the sink where the multiplication occurs. Q4: yes - The code path is designed to demonstr",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_File_add_31.java_42": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_max_add_68a.java_31": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "FP",
+    "confidence": 1.0,
+    "rationale": "Q1: no - There is no direct attacker-controlled input entering this code path; the value is hardcoded to Integer.MAX_VALUE. Q2: yes - The sink involves an addition operation that can lead to an integer overflow. Q3: no - There is no input validation or sanitization between the source and the sink. Q4: yes - The code path is straightforward and does not contain impossible guards. Q5: yes - This appears to be a test case, as indicated by the filename and package structure (Juliet test cases). Ther",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_add_11.java_31": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The `rand()` function used to generate `data` can be influenced by external factors, making it potentially attacker-controlled in a broader context. Q2: yes - The addition operation `data + 1` can lead to an integer overflow, which is a dangerous operation. Q3: no - There is no input validation or sanitization between the random number generation and the addition operation. Q4: yes - The code path is designed to be executed, and the `if (IO.staticReturnsTrue())` conditions do not inher",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_multiply_68a.java_59": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_PropertiesFile_add_12.java_120": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from a properties file, which can be controlled by an attacker. Q2: yes - The code performs an integer addition that can lead to an overflow. Q3: no - There is no input validation or sanitization between reading the data from the properties file and performing the addition. Q4: yes - The control flow is dependent on `IO.staticReturnsTrueOrFalse()`, which can be influenced to reach the sink from the source. Q5: yes - This is a test case from the Juliet test suite, de",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_square_68a.java_31": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code uses `java.security.SecureRandom().nextInt()` which, while not directly attacker-controlled, is designed to produce unpredictable values that could be influenced by system entropy, and in a real-world scenario, such random generation could be a proxy for external input. Q2: yes - The code is designed to square a `short` value, which can lead to integer overflow. Q3: no - There is no input validation or sanitization between the data generation and its subsequent use in the squa",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__int_console_readLine_square_22a.java_98": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code reads user input from the console using `readerBuffered.readLine()`, which can be controlled by an attacker. Q2: yes - The code calls `badSink(data)` in `CWE190_Integer_Overflow__int_console_readLine_square_22b`, which is intended to perform a squaring operation that can lead to integer overflow. Q3: no - There is no explicit sanitization or validation of the user-provided input before it is passed to the sink. Q4: yes - The `bad()` method directly calls the `badSink` method, ",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_square_07.java_110": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code uses `java.security.SecureRandom().nextInt()` which generates a random number, and in the context of security analysis, random inputs can be considered as potentially attacker-controlled if not properly constrained. Q2: yes - The code performs a multiplication (`data * data`) which is a sink for integer overflow vulnerabilities. Q3: no - There is no input validation or sanitization performed on the random `data` before it is used in the multiplication. Q4: yes - The code enter",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_max_square_03.java_157": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: no - The variable 'data' is initialized to Integer.MAX_VALUE, which is not attacker-controlled. Q2: yes - The code performs a multiplication (data * data) which can lead to an integer overflow. Q3: no - There is no input validation or sanitization performed before the multiplication. Q4: yes - The 'bad' method has a direct execution path where data is set to Integer.MAX_VALUE and then immediately squared. Q5: yes - This is a Juliet test case designed to demonstrate a specific vulnerability (",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_multiply_71a.java_30": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code uses `(new java.security.SecureRandom()).nextLong()` which generates a random value that could potentially be influenced or predicted by an attacker in certain environments, making it a source of unpredictable input. Q2: yes - The code is intended to demonstrate an integer overflow by multiplying a `long` by 2, which is a dangerous arithmetic operation that can lead to unexpected results and potential vulnerabilities. Q3: no - There is no input validation, escaping, type narro",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_add_74a.java_31": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code uses `java.security.SecureRandom().nextLong()` which generates a pseudo-random number that could be influenced by an attacker in certain environments, or the randomness itself is a source of unpredictable data. Q2: yes - The code passes the generated `long` data to a `HashMap` which is then used in `badSink` in `CWE190_Integer_Overflow__long_rand_add_74b`, where an addition operation (`data + 1`) is performed, which can lead to an integer overflow. Q3: no - There is no input v",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_max_add_12.java_85": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "FP",
+    "confidence": 0.6,
+    "rationale": "Q1: no - The data is initialized to Long.MAX_VALUE or a hardcoded value, not attacker-controlled input. Q2: yes - The code performs an addition operation (data + 1) which can lead to integer overflow. Q3: no - There is no explicit sanitization or input validation between the data initialization and the addition operation. Q4: yes - The code uses `IO.staticReturnsTrueOrFalse()` which can lead to both branches being taken, and the sink is reachable. Q5: yes - This code is part of the Juliet test s",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__int_console_readLine_square_01.java_188": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The code reads user input from the console using `readerBuffered.readLine()`, which can be controlled by an attacker. Q2: yes - The code performs a multiplication `data * data` which is then cast to an int, a potentially dangerous operation that can lead to integer overflow. Q3: no - There is no input validation or sanitization between reading the user input and performing the multiplication. Q4: yes - The code path is straightforward, and there are no impossible guards preventing the ",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_add_12.java_85": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The `rand()` method is used as a source of data, which can be influenced by external factors in a real-world scenario and thus considered attacker-controlled for the purpose of this analysis. Q2: yes - The code performs an addition operation (`data + 1`) which can lead to an integer overflow if `data` is `Long.MAX_VALUE`. Q3: no - There is no explicit input validation or sanitization performed on the `data` variable before the addition. Q4: yes - The `if(IO.staticReturnsTrueOrFalse())`",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_File_square_10.java_40": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code reads data from a file ('C:\\data.txt'), which could be controlled by an attacker if the attacker has file system access. Q2: yes - The code performs a squaring operation (`data * data`) which can lead to an integer overflow. Q3: no - There is no explicit sanitization or validation of the data read from the file before it is used in the squaring operation. Q4: yes - The code directly reads from the file and then performs the squaring operation within the `if (IO.staticTrue)` bl",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_getParameter_Servlet_square_06.java_154": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from a querystring using `request.getParameter(\"name\")`, which is attacker-controlled input. Q2: yes - The code performs a squaring operation (`data * data`) which can lead to an integer overflow, a dangerous operation. Q3: no - There is no input validation or sanitization performed on the input `data` before it is used in the squaring operation. Q4: yes - The code path is feasible as the `if (PRIVATE_STATIC_FINAL_FIVE==5)` guard is true, allowing the attacker-contr",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__int_URLConnection_square_53d.java_52": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The description mentions reading data from a web server, which can be attacker-controlled. Q2: yes - The code performs a multiplication (squaring) which can lead to integer overflow, a dangerous operation. Q3: no - There is no input validation or sanitization performed on the 'data' variable before it is used in the squaring operation. Q4: yes - The code is structured in a way that the 'badSink' method is directly called with the 'data' variable, allowing execution to reach the sink. Q",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__int_URLConnection_add_12.java_300": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The code reads data from a URLConnection, which can be influenced by an attacker by controlling the remote server's response. Q2: yes - The code performs an integer addition (`data + 1`) which can lead to an integer overflow if `data` is `Integer.MAX_VALUE`. Q3: no - There is no explicit input validation or sanitization performed on the data read from the URLConnection before it is used in the addition. Q4: yes - The `if(IO.staticReturnsTrueOrFalse())` branches control the flow, and bo",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_getCookies_Servlet_square_07.java_164": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code reads data from cookies, which can be controlled by an attacker. Q2: yes - The code performs a multiplication (squaring) of an integer which can lead to an integer overflow. Q3: no - There is no input validation or sanitization performed on the data read from the cookie before it is used in the multiplication. Q4: yes - The `bad` method contains a conditional block `if (privateFive==5)` which is always true due to the initialization of `privateFive`, allowing execution to reac",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_PropertiesFile_square_13.java_213": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_multiply_11.java_115": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code uses `new java.security.SecureRandom().nextInt()` which generates a pseudo-random number that is not controlled by an attacker, but the prompt asks about attacker-controlled input entering the code path, which could be interpreted broadly. However, for the purpose of CWEs related to data manipulation, random numbers are often treated as a source of unpredictable data that can lead to vulnerabilities if not handled properly. Q2: yes - The code performs a multiplication operatio",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_listen_tcp_square_72b.java_56": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The `listen_tcp` source in the template implies external input, and this is a Juliet test case designed to simulate such input. Q2: yes - The code performs a multiplication (`data * data`) which can lead to an integer overflow, a dangerous operation. Q3: no - There is no explicit validation or sanitization of the `data` variable before it is squared in the `badSink` method. Q4: yes - The `badSink` method is directly called, and there are no conditional guards preventing the execution o",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_Property_add_22b.java_94": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_multiply_66a.java_62": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_Environment_square_73b.java_56": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code is designed to read data from an environment variable, which can be controlled by an attacker. Q2: yes - The sink involves squaring an integer, which can lead to an integer overflow. Q3: no - There is no input validation or sanitization between the environment variable source and the squaring sink in the 'badSink' method. Q4: yes - The 'badSink' method is directly called in the 'bad' flow path, and the guard in the 'goodB2GSink' is not present in the 'badSink'. Q5: yes - This ",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_add_02.java_31": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_File_square_74a.java_41": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from a file specified by an absolute pathname, which could be controlled by an attacker. Q2: yes - The code squares an integer, which can lead to an integer overflow, a dangerous operation. Q3: no - There is no input validation or sanitization performed on the data read from the file before it is used in the squaring operation. Q4: yes - The code path to the sink is straightforward and does not involve any impossible guards. Q5: yes - This appears to be test/demo co",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_console_readLine_square_16.java_189": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The code reads input from System.in via `readerBuffered.readLine()`, which can be influenced by user input. Q2: yes - The code performs a multiplication (`data * data`) and then casts it to a byte, which can lead to an integer overflow if the result exceeds the range of a byte. Q3: no - There is no explicit input validation or sanitization performed on the byte value read from the console before it is used in the multiplication. Q4: yes - The code is structured with `while(true)` loops",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_multiply_08.java_129": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The code uses `new SecureRandom().nextInt()` which generates a random integer, and while not directly attacker-controlled, it's a source of unpredictable input that could be influenced in a broader context. Q2: yes - The code performs a multiplication `data * 2` which is a sink for integer overflow vulnerabilities. Q3: no - There is no input validation or sanitization between the random number generation and the multiplication. Q4: yes - The `if (privateReturnsTrue())` guard before the",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_max_square_68a.java_31": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code sets `data` to `Integer.MAX_VALUE` which is a known worst-case value for integer overflow, implying it could be influenced by external factors or represents a vulnerability to such. Q2: yes - The code is designed to square an integer (`data`), which is a known operation that can lead to integer overflow if the input is large enough. Q3: no - There is no validation or sanitization of the `data` variable before it is used in the squaring operation in the sink method. Q4: yes - T",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_Environment_multiply_22a.java_135": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes - The code reads data from an environment variable, which can be controlled by an attacker. Q2: yes - The code performs a multiplication operation that can lead to an integer overflow. Q3: no - There is no input validation or sanitization between reading the environment variable and the multiplication. Q4: yes - The code path to the sink is straightforward and not blocked by any impossible guards. Q5: yes - This is a test case from the Juliet test suite, designed to demonstrate vulnerabi",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_multiply_08.java_170": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The `SecureRandom().nextInt()` method can be influenced by system entropy, which can be considered a source of unpredictable input that an attacker might try to manipulate. Q2: yes - The code multiplies an integer by 2, which is a sink that can lead to an integer overflow. Q3: no - There is no input validation or sanitization between the random number generation and the multiplication. Q4: yes - The `if (privateReturnsTrue())` guards are always true in the `bad()` method, allowing exec",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__int_database_add_22b.java_44": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.4,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_console_readLine_add_68a.java_104": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from System.in, which can be controlled by an attacker. Q2: yes - The code calls a method `badSink()` which likely performs a dangerous operation (integer addition that can overflow). Q3: no - There is no input validation or sanitization between reading from the console and passing the data to the sink. Q4: yes - The code follows a direct path from reading input to calling the sink method, with no impossible guards. Q5: yes - This is identified as a Juliet test case",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_add_08.java_44": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_add_06.java_36": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The code uses `new java.security.SecureRandom().nextLong()` which can be influenced by system entropy, and in a testing context like Juliet, randomness is often treated as a proxy for attacker-controlled input. Q2: yes - The code performs a `data + 1` operation on a `long` which can lead to an integer overflow. Q3: no - There is no input validation or sanitization performed on the `data` variable before the addition. Q4: yes - The `if (PRIVATE_STATIC_FINAL_FIVE==5)` guard is always tru",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_square_21.java_118": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The `data` variable is initialized with a random value using `new SecureRandom().nextInt()`, which can be influenced by an attacker in some environments. Q2: yes - The code performs a multiplication operation `data * data` which can lead to integer overflow if `data` is large enough. Q3: no - There is no input validation or sanitization performed on the `data` variable before it is used in the multiplication. Q4: yes - The `badPrivate` flag is set to `true` before calling `badSink`, en",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_SIGNED_BYTE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_max_square_52c.java_52": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_SIGNED_BYTE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: unknown - The provided code is a test case and doesn't explicitly show the source of the 'data' variable, but the description mentions 'BadSource: max Set data to the max value for byte', implying it's set to a known, potentially vulnerable value. Q2: yes - The sink performs a multiplication of the input byte by itself, which can lead to an integer overflow. Q3: no - There is no input validation or sanitization between the point where 'data' is received and the multiplication operation. Q4: ",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_SIGNED_BYTE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_add_04.java_162": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_SIGNED_BYTE",
+    "label": "TP",
+    "confidence": 1.0,
+    "rationale": "Q1: yes - The `rand()` function, used in the `bad()` method's source, can be influenced by an attacker through various means to generate specific values, thus acting as a source of potentially attacker-controlled input. Q2: yes - The code performs an addition operation (`data + 1`) on a `byte` type which can lead to integer overflow, a dangerous operation that can cause unexpected behavior and security vulnerabilities. Q3: no - There is no explicit validation or sanitization of the `data` variab",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_multiply_22a.java_34": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 0.4,
+    "rationale": "Q1: yes - The code uses `new java.security.SecureRandom().nextInt()` which can be influenced by an attacker if the random seed is predictable. Q2: yes - The code performs a multiplication operation (`data * 2`) which is a potential integer overflow sink. Q3: no - There is no input validation or sanitization between the random number generation and the multiplication. Q4: yes - The code is structured such that the `bad()` method directly calls a sink method in another class, making the path feasi",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_max_add_12.java_85": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "FP",
+    "confidence": 0.6,
+    "rationale": "Q1: no - The code does not show any direct attacker-controlled input. Q2: yes - The code performs a potentially overflowing addition operation (data + 1). Q3: no - There are conditional branches that attempt to mitigate the overflow, but the core operation remains. Q4: yes - The code can reach the sink from the source, as the `if` statements control execution flow. Q5: yes - This appears to be generated test code from the Juliet test suite, not production code. Therefore: The alert is a false po",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_max_square_66b.java_55": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: unknown - The alert doesn't provide information about the source of `dataArray`. Q2: yes - The code performs a squaring operation (`data * data`) which can lead to an integer overflow if the result exceeds `Short.MAX_VALUE`. Q3: no - There is no input validation or sanitization performed on the `data` variable before it is squared in the `badSink` method. Q4: yes - The `badSink` method directly uses the `data` value obtained from the array at index 2, and there are no conditional guards prev",
+    "stage": "LLM"
   }
 }

@@ -1,0 +1,1731 @@
+{
+  "DLS_DEAD_LOCAL_STORE_OF_NULL_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_executeBatch_22b.java_238": {
+    "alert_id": "DLS_DEAD_LOCAL_STORE_OF_NULL",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__Property_executeBatch_06.java_208": {
+    "alert_id": "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeBatch_06.java_484": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__Environment_execute_02.java_192": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1:yes. The source is `System.getenv(\"ADD\")`, which is an environment variable that an attacker can control. Q2:yes. The sink is `sqlStatement.execute(\"insert into users (status) values ('updated') where name='\")` which directly concatenates user-controlled input into an SQL query, making it vulnerable to SQL injection. Q3:no. There is no sanitization or use of prepared statements between the source and the sink. The data is directly concatenated into the SQL string. Q4:yes. The data read from t",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__Environment_executeQuery_14.java_131": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes. The code reads data from an environment variable `System.getenv(\"ADD\")`, which can be controlled by an attacker. Q2: yes. The code concatenates the `data` variable directly into an SQL query string that is then executed using `sqlStatement.executeQuery()`. This is a classic SQL injection vulnerability. Q3: no. There is no sanitization or escaping applied to the `data` variable before it is concatenated into the SQL query. Q4: yes. The `bad()` method contains a conditional `if (IO.static",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_prepareStatement_06.java_242": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1: yes. The `data` variable is read from `System.in` using `BufferedReader.readLine()`, which is user-controlled input. Evidence: `data = readerBuffered.readLine();`.\nQ2: yes. The sink is a `PreparedStatement` where the attacker-controlled `data` is directly concatenated into the SQL query string. Evidence: `sqlStatement = dbConnection.prepareStatement(\"insert into users (status) values ('updated') where name='\"+data+\"'\");`.\nQ3: no. There is no sanitization or parameterization of the `data` var",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_executeQuery_12.java_102": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The code reads data from System.in using `BufferedReader.readLine()`, which is considered attacker-controlled input. Evidence: `data = readerBuffered.readLine();` at line 102.\nQ2: yes - The sink is an `sqlStatement.executeQuery()` where the `data` variable is concatenated directly into the SQL query string without any sanitization. Evidence: `resultSet = sqlStatement.executeQuery(\"select * from users where name='\"+data+\"'\");` at line 143.\nQ3: no - There is no sanitization applied to th",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__listen_tcp_executeUpdate_10.java_133": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__Property_executeBatch_04.java_67": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_executeBatch_09.java_172": {
+    "alert_id": "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: Expecting ',' delimiter: line 3 column 723 (char 744)",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getQueryString_Servlet_executeBatch_71b.java_110": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__getCookies_Servlet_executeUpdate_02.java_186": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_executeQuery_04.java_126": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_executeBatch_73b.java_47": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_executeBatch_42.java_167": {
+    "alert_id": "RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__Environment_executeQuery_02.java_131": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__Environment_executeUpdate_04.java_185": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__PropertiesFile_executeBatch_74b.java_111": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getQueryString_Servlet_executeQuery_54e.java_105": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_executeBatch_45.java_200": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getParameter_Servlet_prepareStatement_07.java_196": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__database_execute_22b.java_31": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__PropertiesFile_execute_10.java_159": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__listen_tcp_executeBatch_10.java_295": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__listen_tcp_prepareStatement_06.java_137": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getParameter_Servlet_executeUpdate_75b.java_53": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__getCookies_Servlet_executeQuery_68a.java_66": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__Environment_executeQuery_07.java_60": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__getCookies_Servlet_prepareStatement_04.java_138": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getQueryString_Servlet_executeBatch_67b.java_46": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeBatch_09.java_281": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__URLConnection_executeBatch_06.java_195": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__URLConnection_prepareStatement_41.java_46": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__Environment_executeBatch_14.java_60": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__Property_executeQuery_13.java_205": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__Property_prepareStatement_74b.java_99": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__database_executeBatch_22b.java_245": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__listen_tcp_execute_71b.java_42": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__getCookies_Servlet_executeUpdate_04.java_193": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeUpdate_67a.java_137": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeBatch_09.java_125": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__database_executeBatch_10.java_279": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__database_prepareStatement_61a.java_40": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes (The `badSource()` method in `CWE89_SQL_Injection__database_prepareStatement_61b` is designed to read data from a database, which can be influenced by external input, making it attacker-controlled). Q2: yes (The code concatenates the `data` variable directly into the SQL query string used with `dbConnection.prepareStatement()`, which is a classic SQL injection vulnerability). Q3: no (There is no explicit sanitization or validation of the `data` variable before it is used in the SQL query",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__Property_executeQuery_51b.java_105": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeUpdate_42.java_181": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_executeQuery_11.java_252": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DLS_DEAD_LOCAL_STORE_OF_NULL_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_executeBatch_22b.java_308": {
+    "alert_id": "DLS_DEAD_LOCAL_STORE_OF_NULL",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_prepareStatement_17.java_117": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_executeBatch_68b.java_46": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1:yes - The comment in the template file indicates that the source is `console_readLine`, which is attacker-controlled. The variable `data` is passed from `CWE89_SQL_Injection__console_readLine_executeBatch_68a.java` which is where the console input is read. Q2:yes - The sink uses `sqlStatement.addBatch(\"update users set hitcount=hitcount+1 where name='\" + names[i] + \"'\")` which concatenates the user-provided `names[i]` directly into an SQL query. This is a classic SQL injection vulnerability. ",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_execute_22b.java_40": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__URLConnection_executeUpdate_75b.java_53": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.4,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeUpdate_75b.java_53": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes (data is read from a serialized object, which originates from a file source in the companion `File_executeUpdate_75a` class, representing external input). Q2: yes (concatenating user-controlled data into an SQL query string for `executeUpdate`). Q3: no (there is no sanitization of the `data` variable before it is concatenated into the SQL query). Q4: yes (the `data` variable is directly used in the `executeUpdate` call). Q5: yes (this is the `badSink` method, which is intended to demonst",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getQueryString_Servlet_executeQuery_71b.java_43": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__Environment_prepareStatement_22b.java_159": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__URLConnection_executeBatch_02.java_111": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes. The `data` variable is populated by reading from a `URLConnection` which is an external input source. The comments explicitly state 'POTENTIAL FLAW: Read data from a web server with URLConnection'. Q2: yes. The sink is `sqlStatement.addBatch(\"update users set hitcount=hitcount+1 where name='\" + names[i] + \"'\")`. This concatenates user-controlled data into an SQL query, which is a classic SQL injection vulnerability. Q3: no. There is no sanitization applied to the `data` variable before ",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_executeQuery_75b.java_54": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__PropertiesFile_prepareStatement_12.java_197": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__getCookies_Servlet_prepareStatement_68a.java_66": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "ABSTAIN",
+    "confidence": 0.4,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getParameter_Servlet_executeUpdate_12.java_55": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_execute_02.java_100": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1:yes. The data is read from System.in using BufferedReader.readLine(), which is considered attacker-controlled input. Q2:yes. The sink uses a `Statement.execute()` method with a dynamically constructed SQL query, which is vulnerable to SQL injection. Q3:no. The data read from the console is directly concatenated into the SQL query without any sanitization or parameterization. Q4:yes. The `if(true)` blocks ensure that the source and sink are reachable. Q5:no. This is the `bad()` method, which r",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_prepareStatement_15.java_45": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_prepareStatement_45.java_50": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeBatch_68b.java_31": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DLS_DEAD_LOCAL_STORE_OF_NULL_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__URLConnection_executeQuery_22b.java_232": {
+    "alert_id": "DLS_DEAD_LOCAL_STORE_OF_NULL",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'The service is currently unavailable.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getQueryString_Servlet_execute_54e.java_98": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getQueryString_Servlet_execute_01.java_60": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__URLConnection_prepareStatement_03.java_174": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_execute_52a.java_39": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "ABSTAIN",
+    "confidence": 0.4,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getQueryString_Servlet_executeBatch_07.java_157": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes. The `data` variable is populated from `request.getQueryString()` using a `StringTokenizer` and `substring`, which is an attacker-controlled input. Evidence: `data = token.substring(3);`. Q2: yes. The sink is `sqlStatement.addBatch()` which directly concatenates user-controlled data into an SQL query. Evidence: `sqlStatement.addBatch(\"update users set hitcount=hitcount+1 where name='\" + names[i] + \"'\");`. Q3: no. There is no sanitization applied to the `data` variable before it is used i",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__database_execute_01.java_180": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__listen_tcp_prepareStatement_14.java_270": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_execute_75b.java_53": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_executeUpdate_06.java_247": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__listen_tcp_executeQuery_03.java_284": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__Environment_executeQuery_52c.java_105": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__Property_executeUpdate_17.java_51": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeBatch_51a.java_128": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__connect_tcp_prepareStatement_54e.java_39": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DLS_DEAD_LOCAL_STORE_OF_NULL_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__URLConnection_execute_22b.java_85": {
+    "alert_id": "DLS_DEAD_LOCAL_STORE_OF_NULL",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__Environment_executeUpdate_05.java_124": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s04/CWE89_SQL_Injection__URLConnection_prepareStatement_16.java_165": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s01/CWE89_SQL_Injection__console_readLine_executeQuery_08.java_190": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_prepareStatement_17.java_177": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__File_executeBatch_09.java_204": {
+    "alert_id": "SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING_juliet/testcases/CWE89_SQL_Injection/s02/CWE89_SQL_Injection__getCookies_Servlet_prepareStatement_16.java_57": {
+    "alert_id": "SQL_PREPARED_STATEMENT_GENERATED_FROM_NONCONSTANT_STRING",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes (request.getCookies() reads user-provided cookie data). Q2: yes (prepareStatement is used, but data is concatenated directly into the SQL string, making it vulnerable). Q3: no (there is no sanitization or parameterized query used for the data before it's placed into the SQL string). Q4: yes (the `data` variable flows directly from the cookie source to the `prepareStatement` sink without any intervening conditional logic that would prevent execution). Q5: yes (this is the `bad()` method, ",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE89_SQL_Injection/s03/CWE89_SQL_Injection__getQueryString_Servlet_prepareStatement_12.java_175": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__PropertiesFile_68b.java_52": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__database_01.java_102": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__console_readLine_51b.java_50": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__Property_67b.java_30": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_74b.java_31": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__File_12.java_134": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1=yes (data is read from 'C:\\data.txt' which is treated as attacker-controlled input by the test case). Q2=yes (Runtime.getRuntime().exec() is a dangerous sink for OS command injection). Q3=no (There is no sanitization applied to the 'data' variable before it is concatenated with 'osCommand' and passed to exec()). Q4=yes (The 'data' variable read from the file is directly used in the 'osCommand + data' concatenation which is then passed to Runtime.getRuntime().exec()). Q5=no (This is the 'bad()",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__listen_tcp_54e.java_29": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__Property_02.java_112": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getQueryString_Servlet_10.java_55": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_22a.java_74": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__PropertiesFile_71b.java_30": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__database_07.java_182": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__connect_tcp_01.java_104": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getQueryString_Servlet_52c.java_29": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_01.java_89": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__console_readLine_04.java_132": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__File_04.java_47": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_08.java_108": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes. The `data` variable is populated from `urlConnection.getInputStream()` which is inherently attacker-controlled as it reads from an external URL. Q2: yes. `Runtime.getRuntime().exec()` is a dangerous sink for OS command injection when used with untrusted input. Q3: no. There is no sanitization applied to the `data` variable before it is concatenated with `osCommand` and passed to `exec()`. Q4: yes. The `data` variable flows directly from the source to the sink through the `osCommand + da",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__Environment_41.java_28": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1:yes - The `data` variable is assigned from `System.getenv(\"ADD\")`, which is an environment variable and thus attacker-controlled. Q2:yes - The `Runtime.getRuntime().exec(osCommand + data)` call is a clear OS command injection vulnerability as it directly concatenates user input into an OS command. Q3:no - There is no sanitization performed on the `data` variable before it is used in the `exec` call. Q4:yes - The `data` from `System.getenv` flows directly to the `badSink` method and is then us",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__connect_tcp_72b.java_54": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__database_31.java_110": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_75b.java_42": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes - The data originates from a URLConnection in a previous step (not shown but implied by the test case structure and label). Q2: yes - The sink is `Runtime.getRuntime().exec()` which is inherently dangerous for command injection. Q3: no - There is no sanitization of the `data` string before it is concatenated with `osCommand` and passed to `exec()`. Q4: yes - The deserialized `data` is directly used in the `exec()` call. Q5: no - This is a `badSink` method, not a `good()` method. Therefor",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__File_09.java_108": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__Property_68a.java_31": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getQueryString_Servlet_72b.java_54": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1:yes. The `getQueryString_Servlet` in the parent class (not shown) is described as parsing the ID parameter out of the URL query string without using `getParameter()`, indicating it's attacker-controlled. Q2:yes. `Runtime.getRuntime().exec()` is a dangerous sink for OS command injection. Q3:no. There is no sanitization applied to the `data` variable before it is concatenated with `osCommand`. Q4:yes. The `data` is directly passed from the `dataVector` to the `exec` method without any blocking ",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__connect_tcp_71b.java_53": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__Property_68b.java_29": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__database_22a.java_74": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getCookies_Servlet_54e.java_51": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__PropertiesFile_21.java_128": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_72b.java_31": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__PropertiesFile_15.java_116": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getQueryString_Servlet_66b.java_53": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getQueryString_Servlet_13.java_91": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes (request.getQueryString() is attacker-controlled). Q2: yes (Runtime.getRuntime().exec() is vulnerable to OS command injection). Q3: no (The data is directly concatenated into the command string without any sanitization). Q4: yes (The data flows directly from the source to the sink through variable assignments). Q5: no (This is the 'bad' method, not a 'good' method). Therefore: TP\n---\nQ1: yes (request.getQueryString() is attacker-controlled). Q2: yes (Runtime.getRuntime().exec() is a dang",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_68b.java_29": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__listen_tcp_10.java_158": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getCookies_Servlet_06.java_126": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__listen_tcp_09.java_192": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__console_readLine_68a.java_35": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__PropertiesFile_14.java_148": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getParameter_Servlet_61a.java_30": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getParameter_Servlet_17.java_36": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__File_31.java_110": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__Environment_73b.java_54": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__File_68b.java_52": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__PropertiesFile_45.java_112": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__PropertiesFile_67b.java_53": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getCookies_Servlet_02.java_86": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__listen_tcp_22a.java_37": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__File_08.java_54": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__database_11.java_142": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__database_09.java_106": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__listen_tcp_21.java_219": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getCookies_Servlet_74b.java_31": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getQueryString_Servlet_06.java_131": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_41.java_36": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getQueryString_Servlet_41.java_79": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__Environment_09.java_42": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__File_74a.java_40": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getQueryString_Servlet_12.java_81": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__console_readLine_15.java_91": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__File_72a.java_40": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__connect_tcp_21.java_157": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getCookies_Servlet_11.java_50": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__PropertiesFile_61a.java_58": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getCookies_Servlet_42.java_83": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__Environment_03.java_78": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DM_CONVERT_CASE_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__URLConnection_68b.java_52": {
+    "alert_id": "DM_CONVERT_CASE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE78_OS_Command_Injection/CWE78_OS_Command_Injection__getParameter_Servlet_22a.java_70": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__int_connect_tcp_square_09.java_271": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_listen_tcp_square_13.java_298": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_multiply_54a.java_58": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_multiply_10.java_155": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_add_08.java_118": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_square_13.java_146": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_File_multiply_71a.java_141": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_max_square_09.java_124": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_square_52a.java_32": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_multiply_75a.java_37": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "FP",
+    "confidence": 0.8,
+    "rationale": "Q1: no - The source `(new SecureRandom()).nextInt()` is not attacker-controlled. It generates a pseudorandom number. Q2: yes - The sink involves multiplication that can lead to integer overflow. Q3: yes - The data is serialized and then deserialized in a separate method `badSink` (in `CWE190_Integer_Overflow__int_random_multiply_75b`), which is part of the test framework's mechanism to simulate data flow. There is no explicit sanitization applied to the integer value itself before it reaches the",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_SIGNED_BYTE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_square_41.java_77": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_SIGNED_BYTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_getCookies_Servlet_square_08.java_172": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_square_07.java_110": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_square_68b.java_55": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_max_square_04.java_131": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_square_31.java_93": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_square_54a.java_58": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_square_03.java_124": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_VACUOUS_COMPARISON_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_max_multiply_06.java_174": {
+    "alert_id": "INT_VACUOUS_COMPARISON",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_multiply_81a.java_30": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_console_readLine_add_12.java_141": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_multiply_22a.java_38": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_getQueryString_Servlet_square_54e.java_52": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_console_readLine_square_12.java_279": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes, the code reads input from `System.in` using `BufferedReader.readLine()`, which is attacker-controlled. Q2: yes, the sink performs a multiplication `data * data` which can lead to integer overflow for a `byte` type, as indicated by the comment \"POTENTIAL FLAW: if (data*data) > Byte.MAX_VALUE, this will overflow\". Q3: no, there is no sanitization applied to the `data` variable before it is used in the multiplication. Q4: yes, the `if(IO.staticReturnsTrueOrFalse())` block controls executio",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_multiply_21.java_33": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_square_07.java_149": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_add_22a.java_59": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_max_multiply_22b.java_76": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__short_console_readLine_square_14.java_230": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "FP",
+    "confidence": 0.8,
+    "rationale": "Q1=yes, Q2=yes, Q3=no, Q4=yes, Q5=no. The alert describes a 'Bad comparison of int value with long constant', which is not directly evident in the provided code. The code deals with integer overflow by squaring a short, not comparing an int to a long constant. The `bad()` method takes user input via `console_readLine`, which is an attacker-controlled source (Q1=yes). The sink involves squaring a short (`short result = (short)(data * data);`), which can lead to integer overflow, a dangerous sink ",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_File_square_06.java_277": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_Environment_square_16.java_115": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_SIGNED_BYTE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_max_square_41.java_77": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_SIGNED_BYTE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_add_21.java_67": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_add_15.java_131": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "FP",
+    "confidence": 0.6,
+    "rationale": "Q1: no - The source is a random number generator (SecureRandom().nextInt()), not attacker-controlled. Q2: yes - The sink performs an addition which can lead to integer overflow if the input is Integer.MAX_VALUE. Q3: yes - Although not explicitly a sanitizer, the code is structured to be tested with both good and bad sources/sinks. This specific alert focuses on a random source and an addition sink, which is part of a test case designed to demonstrate a vulnerability. However, the prompt specifie",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_square_21.java_67": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_add_16.java_32": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_add_31.java_32": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_multiply_02.java_31": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_getQueryString_Servlet_square_22a.java_61": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__short_console_readLine_square_51b.java_52": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_SIGNED_BYTE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_add_06.java_128": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_SIGNED_BYTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_square_04.java_151": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_VACUOUS_COMPARISON_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_max_multiply_12.java_133": {
+    "alert_id": "INT_VACUOUS_COMPARISON",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_square_11.java_145": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_multiply_81a.java_30": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_square_03.java_31": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__int_URLConnection_square_04.java_251": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_getQueryString_Servlet_square_01.java_116": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_max_square_22a.java_73": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_SIGNED_BYTE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_square_75b.java_154": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_SIGNED_BYTE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_File_add_31.java_42": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_max_add_68a.java_31": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "FP",
+    "confidence": 0.6,
+    "rationale": "Q1: no - The `data` field is initialized to `Integer.MAX_VALUE` in the `bad()` method, which is a hardcoded constant and not directly controlled by an attacker. Q2: yes - The sink in `CWE190_Integer_Overflow__int_max_add_68b` adds 1 to `data`, which can lead to an integer overflow. Q3: no - There is no explicit sanitization between the assignment of `data` and its use in the sink. Q4: yes - The `bad()` method assigns a value to the static field `data`, and then calls `badSink()` in `CWE190_Integ",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_add_11.java_31": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_multiply_68a.java_59": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "FP",
+    "confidence": 0.8,
+    "rationale": "Q1: no. The `data` field is set to a random value using `SecureRandom().nextInt()`, which is not directly controlled by an attacker. Q2: yes. The description mentions 'Integer Overflow' and the sink involves multiplication, which can lead to overflow. Q3: no. There is no explicit sanitization between the source and the sink in the `bad()` method. Q4: yes. The `data` is a static field and is directly passed to the `badSink()` method in `CWE190_Integer_Overflow__int_random_multiply_68b`. Q5: no. T",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_PropertiesFile_add_12.java_120": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_square_68a.java_31": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__int_console_readLine_square_22a.java_98": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_square_07.java_110": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_max_square_03.java_157": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_multiply_71a.java_30": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "FP",
+    "confidence": 0.6,
+    "rationale": "Q1:no - The source uses `java.security.SecureRandom().nextLong()`, which is not directly attacker-controlled. Q2:yes - The sink involves multiplying a `long` by 2, which can lead to integer overflow. Q3:yes - While the `bad()` method itself doesn't have explicit sanitization, the `goodG2B()` and `goodB2G()` methods are designed to handle the potential overflow. The alert is describing a general pattern, not a specific execution path that guarantees a vulnerability. Q4:yes - The data flows from t",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_add_74a.java_31": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_max_add_12.java_85": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__int_console_readLine_square_01.java_188": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_add_12.java_85": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "FP",
+    "confidence": 0.6,
+    "rationale": "Q1: no. The source `(new java.security.SecureRandom()).nextLong()` is not attacker-controlled. It generates a pseudo-random number. Q2: yes. The sink `data + 1` can cause an integer overflow, which is a dangerous operation. Q3: yes. In the `goodB2G` method, the check `if (data < Long.MAX_VALUE)` acts as a sanitizer, preventing the overflow. Q4: yes. In the `bad()` method, the `if(IO.staticReturnsTrueOrFalse())` guard can lead to the dangerous sink. Q5: no. This alert is related to the `bad()` me",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_File_square_10.java_40": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_getParameter_Servlet_square_06.java_154": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__int_URLConnection_square_53d.java_52": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__int_URLConnection_add_12.java_300": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "FP",
+    "confidence": 0.6,
+    "rationale": "Q1=yes, Q2=yes, Q3=yes, Q4=yes, Q5=yes. The code is part of a 'good()' method (specifically goodG2B and goodB2G, called by good()), which is designed to demonstrate secure coding practices or fixes. Therefore, it is a False Positive according to the rules.\n---\nQ1=yes, Q2=yes, Q3=yes, Q4=yes, Q5=yes. The alert describes a code duplication issue, not a security vulnerability. The code contains both a vulnerable `bad()` method and `good()` methods. The `bad()` method demonstrates the potential for ",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_getCookies_Servlet_square_07.java_164": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_PropertiesFile_square_13.java_213": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_multiply_11.java_115": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "FP",
+    "confidence": 0.8,
+    "rationale": "Q1:no - The source uses `new java.security.SecureRandom()`, which is not attacker-controlled. Q2:yes - The sink involves multiplication by 2, which can lead to integer overflow if the input `data` is large enough. Q3:yes - The `goodB2G1()` and `goodB2G2()` methods include a check (`data < (Short.MAX_VALUE/2)`) which acts as a sanitizer. Q4:yes - In the `bad()` method, the data can reach the sink. Q5:no - The alert is not related to a `bad()` method, but rather to a test case structure that inclu",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_listen_tcp_square_72b.java_56": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_Property_add_22b.java_94": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_multiply_66a.java_62": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_Environment_square_73b.java_56": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_add_02.java_31": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "TP",
+    "confidence": 0.6,
+    "rationale": "Q1: yes. The `rand()` function is used to generate data, which is considered an attacker-controlled source in this context as it can produce unpredictable values. Evidence: `data = (byte)((new java.security.SecureRandom()).nextInt(1+Byte.MAX_VALUE-Byte.MIN_VALUE) + Byte.MIN_VALUE);`.\nQ2: yes. The sink is a direct addition of 1 to a `byte` variable, which can lead to integer overflow if the value is `Byte.MAX_VALUE`. This is a dangerous operation. Evidence: `byte result = (byte)(data + 1);`.\nQ3: ",
+    "stage": "LLM"
+  },
+  "DMI_HARDCODED_ABSOLUTE_FILENAME_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_File_square_74a.java_41": {
+    "alert_id": "DMI_HARDCODED_ABSOLUTE_FILENAME",
+    "label": "FP",
+    "confidence": 0.6,
+    "rationale": "Q1: no. The code reads data from a file \"C:\\data.txt\". While file content can be manipulated, it's not directly controlled by an attacker via typical web request parameters or user input fields. The description of the alert is \"Code contains a hard coded reference to an absolute pathname\", which is a static code analysis finding, not a dynamic data flow vulnerability. Q2: no. The description is about a hardcoded pathname, not a sink that directly processes user input in a dangerous way. Q3: no. ",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_console_readLine_square_16.java_189": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "TP",
+    "confidence": 0.8,
+    "rationale": "Q1=yes, the data is read from console input via `readerBuffered.readLine()`, which is an external input source and thus attacker-controlled. Q2=yes, the sink involves squaring a byte value `(byte)(data * data)`. If `data` is outside the range of approximately -45 to 45 (inclusive), this operation can result in integer overflow for a byte, leading to unexpected and potentially exploitable behavior. Q3=no, there is no explicit sanitization or validation performed on the `data` variable between rea",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_multiply_08.java_129": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_max_square_68a.java_31": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s02/CWE190_Integer_Overflow__int_Environment_multiply_22a.java_135": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_multiply_08.java_170": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "PA_PUBLIC_PRIMITIVE_ATTRIBUTE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__int_database_add_22b.java_44": {
+    "alert_id": "PA_PUBLIC_PRIMITIVE_ATTRIBUTE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_console_readLine_add_68a.java_104": {
+    "alert_id": "ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_add_08.java_44": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 0.8,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s04/CWE190_Integer_Overflow__long_rand_add_06.java_36": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s03/CWE190_Integer_Overflow__int_random_square_21.java_118": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_SIGNED_BYTE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_max_square_52c.java_52": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_SIGNED_BYTE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_SIGNED_BYTE_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_rand_add_04.java_162": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_SIGNED_BYTE",
+    "label": "ABSTAIN",
+    "confidence": 1.0,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  },
+  "DMI_RANDOM_USED_ONLY_ONCE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_rand_multiply_22a.java_34": {
+    "alert_id": "DMI_RANDOM_USED_ONLY_ONCE",
+    "label": "FP",
+    "confidence": 0.6,
+    "rationale": "Q1: no - The source uses `new java.security.SecureRandom()`, which is not attacker-controlled. Q2: yes - The sink involves multiplication which can lead to integer overflow. Q3: no - There is no sanitization in the direct path. Q4: yes - The data flows directly to the sink. Q5: no - This is a `bad()` method, which would normally indicate a TP, but Q1 fails. Therefore: FP\n---\nQ1: no - The data originates from `new java.security.SecureRandom().nextInt()`, which is not directly controlled by an att",
+    "stage": "LLM"
+  },
+  "DB_DUPLICATE_BRANCHES_juliet/testcases/CWE190_Integer_Overflow/s01/CWE190_Integer_Overflow__byte_max_add_12.java_85": {
+    "alert_id": "DB_DUPLICATE_BRANCHES",
+    "label": "FP",
+    "confidence": 0.6,
+    "rationale": "Q1: no. The data is initialized to `Byte.MAX_VALUE` or `2` within the `bad()` method, which is not controlled by an external attacker. It's internal logic of the test case. Q2: yes. The sink involves an addition operation `data + 1` which can cause an integer overflow if `data` is `Byte.MAX_VALUE`. Q3: no. There is no explicit sanitization performed on the `data` variable before it is used in the addition. Q4: yes. The `data` variable, depending on the `if(IO.staticReturnsTrueOrFalse())` branche",
+    "stage": "LLM"
+  },
+  "INT_BAD_COMPARISON_WITH_INT_VALUE_juliet/testcases/CWE190_Integer_Overflow/s05/CWE190_Integer_Overflow__short_max_square_66b.java_55": {
+    "alert_id": "INT_BAD_COMPARISON_WITH_INT_VALUE",
+    "label": "ABSTAIN",
+    "confidence": 0.6,
+    "rationale": "Error calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}\n---\nError calling gemini: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "stage": "LLM"
+  }
+}

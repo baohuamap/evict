@@ -1,68 +1,71 @@
-\documentclass{article}
+\documentclass[sigconf,review,anonymous]{acmart}
 
-% NeurIPS 2026 style
-\usepackage[final,main]{neurips_2026}
-
-% Core packages
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{hyperref}
-\usepackage{url}
 \usepackage{booktabs}
-\usepackage{amsfonts}
 \usepackage{amsmath}
-\usepackage{amssymb}
 \usepackage{amsthm}
-\usepackage{nicefrac}
-\usepackage{microtype}
-\usepackage{xcolor}
 \usepackage{graphicx}
-% Algorithm packages not available, using custom environment
-\input{algorithm_env}
 \usepackage{multirow}
 \usepackage{subcaption}
-\usepackage{cleveref}
 \usepackage{tikz}
-\usetikzlibrary{positioning}
-\setcitestyle{numbers,square,comma,sort&compress}
+\usetikzlibrary{positioning,arrows.meta}
+\input{algorithm_env}
 
-% Title and authors
-\title{EVICT: Evidence-Conditioned Investigation with Calibrated Triage for Static Analysis Alerts}
+\newtheorem{theorem}{Theorem}
 
-\author{%
-  Anonymous Authors\\
-  Anonymous Institution\\
-  \texttt{anonymous@institution.edu}
-}
+\pagestyle{plain}
+
+\title{EVICT: Calibrated Selective Prediction for Static-Analysis Alert Triage}
+
+\author{Anonymous Author(s)}
+\affiliation{%
+  \institution{Anonymous Institution}
+  \country{Anonymous Country}}
+\email{anonymous@example.com}
 
 \begin{document}
 
-\maketitle
-
 \begin{abstract}
-Static analysis tools are widely deployed in secure software development but suffer from false-positive (FP) rates of 40--90\%~\cite{johnson2013,christakis2016}, with manual triage costing 10--20 minutes per alert~\cite{tencent2023}. Recent LLM-based triage systems improve precision by conditioning on analyzer evidence~\cite{llm4fpm2024,llm4pfa2024,buglens2024}, yet they treat model confidence heuristically, force binary classification without principled abstention, and do not examine whether the confidence signal itself is reliable for selective prediction.
+Static analyzers are essential in secure software engineering, yet their practical value is constrained by false-positive rates of 40--90\% and manual triage costs of 10--20 minutes per alert. Recent LLM-based triage systems condition on analyzer evidence, but they still rely on uncalibrated confidence and forced binary decisions. This is unsafe in the lite-model regime: in our zero-shot Juliet baseline over five lite LLMs and 87+ CWE classes, accepted-alert precision saturates at 42.2--59.9\% and expected calibration error (ECE) remains above 0.35.
 
-We present \textbf{EVICT} (Evidence-Conditioned Investigation with Calibrated Triage), which reframes alert triage as cost-sensitive selective prediction~\cite{elyaniv2010,geifman2017}: the system accepts alerts only when calibrated evidence supports a reliable decision and defers uncertain cases to human review. EVICT extracts structured evidence from SARIF output, applies schema-guided LLM reasoning, calibrates confidence via split-conformal prediction~\cite{vovk2005,angelopoulos2021}, and invokes symbolic verification selectively on abstained alerts. We prove finite-sample conformal validity for the pre-escalation predictor and derive excess-risk bounds with label-specific convergence rates.
+We introduce \textbf{EVICT} (Evidence-Conditioned Investigation with Calibrated Triage), a framework that casts alert triage as cost-sensitive selective prediction. EVICT extracts SARIF-derived evidence, applies schema-guided LLM verification, converts raw confidence into conformal prediction sets, and commits to TP or FP only on singleton sets; empty and multi-label sets abstain and may be routed to symbolic escalation. The conformal guarantee applies to the pre-escalation selective predictor, while symbolic verification is reported as a separate post-calibration audit layer.
 
-Across six LLMs spanning three training paradigms---reasoning, instruction-tuned, and code-specialized---we uncover a previously unreported finding: \emph{the quality of self-consistency confidence depends more on training objective than on model size}. Reasoning models produce diverse vote-share distributions that yield well-calibrated ECE, enabling effective conformal abstention, while instruction-tuned and code-specialized models exhibit near-unanimous vote-share that renders calibration ineffective. We further show that a \textbf{contrastive prompting} technique---forcing the model to argue both TP and FP cases before deciding---reduces ECE by 39\% and vote-share unanimity by 68 percentage points on a standard lite model, outperforming even a 14B reasoning model. On CWE-Bench-Java~\cite{cwebench2023}, code-specialized models achieve the highest FP rejection despite the worst confidence quality, revealing a code-specialization paradox. These findings establish that prompt design, not model scale, is the key lever for enabling calibrated selective prediction in LLM-based alert triage.
+Across real measured studies, we uncover the confidence-signal bottleneck: on a 247-alert Juliet conformal study spanning CWE-89/78/190, a 14B reasoning model produces only 36\% unanimous self-consistency votes and ECE 0.335, while instruction-tuned and code-specialized models produce 85--98\% unanimity and ECE 0.51--0.62. Holding the model fixed, a contrastive prompt for Gemini 2.5 Flash Lite reduces unanimity from 84.6\% to 16.2\% and ECE from 0.555 to 0.337, showing that prompt design can substitute for model scale in producing calibratable confidence. On 549 real CodeQL alerts from 45 CWE-Bench-Java projects, DS-Coder-V2-Lite achieves the highest true-negative count despite the worst Juliet confidence quality, revealing a code-specialization paradox. These results position calibrated abstention and confidence-signal design as the key levers for deployable LLM-based static-analysis triage.
 \end{abstract}
 
-% Main sections
+\begin{CCSXML}
+<ccs2012>
+ <concept>
+  <concept_id>10011007.10011074.10011099</concept_id>
+  <concept_desc>Software and its engineering~Software verification and validation</concept_desc>
+  <concept_significance>500</concept_significance>
+ </concept>
+ <concept>
+  <concept_id>10002978.10003006.10003013</concept_id>
+  <concept_desc>Security and privacy~Software security engineering</concept_desc>
+  <concept_significance>300</concept_significance>
+ </concept>
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Software and its engineering~Software verification and validation}
+\ccsdesc[300]{Security and privacy~Software security engineering}
+\keywords{static analysis, false-positive triage, selective prediction, conformal prediction, large language models}
+
+\maketitle
+
 \input{sections/introduction}
 \input{sections/background}
 \input{sections/methodology}
 \input{sections/theory}
-\input{sections/preliminary_results}
-\input{sections/evaluation_plan}
+\input{sections/evaluation}
 \input{sections/discussion}
+\input{sections/threats_to_validity}
 \input{sections/broader_impact}
-
-
-% References
-\bibliographystyle{plainnat}
-\bibliography{references}
 
 \appendix
 \input{sections/appendix}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
 
 \end{document}
