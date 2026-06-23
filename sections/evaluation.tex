@@ -106,24 +106,39 @@ Study~3 reveals the code-specialization paradox. DS-Coder-V2-Lite has the worst 
 
 \subsection{RQ4: Can Prompt Design Substitute for Scale?}
 
-Study~4 holds Gemini 2.5 Flash Lite fixed on the same 247-alert Juliet CWE-89/78/190 subset as Study~2 and changes only the prompt. The default prompt asks for evidence-conditioned classification. The contrastive prompt forces the model to build TP and FP arguments before deciding.
+Study~4 holds Gemini 2.5 Flash Lite fixed on the same 247-alert Juliet CWE-89/78/190 subset as Study~2 and changes only the prompt. We evaluate six strategies: the \emph{default} one-directional classification prompt, a \emph{contrastive} prompt that forces both TP and FP arguments, a \emph{decomposed} prompt that breaks triage into yes/no sub-questions (source, sink, sanitizer, path, test-code), a \emph{few-shot} prompt with calibrated TP/FP examples, an \emph{FP-hunter} prompt that inverts the decision prior (assume FP unless all preconditions are met), and a \emph{decomposed+few-shot} combined prompt.
 
 \begin{table}[t]
 \centering
-\caption{Study~4 prompt comparison on Gemini 2.5 Flash Lite (247 Juliet alerts, $k_{\mathrm{sc}}=5$). Metrics are pre-escalation singleton-reject results.}
+\caption{Study~4 prompt-strategy comparison on Gemini 2.5 Flash Lite (247 Juliet alerts, $k_{\mathrm{sc}}=5$, $F{=}5$, $\alpha_{\mathrm{conf}}{=}0.1$). ``No~cal.'' columns are raw LLM output; ``cal.'' columns include conformal singleton-reject. $\Delta$P is precision change vs.\ default (no cal.).}
 \label{tab:prompt_strategy}
 \small
-\begin{tabular}{lcccccc}
+\setlength{\tabcolsep}{3pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lcccccccc}
 \toprule
-\textbf{Prompt} & \textbf{Unanimous} & \textbf{ECE (pre-escal.)} & \textbf{$\hat q$} & \textbf{Coverage (pre-escal.)} & \textbf{ABSTAIN (pre-escal.)} & \textbf{Precision (pre-escal.)} \\
+\textbf{Prompt} & \textbf{Unan.} & \textbf{ECE} & \textbf{Prec.\ (no cal.)} & \textbf{$\Delta$P} & \textbf{Prec.\ (cal.)} & \textbf{Cov.\ (cal.)} & \textbf{ECE (cal.)} & \textbf{F1 (no cal.)} \\
 \midrule
-Default & 84.6\% & 0.555 & 0.20 & 97.6\% & 0\% & 38.9\% \\
-\textbf{Contrastive} & \textbf{16.2\%} & \textbf{0.337} & \textbf{0.60} & 70.6\% & 29.1\% & 37.9\% \\
+Default & 84.6\% & 0.555 & 38.9\% & --- & 38.6\% & 97.6\% & 0.559 & 0.551 \\
+Contrastive & 16.2\% & 0.337 & 37.9\% & $-$1.0 & 35.2\% & 70.6\% & 0.332 & 0.517 \\
+Decomposed & 17.5\% & 0.344 & 38.6\% & $-$0.3 & --- & --- & --- & 0.553 \\
+Few-shot & 73.9\% & 0.541 & 37.8\% & $-$1.1 & --- & --- & --- & 0.538 \\
+\textbf{FP-Hunter} & \textbf{31.2\%} & \textbf{0.137} & \textbf{52.1\%} & \textbf{+13.2} & 52.0\% & 53.5\% & 0.203 & \textbf{0.676} \\
+\textbf{Decomp.+FS} & 37.7\% & \textbf{0.087} & \textbf{55.0\%} & \textbf{+16.1} & 51.0\% & 49.0\% & 0.216 & 0.611 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \end{table}
 
-The contrastive prompt is the paper's cleanest causal comparison because the model and alert set are fixed. It reduces ECE by 39\% and unanimity by 68.4pp. It also produces more diverse confidence than R1-Distill-14B under the default Study~2 prompt (16.2\% vs. 36\% unanimous). The trade-off is over-conservatism: coverage drops to 70.6\% and LLM-level abstention rises to 29.1\%. The result still changes the design space: cheap lite models can become calibratable if the prompt elicits genuine uncertainty.
+Three findings emerge from Table~\ref{tab:prompt_strategy}.
+
+\paragraph{Finding~1: Confidence degeneracy is a prompt artifact, not a model property.}
+All four non-default strategies that restructure the reasoning process reduce unanimity from 84.6\% to 16--38\%, with corresponding ECE improvements. The contrastive prompt (16.2\% unanimous, ECE~0.337) produces more diverse confidence than the 14B reasoning model under the default prompt (36\% unanimous, ECE~0.335 in Study~2), demonstrating that \emph{prompt design can substitute for model scale} in eliciting a calibratable self-consistency signal.
+
+\paragraph{Finding~2: Inverting the decision prior increases precision.}
+The default prompt implicitly biases toward TP (93.5\% of predictions are TP), which inflates recall but destroys precision. The FP-Hunter prompt inverts this prior: it assumes FP unless all five preconditions (attacker input, dangerous sink, no sanitizer, feasible path, not test-safe code) are clearly met. This single change increases precision by 13.2\,pp (38.9\%~$\to$~52.1\%) while maintaining 96.2\% recall and improving ECE by 75\% (0.555~$\to$~0.137). The decomposed+few-shot variant, which combines examples and sub-questions with the FP-bias, achieves the highest precision (55.0\%, +16.1\,pp) and lowest ECE (0.087, $-$84\%).
+
+\paragraph{Finding~3: Precision and calibration can co-occur, but coverage is the trade-off.}
+With conformal calibration, FP-Hunter retains 52.0\% precision at 53.5\% coverage and decomposed+few-shot achieves 51.0\% precision at 49.0\% coverage. The over-conservatism (the FP-bias induces 78--87\% LLM-level abstention) means the pipeline defers many alerts that the default prompt would have classified. Whether this is desirable depends on the cost asymmetry: in security-sensitive settings where a missed vulnerability is far more expensive than a manual review, high abstention with high precision on the accepted set is the preferred operating point. Future work should explore tunable abstention thresholds that interpolate between the aggressive default prompt and the conservative FP-Hunter.
 
 \subsection{RQ5: Projected Outlook for Frontier Reasoning Models}
 \label{sec:frontier_projections}
